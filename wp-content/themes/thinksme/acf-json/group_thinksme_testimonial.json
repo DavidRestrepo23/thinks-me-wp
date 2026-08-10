@@ -1,0 +1,83 @@
+{
+    "key": "group_thinksme_testimonial",
+    "title": "Google Review Details",
+    "fields": [
+        {
+            "key": "field_thinksme_testimonial_text",
+            "label": "Review Text",
+            "name": "testimonial_text",
+            "type": "textarea",
+            "instructions": "The review itself. Paste it as-is — no need to add quote marks, the card draws its own. Long reviews are clamped to 10 lines on the card.",
+            "required": 1,
+            "rows": 6,
+            "new_lines": "",
+            "default_value": ""
+        },
+        {
+            "key": "field_thinksme_testimonial_rating",
+            "label": "Rating",
+            "name": "testimonial_rating",
+            "type": "select",
+            "instructions": "Number of stars shown on the card.",
+            "required": 0,
+            "choices": {
+                "5": "5 stars",
+                "4": "4 stars",
+                "3": "3 stars",
+                "2": "2 stars",
+                "1": "1 star"
+            },
+            "default_value": "5",
+            "return_format": "value",
+            "allow_null": 0,
+            "multiple": 0,
+            "ui": 0
+        },
+        {
+            "key": "field_thinksme_testimonial_service",
+            "label": "Service Tag",
+            "name": "testimonial_service",
+            "type": "text",
+            "instructions": "Small pill under the review, e.g. \"Company Incorporation\". Leave empty to hide it.",
+            "required": 0,
+            "default_value": ""
+        },
+        {
+            "key": "field_thinksme_testimonial_when",
+            "label": "When",
+            "name": "testimonial_when",
+            "type": "text",
+            "instructions": "Free text as shown on Google, e.g. \"3 months ago\".",
+            "required": 0,
+            "default_value": ""
+        },
+        {
+            "key": "field_thinksme_testimonial_source",
+            "label": "Source",
+            "name": "testimonial_source",
+            "type": "text",
+            "instructions": "Shown after the date, separated by a dot.",
+            "required": 0,
+            "default_value": "via Google"
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "post_type",
+                "operator": "==",
+                "value": "testimonial"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "show_in_rest": 0,
+    "description": "Post title = reviewer name. The avatar circle colour and initial are derived from it automatically.",
+    "modified": 1785935099
+}

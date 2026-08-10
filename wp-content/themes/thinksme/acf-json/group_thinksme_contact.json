@@ -1,0 +1,326 @@
+{
+    "key": "group_thinksme_contact",
+    "title": "Contact Page Content",
+    "fields": [
+        {
+            "key": "field_thinksme_tab_contact_form",
+            "label": "Headline & Form",
+            "name": "",
+            "type": "tab",
+            "placement": "top",
+            "endpoint": 0
+        },
+        {
+            "key": "field_thinksme_contact_title",
+            "label": "Headline",
+            "name": "contact_title",
+            "type": "text",
+            "instructions": "Wrap the words that should be bold in <strong>…<\/strong>. The brush stroke underneath is drawn by the theme.",
+            "required": 0,
+            "default_value": "Contact Accounting Professionals and <strong>Taxation Experts<\/strong>"
+        },
+        {
+            "key": "field_thinksme_contact_text",
+            "label": "Intro Text",
+            "name": "contact_text",
+            "type": "textarea",
+            "required": 0,
+            "rows": 3,
+            "new_lines": "",
+            "default_value": "We are here to help you succeed. Our team of experienced consultants is on hand to discuss your goals for growth, and how we can help you achieve them."
+        },
+        {
+            "key": "field_thinksme_contact_email",
+            "label": "Email Address",
+            "name": "contact_email",
+            "type": "email",
+            "required": 0,
+            "default_value": "hello@thinksme.sg"
+        },
+        {
+            "key": "field_thinksme_contact_phone",
+            "label": "Phone Number",
+            "name": "contact_phone",
+            "type": "text",
+            "instructions": "Shown exactly as typed. The tap-to-call link is built from the digits.",
+            "required": 0,
+            "default_value": "(+65) 6012 9642"
+        },
+        {
+            "key": "field_thinksme_contact_privacy_url",
+            "label": "Privacy Statement Link",
+            "name": "contact_privacy_url",
+            "type": "url",
+            "instructions": "Used by the consent checkbox under the form. Leave empty and \"Privacy Statement\" stays plain text instead of linking nowhere.",
+            "required": 0,
+            "default_value": ""
+        },
+        {
+            "key": "field_thinksme_contact_submit_text",
+            "label": "Submit Button Text",
+            "name": "contact_submit_text",
+            "type": "text",
+            "required": 0,
+            "default_value": "Submit"
+        },
+        {
+            "key": "field_thinksme_tab_offices",
+            "label": "Offices & Map",
+            "name": "",
+            "type": "tab",
+            "placement": "top",
+            "endpoint": 0
+        },
+        {
+            "key": "field_thinksme_office_1_name",
+            "label": "Office 1 — Name",
+            "name": "office_1_name",
+            "type": "text",
+            "instructions": "Clear both the name and the address to hide an office card.",
+            "required": 0,
+            "default_value": "Singapore"
+        },
+        {
+            "key": "field_thinksme_office_1_address",
+            "label": "Office 1 — Address",
+            "name": "office_1_address",
+            "type": "textarea",
+            "instructions": "Line breaks are kept. Also what the map searches for, unless a map search term is set below.",
+            "required": 0,
+            "rows": 3,
+            "new_lines": "",
+            "default_value": "380 Jalan Besar,\n#07-01, ARC 380\nSingapore 209000"
+        },
+        {
+            "key": "field_thinksme_office_1_map_query",
+            "label": "Office 1 — Map Search Term",
+            "name": "office_1_map_query",
+            "type": "text",
+            "instructions": "Optional. Use when the address alone doesn't land on the right spot in Google Maps — e.g. a building name.",
+            "required": 0,
+            "default_value": ""
+        },
+        {
+            "key": "field_thinksme_office_2_name",
+            "label": "Office 2 — Name",
+            "name": "office_2_name",
+            "type": "text",
+            "required": 0,
+            "default_value": "Philippines"
+        },
+        {
+            "key": "field_thinksme_office_2_address",
+            "label": "Office 2 — Address",
+            "name": "office_2_address",
+            "type": "textarea",
+            "required": 0,
+            "rows": 3,
+            "new_lines": "",
+            "default_value": "9\/F Fillinvest One Building Northgate Cyberzone,\nMuntinlupa City 1781, Philippines"
+        },
+        {
+            "key": "field_thinksme_office_2_map_query",
+            "label": "Office 2 — Map Search Term",
+            "name": "office_2_map_query",
+            "type": "text",
+            "required": 0,
+            "default_value": ""
+        },
+        {
+            "key": "field_thinksme_office_3_name",
+            "label": "Office 3 — Name",
+            "name": "office_3_name",
+            "type": "text",
+            "required": 0,
+            "default_value": "Malaysia"
+        },
+        {
+            "key": "field_thinksme_office_3_address",
+            "label": "Office 3 — Address",
+            "name": "office_3_address",
+            "type": "textarea",
+            "required": 0,
+            "rows": 3,
+            "new_lines": "",
+            "default_value": "Suite 25.03A, Level 25, City Square Office Tower,\n80000 Johor Bahru, Malaysia"
+        },
+        {
+            "key": "field_thinksme_office_3_map_query",
+            "label": "Office 3 — Map Search Term",
+            "name": "office_3_map_query",
+            "type": "text",
+            "required": 0,
+            "default_value": ""
+        },
+        {
+            "key": "field_thinksme_office_4_name",
+            "label": "Office 4 — Name",
+            "name": "office_4_name",
+            "type": "text",
+            "required": 0,
+            "default_value": "India"
+        },
+        {
+            "key": "field_thinksme_office_4_address",
+            "label": "Office 4 — Address",
+            "name": "office_4_address",
+            "type": "textarea",
+            "required": 0,
+            "rows": 3,
+            "new_lines": "",
+            "default_value": "559\/A Aman Nagar, Mirjapur Road, Hisar 125001, Haryana, India"
+        },
+        {
+            "key": "field_thinksme_office_4_map_query",
+            "label": "Office 4 — Map Search Term",
+            "name": "office_4_map_query",
+            "type": "text",
+            "required": 0,
+            "default_value": ""
+        },
+        {
+            "key": "field_thinksme_tab_hiring",
+            "label": "We're Hiring",
+            "name": "",
+            "type": "tab",
+            "placement": "top",
+            "endpoint": 0
+        },
+        {
+            "key": "field_thinksme_hiring_hat_text",
+            "label": "Hat (badge above heading)",
+            "name": "hiring_hat_text",
+            "type": "text",
+            "required": 0,
+            "default_value": "Enjoy!"
+        },
+        {
+            "key": "field_thinksme_hiring_title",
+            "label": "Heading",
+            "name": "hiring_title",
+            "type": "textarea",
+            "instructions": "Line breaks are kept, so this is where the heading wraps.",
+            "required": 0,
+            "rows": 2,
+            "new_lines": "",
+            "default_value": "We’re Hiring!\nJoin Our Team Today!"
+        },
+        {
+            "key": "field_thinksme_hiring_text",
+            "label": "Text",
+            "name": "hiring_text",
+            "type": "textarea",
+            "required": 0,
+            "rows": 4,
+            "new_lines": "",
+            "default_value": "At Think SME, we bring the best to the table and our team is the living proof of that. We constantly look for talents who share the same passion for business, for numbers, and for creativity."
+        },
+        {
+            "key": "field_thinksme_hiring_image",
+            "label": "Photo",
+            "name": "hiring_image",
+            "type": "image",
+            "instructions": "Landscape, roughly 4:3 (the frame crops to 515×391). Leave empty to use the theme default.",
+            "return_format": "array",
+            "preview_size": "medium",
+            "library": "all"
+        },
+        {
+            "key": "field_thinksme_hiring_button_text",
+            "label": "Button Text",
+            "name": "hiring_button_text",
+            "type": "text",
+            "instructions": "The design has no button here — leave empty and none is rendered.",
+            "required": 0,
+            "default_value": ""
+        },
+        {
+            "key": "field_thinksme_hiring_button_link",
+            "label": "Button Link",
+            "name": "hiring_button_link",
+            "type": "text",
+            "required": 0,
+            "default_value": ""
+        },
+        {
+            "key": "field_thinksme_tab_contact_cta",
+            "label": "Final CTA",
+            "name": "",
+            "type": "tab",
+            "placement": "top",
+            "endpoint": 0
+        },
+        {
+            "key": "field_thinksme_contact_cta_title",
+            "label": "Title",
+            "name": "cta_title",
+            "type": "text",
+            "required": 0,
+            "default_value": "Need help?"
+        },
+        {
+            "key": "field_thinksme_contact_cta_text",
+            "label": "Text",
+            "name": "cta_text",
+            "type": "textarea",
+            "required": 0,
+            "rows": 3,
+            "new_lines": "",
+            "default_value": "Reach out with your requirements, and our experts will be happy to assist you — no commitment, no pressure."
+        },
+        {
+            "key": "field_thinksme_contact_cta_google_rating",
+            "label": "Google Rating",
+            "name": "cta_google_rating",
+            "type": "text",
+            "instructions": "Shown next to the Google logo and five stars.",
+            "required": 0,
+            "default_value": "4.9"
+        },
+        {
+            "key": "field_thinksme_contact_cta_button_text",
+            "label": "Button Text",
+            "name": "cta_button_text",
+            "type": "text",
+            "required": 0,
+            "default_value": "Contact Us"
+        },
+        {
+            "key": "field_thinksme_contact_cta_button_link",
+            "label": "Button Link",
+            "name": "cta_button_link",
+            "type": "text",
+            "required": 0,
+            "default_value": "#"
+        },
+        {
+            "key": "field_thinksme_contact_cta_image",
+            "label": "Photo",
+            "name": "cta_image",
+            "type": "image",
+            "instructions": "Wide photo band under the CTA. Recommended 2560×1122px (2:1 ratio-ish). Leave empty to use the theme default.",
+            "return_format": "array",
+            "preview_size": "medium",
+            "library": "all"
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "page_template",
+                "operator": "==",
+                "value": "page-contact-us.php"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "show_in_rest": 0,
+    "description": "Contact page sections: headline + enquiry form, offices\/map, We're Hiring, and the final CTA. The cta_* fields repeat the Home group's field names under different keys, which is what lets template-parts\/cta.php stay page-agnostic.",
+    "modified": 1786132009
+}

@@ -1,0 +1,1240 @@
+{
+    "key": "group_thinksme_home",
+    "title": "Home Page Content",
+    "fields": [
+        {
+            "key": "field_thinksme_tab_hero",
+            "label": "Hero",
+            "name": "",
+            "type": "tab",
+            "placement": "top",
+            "endpoint": 0
+        },
+        {
+            "key": "field_thinksme_hero_hat_text",
+            "label": "Hat (badge above headline)",
+            "name": "hero_hat_text",
+            "type": "text",
+            "required": 0,
+            "default_value": "Singapore's All-in-One SME Partner · IMDA Pre-Approved Vendor"
+        },
+        {
+            "key": "field_thinksme_hero_title",
+            "label": "Headline",
+            "name": "hero_title",
+            "type": "text",
+            "instructions": "Basic HTML allowed. Wrap the part that should be bold (and get the yellow brush stroke) in <strong>.",
+            "required": 0,
+            "default_value": "Everything Your SME Needs to <strong>Start, Run &amp; Grow</strong>"
+        },
+        {
+            "key": "field_thinksme_hero_subtitle",
+            "label": "Subheadline",
+            "name": "hero_subtitle",
+            "type": "textarea",
+            "required": 0,
+            "rows": 3,
+            "new_lines": "",
+            "default_value": "Company incorporation in 24 hours. Accounting, Corporate Secretary, GST & tax compliance. Business loans from 60+ lenders. Property cashout. PSG Xero grant. One team, full support."
+        },
+        {
+            "key": "field_thinksme_hero_button_1_text",
+            "label": "Button 1 Text",
+            "name": "hero_button_1_text",
+            "type": "text",
+            "required": 0,
+            "default_value": "Speak to an Advisor"
+        },
+        {
+            "key": "field_thinksme_hero_button_1_link",
+            "label": "Button 1 Link",
+            "name": "hero_button_1_link",
+            "type": "text",
+            "required": 0,
+            "default_value": "#"
+        },
+        {
+            "key": "field_thinksme_hero_button_2_text",
+            "label": "Button 2 Text",
+            "name": "hero_button_2_text",
+            "type": "text",
+            "required": 0,
+            "default_value": "+65 6012 9642"
+        },
+        {
+            "key": "field_thinksme_hero_button_2_link",
+            "label": "Button 2 Link",
+            "name": "hero_button_2_link",
+            "type": "text",
+            "instructions": "Use tel:+65... for a click-to-call button.",
+            "required": 0,
+            "default_value": "tel:+6560129642"
+        },
+        {
+            "key": "field_thinksme_tab_overview",
+            "label": "Start / Run / Grow Accordion",
+            "name": "",
+            "type": "tab",
+            "placement": "top",
+            "endpoint": 0
+        },
+        {
+            "key": "field_thinksme_overview_hat_text",
+            "label": "Hat (badge above heading)",
+            "name": "overview_hat_text",
+            "type": "text",
+            "required": 0,
+            "default_value": "Everything Under One Roof"
+        },
+        {
+            "key": "field_thinksme_overview_heading",
+            "label": "Heading",
+            "name": "overview_heading",
+            "type": "text",
+            "required": 0,
+            "default_value": "Three Ways Think SME Serves Your Business"
+        },
+        {
+            "key": "field_thinksme_overview_subheading",
+            "label": "Subheading",
+            "name": "overview_subheading",
+            "type": "textarea",
+            "required": 0,
+            "default_value": "Whether you're just starting out, managing compliance, or ready to grow — we have the expertise, credentials, and network to get it done.",
+            "rows": 2,
+            "new_lines": ""
+        },
+        {
+            "key": "field_thinksme_overview_row_1_badge",
+            "label": "Row 1 (Start) — Label",
+            "name": "overview_row_1_badge",
+            "type": "text",
+            "instructions": "Large display text for the accordion row header.",
+            "required": 0,
+            "default_value": "Start"
+        },
+        {
+            "key": "field_thinksme_overview_row_1_service_1_title",
+            "label": "Row 1 (Start) — Service 1 — Title",
+            "name": "overview_row_1_service_1_title",
+            "type": "text",
+            "required": 0,
+            "default_value": "Company Incorporation"
+        },
+        {
+            "key": "field_thinksme_overview_row_1_service_1_description",
+            "label": "Row 1 (Start) — Service 1 — Description",
+            "name": "overview_row_1_service_1_description",
+            "type": "textarea",
+            "required": 0,
+            "rows": 3,
+            "new_lines": "",
+            "default_value": "Incorporate your Singapore private limited company (Pte Ltd) fully online — as fast as 24 hours. We handle name reservation, SSIC code selection, company constitution, and all ACRA BizFile+ submission on your behalf."
+        },
+        {
+            "key": "field_thinksme_overview_row_1_service_1_image",
+            "label": "Row 1 (Start) — Service 1 — Image",
+            "name": "overview_row_1_service_1_image",
+            "type": "image",
+            "return_format": "array",
+            "preview_size": "medium",
+            "library": "all"
+        },
+        {
+            "key": "field_thinksme_overview_row_1_service_1_link",
+            "label": "Row 1 (Start) — Service 1 — Link (arrow icon click-through)",
+            "name": "overview_row_1_service_1_link",
+            "type": "text",
+            "required": 0,
+            "default_value": "#"
+        },
+        {
+            "key": "field_thinksme_overview_row_1_service_1_benefit_1",
+            "label": "Row 1 (Start) — Service 1 — Benefit 1",
+            "name": "overview_row_1_service_1_benefit_1",
+            "type": "text",
+            "required": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "Local & foreign entrepreneur incorporation"
+        },
+        {
+            "key": "field_thinksme_overview_row_1_service_1_benefit_2",
+            "label": "Row 1 (Start) — Service 1 — Benefit 2",
+            "name": "overview_row_1_service_1_benefit_2",
+            "type": "text",
+            "required": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "ACRA name reservation & SSIC advisory"
+        },
+        {
+            "key": "field_thinksme_overview_row_1_service_1_benefit_3",
+            "label": "Row 1 (Start) — Service 1 — Benefit 3",
+            "name": "overview_row_1_service_1_benefit_3",
+            "type": "text",
+            "required": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "100% online — no Singapore visit required"
+        },
+        {
+            "key": "field_thinksme_overview_row_1_service_1_benefit_4",
+            "label": "Row 1 (Start) — Service 1 — Benefit 4",
+            "name": "overview_row_1_service_1_benefit_4",
+            "type": "text",
+            "required": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "Grant eligibility check at incorporation"
+        },
+        {
+            "key": "field_thinksme_overview_row_1_service_2_title",
+            "label": "Row 1 (Start) — Service 2 — Title",
+            "name": "overview_row_1_service_2_title",
+            "type": "text",
+            "required": 0,
+            "default_value": "Corporate Secretarial Services"
+        },
+        {
+            "key": "field_thinksme_overview_row_1_service_2_description",
+            "label": "Row 1 (Start) — Service 2 — Description",
+            "name": "overview_row_1_service_2_description",
+            "type": "textarea",
+            "required": 0,
+            "rows": 3,
+            "new_lines": "",
+            "default_value": "Singapore law requires every Pte Ltd to appoint a qualified company secretary within 6 months of incorporation. Think SME provides a full corporate secretarial service — AGM prep, annual return filing, and ongoing ACRA compliance."
+        },
+        {
+            "key": "field_thinksme_overview_row_1_service_2_image",
+            "label": "Row 1 (Start) — Service 2 — Image",
+            "name": "overview_row_1_service_2_image",
+            "type": "image",
+            "return_format": "array",
+            "preview_size": "medium",
+            "library": "all"
+        },
+        {
+            "key": "field_thinksme_overview_row_1_service_2_link",
+            "label": "Row 1 (Start) — Service 2 — Link (arrow icon click-through)",
+            "name": "overview_row_1_service_2_link",
+            "type": "text",
+            "required": 0,
+            "default_value": "#"
+        },
+        {
+            "key": "field_thinksme_overview_row_1_service_2_benefit_1",
+            "label": "Row 1 (Start) — Service 2 — Benefit 1",
+            "name": "overview_row_1_service_2_benefit_1",
+            "type": "text",
+            "required": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "Annual return filing with ACRA"
+        },
+        {
+            "key": "field_thinksme_overview_row_1_service_2_benefit_2",
+            "label": "Row 1 (Start) — Service 2 — Benefit 2",
+            "name": "overview_row_1_service_2_benefit_2",
+            "type": "text",
+            "required": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "AGM preparation & resolutions"
+        },
+        {
+            "key": "field_thinksme_overview_row_1_service_2_benefit_3",
+            "label": "Row 1 (Start) — Service 2 — Benefit 3",
+            "name": "overview_row_1_service_2_benefit_3",
+            "type": "text",
+            "required": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "Changes to company particulars"
+        },
+        {
+            "key": "field_thinksme_overview_row_1_service_2_benefit_4",
+            "label": "Row 1 (Start) — Service 2 — Benefit 4",
+            "name": "overview_row_1_service_2_benefit_4",
+            "type": "text",
+            "required": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "Director & shareholder register maintenance"
+        },
+        {
+            "key": "field_thinksme_overview_row_1_service_3_title",
+            "label": "Row 1 (Start) — Service 3 — Title",
+            "name": "overview_row_1_service_3_title",
+            "type": "text",
+            "required": 0,
+            "default_value": "Registered Office Address"
+        },
+        {
+            "key": "field_thinksme_overview_row_1_service_3_description",
+            "label": "Row 1 (Start) — Service 3 — Description",
+            "name": "overview_row_1_service_3_description",
+            "type": "textarea",
+            "required": 0,
+            "rows": 3,
+            "new_lines": "",
+            "default_value": "Every Singapore company must maintain a local registered address accessible during business hours. Think SME provides a professional Singapore registered office address — ACRA-compliant, mail handling included."
+        },
+        {
+            "key": "field_thinksme_overview_row_1_service_3_image",
+            "label": "Row 1 (Start) — Service 3 — Image",
+            "name": "overview_row_1_service_3_image",
+            "type": "image",
+            "return_format": "array",
+            "preview_size": "medium",
+            "library": "all"
+        },
+        {
+            "key": "field_thinksme_overview_row_1_service_3_link",
+            "label": "Row 1 (Start) — Service 3 — Link (arrow icon click-through)",
+            "name": "overview_row_1_service_3_link",
+            "type": "text",
+            "required": 0,
+            "default_value": "#"
+        },
+        {
+            "key": "field_thinksme_overview_row_1_service_3_benefit_1",
+            "label": "Row 1 (Start) — Service 3 — Benefit 1",
+            "name": "overview_row_1_service_3_benefit_1",
+            "type": "text",
+            "required": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "ACRA-compliant Singapore business address"
+        },
+        {
+            "key": "field_thinksme_overview_row_1_service_3_benefit_2",
+            "label": "Row 1 (Start) — Service 3 — Benefit 2",
+            "name": "overview_row_1_service_3_benefit_2",
+            "type": "text",
+            "required": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "Mail collection & forwarding"
+        },
+        {
+            "key": "field_thinksme_overview_row_1_service_3_benefit_3",
+            "label": "Row 1 (Start) — Service 3 — Benefit 3",
+            "name": "overview_row_1_service_3_benefit_3",
+            "type": "text",
+            "required": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "Suitable for all business types"
+        },
+        {
+            "key": "field_thinksme_overview_row_1_service_3_benefit_4",
+            "label": "Row 1 (Start) — Service 3 — Benefit 4",
+            "name": "overview_row_1_service_3_benefit_4",
+            "type": "text",
+            "required": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "Immediate setup upon incorporation"
+        },
+        {
+            "key": "field_thinksme_overview_row_2_badge",
+            "label": "Row 2 (Run) — Label",
+            "name": "overview_row_2_badge",
+            "type": "text",
+            "instructions": "Large display text for the accordion row header.",
+            "required": 0,
+            "default_value": "Run"
+        },
+        {
+            "key": "field_thinksme_overview_row_2_service_1_title",
+            "label": "Row 2 (Run) — Service 1 — Title",
+            "name": "overview_row_2_service_1_title",
+            "type": "text",
+            "required": 0,
+            "default_value": "Accounting & Bookkeeping"
+        },
+        {
+            "key": "field_thinksme_overview_row_2_service_1_description",
+            "label": "Row 2 (Run) — Service 1 — Description",
+            "name": "overview_row_2_service_1_description",
+            "type": "textarea",
+            "required": 0,
+            "rows": 3,
+            "new_lines": "",
+            "default_value": "Singapore’s Companies Act requires every company to keep proper accounting records for five years. Think SME handles your monthly bookkeeping and year-end unaudited financial statements to SFRS standards — always IRAS- and ACRA-ready."
+        },
+        {
+            "key": "field_thinksme_overview_row_2_service_1_image",
+            "label": "Row 2 (Run) — Service 1 — Image",
+            "name": "overview_row_2_service_1_image",
+            "type": "image",
+            "return_format": "array",
+            "preview_size": "medium",
+            "library": "all"
+        },
+        {
+            "key": "field_thinksme_overview_row_2_service_1_link",
+            "label": "Row 2 (Run) — Service 1 — Link (arrow icon click-through)",
+            "name": "overview_row_2_service_1_link",
+            "type": "text",
+            "required": 0,
+            "default_value": "#"
+        },
+        {
+            "key": "field_thinksme_overview_row_2_service_1_benefit_1",
+            "label": "Row 2 (Run) — Service 1 — Benefit 1",
+            "name": "overview_row_2_service_1_benefit_1",
+            "type": "text",
+            "required": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "Monthly bookkeeping & bank reconciliation"
+        },
+        {
+            "key": "field_thinksme_overview_row_2_service_1_benefit_2",
+            "label": "Row 2 (Run) — Service 1 — Benefit 2",
+            "name": "overview_row_2_service_1_benefit_2",
+            "type": "text",
+            "required": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "Unaudited financial statements to SFRS"
+        },
+        {
+            "key": "field_thinksme_overview_row_2_service_1_benefit_3",
+            "label": "Row 2 (Run) — Service 1 — Benefit 3",
+            "name": "overview_row_2_service_1_benefit_3",
+            "type": "text",
+            "required": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "XBRL preparation & ACRA filing"
+        },
+        {
+            "key": "field_thinksme_overview_row_2_service_1_benefit_4",
+            "label": "Row 2 (Run) — Service 1 — Benefit 4",
+            "name": "overview_row_2_service_1_benefit_4",
+            "type": "text",
+            "required": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "Cloud accounting setup & migration"
+        },
+        {
+            "key": "field_thinksme_overview_row_2_service_2_title",
+            "label": "Row 2 (Run) — Service 2 — Title",
+            "name": "overview_row_2_service_2_title",
+            "type": "text",
+            "required": 0,
+            "default_value": "GST Registration & Filing"
+        },
+        {
+            "key": "field_thinksme_overview_row_2_service_2_description",
+            "label": "Row 2 (Run) — Service 2 — Description",
+            "name": "overview_row_2_service_2_description",
+            "type": "textarea",
+            "required": 0,
+            "rows": 3,
+            "new_lines": "",
+            "default_value": "Compulsory GST registration when your turnover exceeds S$1 million — and quarterly F5/F8 return filing to IRAS. Think SME tracks every deadline and submits on time, every quarter. Zero late penalties, guaranteed."
+        },
+        {
+            "key": "field_thinksme_overview_row_2_service_2_image",
+            "label": "Row 2 (Run) — Service 2 — Image",
+            "name": "overview_row_2_service_2_image",
+            "type": "image",
+            "return_format": "array",
+            "preview_size": "medium",
+            "library": "all"
+        },
+        {
+            "key": "field_thinksme_overview_row_2_service_2_link",
+            "label": "Row 2 (Run) — Service 2 — Link (arrow icon click-through)",
+            "name": "overview_row_2_service_2_link",
+            "type": "text",
+            "required": 0,
+            "default_value": "#"
+        },
+        {
+            "key": "field_thinksme_overview_row_2_service_2_benefit_1",
+            "label": "Row 2 (Run) — Service 2 — Benefit 1",
+            "name": "overview_row_2_service_2_benefit_1",
+            "type": "text",
+            "required": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "Compulsory & voluntary GST registration"
+        },
+        {
+            "key": "field_thinksme_overview_row_2_service_2_benefit_2",
+            "label": "Row 2 (Run) — Service 2 — Benefit 2",
+            "name": "overview_row_2_service_2_benefit_2",
+            "type": "text",
+            "required": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "Quarterly F5 return preparation & IRAS filing"
+        },
+        {
+            "key": "field_thinksme_overview_row_2_service_2_benefit_3",
+            "label": "Row 2 (Run) — Service 2 — Benefit 3",
+            "name": "overview_row_2_service_2_benefit_3",
+            "type": "text",
+            "required": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "GST F8 deregistration when applicable"
+        },
+        {
+            "key": "field_thinksme_overview_row_2_service_2_benefit_4",
+            "label": "Row 2 (Run) — Service 2 — Benefit 4",
+            "name": "overview_row_2_service_2_benefit_4",
+            "type": "text",
+            "required": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "InvoiceNow (Peppol) e-invoicing setup"
+        },
+        {
+            "key": "field_thinksme_overview_row_2_service_3_title",
+            "label": "Row 2 (Run) — Service 3 — Title",
+            "name": "overview_row_2_service_3_title",
+            "type": "text",
+            "required": 0,
+            "default_value": "Corporate Income Tax"
+        },
+        {
+            "key": "field_thinksme_overview_row_2_service_3_description",
+            "label": "Row 2 (Run) — Service 3 — Description",
+            "name": "overview_row_2_service_3_description",
+            "type": "textarea",
+            "required": 0,
+            "rows": 3,
+            "new_lines": "",
+            "default_value": "Singapore’s flat 17% corporate tax rate — but most SMEs pay far less thanks to the Start-up Tax Exemption (SUTE) and Partial Tax Exemption (PTE). Think SME ensures every exemption is claimed and every IRAS deadline is met."
+        },
+        {
+            "key": "field_thinksme_overview_row_2_service_3_image",
+            "label": "Row 2 (Run) — Service 3 — Image",
+            "name": "overview_row_2_service_3_image",
+            "type": "image",
+            "return_format": "array",
+            "preview_size": "medium",
+            "library": "all"
+        },
+        {
+            "key": "field_thinksme_overview_row_2_service_3_link",
+            "label": "Row 2 (Run) — Service 3 — Link (arrow icon click-through)",
+            "name": "overview_row_2_service_3_link",
+            "type": "text",
+            "required": 0,
+            "default_value": "#"
+        },
+        {
+            "key": "field_thinksme_overview_row_2_service_3_benefit_1",
+            "label": "Row 2 (Run) — Service 3 — Benefit 1",
+            "name": "overview_row_2_service_3_benefit_1",
+            "type": "text",
+            "required": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "Estimated Chargeable Income (ECI) filing"
+        },
+        {
+            "key": "field_thinksme_overview_row_2_service_3_benefit_2",
+            "label": "Row 2 (Run) — Service 3 — Benefit 2",
+            "name": "overview_row_2_service_3_benefit_2",
+            "type": "text",
+            "required": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "Form C / C-S / C-S Lite preparation & submission"
+        },
+        {
+            "key": "field_thinksme_overview_row_2_service_3_benefit_3",
+            "label": "Row 2 (Run) — Service 3 — Benefit 3",
+            "name": "overview_row_2_service_3_benefit_3",
+            "type": "text",
+            "required": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "SUTE & PTE exemption maximisation"
+        },
+        {
+            "key": "field_thinksme_overview_row_2_service_3_benefit_4",
+            "label": "Row 2 (Run) — Service 3 — Benefit 4",
+            "name": "overview_row_2_service_3_benefit_4",
+            "type": "text",
+            "required": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "Financial statement analysis & business planning"
+        },
+        {
+            "key": "field_thinksme_overview_row_3_badge",
+            "label": "Row 3 (Grow) — Label",
+            "name": "overview_row_3_badge",
+            "type": "text",
+            "instructions": "Large display text for the accordion row header.",
+            "required": 0,
+            "default_value": "Grow"
+        },
+        {
+            "key": "field_thinksme_overview_row_3_service_1_title",
+            "label": "Row 3 (Grow) — Service 1 — Title",
+            "name": "overview_row_3_service_1_title",
+            "type": "text",
+            "required": 0,
+            "default_value": "SME Business Loans"
+        },
+        {
+            "key": "field_thinksme_overview_row_3_service_1_description",
+            "label": "Row 3 (Grow) — Service 1 — Description",
+            "name": "overview_row_3_service_1_description",
+            "type": "textarea",
+            "required": 0,
+            "rows": 3,
+            "new_lines": "",
+            "default_value": "One application, matched across 60+ banks, finance companies, digital banks, and licensed alternative lenders. Our team of former bankers knows exactly how lenders assess SME applications — and how to maximise your approval odds."
+        },
+        {
+            "key": "field_thinksme_overview_row_3_service_1_image",
+            "label": "Row 3 (Grow) — Service 1 — Image",
+            "name": "overview_row_3_service_1_image",
+            "type": "image",
+            "return_format": "array",
+            "preview_size": "medium",
+            "library": "all"
+        },
+        {
+            "key": "field_thinksme_overview_row_3_service_1_link",
+            "label": "Row 3 (Grow) — Service 1 — Link (arrow icon click-through)",
+            "name": "overview_row_3_service_1_link",
+            "type": "text",
+            "required": 0,
+            "default_value": "#"
+        },
+        {
+            "key": "field_thinksme_overview_row_3_service_1_benefit_1",
+            "label": "Row 3 (Grow) — Service 1 — Benefit 1",
+            "name": "overview_row_3_service_1_benefit_1",
+            "type": "text",
+            "required": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "Enterprise Financing Scheme (EFS) — up to S$500K"
+        },
+        {
+            "key": "field_thinksme_overview_row_3_service_1_benefit_2",
+            "label": "Row 3 (Grow) — Service 1 — Benefit 2",
+            "name": "overview_row_3_service_1_benefit_2",
+            "type": "text",
+            "required": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "Trade & invoice financing"
+        },
+        {
+            "key": "field_thinksme_overview_row_3_service_1_benefit_3",
+            "label": "Row 3 (Grow) — Service 1 — Benefit 3",
+            "name": "overview_row_3_service_1_benefit_3",
+            "type": "text",
+            "required": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "Equipment & fixed asset loans"
+        },
+        {
+            "key": "field_thinksme_overview_row_3_service_1_benefit_4",
+            "label": "Row 3 (Grow) — Service 1 — Benefit 4",
+            "name": "overview_row_3_service_1_benefit_4",
+            "type": "text",
+            "required": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "Alternative lenders for bank-rejected cases"
+        },
+        {
+            "key": "field_thinksme_overview_row_3_service_2_title",
+            "label": "Row 3 (Grow) — Service 2 — Title",
+            "name": "overview_row_3_service_2_title",
+            "type": "text",
+            "required": 0,
+            "default_value": "Property Cashout"
+        },
+        {
+            "key": "field_thinksme_overview_row_3_service_2_description",
+            "label": "Row 3 (Grow) — Service 2 — Description",
+            "name": "overview_row_3_service_2_description",
+            "type": "textarea",
+            "required": 0,
+            "rows": 3,
+            "new_lines": "",
+            "default_value": "Own commercial, industrial, or private residential property? Unlock up to 90% LTV at rates 3–5× cheaper than any unsecured business loan. Banks rejected your application? Fret not, we have options with deep expertise in property-backed lending to ensure you get the cash you need to realise your business dreams."
+        },
+        {
+            "key": "field_thinksme_overview_row_3_service_2_image",
+            "label": "Row 3 (Grow) — Service 2 — Image",
+            "name": "overview_row_3_service_2_image",
+            "type": "image",
+            "return_format": "array",
+            "preview_size": "medium",
+            "library": "all"
+        },
+        {
+            "key": "field_thinksme_overview_row_3_service_2_link",
+            "label": "Row 3 (Grow) — Service 2 — Link (arrow icon click-through)",
+            "name": "overview_row_3_service_2_link",
+            "type": "text",
+            "required": 0,
+            "default_value": "#"
+        },
+        {
+            "key": "field_thinksme_overview_row_3_service_2_benefit_1",
+            "label": "Row 3 (Grow) — Service 2 — Benefit 1",
+            "name": "overview_row_3_service_2_benefit_1",
+            "type": "text",
+            "required": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "Commercial, industrial & residential properties"
+        },
+        {
+            "key": "field_thinksme_overview_row_3_service_2_benefit_2",
+            "label": "Row 3 (Grow) — Service 2 — Benefit 2",
+            "name": "overview_row_3_service_2_benefit_2",
+            "type": "text",
+            "required": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "Up to 90% LTV via alternative lenders"
+        },
+        {
+            "key": "field_thinksme_overview_row_3_service_2_benefit_3",
+            "label": "Row 3 (Grow) — Service 2 — Benefit 3",
+            "name": "overview_row_3_service_2_benefit_3",
+            "type": "text",
+            "required": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "Rates from 2% p.a. · Tenure up to 30 years"
+        },
+        {
+            "key": "field_thinksme_overview_row_3_service_2_benefit_4",
+            "label": "Row 3 (Grow) — Service 2 — Benefit 4",
+            "name": "overview_row_3_service_2_benefit_4",
+            "type": "text",
+            "required": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "TDSR does not apply to company borrowers"
+        },
+        {
+            "key": "field_thinksme_overview_row_3_service_3_title",
+            "label": "Row 3 (Grow) — Service 3 — Title",
+            "name": "overview_row_3_service_3_title",
+            "type": "text",
+            "required": 0,
+            "default_value": "PSG Xero Grant & Government Grants"
+        },
+        {
+            "key": "field_thinksme_overview_row_3_service_3_description",
+            "label": "Row 3 (Grow) — Service 3 — Description",
+            "name": "overview_row_3_service_3_description",
+            "type": "textarea",
+            "required": 0,
+            "rows": 3,
+            "new_lines": "",
+            "default_value": "As an IMDA Pre-Approved PSG Vendor, Think SME fast-tracks your Xero grant application via the Business Grants Portal — with up to 50% government co-funding. We also advise on the Enterprise Development Grant (EDG) for capability building and the Market Readiness Assistance (MRA) grant for Singapore SMEs expanding overseas."
+        },
+        {
+            "key": "field_thinksme_overview_row_3_service_3_image",
+            "label": "Row 3 (Grow) — Service 3 — Image",
+            "name": "overview_row_3_service_3_image",
+            "type": "image",
+            "return_format": "array",
+            "preview_size": "medium",
+            "library": "all"
+        },
+        {
+            "key": "field_thinksme_overview_row_3_service_3_link",
+            "label": "Row 3 (Grow) — Service 3 — Link (arrow icon click-through)",
+            "name": "overview_row_3_service_3_link",
+            "type": "text",
+            "required": 0,
+            "default_value": "#"
+        },
+        {
+            "key": "field_thinksme_overview_row_3_service_3_benefit_1",
+            "label": "Row 3 (Grow) — Service 3 — Benefit 1",
+            "name": "overview_row_3_service_3_benefit_1",
+            "type": "text",
+            "required": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "PSG Xero Grant — up to 50% co-funded by government"
+        },
+        {
+            "key": "field_thinksme_overview_row_3_service_3_benefit_2",
+            "label": "Row 3 (Grow) — Service 3 — Benefit 2",
+            "name": "overview_row_3_service_3_benefit_2",
+            "type": "text",
+            "required": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "IMDA Pre-Approved · Business Grants Portal listed"
+        },
+        {
+            "key": "field_thinksme_overview_row_3_service_3_benefit_3",
+            "label": "Row 3 (Grow) — Service 3 — Benefit 3",
+            "name": "overview_row_3_service_3_benefit_3",
+            "type": "text",
+            "required": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "Enterprise Development Grant (EDG)"
+        },
+        {
+            "key": "field_thinksme_overview_row_3_service_3_benefit_4",
+            "label": "Row 3 (Grow) — Service 3 — Benefit 4",
+            "name": "overview_row_3_service_3_benefit_4",
+            "type": "text",
+            "required": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "Market Readiness Assistance (MRA) — overseas expansion"
+        },
+        {
+            "key": "field_thinksme_tab_ways",
+            "label": "Three Ways — Card Deck",
+            "name": "",
+            "type": "tab",
+            "placement": "top",
+            "endpoint": 0
+        },
+        {
+            "key": "field_thinksme_ways_hat_text",
+            "label": "Hat (badge above heading)",
+            "name": "ways_hat_text",
+            "type": "text",
+            "required": 0,
+            "default_value": "Everything Under One Roof"
+        },
+        {
+            "key": "field_thinksme_ways_heading",
+            "label": "Heading",
+            "name": "ways_heading",
+            "type": "text",
+            "required": 0,
+            "default_value": "Three Ways Think SME Serves Your Business"
+        },
+        {
+            "key": "field_thinksme_ways_subheading",
+            "label": "Subheading",
+            "name": "ways_subheading",
+            "type": "textarea",
+            "required": 0,
+            "rows": 3,
+            "new_lines": "",
+            "default_value": "Whether you're just starting out, managing compliance, or ready to grow — we have the expertise, credentials, and network to get it done."
+        },
+        {
+            "key": "field_thinksme_ways_card_1_badge",
+            "label": "Card 1 (Start) — Badge",
+            "name": "ways_card_1_badge",
+            "type": "text",
+            "instructions": "Small pill at the top of the card.",
+            "required": 0,
+            "default_value": "Start"
+        },
+        {
+            "key": "field_thinksme_ways_card_1_title",
+            "label": "Card 1 (Start) — Title",
+            "name": "ways_card_1_title",
+            "type": "text",
+            "required": 0,
+            "default_value": "Set Up Your Singapore Company Right"
+        },
+        {
+            "key": "field_thinksme_ways_card_1_description",
+            "label": "Card 1 (Start) — Description",
+            "name": "ways_card_1_description",
+            "type": "textarea",
+            "required": 0,
+            "rows": 4,
+            "new_lines": "",
+            "default_value": "From name reservation to Certificate of Incorporation — handled fully online, as fast as 24 hours. As an ACRA Registered Filing Agent, we file on your behalf with full accountability."
+        },
+        {
+            "key": "field_thinksme_ways_card_1_button_text",
+            "label": "Card 1 (Start) — Button Text",
+            "name": "ways_card_1_button_text",
+            "type": "text",
+            "required": 0,
+            "default_value": "Get Free Consultation"
+        },
+        {
+            "key": "field_thinksme_ways_card_1_button_link",
+            "label": "Card 1 (Start) — Button Link",
+            "name": "ways_card_1_button_link",
+            "type": "text",
+            "required": 0,
+            "default_value": "#"
+        },
+        {
+            "key": "field_thinksme_ways_card_1_image",
+            "label": "Card 1 (Start) — Image",
+            "name": "ways_card_1_image",
+            "type": "image",
+            "instructions": "Portrait photo, shown rotated inside the card. Recommended 602×878px or larger. Leave empty to use the theme default.",
+            "return_format": "array",
+            "preview_size": "medium",
+            "library": "all"
+        },
+        {
+            "key": "field_thinksme_ways_card_2_badge",
+            "label": "Card 2 (Run) — Badge",
+            "name": "ways_card_2_badge",
+            "type": "text",
+            "instructions": "Small pill at the top of the card.",
+            "required": 0,
+            "default_value": "Run"
+        },
+        {
+            "key": "field_thinksme_ways_card_2_title",
+            "label": "Card 2 (Run) — Title",
+            "name": "ways_card_2_title",
+            "type": "text",
+            "required": 0,
+            "default_value": "Keep Your Business Compliant, Year-Round"
+        },
+        {
+            "key": "field_thinksme_ways_card_2_description",
+            "label": "Card 2 (Run) — Description",
+            "name": "ways_card_2_description",
+            "type": "textarea",
+            "required": 0,
+            "rows": 4,
+            "new_lines": "",
+            "default_value": "Accounting, GST, and corporate tax — handled on time, every time. Powered by Xero. IRAS-compliant. Zero penalties. Free up your time to focus on the business, not the paperwork."
+        },
+        {
+            "key": "field_thinksme_ways_card_2_button_text",
+            "label": "Card 2 (Run) — Button Text",
+            "name": "ways_card_2_button_text",
+            "type": "text",
+            "required": 0,
+            "default_value": "Get Free Consultation"
+        },
+        {
+            "key": "field_thinksme_ways_card_2_button_link",
+            "label": "Card 2 (Run) — Button Link",
+            "name": "ways_card_2_button_link",
+            "type": "text",
+            "required": 0,
+            "default_value": "#"
+        },
+        {
+            "key": "field_thinksme_ways_card_2_image",
+            "label": "Card 2 (Run) — Image",
+            "name": "ways_card_2_image",
+            "type": "image",
+            "instructions": "Portrait photo, shown rotated inside the card. Recommended 602×878px or larger. Leave empty to use the theme default.",
+            "return_format": "array",
+            "preview_size": "medium",
+            "library": "all"
+        },
+        {
+            "key": "field_thinksme_ways_card_3_badge",
+            "label": "Card 3 (Grow) — Badge",
+            "name": "ways_card_3_badge",
+            "type": "text",
+            "instructions": "Small pill at the top of the card.",
+            "required": 0,
+            "default_value": "Grow"
+        },
+        {
+            "key": "field_thinksme_ways_card_3_title",
+            "label": "Card 3 (Grow) — Title",
+            "name": "ways_card_3_title",
+            "type": "text",
+            "required": 0,
+            "default_value": ""
+        },
+        {
+            "key": "field_thinksme_ways_card_3_description",
+            "label": "Card 3 (Grow) — Description",
+            "name": "ways_card_3_description",
+            "type": "textarea",
+            "required": 0,
+            "rows": 4,
+            "new_lines": "",
+            "default_value": ""
+        },
+        {
+            "key": "field_thinksme_ways_card_3_button_text",
+            "label": "Card 3 (Grow) — Button Text",
+            "name": "ways_card_3_button_text",
+            "type": "text",
+            "required": 0,
+            "default_value": "Get Free Consultation"
+        },
+        {
+            "key": "field_thinksme_ways_card_3_button_link",
+            "label": "Card 3 (Grow) — Button Link",
+            "name": "ways_card_3_button_link",
+            "type": "text",
+            "required": 0,
+            "default_value": "#"
+        },
+        {
+            "key": "field_thinksme_ways_card_3_image",
+            "label": "Card 3 (Grow) — Image",
+            "name": "ways_card_3_image",
+            "type": "image",
+            "instructions": "Portrait photo, shown rotated inside the card. Recommended 602×878px or larger. Leave empty to use the theme default.",
+            "return_format": "array",
+            "preview_size": "medium",
+            "library": "all"
+        },
+        {
+            "key": "field_thinksme_tab_testimonials",
+            "label": "Google Reviews",
+            "name": "",
+            "type": "tab",
+            "placement": "top",
+            "endpoint": 0
+        },
+        {
+            "key": "field_thinksme_testimonials_hat_text",
+            "label": "Hat (badge above heading)",
+            "name": "testimonials_hat_text",
+            "type": "text",
+            "required": 0,
+            "default_value": "Google Reviews"
+        },
+        {
+            "key": "field_thinksme_testimonials_heading",
+            "label": "Heading",
+            "name": "testimonials_heading",
+            "type": "text",
+            "instructions": "The reviews themselves live under \"Google Reviews\" in the sidebar, not here.",
+            "required": 0,
+            "default_value": "See Why Clients Recommend Think SME"
+        },
+        {
+            "key": "field_thinksme_tab_faq",
+            "label": "FAQ",
+            "name": "",
+            "type": "tab",
+            "placement": "top",
+            "endpoint": 0
+        },
+        {
+            "key": "field_thinksme_faq_hat_text",
+            "label": "Hat (badge above heading)",
+            "name": "faq_hat_text",
+            "type": "text",
+            "required": 0,
+            "default_value": "Common Questions"
+        },
+        {
+            "key": "field_thinksme_faq_heading",
+            "label": "Heading",
+            "name": "faq_heading",
+            "type": "text",
+            "instructions": "The questions themselves live under \"FAQs\" in the sidebar, not here.",
+            "required": 0,
+            "default_value": "Questions Singapore Business Owners Ask Us First"
+        },
+        {
+            "key": "field_thinksme_tab_cta",
+            "label": "Final CTA",
+            "name": "",
+            "type": "tab",
+            "placement": "top",
+            "endpoint": 0
+        },
+        {
+            "key": "field_thinksme_cta_title",
+            "label": "Title",
+            "name": "cta_title",
+            "type": "text",
+            "required": 0,
+            "default_value": "Need help?"
+        },
+        {
+            "key": "field_thinksme_cta_text",
+            "label": "Text",
+            "name": "cta_text",
+            "type": "textarea",
+            "required": 0,
+            "rows": 3,
+            "new_lines": "",
+            "default_value": "Reach out with your requirements, and our experts will be happy to assist you — no commitment, no pressure."
+        },
+        {
+            "key": "field_thinksme_cta_google_rating",
+            "label": "Google Rating",
+            "name": "cta_google_rating",
+            "type": "text",
+            "instructions": "Shown next to the Google logo and five stars.",
+            "required": 0,
+            "default_value": "4.9"
+        },
+        {
+            "key": "field_thinksme_cta_button_text",
+            "label": "Button Text",
+            "name": "cta_button_text",
+            "type": "text",
+            "required": 0,
+            "default_value": "Contact Us"
+        },
+        {
+            "key": "field_thinksme_cta_button_link",
+            "label": "Button Link",
+            "name": "cta_button_link",
+            "type": "text",
+            "required": 0,
+            "default_value": "#"
+        },
+        {
+            "key": "field_thinksme_cta_image",
+            "label": "Photo",
+            "name": "cta_image",
+            "type": "image",
+            "instructions": "Wide photo band under the CTA. Recommended 2560×1122px (2:1 ratio-ish). Leave empty to use the theme default.",
+            "return_format": "array",
+            "preview_size": "medium",
+            "library": "all"
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "page_type",
+                "operator": "==",
+                "value": "front_page"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "show_in_rest": 0,
+    "modified": 1785943130
+}

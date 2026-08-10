@@ -1,0 +1,41 @@
+{
+    "key": "group_thinksme_menu_item",
+    "title": "Menu Item — Megamenu Icon",
+    "fields": [
+        {
+            "key": "field_thinksme_menu_icon",
+            "label": "Megamenu icon",
+            "name": "menu_icon",
+            "type": "select",
+            "instructions": "Only used for items shown as a card in the header megamenu (a 3rd-level item, or a 2nd-level item with no children). The grey line under the title is this item's own Description field — switch \"Description\" on under Screen Options if you don't see it.",
+            "required": 0,
+            "choices": {
+                "network": "Network \/ org chart"
+            },
+            "default_value": "",
+            "allow_null": 1,
+            "multiple": 0,
+            "ui": 0,
+            "return_format": "value"
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "nav_menu_item",
+                "operator": "==",
+                "value": "all"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "show_in_rest": 0,
+    "description": "The choices here are a placeholder: thinksme_menu_icon_choices() in functions.php replaces them at load time from thinksme_menu_icons(), so the icon list lives in one place and this file never has to be re-synced when an icon is added.",
+    "modified": 1786132009
+}

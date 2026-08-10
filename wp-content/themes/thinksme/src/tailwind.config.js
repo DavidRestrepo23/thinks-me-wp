@@ -1,0 +1,93 @@
+/** @type {import('tailwindcss').Config} */
+module.exports = {
+  content: [
+    "./**/*.php",
+    "!./node_modules/**",
+  ],
+  theme: {
+    extend: {
+      colors: {
+        brand: {
+          yellow: "#f7c90e",
+          "yellow-soft": "#fefbf0",
+          "yellow-border": "#ffdd55",
+          "yellow-dark": "#dcb200",
+        },
+        card: {
+          start: "#ffe064",
+          grow: "#fffdc3",
+          blue: "#d0e0ff",
+        },
+        surface: {
+          white: "#ffffff",
+          dark: "#183458",
+          "dark-glass": "rgba(255, 255, 255, 0.07)",
+          light: "#f9fafb",
+          "brand-light": "#f3f7fc",
+          muted: "#f6f7f9",
+        },
+        text: {
+          primary: "#242424",
+          secondary: "#505050",
+          "on-dark": "#ffffff",
+          "heading-dark": "#000000",
+          strong: "#2a2f37",
+        },
+        border: {
+          soft: "#d0d5dc",
+          medium: "#a6a6a6",
+          light: "#cacaca",
+          focus: "#316bb4",
+          "brand-dark": "#204574",
+        },
+        success: "#1ec03b",
+        danger: "#e13339",
+      },
+      fontFamily: {
+        base: ["Charlevoix Pro", "sans-serif"],
+      },
+      fontSize: {
+        xs: "14px",
+        sm: "16px",
+        md: "18px",
+        lg: "20px",
+        xl: "24px",
+        "2xl": "40px",
+        "3xl": "64px",
+        "4xl": "80px",
+      },
+      lineHeight: {
+        tight: "1",
+        snug: "1.14",
+        normal: "1.3",
+        relaxed: "1.44",
+        loose: "1.6",
+      },
+      letterSpacing: {
+        tight: "-0.0125em",
+        hero: "-0.01em",
+        wide: "0.01em",
+        widest: "0.05em",
+      },
+      borderRadius: {
+        sm: "16px",
+        md: "24px",
+        lg: "32px",
+        xl: "40px",
+        "2xl": "48px",
+        pill: "999px",
+      },
+      spacing: {
+        xs: "8px",
+        sm: "12px",
+        md: "16px",
+        lg: "24px",
+        xl: "32px",
+        "2xl": "41px",
+        "3xl": "80px",
+        "4xl": "118px",
+      },
+    },
+  },
+  plugins: [],
+};

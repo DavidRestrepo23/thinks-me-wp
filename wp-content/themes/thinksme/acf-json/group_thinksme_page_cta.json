@@ -1,0 +1,91 @@
+{
+    "key": "group_thinksme_page_cta",
+    "title": "Page Content",
+    "location": [
+        [
+            {
+                "param": "page_template",
+                "operator": "==",
+                "value": "default"
+            },
+            {
+                "param": "page_type",
+                "operator": "!=",
+                "value": "front_page"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "show_in_rest": 0,
+    "description": "Final CTA for any page on the default template (page.php). The cta_* field names repeat the Home and Contact groups' names under different keys, which is what lets template-parts/cta.php stay page-agnostic. \"default\" is ACF's value for the default page template, not \"page.php\"; the front page is excluded because it also uses the default template and already gets its cta_* fields from the Home group.",
+    "modified": 1786387211,
+    "fields": [
+        {
+            "key": "field_thinksme_tab_page_cta",
+            "label": "Final CTA",
+            "name": "",
+            "type": "tab",
+            "placement": "top",
+            "endpoint": 0
+        },
+        {
+            "key": "field_thinksme_page_cta_title",
+            "label": "Title",
+            "name": "cta_title",
+            "type": "text",
+            "required": 0,
+            "default_value": "Need help?"
+        },
+        {
+            "key": "field_thinksme_page_cta_text",
+            "label": "Text",
+            "name": "cta_text",
+            "type": "textarea",
+            "required": 0,
+            "rows": 3,
+            "new_lines": "",
+            "default_value": "Reach out with your requirements, and our experts will be happy to assist you — no commitment, no pressure."
+        },
+        {
+            "key": "field_thinksme_page_cta_google_rating",
+            "label": "Google Rating",
+            "name": "cta_google_rating",
+            "type": "text",
+            "instructions": "Shown next to the Google logo and five stars.",
+            "required": 0,
+            "default_value": "4.9"
+        },
+        {
+            "key": "field_thinksme_page_cta_button_text",
+            "label": "Button Text",
+            "name": "cta_button_text",
+            "type": "text",
+            "required": 0,
+            "default_value": "Contact Us"
+        },
+        {
+            "key": "field_thinksme_page_cta_button_link",
+            "label": "Button Link",
+            "name": "cta_button_link",
+            "type": "text",
+            "required": 0,
+            "default_value": "#"
+        },
+        {
+            "key": "field_thinksme_page_cta_image",
+            "label": "Photo",
+            "name": "cta_image",
+            "type": "image",
+            "instructions": "Wide photo band under the CTA. Recommended 2560×1122px (2:1 ratio-ish). Leave empty to use the theme default.",
+            "return_format": "array",
+            "preview_size": "medium",
+            "library": "all"
+        }
+    ]
+}

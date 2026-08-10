@@ -1,0 +1,37 @@
+{
+    "key": "group_thinksme_faq_item",
+    "title": "FAQ Details",
+    "fields": [
+        {
+            "key": "field_thinksme_answer",
+            "label": "Answer",
+            "name": "answer",
+            "type": "wysiwyg",
+            "instructions": "Shown when the question is expanded. Basic formatting (bold, lists, links) is allowed.",
+            "required": 0,
+            "tabs": "visual",
+            "toolbar": "basic",
+            "media_upload": 0,
+            "delay": 0
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "post_type",
+                "operator": "==",
+                "value": "faq_item"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "show_in_rest": 0,
+    "description": "Post title = the question. Use the Order field (Page Attributes) to control where it sits in the accordion.",
+    "modified": 1785937659
+}

@@ -1,0 +1,1744 @@
+/*
+  Base tokens for Think SME theme, extracted from Figma
+  (node 773:16067 — Desktop Homepage — and nested component instances).
+  This file is meant to be @import'ed at the top of src/input.css once the
+  Tailwind build is scaffolded (see docs/superpowers/specs). It defines raw
+  CSS custom properties + resets; Tailwind config should reference these
+  same values via theme.extend so Tailwind utilities and this file agree.
+*/
+
+/* TODO: convert these .otf files to .woff2 for production (smaller, better browser support) */
+@font-face {
+  font-family: "Charlevoix Pro";
+  src: url("../fonts/CharlevoixPro-Regular.otf") format("opentype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Charlevoix Pro";
+  src: url("../fonts/CharlevoixPro-Medium.otf") format("opentype");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Charlevoix Pro";
+  src: url("../fonts/CharlevoixPro-Bold.otf") format("opentype");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  /* Color — brand */
+  --color-brand-yellow: #f7c90e;
+  --color-brand-yellow-soft: #fefbf0;
+  --color-brand-yellow-border: #ffdd55;
+  /* Pressed/hover shade of the brand yellow. Not in Figma (the design has no
+     hover states) — it's --color-brand-yellow darkened ~12% so a yellow button
+     still reads as the same colour while clearly reacting to the pointer. */
+  --color-brand-yellow-dark: #dcb200;
+
+  /* Color — "Three Ways" cards stack (Start / Grow; Run reuses --color-surface-dark) */
+  --color-card-start: #ffe064;
+  --color-card-grow: #fffdc3;
+
+  /* Color — Google Reviews slider (outer cards; centered card reuses --color-surface-dark) */
+  --color-card-blue: #d0e0ff;
+
+  /* Color — surfaces */
+  --color-surface-white: #ffffff;
+  --color-surface-dark: #183458;
+  --color-surface-dark-glass: rgba(255, 255, 255, 0.07);
+  /* background/lighter — contact form card and its inputs */
+  --color-surface-light: #f9fafb;
+  /* background/brand/lighter — the selected office card on the contact map, and
+     the nav item whose megamenu is open */
+  --color-surface-brand-light: #f3f7fc;
+  /* Every third megamenu column ("Start-up Tools" in the design) */
+  --color-surface-muted: #f6f7f9;
+
+  /* Color — text */
+  --color-text-primary: #242424;
+  --color-text-secondary: #505050;
+  --color-text-on-dark: #ffffff;
+  --color-text-heading-dark: #000000;
+  /* gray/900 — megamenu column headings and card titles. Deliberately not
+     --color-text-primary: the newer Figma frames use this slightly cooler grey. */
+  --color-text-strong: #2a2f37;
+
+  /* Color — borders */
+  --color-border-soft: #d0d5dc;
+  --color-border-medium: #a6a6a6;
+  --color-border-light: #cacaca;
+  /* stroke/focus — border of the selected office card on the contact map */
+  --color-border-focus: #316bb4;
+  /* stroke/brand/dark — underline on the nav item whose megamenu is open */
+  --color-border-brand-dark: #204574;
+
+  /* Color — status */
+  --color-success: #1ec03b;
+  /* red/500 — required-field asterisks and contact form errors */
+  --color-danger: #e13339;
+
+  /* Typography */
+  --font-family-base: "Charlevoix Pro", sans-serif;
+
+  --font-size-xs: 14px;
+  --font-size-sm: 16px;
+  --font-size-md: 18px;
+  --font-size-lg: 20px;
+  --font-size-xl: 24px;
+  --font-size-2xl: 40px;
+  --font-size-3xl: 64px;
+  --font-size-4xl: 80px;
+
+  --line-height-tight: 1;
+  --line-height-snug: 1.14;
+  --line-height-normal: 1.3;
+  --line-height-relaxed: 1.44; /* 26px over 18px (font-size/lg + line-height/lg) */
+  --line-height-loose: 1.6;
+
+  --tracking-tight: -0.0125em; /* -1px @ 80px, scales with clamp below */
+  --tracking-hero: -0.01em; /* -0.8px @ 80px */
+  --tracking-normal: 0;
+  --tracking-wide: 0.01em; /* +0.16/0.18px on body copy */
+  --tracking-widest: 0.05em; /* +1px uppercase footer headings */
+
+  /* Radius */
+  --radius-sm: 16px; /* buttons */
+  --radius-md: 24px; /* contact form textarea */
+  --radius-lg: 32px; /* glass card details */
+  --radius-xl: 40px; /* CTA / hero imagery */
+  --radius-2xl: 48px; /* "We're Hiring" photo */
+  --radius-pill: 999px; /* pills, icon badges, benefit check dots */
+
+  /* Spacing (section/component gaps seen repeatedly in the design) */
+  --space-xs: 8px;
+  --space-sm: 12px;
+  --space-md: 16px;
+  --space-lg: 24px;
+  --space-xl: 32px;
+  --space-2xl: 41px;
+  --space-3xl: 80px;
+  --space-4xl: 118px;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* Start/Run/Grow accordion (template-parts/cards-stack.php) — native
+   <details>/<summary> with a shared `name` attribute gives single-open
+   accordion behavior for free (Baseline since late 2024), no JS needed.
+   This block only removes the default marker and swaps the +/- icon on
+   [open]. Figma: node 11:53, file "Untitled" (vzdpOnH1U36oXcFcugiyE5). */
+.overview-accordion-row summary {
+  list-style: none;
+}
+
+.overview-accordion-row summary::-webkit-details-marker {
+  display: none;
+}
+
+.overview-accordion-row .icon-minus {
+  display: none;
+}
+
+.overview-accordion-row[open] .icon-plus {
+  display: none;
+}
+
+.overview-accordion-row[open] .icon-minus {
+  display: block;
+}
+
+/* Inner level of the same accordion: the three service cards inside an open
+   Start/Run/Grow row. A second <details name="overview-services-N"> per row
+   means the browser keeps exactly one card expanded, again with no JS.
+
+   Geometry measured off the Figma exports at 1:1 (1392px container): the
+   column is 746px tall in every state, the expanded card is twice as wide as
+   its two collapsed siblings, and it splits into a 412px image, an 8px gap
+   and a 326px glass description block. Collapsed cards are the full 746px.
+   Row height therefore comes from the expanded column, and the collapsed
+   ones stretch to match — the content block carries the min-height that
+   makes the sum land on 694px when the copy is short, and the row simply
+   grows past it when a client writes longer copy.
+
+   Every "expanded" rule is gated on :has(> .overview-service-content), not
+   on [open] alone. A service the client hasn't written a description or any
+   benefits for renders no content block, so opening it would shrink its
+   image to 412px and leave the rest of the column empty. With the guard,
+   such a card is inert: toggling it changes nothing. */
+.overview-service {
+  min-width: 0;
+}
+
+.overview-service summary {
+  list-style: none;
+  height: 280px;
+}
+
+.overview-service summary::-webkit-details-marker {
+  display: none;
+}
+
+.overview-service:not(:has(> .overview-service-content)) summary {
+  cursor: default;
+}
+
+.overview-service-caption {
+  padding: var(--space-lg);
+}
+
+.overview-service-title {
+  font-size: var(--font-size-lg);
+}
+
+.overview-service-scrim {
+  background-image: linear-gradient(188deg, rgba(11, 37, 88, 0) 28%, rgb(11, 37, 88) 112%);
+}
+
+.overview-service[open]:has(> .overview-service-content) .overview-service-scrim {
+  background-image: linear-gradient(184deg, rgba(11, 37, 88, 0) 38%, rgba(11, 37, 88, 0.6) 68%);
+}
+
+@media (min-width: 768px) {
+  /* A collapsed card's summary is height:100%, so with all three closed —
+     which <details name> allows, by clicking the open one — the row would
+     otherwise collapse to nothing. This floor is also the design's 746px. */
+  .overview-services {
+    min-height: 746px;
+  }
+
+  .overview-service {
+    flex: 1 0 0;
+    transition: flex-grow 0.4s ease;
+  }
+
+  .overview-service[open]:has(> .overview-service-content) {
+    flex: 2 0 0;
+  }
+
+  /* Collapsed cards fill whatever height the expanded column defines. */
+  .overview-service summary {
+    height: 100%;
+  }
+
+  .overview-service[open]:has(> .overview-service-content) summary {
+    height: 412px;
+  }
+
+  .overview-service-title {
+    font-size: var(--font-size-xl);
+  }
+
+  .overview-service[open]:has(> .overview-service-content) .overview-service-title {
+    font-size: var(--font-size-2xl);
+  }
+
+  .overview-service[open]:has(> .overview-service-content) .overview-service-caption {
+    padding: var(--space-xl);
+  }
+
+  /* 746px column - 412px image - 8px gap. Short copy pads out to this, so
+     every row lands on the design's 746px; longer copy grows past it. */
+  .overview-service-content {
+    min-height: 326px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .overview-service {
+    transition: none;
+  }
+}
+
+/* "Three Ways" rotating card deck (template-parts/cards-deck.php).
+   Figma: node 22:1104, file "Untitled" (vzdpOnH1U36oXcFcugiyE5).
+
+   Three equally-sized cards stacked at the same absolute position; depth is
+   expressed purely as a transform, so promoting a card to the front is a
+   single data-depth swap in JS (assets/js/cards-deck.js) and the browser
+   animates between the two states.
+
+   Geometry comes straight from the design: the front card is 1062x591 sitting
+   114px down inside a 705px-tall frame, the card behind it is 1014px wide
+   (= scale 0.955) with its top edge at 35px and rotated 2.74deg, and the
+   backmost is 935px wide (= scale 0.881), top edge at 6px, rotated -1deg.
+   transform-origin is the top center so the scale doesn't fight the
+   translate — top edge lands at var(--deck-front-top) + translateY. */
+.cards-deck {
+  --deck-card-height: 460px;
+  --deck-front-top: 70px;
+  --deck-peek-1: -48px;
+  --deck-peek-2: -66px;
+  --deck-rotate-1: 2deg;
+  --deck-rotate-2: -1deg;
+  --deck-nudge-1: 12px;
+}
+
+@media (min-width: 1024px) {
+  .cards-deck {
+    --deck-card-height: 591px;
+    --deck-front-top: 114px;
+    --deck-peek-1: -79px;
+    --deck-peek-2: -108px;
+    --deck-rotate-1: 2.74deg;
+    --deck-nudge-1: 6px;
+  }
+}
+
+.cards-deck__viewport {
+  position: relative;
+  height: calc(var(--deck-front-top) + var(--deck-card-height));
+}
+
+.cards-deck__card {
+  position: absolute;
+  top: var(--deck-front-top);
+  left: 0;
+  right: 0;
+  height: var(--deck-card-height);
+  transform-origin: 50% 0;
+  transition: transform 600ms cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: transform;
+}
+
+.cards-deck__card[data-depth="0"] {
+  transform: none;
+  z-index: 30;
+}
+
+/* --deck-nudge-1 cancels the leftward shift the positive rotation gives this
+   card's bottom-left corner around a top-center origin — without it that corner
+   pokes out past the front card's left edge. Figma keeps it inset by ~6px. */
+.cards-deck__card[data-depth="1"] {
+  transform: translate(var(--deck-nudge-1), var(--deck-peek-1)) scale(0.955) rotate(var(--deck-rotate-1));
+  z-index: 20;
+}
+
+.cards-deck__card[data-depth="2"] {
+  transform: translateY(var(--deck-peek-2)) scale(0.881) rotate(var(--deck-rotate-2));
+  z-index: 10;
+}
+
+/* Click target that promotes a back card. Covers the whole card and sits above
+   its (visually hidden, JS-inert) content; removed on the front card so its own
+   CTA is clickable. */
+.cards-deck__promote {
+  position: absolute;
+  inset: 0;
+  z-index: 5;
+  border: 0;
+  padding: 0;
+  background: transparent;
+  cursor: pointer;
+  appearance: none;
+}
+
+.cards-deck__card[data-depth="0"] .cards-deck__promote {
+  display: none;
+}
+
+.cards-deck__promote:focus-visible {
+  outline: 3px solid var(--color-brand-yellow);
+  outline-offset: -6px;
+  border-radius: var(--radius-xl);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cards-deck__card {
+    transition: none;
+  }
+}
+
+/* Google Reviews slider (template-parts/testimonials.php).
+   Figma: node 24:1395, file "Untitled" (vzdpOnH1U36oXcFcugiyE5).
+
+   Palette and tilt are positional, not per-review: assets/js/testimonials-slider.js
+   stamps data-pos on each slide (0 = centered, -1/-2 to the left, 1/2 to the
+   right, clamped) and everything below keys off it, so the navy highlight
+   travels with the carousel. Quote mark and star colours are swapped by
+   pointing --testimonials-quote / --testimonials-star at a different exported
+   SVG, whose URLs the template hands over as custom properties on the section
+   (a theme template can't be referenced from this stylesheet). */
+.testimonials-slider {
+  /* Breathing room for the rotated corners, which would otherwise be clipped
+     by the slider's own overflow. */
+  padding-block: 24px;
+}
+
+@media (min-width: 1024px) {
+  .testimonials-slider {
+    padding-block: 40px;
+  }
+}
+
+/* Swiper sizes slides from their content in slidesPerView: 'auto'. Two classes
+   deep on purpose: swiper-bundle.min.css ships `.swiper-slide { width: 100% }`
+   and is enqueued after the Tailwind build, so a single-class rule loses. */
+.testimonials-slider .swiper-slide {
+  width: auto;
+}
+
+.testimonials-card {
+  --testimonials-quote: var(--testimonials-quote-navy);
+  --testimonials-star: var(--testimonials-star-gold);
+  background-color: var(--color-surface-white);
+  color: var(--color-text-primary);
+  border-radius: 48px;
+  transition:
+    background-color 400ms ease,
+    color 400ms ease,
+    transform 500ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.testimonials-quote {
+  flex: none;
+  width: 56px;
+  height: 42px;
+  background-image: var(--testimonials-quote);
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.testimonials-star {
+  width: 18px;
+  height: 18px;
+  background-image: var(--testimonials-star);
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+@media (min-width: 1024px) {
+  .testimonials-quote {
+    width: 74.5px;
+    height: 55.814px;
+  }
+}
+
+/* line-clamp is a guard, not a design decision: the longest review in Figma
+   runs 9 lines at 405px, so nothing in the design truncates — it only stops a
+   client pasting an essay from stretching every card in the row. */
+.testimonials-text {
+  display: -webkit-box;
+  -webkit-line-clamp: 10;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  line-height: 1.54;
+  letter-spacing: 0.01em;
+}
+
+.testimonials-tag {
+  background-color: rgba(255, 255, 255, 0.4);
+  border: 1.18px solid rgba(255, 253, 195, 0.4);
+  color: #364153;
+  line-height: 16px;
+}
+
+.testimonials-name {
+  color: #101828;
+}
+
+.testimonials-meta {
+  color: #6a7282;
+}
+
+/* Tilt: left of centre leans one way, right of centre the other. */
+.testimonials-slide[data-pos^="-"] .testimonials-card {
+  transform: rotate(-3deg);
+}
+
+.testimonials-slide[data-pos="1"] .testimonials-card,
+.testimonials-slide[data-pos="2"] .testimonials-card {
+  transform: rotate(1.98deg);
+}
+
+.testimonials-slide[data-pos="-2"] .testimonials-card {
+  background-color: var(--color-card-blue);
+}
+
+.testimonials-slide[data-pos="2"] .testimonials-card {
+  background-color: var(--color-card-grow);
+}
+
+/* Below the desktop breakpoint only the immediate neighbours are on screen, and
+   a white card on a white page reads as a broken layout — so the pale blue /
+   cream that sit two slots out on desktop move in one slot, matching the
+   client's mobile screenshot. */
+@media (max-width: 1023px) {
+  .testimonials-slide[data-pos="-1"] .testimonials-card {
+    background-color: var(--color-card-blue);
+  }
+
+  .testimonials-slide[data-pos="1"] .testimonials-card {
+    background-color: var(--color-card-grow);
+  }
+}
+
+/* Centered card: navy, upright, inverted text and light quote/stars. */
+.testimonials-slide[data-pos="0"] .testimonials-card {
+  --testimonials-quote: var(--testimonials-quote-white);
+  --testimonials-star: var(--testimonials-star-pale);
+  background-color: var(--color-surface-dark);
+  color: var(--color-text-on-dark);
+  transform: none;
+}
+
+.testimonials-slide[data-pos="0"] .testimonials-name,
+.testimonials-slide[data-pos="0"] .testimonials-meta {
+  color: var(--color-text-on-dark);
+}
+
+.testimonials-slide[data-pos="0"] .testimonials-tag {
+  background-color: rgba(255, 255, 255, 0.08);
+  color: var(--color-text-on-dark);
+}
+
+/*
+  Site header (header.php). Figma: node 30:2220 (Header, Desktop).
+
+  wp_nav_menu() only lets us class the <ul>, not each <li>/<a>, so the per-item
+  padding, the caret on parent items, the dropdown flyout and the mobile panel
+  live here instead of in a one-off Walker_Nav_Menu. The `span` selectors cover
+  the plain-text fallback rendered when no menu is assigned yet.
+*/
+.site-header {
+  position: relative;
+}
+
+.site-header__nav,
+.site-header__menu {
+  display: flex;
+  align-items: center;
+  height: 100%;
+}
+
+.site-header__menu li > a,
+.site-header__menu li > span {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  padding: var(--space-md);
+  font-weight: 500;
+  font-size: var(--font-size-sm);
+  white-space: nowrap;
+}
+
+/* Caret-down on items with a submenu — the same CaretRight.svg Figma reuses
+   rotated 90deg. */
+.site-header__menu li.menu-item-has-children > a::after {
+  content: "";
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  background-image: url("../images/icons/caret-right.svg");
+  background-size: contain;
+  background-repeat: no-repeat;
+  transform: rotate(90deg);
+}
+
+/* Open state of a nav item with a submenu. Figma: node 63:248 (Header, state
+   "Hover") — brand-tinted background plus a dark brand underline, and the caret
+   flipped to point up. The underline is an inset shadow, not a border: a border
+   would grow the item and reflow the row on hover, and at 1px it would also
+   disappear into the header's own bottom border, so it's 2px.
+
+   Desktop only: below 1024px the submenus are already expanded inside the burger
+   panel, so there is no "open" state to signal. */
+@media (min-width: 1024px) {
+  .site-header__menu li.menu-item-has-children:hover > a,
+  .site-header__menu li.menu-item-has-children:focus-within > a {
+    background-color: var(--color-surface-brand-light);
+    box-shadow: inset 0 -2px 0 var(--color-border-brand-dark);
+  }
+
+  .site-header__menu li.menu-item-has-children:hover > a::after,
+  .site-header__menu li.menu-item-has-children:focus-within > a::after {
+    transform: rotate(-90deg);
+  }
+}
+
+/* Only nested parents get a positioning context. A top-level parent must NOT:
+   the megamenu panel is anchored to .site-header so it can span the viewport,
+   and a `position: relative` on the <li> would shrink it to the nav item. */
+.site-header__menu .megamenu__item.menu-item-has-children,
+.site-header__menu .sub-menu li.menu-item-has-children {
+  position: relative;
+}
+
+.site-header__menu li .sub-menu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  flex-direction: column;
+  align-items: stretch;
+  min-width: 220px;
+  height: auto;
+  background-color: var(--color-surface-white);
+  border: 1px solid var(--color-border-soft);
+  border-radius: var(--radius-sm);
+  padding: var(--space-xs);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+  z-index: 50;
+}
+
+.site-header__menu li.menu-item-has-children:hover > .sub-menu,
+.site-header__menu li.menu-item-has-children:focus-within > .sub-menu {
+  display: flex;
+}
+
+.site-header__menu li .sub-menu li > a {
+  padding: var(--space-sm) var(--space-md);
+}
+
+.site-header__menu li .sub-menu li.menu-item-has-children > a::after {
+  transform: rotate(0deg);
+}
+
+/* ---------------------------------------------------------------------------
+   Megamenu panel (inc/class-thinksme-nav-walker.php).
+   Figma: node 63:294 "Desktop Megamenu V1", file "Untitled"
+   (vzdpOnH1U36oXcFcugiyE5).
+
+   Opened by hover and by :focus-within, so tabbing through the header reaches
+   the cards — same mechanism the plain flyout used, no JS added. It stays a
+   hover/focus panel rather than a click-toggle because nothing else in the
+   header needs JS to work.
+
+   The panel is 8px in from the viewport on both sides and 8px below the header,
+   as the design draws it, and it is positioned against .site-header (which is
+   already `position: relative`) rather than the nav item — a full-width panel
+   can't be anchored to an item that is 150px wide.
+
+   Everything panel-shaped is inside the desktop query below; the base rules are
+   the mobile layout, where the same markup is a plain indented list inside the
+   burger panel (a hover panel has nothing to hover on a phone).
+--------------------------------------------------------------------------- */
+.megamenu__grid {
+  display: flex;
+  flex-direction: column;
+}
+
+.megamenu__col {
+  padding: var(--space-md) 0 0 var(--space-md);
+}
+
+@media (min-width: 1024px) {
+  .megamenu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 8px;
+    right: 8px;
+    /* The 8px the design leaves between header and panel is padding on this
+       element, not a margin: as a margin it is outside the box and the pointer
+       crosses 8px of nothing on the way down, which drops :hover and closes the
+       panel before the mouse can reach it. As padding it belongs to .megamenu,
+       so the gap keeps the panel open. */
+    padding-top: 8px;
+    z-index: 50;
+  }
+
+  .site-header__menu li.menu-item-has-children:hover > .megamenu,
+  .site-header__menu li.menu-item-has-children:focus-within > .megamenu {
+    display: block;
+  }
+
+  /* The page behind the open panel: white 30% + a 5px blur (Figma node
+     63:1028). Anchored to the panel and sized in vh so it covers everything
+     below the header without covering the header itself — and it lives out here
+     rather than on .megamenu__grid because that element has to clip its rounded
+     corners, which would clip the backdrop with them. */
+  .megamenu::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -8px;
+    right: -8px;
+    height: 100vh;
+    background-color: rgba(255, 255, 255, 0.3);
+    backdrop-filter: blur(5px);
+    z-index: -1;
+    pointer-events: none;
+  }
+
+  .megamenu__grid {
+    display: grid;
+    /* Three even columns, as drawn. A menu with more than three columns wraps
+       onto a second row instead of squeezing them all onto one. */
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    background-color: var(--color-surface-white);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.08);
+  }
+
+  .megamenu__col {
+    padding: var(--space-xl) var(--space-lg);
+    border-right: 1px solid var(--color-border-soft);
+  }
+
+  /* Figma tints the third column ("Start-up Tools"). Keyed to every third cell
+     rather than the last one so the rhythm holds if the client adds a fourth
+     column and the grid wraps — but only for real columns: in the two-level
+     fallback the cells are single cards, and tinting one of three identical
+     cards just looks like a mistake. */
+  .megamenu__col:nth-child(3n):not(.megamenu__col--card) {
+    background-color: var(--color-surface-muted);
+  }
+}
+
+.megamenu__heading {
+  margin: 0 0 var(--space-xl);
+  font-weight: 700;
+  font-size: var(--font-size-md);
+  line-height: 26px;
+  text-transform: uppercase;
+  color: var(--color-text-strong);
+}
+
+.megamenu__heading a {
+  color: inherit;
+}
+
+.megamenu__list {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  height: auto;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* Hairline centred in the gap between cards. Figma leaves 24px either side of
+   it (48px total); tightened to 16px on request, which also lets a four-card
+   column fit without the panel outgrowing the fold. */
+.megamenu__item + .megamenu__item {
+  margin-top: var(--space-md);
+  padding-top: var(--space-md);
+  border-top: 1px solid var(--color-border-soft);
+}
+
+/* A 2nd-level item with no children of its own is a card sitting directly in a
+   column cell — it has no heading above it, so it doesn't need the 32px the
+   heading's margin would otherwise leave. */
+.megamenu__col--card {
+  display: flex;
+  align-items: flex-start;
+}
+
+.megamenu__card {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  width: 100%;
+  /* The nav's own item padding is inherited from .site-header__menu li > a and
+     would push the cards out of their column. */
+  padding: 0;
+}
+
+.megamenu__icon {
+  flex: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 50px;
+  height: 50px;
+  border-radius: var(--radius-sm);
+  background-color: var(--color-brand-yellow);
+}
+
+.megamenu__icon img {
+  width: 24px;
+  height: 24px;
+}
+
+.megamenu__text {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+  white-space: normal;
+}
+
+.megamenu__title {
+  font-weight: 500;
+  font-size: var(--font-size-sm);
+  line-height: 24px;
+  color: var(--color-text-strong);
+}
+
+.megamenu__desc {
+  font-weight: 400;
+  font-size: var(--font-size-xs);
+  line-height: 20px;
+  color: var(--color-text-heading-dark);
+}
+
+.megamenu__caret {
+  flex: none;
+  width: 24px;
+  height: 24px;
+  margin-left: var(--space-md);
+}
+
+/* Burger — three lines that cross into an X while the panel is open. The design
+   is desktop-only, so this whole mobile treatment is a reasonable default. */
+.site-header__toggle span {
+  display: block;
+  width: 22px;
+  height: 2px;
+  background-color: var(--color-text-primary);
+  transition:
+    transform 200ms ease,
+    opacity 200ms ease;
+}
+
+.site-header[data-nav-open="true"] .site-header__toggle span:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+
+.site-header[data-nav-open="true"] .site-header__toggle span:nth-child(2) {
+  opacity: 0;
+}
+
+.site-header[data-nav-open="true"] .site-header__toggle span:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+@media (max-width: 1023px) {
+  .site-header__nav {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    z-index: 60;
+    flex-direction: column;
+    align-items: stretch;
+    gap: var(--space-md);
+    height: auto;
+    padding: var(--space-lg);
+    background-color: var(--color-surface-white);
+    border-bottom: 1px solid var(--color-border-soft);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.06);
+  }
+
+  .site-header[data-nav-open="true"] .site-header__nav {
+    display: flex;
+  }
+
+  .site-header__menu {
+    flex-direction: column;
+    align-items: stretch;
+    height: auto;
+  }
+
+  /* Submenus sit inline on mobile — a hover flyout has nothing to hover. */
+  .site-header__menu li .sub-menu {
+    display: flex;
+    position: static;
+    border: 0;
+    box-shadow: none;
+    padding: 0 0 0 var(--space-md);
+    min-width: 0;
+  }
+
+  .site-header__call {
+    width: 100%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .site-header__toggle span {
+    transition: none;
+  }
+}
+
+/* Hero photo fan (template-parts/hero.php).
+   Figma: node 30:2342, file "Untitled" (vzdpOnH1U36oXcFcugiyE5).
+
+   Five slots, each with its own size, tilt and vertical drop, straight from the
+   frame: the centre card is 358x407 upright, its neighbours 333x388 at ∓7.45deg
+   dropped 22px, the outer pair 333x367 at ∓11.82deg dropped 89px.
+   assets/js/hero-slider.js stamps data-pos (0 = centre, negative = left) and
+   everything below keys off it, so the fan holds its shape while the photos
+   cycle through it.
+
+   Slide pitch is a uniform 266px (Swiper can only space slides evenly) and each
+   card is absolutely positioned inside its slide, wider than the slide so the
+   cards overlap. The per-slot translateX values are the leftover difference
+   between that even pitch and Figma's hand-placed centres — hence the ~10px
+   nudge on the inner three and the ~60px pull-in on the outer pair.
+
+   --hero-scale multiplies every dimension, which is the whole responsive story:
+   one variable per breakpoint instead of five sets of numbers. */
+.hero-slider {
+  --hero-scale: 0.5;
+  --hero-pitch: calc(266px * var(--hero-scale));
+  height: calc(508px * var(--hero-scale));
+}
+
+@media (min-width: 640px) {
+  .hero-slider {
+    --hero-scale: 0.7;
+  }
+}
+
+@media (min-width: 1024px) {
+  .hero-slider {
+    --hero-scale: 1;
+  }
+}
+
+/* Two classes deep: swiper-bundle.min.css ships `.swiper-slide { width: 100% }`
+   and is enqueued after the Tailwind build, so one class would lose. */
+.hero-slider .swiper-slide {
+  width: var(--hero-pitch);
+  height: 100%;
+}
+
+.hero-slide__card {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  overflow: hidden;
+  background-color: #f4f4f4;
+  border-radius: calc(48px * var(--hero-scale));
+  transition: transform 500ms cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: transform;
+  width: calc(333px * var(--hero-scale));
+  height: calc(367px * var(--hero-scale));
+  transform: translate(-50%, calc(89px * var(--hero-scale)));
+  /* The fan is exactly five cards. Slides further out than ±2 stay in the
+     layout (Swiper needs them for the loop) but must not peek in at the edges,
+     so the five slots below opt back into visibility. */
+  visibility: hidden;
+}
+
+.hero-slide[data-pos="-2"] .hero-slide__card,
+.hero-slide[data-pos="-1"] .hero-slide__card,
+.hero-slide[data-pos="0"] .hero-slide__card,
+.hero-slide[data-pos="1"] .hero-slide__card,
+.hero-slide[data-pos="2"] .hero-slide__card {
+  visibility: visible;
+}
+
+.hero-slide[data-pos="0"] {
+  z-index: 30;
+}
+
+.hero-slide[data-pos="-1"],
+.hero-slide[data-pos="1"] {
+  z-index: 20;
+}
+
+.hero-slide[data-pos="0"] .hero-slide__card {
+  width: calc(358px * var(--hero-scale));
+  height: calc(407px * var(--hero-scale));
+  background-color: #9e20ea;
+  box-shadow: 0 calc(18px * var(--hero-scale)) calc(60.8px * var(--hero-scale)) calc(10px * var(--hero-scale)) rgba(30, 10, 41, 0.06);
+  transform: translate(calc(-50% + 10.46px * var(--hero-scale)), 0);
+}
+
+.hero-slide[data-pos="-1"] .hero-slide__card,
+.hero-slide[data-pos="1"] .hero-slide__card {
+  width: calc(333px * var(--hero-scale));
+  height: calc(388px * var(--hero-scale));
+  box-shadow: 0 calc(9px * var(--hero-scale)) calc(32px * var(--hero-scale)) calc(4px * var(--hero-scale)) rgba(30, 10, 41, 0.08);
+}
+
+.hero-slide[data-pos="-1"] .hero-slide__card {
+  transform: translate(calc(-50% + 10.71px * var(--hero-scale)), calc(22.25px * var(--hero-scale))) rotate(-7.45deg);
+}
+
+.hero-slide[data-pos="1"] .hero-slide__card {
+  transform: translate(calc(-50% + 10.31px * var(--hero-scale)), calc(22.25px * var(--hero-scale))) rotate(7.45deg);
+}
+
+.hero-slide[data-pos="-2"] .hero-slide__card {
+  transform: translate(calc(-50% + 60.06px * var(--hero-scale)), calc(88.84px * var(--hero-scale))) rotate(-11.82deg);
+}
+
+.hero-slide[data-pos="2"] .hero-slide__card {
+  transform: translate(calc(-50% - 59.38px * var(--hero-scale)), calc(88.84px * var(--hero-scale))) rotate(11.82deg);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-slide__card {
+    transition: none;
+  }
+}
+
+/* FAQ accordion (template-parts/faq.php).
+   Figma: node 25:1776, file "Untitled" (vzdpOnH1U36oXcFcugiyE5).
+
+   Native <details>/<summary> with a shared `name`, so the browser handles
+   single-open behaviour without JS. Only the marker reset, the +/- swap and the
+   closed→open padding/radius change live here. Icon URLs arrive as custom
+   properties on the section, since a stylesheet can't resolve theme paths. */
+.faq-item {
+  background-color: var(--color-surface-white);
+  border: 1px solid var(--color-border-light);
+  border-radius: 24px;
+  padding: var(--space-md) var(--space-lg);
+  transition:
+    padding 200ms ease,
+    border-radius 200ms ease,
+    border-color 200ms ease,
+    background-color 200ms ease;
+}
+
+.faq-item[open] {
+  border-radius: var(--radius-lg);
+  padding: var(--space-lg);
+}
+
+@media (min-width: 1024px) {
+  .faq-item {
+    padding: var(--space-md) var(--space-xl);
+  }
+
+  .faq-item[open] {
+    padding: var(--space-xl);
+  }
+}
+
+.faq-item__summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-md);
+  cursor: pointer;
+  list-style: none;
+}
+
+.faq-item__summary::-webkit-details-marker {
+  display: none;
+}
+
+.faq-item__summary:focus-visible {
+  outline: 2px solid var(--color-brand-yellow);
+  outline-offset: 4px;
+  border-radius: var(--radius-sm);
+}
+
+.faq-item__icon {
+  flex: none;
+  width: 24px;
+  height: 24px;
+  background-image: var(--faq-icon-plus);
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.faq-item[open] .faq-item__icon {
+  background-image: var(--faq-icon-minus);
+}
+
+.faq-item__answer {
+  margin-top: var(--space-lg);
+  line-height: var(--line-height-normal);
+  letter-spacing: 0.01em;
+  color: var(--color-text-heading-dark);
+}
+
+.faq-item__answer > *:first-child {
+  margin-top: 0;
+}
+
+.faq-item__answer > *:last-child {
+  margin-bottom: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .faq-item {
+    transition: none;
+  }
+}
+
+.testimonials-nav {
+  cursor: pointer;
+  border: 0;
+  transition: transform 200ms ease;
+}
+
+.testimonials-nav:hover {
+  transform: scale(1.05);
+}
+
+.testimonials-nav:focus-visible {
+  outline: 3px solid var(--color-surface-dark);
+  outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .testimonials-card,
+  .testimonials-nav {
+    transition: none;
+  }
+}
+
+body {
+  font-family: var(--font-family-base);
+  font-weight: 400;
+  color: var(--color-text-primary);
+  background-color: var(--color-surface-white);
+  line-height: var(--line-height-normal);
+  -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: 500;
+  color: var(--color-text-primary);
+  line-height: var(--line-height-tight);
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+img,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+button {
+  font-family: inherit;
+}
+
+/* ---------------------------------------------------------------------------
+   Contact form (template-parts/contact-form.php).
+   Figma: node 62:42, file "Untitled" (vzdpOnH1U36oXcFcugiyE5).
+
+   Figma draws every field as a pill with its label — and a red required
+   asterisk — sitting inside it on the single line the pill is tall enough for;
+   there is no filled state in the design. So the label doubles as the
+   placeholder: it's a real <label> (keyboard and screen-reader behaviour intact,
+   asterisk in its own colour) laid over the input, and it fades out as soon as
+   the field has focus or content. The input's own placeholder is a single space
+   so `:placeholder-shown` stays a reliable "is this field empty" test.
+--------------------------------------------------------------------------- */
+.contact-field {
+  position: relative;
+}
+
+.contact-field input,
+.contact-field textarea {
+  width: 100%;
+  border: 1px solid var(--color-border-soft);
+  background-color: var(--color-surface-light);
+  color: var(--color-text-primary);
+  font-family: inherit;
+  font-size: var(--font-size-sm);
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  padding: var(--space-lg) var(--space-md) var(--space-lg) var(--space-lg);
+  border-radius: var(--radius-pill);
+  appearance: none;
+}
+
+.contact-field textarea {
+  height: 170px;
+  border-radius: var(--radius-md);
+  resize: vertical;
+  line-height: var(--line-height-normal);
+}
+
+.contact-field input::placeholder,
+.contact-field textarea::placeholder {
+  color: transparent;
+}
+
+.contact-field label {
+  position: absolute;
+  top: var(--space-lg);
+  left: var(--space-lg);
+  right: var(--space-md);
+  font-size: var(--font-size-sm);
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: -0.01em;
+  color: var(--color-text-primary);
+  pointer-events: none;
+  transition: opacity 150ms ease;
+}
+
+.contact-field label .contact-field__required {
+  color: var(--color-danger);
+}
+
+.contact-field input:focus ~ label,
+.contact-field textarea:focus ~ label,
+.contact-field input:not(:placeholder-shown) ~ label,
+.contact-field textarea:not(:placeholder-shown) ~ label {
+  opacity: 0;
+}
+
+.contact-field input:focus,
+.contact-field textarea:focus {
+  outline: 2px solid var(--color-surface-dark);
+  outline-offset: 2px;
+  border-color: var(--color-surface-dark);
+}
+
+.contact-field--invalid input,
+.contact-field--invalid textarea {
+  border-color: var(--color-danger);
+}
+
+.contact-form__error {
+  color: var(--color-danger);
+  font-size: var(--font-size-xs);
+}
+
+/* The Submit control is the same split button as the hero/CTA links, but a real
+   <button> — so it needs the UA button chrome removed to match them. */
+button.btn-split {
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: pointer;
+}
+
+/* Consent checkbox — native input, restyled rather than replaced so it keeps
+   its keyboard behaviour and its "required" validation. */
+.contact-consent input[type="checkbox"] {
+  appearance: none;
+  width: 16px;
+  height: 16px;
+  margin: 4px 0 0;
+  flex: none;
+  border: 1px solid var(--color-border-soft);
+  border-radius: 3px;
+  background-color: var(--color-surface-light);
+}
+
+.contact-consent input[type="checkbox"]:checked {
+  border-color: var(--color-brand-yellow);
+  background-color: var(--color-brand-yellow);
+  /* Tick drawn here rather than pulled from assets/images/icons/check.svg: that
+     export is sized and coloured for the accordion benefit dots. */
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M3.5 8.5l3 3 6-7' fill='none' stroke='%23242424' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 12px 12px;
+}
+
+/* ---------------------------------------------------------------------------
+   Offices + Google Maps (template-parts/offices-map.php).
+   Figma: node 62:126, file "Untitled" (vzdpOnH1U36oXcFcugiyE5).
+
+   Figma has a flat map screenshot with the four office cards floating over its
+   lower half. Here the map is a live Google Maps embed and the cards are links
+   that re-point it (assets/js/contact-map.js), so the selected card carries the
+   brand-tinted background and focus-blue border Figma gives the first one — the
+   card palette follows the selection, not the office.
+
+   Below the desktop breakpoint the cards stop overlapping the map and stack
+   under it: at 4-across the addresses would cover the whole embed.
+--------------------------------------------------------------------------- */
+.offices-map__embed {
+  border: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.office-card[data-active="true"] {
+  background-color: var(--color-surface-brand-light);
+  border-color: var(--color-border-focus);
+}
+
+@media (hover: hover) {
+  .office-card:hover {
+    background-color: var(--color-surface-brand-light);
+  }
+}
+
+/* ---------------------------------------------------------------------------
+   "We're Hiring" (template-parts/hiring.php).
+   Figma: node 62:100, file "Untitled" (vzdpOnH1U36oXcFcugiyE5).
+
+   Not carried over: Figma stacks two crops of the same photo so the team's
+   heads bleed a few pixels above the rounded frame. Reproducing it needs the
+   photo rendered twice and only reads at the exact Figma width, so the section
+   uses one image in the rounded frame; the yellow bulb badge that overlaps its
+   bottom-left corner is kept.
+--------------------------------------------------------------------------- */
+.hiring-photo {
+  border-radius: var(--radius-2xl);
+  overflow: hidden;
+}
+
+/* ---------------------------------------------------------------------------
+   Editor content (`.entry-content`) — the WordPress editor's own output, on
+   page.php and in the optional block between the map and the hiring section on
+   page-contact-us.php.
+
+   The Figma file has no rich-text page, so nothing here is measured off it:
+   this is the theme's own type scale applied to the tags the client can produce
+   from the editor. It exists because Tailwind's preflight resets headings and
+   lists to plain paragraphs — without these rules an <h2> the client typed is
+   indistinguishable from body copy and a bulleted list loses its bullets.
+
+   Spacing is `> * + *` (a margin between siblings, never above the first or
+   below the last) so the block can't add stray space to whatever wraps it;
+   headings then claim extra room above with their own margin-top. Keep the
+   wrapper free of `flex`/`gap` utilities — the gap would stack on top of these
+   margins.
+--------------------------------------------------------------------------- */
+.entry-content {
+  font-size: var(--font-size-sm);
+  font-weight: 400;
+  line-height: var(--line-height-relaxed);
+  letter-spacing: var(--tracking-wide);
+  color: var(--color-text-secondary);
+}
+
+@media (min-width: 1024px) {
+  .entry-content {
+    font-size: var(--font-size-md);
+  }
+}
+
+.entry-content > * + * {
+  margin-top: var(--space-md);
+}
+
+.entry-content h2,
+.entry-content h3,
+.entry-content h4,
+.entry-content h5,
+.entry-content h6 {
+  font-weight: 500;
+  line-height: var(--line-height-normal);
+  letter-spacing: var(--tracking-normal);
+  color: var(--color-text-primary);
+}
+
+.entry-content > h2 + *,
+.entry-content > h3 + *,
+.entry-content > h4 + *,
+.entry-content > h5 + *,
+.entry-content > h6 + * {
+  margin-top: var(--space-sm);
+}
+
+.entry-content > * + h2,
+.entry-content > * + h3,
+.entry-content > * + h4,
+.entry-content > * + h5,
+.entry-content > * + h6 {
+  margin-top: var(--space-xl);
+}
+
+.entry-content h2 {
+  font-size: var(--font-size-xl);
+}
+
+.entry-content h3 {
+  font-size: var(--font-size-lg);
+}
+
+.entry-content h4,
+.entry-content h5,
+.entry-content h6 {
+  font-size: var(--font-size-md);
+}
+
+.entry-content ul,
+.entry-content ol {
+  padding-left: var(--space-lg);
+}
+
+.entry-content ul {
+  list-style: disc;
+}
+
+.entry-content ol {
+  list-style: decimal;
+}
+
+.entry-content li + li {
+  margin-top: var(--space-xs);
+}
+
+.entry-content li::marker {
+  color: var(--color-brand-yellow-dark);
+}
+
+.entry-content strong,
+.entry-content b {
+  font-weight: 500;
+  color: var(--color-text-primary);
+}
+
+.entry-content a {
+  color: var(--color-text-primary);
+  text-decoration: underline;
+  text-decoration-color: var(--color-brand-yellow);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 4px;
+}
+
+.entry-content blockquote {
+  padding-left: var(--space-lg);
+  border-left: 2px solid var(--color-brand-yellow);
+  color: var(--color-text-primary);
+}
+
+.entry-content hr {
+  border: 0;
+  border-top: 1px solid var(--color-border-soft);
+  margin-top: var(--space-xl);
+  margin-bottom: var(--space-xl);
+}
+
+/* Images and embeds the client drops in: never wider than the column, and
+   rounded like every other framed image on the site. */
+.entry-content img,
+.entry-content iframe,
+.entry-content video {
+  max-width: 100%;
+  height: auto;
+  border-radius: var(--radius-md);
+}
+
+/* ---------------------------------------------------------------------------
+   Scroll reveal — sections fade + lift in as they enter the viewport.
+
+   Every rule here is scoped to `html.has-scroll-reveal`, a class that
+   assets/js/scroll-reveal.js adds from the <head> before first paint and only
+   when it can actually reveal things again (IntersectionObserver present, no
+   reduced-motion preference). Without the class nothing below applies, so a
+   failed script or a blocked JS file leaves the page fully visible rather than
+   permanently blank.
+
+   The revealed state lands on `transform: none`, not translateY(0): a lingering
+   transform would make each section a containing block for anything fixed or
+   absolutely positioned that it contains.
+--------------------------------------------------------------------------- */
+.has-scroll-reveal #main-content > section,
+.has-scroll-reveal #site-footer {
+  opacity: 0;
+  transform: translateY(32px);
+  transition:
+    opacity 700ms cubic-bezier(0.22, 0.61, 0.36, 1),
+    transform 700ms cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+
+.has-scroll-reveal #main-content > section.is-revealed,
+.has-scroll-reveal #site-footer.is-revealed {
+  opacity: 1;
+  transform: none;
+}
+
+/* ---------------------------------------------------------------------------
+   Interaction states — every <a> and <button> on the site.
+
+   The Figma file has no hover variants, so these are built from the existing
+   palette rather than invented colours: brand yellow (or its darker pressed
+   shade) for emphasis, navy for text that needs to deepen, yellow-soft as the
+   quiet tint behind menu rows. Nothing here changes an element's box size, so
+   no hover can reflow a section.
+
+   All hover rules live inside `@media (hover: hover)` — on a touch screen a
+   :hover rule sticks after the tap, which would leave a phone user staring at
+   a "hovered" button until they tap elsewhere. Keyboard users get the same
+   treatment via the :focus-visible rules, which sit outside that query.
+--------------------------------------------------------------------------- */
+
+a,
+button {
+  transition:
+    color 200ms ease,
+    background-color 200ms ease,
+    border-color 200ms ease,
+    opacity 200ms ease,
+    box-shadow 200ms ease,
+    transform 200ms ease;
+}
+
+/* Split button = text half + arrow square, two siblings inside one <a>
+   (hero, final CTA, the deck cards). Hover is movement only, no recolour: the
+   arrow square slides away from the text half and the arrow travels with it.
+   The slide is a transform, not a margin, so the button never changes its own
+   width and can't nudge whatever sits beside it. */
+.btn-split > span {
+  transition: transform 200ms ease;
+}
+
+.btn-split img {
+  transition: transform 200ms ease;
+}
+
+/* Baseline outline for keyboard users: navy reads on every light section, and
+   the two dark sections override it below. */
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid var(--color-surface-dark);
+  outline-offset: 3px;
+}
+
+#overview a:focus-visible,
+.cards-deck__card.bg-surface-dark a:focus-visible {
+  outline-color: var(--color-brand-yellow);
+}
+
+.btn-split:focus-visible {
+  outline-offset: 5px;
+}
+
+@media (hover: hover) {
+  /* --- Buttons ---------------------------------------------------------- */
+
+  .btn-split:hover > span:last-child {
+    transform: translateX(6px);
+  }
+
+  .btn-split:hover img {
+    transform: translate(2px, -2px);
+  }
+
+  /* Outline buttons (header "Call Us", the hero phone number) fill with brand
+     yellow, matching the primary button they sit next to. */
+  .btn-outline:hover {
+    background-color: var(--color-brand-yellow);
+    border-color: var(--color-brand-yellow);
+    color: var(--color-text-primary);
+  }
+
+  /* --- Header ----------------------------------------------------------- */
+
+  .site-header__logo:hover,
+  .site-footer__logo:hover {
+    opacity: 0.75;
+  }
+
+  /* Yellow rule that wipes in under the nav item. Inset by the item's own
+     horizontal padding so it spans the label, not the whole hit area. */
+  .site-header__menu > li > a {
+    position: relative;
+  }
+
+  .site-header__menu > li > a::before {
+    content: "";
+    position: absolute;
+    left: var(--space-md);
+    right: var(--space-md);
+    bottom: 10px;
+    height: 2px;
+    background-color: var(--color-brand-yellow);
+    transform: scaleX(0);
+    transform-origin: left center;
+    transition: transform 200ms ease;
+  }
+
+  .site-header__menu > li:hover > a,
+  .site-header__menu > li:focus-within > a {
+    color: var(--color-surface-dark);
+  }
+
+  .site-header__menu > li:hover > a::before,
+  .site-header__menu > li:focus-within > a::before {
+    transform: scaleX(1);
+  }
+
+  /* Items that open a megamenu get that panel's own navy underline instead —
+     two rules along the bottom edge would read as a double line. */
+  .site-header__menu > li.menu-item-has-children > a::before {
+    content: none;
+  }
+
+  .site-header__menu li .sub-menu li > a {
+    border-radius: var(--radius-sm);
+  }
+
+  .site-header__menu li .sub-menu li > a:hover {
+    background-color: var(--color-brand-yellow-soft);
+    color: var(--color-surface-dark);
+  }
+
+  /* Megamenu cards. The design has no hover state; this is movement and colour
+     only, nothing that changes a card's box or shifts the column. */
+  .megamenu__caret {
+    transition: transform 200ms ease;
+  }
+
+  .megamenu__card:hover .megamenu__caret {
+    transform: translateX(4px);
+  }
+
+  .megamenu__card:hover .megamenu__title {
+    color: var(--color-surface-dark);
+  }
+
+  .megamenu__icon {
+    transition: background-color 200ms ease;
+  }
+
+  .megamenu__card:hover .megamenu__icon {
+    background-color: var(--color-brand-yellow-border);
+  }
+
+  .site-header__toggle:hover span {
+    background-color: var(--color-surface-dark);
+  }
+
+  /* --- Three Ways card deck --------------------------------------------- */
+
+  /* The promote button covers a whole back card, so its hover state has to be
+     the card lighting up rather than a button changing colour. */
+  .cards-deck__promote::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-color: rgba(255, 255, 255, 0.14);
+    opacity: 0;
+    transition: opacity 200ms ease;
+  }
+
+  .cards-deck__promote:hover::after {
+    opacity: 1;
+  }
+
+  /* --- Start/Run/Grow accordion ----------------------------------------- */
+
+  .overview-accordion-icon {
+    transition:
+      transform 200ms ease,
+      background-color 200ms ease;
+  }
+
+  .overview-accordion-toggle:hover .overview-accordion-icon {
+    transform: scale(1.06);
+    background-color: var(--color-brand-yellow-border);
+  }
+
+  .overview-accordion-badge,
+  .faq-item__question {
+    transition: color 200ms ease;
+  }
+
+  .overview-accordion-toggle:hover .overview-accordion-badge {
+    color: var(--color-brand-yellow);
+  }
+
+  .overview-service-card img {
+    transition: transform 500ms ease;
+  }
+
+  /* Only cards that actually open react — a service with no copy is inert
+     everywhere else too (see the :has() gating above). */
+  .overview-service:has(> .overview-service-content) .overview-service-card:hover img {
+    transform: scale(1.04);
+  }
+
+  /* Navy circle → brand yellow. The arrow SVG is white, so brightness(0) flips
+     it to black, which is the same dark arrow the yellow buttons already use. */
+  .overview-service-link img {
+    transition: transform 200ms ease;
+  }
+
+  .overview-service-link:hover {
+    background-color: var(--color-brand-yellow);
+  }
+
+  .overview-service-link:hover img {
+    filter: brightness(0);
+    transform: translate(2px, -2px);
+  }
+
+  /* --- Google Reviews --------------------------------------------------- */
+
+  .testimonials-nav:hover {
+    background-color: var(--color-brand-yellow-dark);
+    transform: scale(1.05);
+  }
+
+  .testimonials-nav:active {
+    transform: scale(0.97);
+  }
+
+  /* --- FAQ -------------------------------------------------------------- */
+
+  .faq-item:hover {
+    border-color: var(--color-brand-yellow-border);
+  }
+
+  .faq-item:not([open]):hover {
+    background-color: var(--color-brand-yellow-soft);
+  }
+
+  .faq-item__summary:hover .faq-item__question {
+    color: var(--color-surface-dark);
+  }
+
+  /* --- Footer ----------------------------------------------------------- */
+
+  a.site-footer__social:hover {
+    border-color: var(--color-brand-yellow);
+    background-color: var(--color-brand-yellow-soft);
+  }
+
+  .site-footer__menu a:hover {
+    color: var(--color-surface-dark);
+    text-decoration: underline;
+    text-decoration-color: var(--color-brand-yellow);
+    text-decoration-thickness: 2px;
+    text-underline-offset: 4px;
+  }
+
+  .entry-content a:hover {
+    color: var(--color-surface-dark);
+    text-decoration-color: var(--color-brand-yellow-dark);
+  }
+
+  #whatsapp-float:hover {
+    transform: scale(1.06);
+    box-shadow: 0 10px 24px rgba(30, 192, 59, 0.35);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  a,
+  button,
+  .btn-split > span,
+  .btn-split img,
+  .overview-accordion-icon,
+  .overview-service-card img,
+  .overview-service-link img,
+  .site-header__menu > li > a::before {
+    transition: none;
+  }
+
+  .btn-split:hover > span:last-child,
+  .btn-split:hover img,
+  .overview-accordion-toggle:hover .overview-accordion-icon,
+  .overview-service:has(> .overview-service-content) .overview-service-card:hover img,
+  .overview-service-link:hover img,
+  .testimonials-nav:hover,
+  .testimonials-nav:active,
+  #whatsapp-float:hover {
+    transform: none;
+  }
+}
