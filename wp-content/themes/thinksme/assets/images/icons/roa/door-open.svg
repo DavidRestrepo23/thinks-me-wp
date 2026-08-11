@@ -1,0 +1,15 @@
+<svg preserveAspectRatio="none" overflow="visible" style="display: block;" width="27.4286" height="27.4286" viewBox="0 0 27.4286 27.4286" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="DoorOpen" clip-path="url(#clip0_0_12)">
+<g id="Vector">
+</g>
+<path id="Vector_2" d="M2.57129 24H24.857" stroke="black" stroke-width="1.71429" stroke-linecap="round" stroke-linejoin="round"/>
+<path id="Vector_3" d="M6 24.0011V4.28683C6 4.0595 6.09031 3.84148 6.25105 3.68074C6.4118 3.51999 6.62981 3.42969 6.85714 3.42969H20.5714C20.7988 3.42969 21.0168 3.51999 21.1775 3.68074C21.3383 3.84148 21.4286 4.0595 21.4286 4.28683V24.0011" stroke="black" stroke-width="1.71429" stroke-linecap="round" stroke-linejoin="round"/>
+<path id="Vector_4" d="M14.1431 15.4289C14.8532 15.4289 15.4289 14.8532 15.4289 14.1431C15.4289 13.4331 14.8532 12.8574 14.1431 12.8574C13.4331 12.8574 12.8574 13.4331 12.8574 14.1431C12.8574 14.8532 13.4331 15.4289 14.1431 15.4289Z" fill="black"/>
+<path id="Vector_5" d="M18 3.42969V24.0011" stroke="black" stroke-width="1.71429" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+<defs>
+<clipPath id="clip0_0_12">
+<rect width="27.4286" height="27.4286" fill="white"/>
+</clipPath>
+</defs>
+</svg>

@@ -44,6 +44,7 @@ get_header();
 		</section>
 
 		<?php
+		get_template_part( 'template-parts/faq' );
 		get_template_part( 'template-parts/cta' );
 
 	endwhile;

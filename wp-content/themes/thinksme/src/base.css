@@ -53,6 +53,9 @@
   --color-surface-white: #ffffff;
   --color-surface-dark: #183458;
   --color-surface-dark-glass: rgba(255, 255, 255, 0.07);
+  /* Collapsed service card inside the navy block on the Registered Office
+     Address page (template-parts/roa-block.php) */
+  --color-surface-dark-soft: #284264;
   /* background/lighter — contact form card and its inputs */
   --color-surface-light: #f9fafb;
   /* background/brand/lighter — the selected office card on the contact map, and
@@ -60,6 +63,13 @@
   --color-surface-brand-light: #f3f7fc;
   /* Every third megamenu column ("Start-up Tools" in the design) */
   --color-surface-muted: #f6f7f9;
+  /* Company Incorporation Local: the what's-included cards and the free-tools
+     input, both a shade warmer than --color-surface-light */
+  --color-surface-faint: #f8f8f8;
+  /* Company Incorporation Local: the panel the "Why founders choose" bento sits on */
+  --color-surface-panel: #fbfbfb;
+  /* background/brand/regular — the highlighted middle pricing card */
+  --color-surface-brand-regular: #4781cd;
 
   /* Color — text */
   --color-text-primary: #242424;
@@ -74,6 +84,10 @@
   --color-border-soft: #d0d5dc;
   --color-border-medium: #a6a6a6;
   --color-border-light: #cacaca;
+  /* Company Incorporation Local: what's-included cards, free-tools panel and input */
+  --color-border-faint: #e8e8e8;
+  /* Company Incorporation Local: the outer pricing cards, barely off white */
+  --color-border-hairline: #f5f5f5;
   /* stroke/focus — border of the selected office card on the contact map */
   --color-border-focus: #316bb4;
   /* stroke/brand/dark — underline on the nav item whose megamenu is open */
@@ -81,6 +95,9 @@
 
   /* Color — status */
   --color-success: #1ec03b;
+  /* green/500 — the check badges in the Registered Office Address plan card.
+     Deliberately not --color-success: that one is the WhatsApp green. */
+  --color-accent-green: #4dc779;
   /* red/500 — required-field asterisks and contact form errors */
   --color-danger: #e13339;
 
@@ -1424,6 +1441,276 @@ button.btn-split {
 }
 
 /* ---------------------------------------------------------------------------
+   Registered Office Address — expanding service cards
+   (template-parts/roa-block.php, Figma node 67:211).
+
+   Every card ships the same markup; which one is open is the `data-active`
+   attribute alone, so assets/js/roa-block.js has nothing to do but move it.
+   Same split as the theme's other card sections: JS owns the state, CSS owns
+   the geometry — with the script gone, the card the template marked active
+   stays open and the section still reads as the design.
+
+   Below `lg` the row becomes a stack: the cards can't trade width there, so
+   they left-align at their natural height and only the palette, title size and
+   description change on activation. The horizontal geometry lives in the media
+   query at the end of this block.
+--------------------------------------------------------------------------- */
+.roa-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-lg);
+  width: 100%;
+  margin: 0;
+  padding: var(--space-xl) var(--space-lg);
+  border: 1px solid transparent;
+  border-radius: var(--radius-lg);
+  background-color: var(--color-surface-dark-soft);
+  font-family: inherit;
+  text-align: left;
+  transition:
+    flex-grow 400ms cubic-bezier(0.22, 0.61, 0.36, 1),
+    background-color 300ms ease,
+    border-color 300ms ease;
+}
+
+button.roa-card {
+  cursor: pointer;
+}
+
+.roa-card[data-active="true"] {
+  border-color: rgba(255, 255, 255, 0.19);
+  background-color: var(--color-brand-yellow);
+}
+
+.roa-card__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 64px;
+  height: 64px;
+  border: 1px solid transparent;
+  border-radius: var(--radius-pill);
+  background-color: var(--color-brand-yellow);
+  transition:
+    background-color 300ms ease,
+    border-color 300ms ease;
+}
+
+/* On the open card the badge sits on yellow, so it inverts to a translucent
+   white disc instead of yellow-on-yellow. */
+.roa-card[data-active="true"] .roa-card__icon {
+  border-color: rgba(255, 255, 255, 0.25);
+  background-color: rgba(255, 255, 255, 0.31);
+}
+
+.roa-card__body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+  width: 100%;
+}
+
+.roa-card[data-active="true"] .roa-card__body {
+  gap: var(--space-xl);
+}
+
+.roa-card__title {
+  font-weight: 500;
+  font-size: 22px;
+  line-height: var(--line-height-snug);
+  color: var(--color-text-on-dark);
+  transition:
+    font-size 300ms ease,
+    color 300ms ease;
+}
+
+.roa-card[data-active="true"] .roa-card__title {
+  font-size: 28px;
+  color: var(--color-text-heading-dark);
+}
+
+.roa-card__text {
+  display: none;
+  font-size: var(--font-size-sm);
+  line-height: var(--line-height-loose);
+  color: var(--color-text-heading-dark);
+}
+
+/* Held back until the card has most of its width, so the copy doesn't reflow
+   while the row is still animating. */
+.roa-card[data-active="true"] .roa-card__text {
+  display: block;
+  animation: roa-card-text-in 300ms ease 180ms both;
+}
+
+@keyframes roa-card-text-in {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@media (min-width: 1024px) {
+  /* 300px = Figma's card height; the row is 4 cards + 3 gaps inside the block's
+     1279px content width. Widths are pure flex-grow so they can animate:
+     3.15 ≈ 632 / 200.67, the open card over a collapsed one. */
+  .roa-card {
+    flex: 1 1 0;
+    align-items: center;
+    justify-content: space-between;
+    min-width: 0;
+    height: 300px;
+    width: auto;
+    text-align: center;
+  }
+
+  .roa-card[data-active="true"] {
+    flex-grow: 3.15;
+    align-items: flex-start;
+    justify-content: flex-start;
+    text-align: left;
+  }
+
+  .roa-card__body {
+    gap: 0;
+  }
+}
+
+/* ---------------------------------------------------------------------------
+   Registered Office Address — "Why Your Business Needs…" progress rail
+   (template-parts/roa-why.php, Figma node 68:564).
+
+   The rail is four steps joined by connectors, and the connectors fill as the
+   section is scrolled. assets/js/roa-progress.js writes one number,
+   --roa-progress (0..1), and everything below is derived from it — including
+   the default of 1, which is what makes the un-enhanced section (no JS, phone,
+   reduced motion, short viewport) render complete rather than empty.
+
+   Figma's geometry: 64px icon, 126px connector, so 190px between step tops. The
+   connector is `flex: 1` against a 126px floor instead of a fixed height, so a
+   step whose copy runs long stretches the rail rather than breaking it.
+--------------------------------------------------------------------------- */
+.roa-why {
+  --roa-progress: 1;
+}
+
+.roa-why__list {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.roa-why__step {
+  display: flex;
+  align-items: stretch;
+  gap: var(--space-xl);
+  min-height: 190px;
+}
+
+/* The last step has no connector under it, so it only needs to be as tall as
+   its own content. */
+.roa-why__step:last-child {
+  min-height: 0;
+}
+
+.roa-why__rail {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-shrink: 0;
+  width: 64px;
+}
+
+.roa-why__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 64px;
+  height: 64px;
+  border-radius: var(--radius-pill);
+  background-color: var(--color-brand-yellow);
+}
+
+.roa-why__line {
+  position: relative;
+  flex: 1 1 126px;
+  min-height: 126px;
+  width: 3px;
+  background-color: #f2f2f2;
+}
+
+/* Each connector owns one equal slice of the overall scrub: with --roa-lines
+   connectors, connector --roa-step fills across progress
+   [step / lines, (step + 1) / lines]. Multiplying back out by --roa-lines and
+   subtracting its index turns that slice into its own 0..1, and clamp() keeps
+   the ones before and after it pinned full and empty. */
+.roa-why__line-fill {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: clamp(
+    0%,
+    calc((var(--roa-progress) * var(--roa-lines) - var(--roa-step)) * 100%),
+    100%
+  );
+  background-color: var(--color-brand-yellow);
+}
+
+.roa-why__body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: var(--space-md);
+  flex: 1 1 0;
+  min-width: 0;
+  /* Figma centres the copy against the icon, not the whole 190px row. */
+  min-height: 64px;
+  padding-bottom: var(--space-xl);
+}
+
+.roa-why__step:last-child .roa-why__body {
+  padding-bottom: 0;
+}
+
+/* Only ever set by assets/js/roa-progress.js, and only once it has confirmed
+   the pinned block fits the viewport. The inline height it writes alongside
+   this attribute is the scroll runway; this is what the runway scrubs.
+
+   The section's own vertical padding goes away while pinned. Sticky travel is
+   measured against the *content* box, so leaving the padding in would make the
+   real travel shorter than section height minus pin height — the number the
+   script scrubs against — and the last connector would stop just short of full.
+   Nothing is lost visually: the pin is a full viewport tall and centres in it. */
+.roa-why[data-pinned="true"] {
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+.roa-why[data-pinned="true"] .roa-why__pin {
+  position: sticky;
+  top: 0;
+  align-items: center;
+  min-height: 100svh;
+}
+
+/* scroll-reveal.js parks every section under a translateY until it is revealed.
+   A transform on the sticky element's own ancestor chain is the classic way to
+   break `position: sticky`, so this section keeps the fade and drops the lift. */
+.has-scroll-reveal #main-content > section.roa-why {
+  transform: none;
+}
+
+/* ---------------------------------------------------------------------------
    Scroll reveal — sections fade + lift in as they enter the viewport.
 
    Every rule here is scoped to `html.has-scroll-reveal`, a class that
@@ -1693,6 +1980,13 @@ button:focus-visible {
     color: var(--color-surface-dark);
   }
 
+  /* --- Registered Office Address service cards -------------------------- */
+
+  button.roa-card:not([data-active="true"]):hover {
+    border-color: rgba(255, 255, 255, 0.19);
+    background-color: #30507a;
+  }
+
   /* --- Footer ----------------------------------------------------------- */
 
   a.site-footer__social:hover {
@@ -1719,6 +2013,319 @@ button:focus-visible {
   }
 }
 
+/* ---------------------------------------------------------------------------
+   Company Incorporation Local — hero (template-parts/ci-hero.php).
+
+   The secondary button beside the split one. Same 50px height and 16px radius as
+   every other button in the theme, outlined instead of filled.
+--------------------------------------------------------------------------- */
+.ci-hero__button-alt {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 50px;
+  padding: 10px var(--space-lg);
+  border: 1px solid var(--color-border-medium);
+  border-radius: var(--radius-sm);
+  font-weight: 500;
+  font-size: var(--font-size-sm);
+  color: var(--color-text-primary);
+  white-space: nowrap;
+  transition: border-color 0.2s ease, background-color 0.2s ease;
+}
+
+.ci-hero__button-alt:hover,
+.ci-hero__button-alt:focus-visible {
+  border-color: var(--color-text-primary);
+  background-color: var(--color-surface-light);
+}
+
+/* ---------------------------------------------------------------------------
+   Company Incorporation Local — pricing cards (template-parts/ci-pricing.php).
+
+   The middle card is the highlighted one: blue fill, white type, a yellow tab
+   above it. That is keyed off `data-featured` on the slot, which the template
+   sets by position — see the note in ci-pricing.php about why this isn't a
+   per-card field. Everything here is palette and geometry; there is no JS.
+--------------------------------------------------------------------------- */
+.ci-plan__card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xl);
+  /* Grows to fill the stretched column, so a card with three features is as tall
+     as one with five and the buttons below them line up. */
+  flex: 1 1 auto;
+  padding: 40px;
+  background-color: var(--color-surface-white);
+  border: 1px solid var(--color-border-hairline);
+  border-radius: var(--radius-2xl);
+  overflow: hidden;
+}
+
+/* Palette only — the radius stays the same as the outer cards. The tab is its own
+   pill sitting above the card, not a shape merged into it, so tightening these
+   corners just made the middle card read as a different size. */
+.ci-plan[data-featured="true"] .ci-plan__card {
+  background-color: var(--color-surface-brand-regular);
+  border-color: transparent;
+}
+
+.ci-plan__title {
+  color: var(--color-text-heading-dark);
+}
+
+.ci-plan__text {
+  color: var(--color-text-heading-dark);
+}
+
+.ci-plan[data-featured="true"] .ci-plan__title,
+.ci-plan[data-featured="true"] .ci-plan__text {
+  color: var(--color-text-on-dark);
+}
+
+.ci-plan__tab {
+  align-self: center;
+  padding: 8px 16px 4px;
+  background-color: var(--color-brand-yellow);
+  border-top-left-radius: var(--radius-sm);
+  border-top-right-radius: var(--radius-sm);
+  font-weight: 700;
+  font-size: var(--font-size-sm);
+  line-height: var(--line-height-loose);
+  color: var(--color-text-primary);
+  /* Sits directly on the card: the gap belongs between cards, not here. */
+  margin-bottom: calc(var(--space-md) * -1);
+}
+
+/* Once the plans are a row, the tab comes out of the flow and hangs above the
+   card. In flow it makes the middle column one element taller than the other
+   two, which — with the columns stretched — leaves the highlighted card shorter
+   than the cards beside it by exactly the tab's height. Out of flow, all three
+   columns are card + button, so the three cards match.
+   It stays in flow below lg, where the plans are stacked and an absolute tab
+   would hang over the previous card's button. */
+@media (min-width: 1024px) {
+  .ci-plan {
+    position: relative;
+  }
+
+  .ci-plan__tab {
+    position: absolute;
+    left: 50%;
+    bottom: 100%;
+    transform: translateX(-50%);
+    margin-bottom: 0;
+    white-space: nowrap;
+  }
+}
+
+.ci-plan__badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px 8px;
+  border-radius: var(--radius-pill);
+  background-color: var(--color-brand-yellow-soft);
+  font-size: 12px;
+  line-height: var(--line-height-loose);
+  color: var(--color-text-primary);
+}
+
+.ci-plan__badge--outline {
+  background-color: rgba(254, 251, 240, 0.35);
+  border: 1px solid var(--color-brand-yellow-border);
+}
+
+/* The rules between features are a border on each item after the first — see the
+   note in ci-pricing.php about why they are not separator elements. */
+.ci-plan__features {
+  display: flex;
+  flex-direction: column;
+}
+
+.ci-plan__features > li + li {
+  margin-top: 20px;
+  padding-top: 20px;
+  border-top: 1px solid var(--color-border-soft);
+}
+
+.ci-plan[data-featured="true"] .ci-plan__features > li + li {
+  border-top-color: rgba(255, 255, 255, 0.4);
+}
+
+/* The outer cards' button sits on the navy panel, not on the card, which is why
+   it is outlined in white rather than in the card's own border colour. */
+.ci-plan__button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 50px;
+  padding: 10px var(--space-lg);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  border-radius: var(--radius-sm);
+  font-weight: 500;
+  font-size: var(--font-size-sm);
+  color: var(--color-text-on-dark);
+  transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.ci-plan__button:hover,
+.ci-plan__button:focus-visible {
+  background-color: rgba(255, 255, 255, 0.1);
+  border-color: var(--color-text-on-dark);
+}
+
+/* ---------------------------------------------------------------------------
+   Company Incorporation Local — free-tools tabs (template-parts/ci-tools.php).
+
+   assets/js/ci-tools.js only moves `data-active` / `aria-selected` and toggles
+   [hidden]; all of the open/closed appearance is here, so with the script gone
+   the first panel is still styled and visible.
+--------------------------------------------------------------------------- */
+.ci-tools {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Below lg the strip wraps: three labels this long overflow a phone, and a
+   horizontally scrolling strip hid tabs 2 and 3 off the viewport edge with no
+   affordance. Wrapped, every tab is visible; the strip keeps its tinted rounded
+   top so it still reads as sitting on the panel. */
+.ci-tools__list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--space-xs);
+  align-items: center;
+  max-width: 100%;
+  padding: var(--space-xs);
+  background-color: rgba(36, 36, 36, 0.05);
+  border-top-left-radius: var(--radius-lg);
+  border-top-right-radius: var(--radius-lg);
+}
+
+@media (min-width: 1024px) {
+  .ci-tools__list {
+    flex-wrap: nowrap;
+    gap: var(--space-md);
+    padding: 0;
+    border-top-left-radius: var(--radius-sm);
+    border-top-right-radius: var(--radius-sm);
+  }
+}
+
+.ci-tools__tab {
+  flex-shrink: 0;
+  /* Fully rounded while the strip wraps; square-bottomed once it is a row of
+     tabs sitting on the panel. */
+  padding: 10px var(--space-md);
+  border-radius: var(--radius-sm);
+  background-color: transparent;
+  font-weight: 500;
+  font-size: var(--font-size-sm);
+  line-height: var(--line-height-loose);
+  color: var(--color-text-primary);
+  white-space: nowrap;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+@media (min-width: 1024px) {
+  .ci-tools__tab {
+    padding: 12px var(--space-lg);
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+}
+
+.ci-tools__tab[data-active="true"] {
+  background-color: var(--color-brand-yellow);
+}
+
+.ci-tools__tab:hover:not([data-active="true"]) {
+  background-color: rgba(36, 36, 36, 0.06);
+}
+
+.ci-tools__panel {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xl);
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-height: 286px;
+  padding: var(--space-xl);
+  background-color: var(--color-surface-dark);
+  border: 1px solid var(--color-border-faint);
+  border-radius: var(--radius-lg);
+}
+
+.ci-tools__input {
+  width: 100%;
+  padding: var(--space-md) var(--space-lg);
+  background-color: var(--color-surface-faint);
+  border: 1px solid var(--color-border-faint);
+  border-radius: var(--radius-sm);
+  font-size: var(--font-size-sm);
+  line-height: var(--line-height-loose);
+  color: var(--color-text-primary);
+}
+
+.ci-tools__input::placeholder {
+  color: var(--color-text-primary);
+  opacity: 0.5;
+}
+
+/* ---------------------------------------------------------------------------
+   Company Incorporation Local — route cards (template-parts/ci-ways.php) and the
+   bento (template-parts/ci-why.php).
+--------------------------------------------------------------------------- */
+.ci-way {
+  transition: background-color 0.2s ease;
+}
+
+.ci-way:hover {
+  background-color: var(--color-surface-muted);
+}
+
+.ci-way img:last-child {
+  transition: transform 0.2s ease;
+}
+
+.ci-way:hover img:last-child {
+  transform: translate(2px, -2px);
+}
+
+/* The photo card's copy sits over the image, so it needs a scrim to stay
+   readable. Figma's gradient runs off the bottom-left corner at 12deg. */
+.ci-why-card__scrim {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  /* Figma's gradient runs off the bottom-left corner at 12deg, which only clears
+     the copy while the card is wide. Stacked into a tall narrow card the text
+     rides up over the bright part of the photo, so below lg the scrim goes
+     vertical and heavier — the type has to stay readable before it matches the
+     canvas. */
+  background-image: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 0.1) 0%,
+    rgba(0, 0, 0, 0.72) 55%,
+    rgba(0, 0, 0, 0.88) 100%
+  );
+}
+
+@media (min-width: 1024px) {
+  .ci-why-card__scrim {
+    background-image: linear-gradient(
+      12deg,
+      rgb(0, 0, 0) 12%,
+      rgba(24, 52, 88, 0) 64%
+    );
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   a,
   button,
@@ -1727,8 +2334,15 @@ button:focus-visible {
   .overview-accordion-icon,
   .overview-service-card img,
   .overview-service-link img,
-  .site-header__menu > li > a::before {
+  .site-header__menu > li > a::before,
+  .roa-card,
+  .roa-card__icon,
+  .roa-card__title {
     transition: none;
+  }
+
+  .roa-card[data-active="true"] .roa-card__text {
+    animation: none;
   }
 
   .btn-split:hover > span:last-child,
@@ -1738,6 +2352,7 @@ button:focus-visible {
   .overview-service-link:hover img,
   .testimonials-nav:hover,
   .testimonials-nav:active,
+  .ci-way:hover img:last-child,
   #whatsapp-float:hover {
     transform: none;
   }

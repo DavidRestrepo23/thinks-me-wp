@@ -1,0 +1,1443 @@
+{
+    "key": "group_thinksme_roa",
+    "title": "Registered Office Address Page Content",
+    "fields": [
+        {
+            "key": "field_thinksme_tab_roa_hero",
+            "label": "Hero",
+            "name": "",
+            "aria-label": "",
+            "type": "tab",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "placement": "top",
+            "endpoint": 0,
+            "selected": 0
+        },
+        {
+            "key": "field_thinksme_roa_hero_title",
+            "label": "Headline",
+            "name": "roa_hero_title",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "The two brush strokes under the first two lines are drawn by the theme.",
+            "required": 0,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "Local Registered Office Address in Singapore",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_thinksme_roa_hero_text",
+            "label": "Intro Text",
+            "name": "roa_hero_text",
+            "aria-label": "",
+            "type": "textarea",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "rows": 3,
+            "new_lines": "",
+            "default_value": "Meet ACRA requirements and present a trusted, credible business address.",
+            "maxlength": "",
+            "placeholder": ""
+        },
+        {
+            "key": "field_thinksme_roa_hero_button_text",
+            "label": "Button Text",
+            "name": "roa_hero_button_text",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "Enquire Now",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_thinksme_roa_hero_button_link",
+            "label": "Button Link",
+            "name": "roa_hero_button_link",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "#",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_thinksme_roa_hero_image",
+            "label": "Photo",
+            "name": "roa_hero_image",
+            "aria-label": "",
+            "type": "image",
+            "instructions": "The photo inside the rounded card. Recommended 1166x954px. Leave empty to use the theme default.",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "return_format": "array",
+            "preview_size": "medium",
+            "library": "all",
+            "min_width": 0,
+            "min_height": 0,
+            "min_size": 0,
+            "max_width": 0,
+            "max_height": 0,
+            "max_size": 0,
+            "mime_types": ""
+        },
+        {
+            "key": "field_thinksme_roa_hero_image_cutout",
+            "label": "Photo Cut-out (optional)",
+            "name": "roa_hero_image_cutout",
+            "aria-label": "",
+            "type": "image",
+            "instructions": "Transparent PNG of the same subject — this is what lets it break above the card’s top edge. Leave empty for a plain rounded card.",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "return_format": "array",
+            "preview_size": "medium",
+            "library": "all",
+            "min_width": 0,
+            "min_height": 0,
+            "min_size": 0,
+            "max_width": 0,
+            "max_height": 0,
+            "max_size": 0,
+            "mime_types": ""
+        },
+        {
+            "key": "field_thinksme_tab_roa_plan",
+            "label": "Plan",
+            "name": "",
+            "aria-label": "",
+            "type": "tab",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "placement": "top",
+            "endpoint": 0,
+            "selected": 0
+        },
+        {
+            "key": "field_thinksme_roa_plan_hat_text",
+            "label": "Pill Text",
+            "name": "roa_plan_hat_text",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "Quick Registration | Transparent Pricing | Reliable support",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_thinksme_roa_plan_heading",
+            "label": "Heading",
+            "name": "roa_plan_heading",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "A Real Registered Office Address. Zero Hassle.",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_thinksme_roa_plan_text",
+            "label": "Text",
+            "name": "roa_plan_text",
+            "aria-label": "",
+            "type": "textarea",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "rows": 5,
+            "new_lines": "",
+            "default_value": "Register your registered address with us and get a prestigious CBD address backed by full mail management. Compliance notices, regulatory letters, everything—scanned and waiting in your shared drive whenever you need to check. Full visibility, zero risk of missing anything important.",
+            "maxlength": "",
+            "placeholder": ""
+        },
+        {
+            "key": "field_thinksme_roa_plan_card_title",
+            "label": "Card Title",
+            "name": "roa_plan_card_title",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "0": false,
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_thinksme_roa_plan_card_text",
+            "label": "Card Text",
+            "name": "roa_plan_card_text",
+            "aria-label": "",
+            "type": "textarea",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "rows": 3,
+            "new_lines": "",
+            "default_value": "Give your company a professional Singapore registered address with 24\/7 access to all incoming mail through your secure online dashboard.",
+            "maxlength": "",
+            "placeholder": ""
+        },
+        {
+            "key": "field_thinksme_roa_plan_price",
+            "label": "Price",
+            "name": "roa_plan_price",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "Shown exactly as typed — include the currency and the period, e.g. “S$238\/year”.",
+            "required": 0,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "S$238\/year",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_thinksme_roa_plan_benefit_1",
+            "label": "Benefit 1",
+            "name": "roa_plan_benefit_1",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "Empty rows are skipped, so leave the ones you don’t need blank.",
+            "required": 0,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "A compliant Singapore registered office address",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_thinksme_roa_plan_benefit_2",
+            "label": "Benefit 2",
+            "name": "roa_plan_benefit_2",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "Digital mailroom: scan and upload of all received mail",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_thinksme_roa_plan_benefit_3",
+            "label": "Benefit 3",
+            "name": "roa_plan_benefit_3",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "Secure cloud storage with easy access anytime, anywhere",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_thinksme_roa_plan_benefit_4",
+            "label": "Benefit 4",
+            "name": "roa_plan_benefit_4",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_thinksme_roa_plan_benefit_5",
+            "label": "Benefit 5",
+            "name": "roa_plan_benefit_5",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_thinksme_roa_plan_benefit_6",
+            "label": "Benefit 6",
+            "name": "roa_plan_benefit_6",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_thinksme_roa_plan_button_text",
+            "label": "Card Button Text",
+            "name": "roa_plan_button_text",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "Enquire Now",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_thinksme_roa_plan_button_link",
+            "label": "Card Button Link",
+            "name": "roa_plan_button_link",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "#",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_thinksme_tab_roa_block",
+            "label": "Services Block",
+            "name": "",
+            "aria-label": "",
+            "type": "tab",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "placement": "top",
+            "endpoint": 0,
+            "selected": 0
+        },
+        {
+            "key": "field_thinksme_roa_block_heading",
+            "label": "Heading",
+            "name": "roa_block_heading",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "Registered Office Address and Virtual Mailroom Services",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_thinksme_roa_card_1_icon",
+            "label": "Card 1 — Icon",
+            "name": "roa_card_1_icon",
+            "aria-label": "",
+            "type": "select",
+            "instructions": "The choices here are a placeholder: thinksme_roa_icon_choices() in functions.php replaces them at load time from thinksme_roa_icons(), so adding an icon never means re-syncing this group.",
+            "required": 0,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "buildings": "Office building",
+                "envelope-open": "Open envelope",
+                "folder-lock": "Folder with padlock",
+                "receipt": "Receipt",
+                "envelope-simple": "Envelope",
+                "door-open": "Open door",
+                "map-pin": "Map pin",
+                "shield-check": "Shield with check"
+            },
+            "default_value": "buildings",
+            "allow_null": 0,
+            "multiple": 0,
+            "ui": 0,
+            "return_format": "value",
+            "ajax": 0,
+            "placeholder": "",
+            "create_options": 0,
+            "save_options": 0
+        },
+        {
+            "key": "field_thinksme_roa_card_1_title",
+            "label": "Card 1 — Title",
+            "name": "roa_card_1_title",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "A card with no title is left out of the row entirely.",
+            "required": 0,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "Professional Business Address",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_thinksme_roa_card_1_text",
+            "label": "Card 1 — Description",
+            "name": "roa_card_1_text",
+            "aria-label": "",
+            "type": "textarea",
+            "instructions": "Only a card with a description can be clicked open, and the first one that has a description is the card that starts open.",
+            "required": 0,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "rows": 3,
+            "new_lines": "",
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": ""
+        },
+        {
+            "key": "field_thinksme_roa_card_2_icon",
+            "label": "Card 2 — Icon",
+            "name": "roa_card_2_icon",
+            "aria-label": "",
+            "type": "select",
+            "instructions": "Icon shown in the badge at the top of the card.",
+            "required": 0,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "buildings": "Office building",
+                "envelope-open": "Open envelope",
+                "folder-lock": "Folder with padlock",
+                "receipt": "Receipt",
+                "envelope-simple": "Envelope",
+                "door-open": "Open door",
+                "map-pin": "Map pin",
+                "shield-check": "Shield with check"
+            },
+            "default_value": "envelope-open",
+            "allow_null": 0,
+            "multiple": 0,
+            "ui": 0,
+            "return_format": "value",
+            "ajax": 0,
+            "placeholder": "",
+            "create_options": 0,
+            "save_options": 0
+        },
+        {
+            "key": "field_thinksme_roa_card_2_title",
+            "label": "Card 2 — Title",
+            "name": "roa_card_2_title",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "Digital Mailroom Service",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_thinksme_roa_card_2_text",
+            "label": "Card 2 — Description",
+            "name": "roa_card_2_text",
+            "aria-label": "",
+            "type": "textarea",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "rows": 3,
+            "new_lines": "",
+            "default_value": "Receive and review your important correspondence digitally — fast, organised, and hassle-free.",
+            "maxlength": "",
+            "placeholder": ""
+        },
+        {
+            "key": "field_thinksme_roa_card_3_icon",
+            "label": "Card 3 — Icon",
+            "name": "roa_card_3_icon",
+            "aria-label": "",
+            "type": "select",
+            "instructions": "Icon shown in the badge at the top of the card.",
+            "required": 0,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "buildings": "Office building",
+                "envelope-open": "Open envelope",
+                "folder-lock": "Folder with padlock",
+                "receipt": "Receipt",
+                "envelope-simple": "Envelope",
+                "door-open": "Open door",
+                "map-pin": "Map pin",
+                "shield-check": "Shield with check"
+            },
+            "default_value": "folder-lock",
+            "allow_null": 0,
+            "multiple": 0,
+            "ui": 0,
+            "return_format": "value",
+            "ajax": 0,
+            "placeholder": "",
+            "create_options": 0,
+            "save_options": 0
+        },
+        {
+            "key": "field_thinksme_roa_card_3_title",
+            "label": "Card 3 — Title",
+            "name": "roa_card_3_title",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "Secure File Access",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_thinksme_roa_card_3_text",
+            "label": "Card 3 — Description",
+            "name": "roa_card_3_text",
+            "aria-label": "",
+            "type": "textarea",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "rows": 3,
+            "new_lines": "",
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": ""
+        },
+        {
+            "key": "field_thinksme_roa_card_4_icon",
+            "label": "Card 4 — Icon",
+            "name": "roa_card_4_icon",
+            "aria-label": "",
+            "type": "select",
+            "instructions": "Icon shown in the badge at the top of the card.",
+            "required": 0,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "buildings": "Office building",
+                "envelope-open": "Open envelope",
+                "folder-lock": "Folder with padlock",
+                "receipt": "Receipt",
+                "envelope-simple": "Envelope",
+                "door-open": "Open door",
+                "map-pin": "Map pin",
+                "shield-check": "Shield with check"
+            },
+            "default_value": "receipt",
+            "allow_null": 0,
+            "multiple": 0,
+            "ui": 0,
+            "return_format": "value",
+            "ajax": 0,
+            "placeholder": "",
+            "create_options": 0,
+            "save_options": 0
+        },
+        {
+            "key": "field_thinksme_roa_card_4_title",
+            "label": "Card 4 — Title",
+            "name": "roa_card_4_title",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "Transparent Fees",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_thinksme_roa_card_4_text",
+            "label": "Card 4 — Description",
+            "name": "roa_card_4_text",
+            "aria-label": "",
+            "type": "textarea",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "rows": 3,
+            "new_lines": "",
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": ""
+        },
+        {
+            "key": "field_thinksme_tab_roa_why",
+            "label": "Why (Progress Rail)",
+            "name": "",
+            "aria-label": "",
+            "type": "tab",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "placement": "top",
+            "endpoint": 0,
+            "selected": 0
+        },
+        {
+            "key": "field_thinksme_roa_why_hat_text",
+            "label": "Pill Text",
+            "name": "roa_why_hat_text",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "Complete Corporate Services",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_thinksme_roa_why_heading",
+            "label": "Heading",
+            "name": "roa_why_heading",
+            "aria-label": "",
+            "type": "textarea",
+            "instructions": "Line breaks are kept, so press Enter where the headline should wrap.",
+            "required": 0,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "rows": 3,
+            "new_lines": "",
+            "default_value": "Why Your Business Needs\na Local Registered Office Address in Singapore",
+            "maxlength": "",
+            "placeholder": ""
+        },
+        {
+            "key": "field_thinksme_roa_why_text",
+            "label": "Text",
+            "name": "roa_why_text",
+            "aria-label": "",
+            "type": "textarea",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "rows": 4,
+            "new_lines": "",
+            "default_value": "When incorporating a company in Singapore, a local registered office address is a legal must — and it also helps your business appear professional and credible.",
+            "maxlength": "",
+            "placeholder": ""
+        },
+        {
+            "key": "field_thinksme_roa_why_step_1_icon",
+            "label": "Step 1 — Icon",
+            "name": "roa_why_step_1_icon",
+            "aria-label": "",
+            "type": "select",
+            "instructions": "The choices here are a placeholder: thinksme_roa_icon_choices() in functions.php replaces them at load time from thinksme_roa_icons(), so adding an icon never means re-syncing this group.",
+            "required": 0,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "buildings": "Office building",
+                "envelope-open": "Open envelope",
+                "folder-lock": "Folder with padlock",
+                "receipt": "Receipt",
+                "envelope-simple": "Envelope",
+                "door-open": "Open door",
+                "map-pin": "Map pin",
+                "shield-check": "Shield with check"
+            },
+            "default_value": "envelope-simple",
+            "allow_null": 0,
+            "multiple": 0,
+            "ui": 0,
+            "return_format": "value",
+            "ajax": 0,
+            "placeholder": "",
+            "create_options": 0,
+            "save_options": 0
+        },
+        {
+            "key": "field_thinksme_roa_why_step_1_title",
+            "label": "Step 1 — Title",
+            "name": "roa_why_step_1_title",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "A step with no title is dropped from the rail, and the scroll runway shortens with it.",
+            "required": 0,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "Receive All Official Mail",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_thinksme_roa_why_step_1_text",
+            "label": "Step 1 — Text",
+            "name": "roa_why_step_1_text",
+            "aria-label": "",
+            "type": "textarea",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "rows": 3,
+            "new_lines": "",
+            "default_value": "A central place for all government notices, tax letters, and legal correspondence.",
+            "maxlength": "",
+            "placeholder": ""
+        },
+        {
+            "key": "field_thinksme_roa_why_step_2_icon",
+            "label": "Step 2 — Icon",
+            "name": "roa_why_step_2_icon",
+            "aria-label": "",
+            "type": "select",
+            "instructions": "Icon shown in the yellow disc on the rail.",
+            "required": 0,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "buildings": "Office building",
+                "envelope-open": "Open envelope",
+                "folder-lock": "Folder with padlock",
+                "receipt": "Receipt",
+                "envelope-simple": "Envelope",
+                "door-open": "Open door",
+                "map-pin": "Map pin",
+                "shield-check": "Shield with check"
+            },
+            "default_value": "door-open",
+            "allow_null": 0,
+            "multiple": 0,
+            "ui": 0,
+            "return_format": "value",
+            "ajax": 0,
+            "placeholder": "",
+            "create_options": 0,
+            "save_options": 0
+        },
+        {
+            "key": "field_thinksme_roa_why_step_2_title",
+            "label": "Step 2 — Title",
+            "name": "roa_why_step_2_title",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "Accessible to the Public",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_thinksme_roa_why_step_2_text",
+            "label": "Step 2 — Text",
+            "name": "roa_why_step_2_text",
+            "aria-label": "",
+            "type": "textarea",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "rows": 3,
+            "new_lines": "",
+            "default_value": "Open for at least 8 hours on business days, ensuring compliance with ACRA requirements.",
+            "maxlength": "",
+            "placeholder": ""
+        },
+        {
+            "key": "field_thinksme_roa_why_step_3_icon",
+            "label": "Step 3 — Icon",
+            "name": "roa_why_step_3_icon",
+            "aria-label": "",
+            "type": "select",
+            "instructions": "Icon shown in the yellow disc on the rail.",
+            "required": 0,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "buildings": "Office building",
+                "envelope-open": "Open envelope",
+                "folder-lock": "Folder with padlock",
+                "receipt": "Receipt",
+                "envelope-simple": "Envelope",
+                "door-open": "Open door",
+                "map-pin": "Map pin",
+                "shield-check": "Shield with check"
+            },
+            "default_value": "map-pin",
+            "allow_null": 0,
+            "multiple": 0,
+            "ui": 0,
+            "return_format": "value",
+            "ajax": 0,
+            "placeholder": "",
+            "create_options": 0,
+            "save_options": 0
+        },
+        {
+            "key": "field_thinksme_roa_why_step_3_title",
+            "label": "Step 3 — Title",
+            "name": "roa_why_step_3_title",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "Singapore-Based Physical Address",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_thinksme_roa_why_step_3_text",
+            "label": "Step 3 — Text",
+            "name": "roa_why_step_3_text",
+            "aria-label": "",
+            "type": "textarea",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "rows": 3,
+            "new_lines": "",
+            "default_value": "Shows your business has a real, legitimate presence in Singapore.",
+            "maxlength": "",
+            "placeholder": ""
+        },
+        {
+            "key": "field_thinksme_roa_why_step_4_icon",
+            "label": "Step 4 — Icon",
+            "name": "roa_why_step_4_icon",
+            "aria-label": "",
+            "type": "select",
+            "instructions": "Icon shown in the yellow disc on the rail.",
+            "required": 0,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "buildings": "Office building",
+                "envelope-open": "Open envelope",
+                "folder-lock": "Folder with padlock",
+                "receipt": "Receipt",
+                "envelope-simple": "Envelope",
+                "door-open": "Open door",
+                "map-pin": "Map pin",
+                "shield-check": "Shield with check"
+            },
+            "default_value": "shield-check",
+            "allow_null": 0,
+            "multiple": 0,
+            "ui": 0,
+            "return_format": "value",
+            "ajax": 0,
+            "placeholder": "",
+            "create_options": 0,
+            "save_options": 0
+        },
+        {
+            "key": "field_thinksme_roa_why_step_4_title",
+            "label": "Step 4 — Title",
+            "name": "roa_why_step_4_title",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "No P.O. Boxes Allowed",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_thinksme_roa_why_step_4_text",
+            "label": "Step 4 — Text",
+            "name": "roa_why_step_4_text",
+            "aria-label": "",
+            "type": "textarea",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "rows": 3,
+            "new_lines": "",
+            "default_value": "Ensures transparency and credibility with clients and authorities.",
+            "maxlength": "",
+            "placeholder": ""
+        },
+        {
+            "key": "field_thinksme_tab_roa_reviews",
+            "label": "Google Reviews",
+            "name": "",
+            "aria-label": "",
+            "type": "tab",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "placement": "top",
+            "endpoint": 0,
+            "selected": 0
+        },
+        {
+            "key": "field_thinksme_roa_reviews_hat",
+            "label": "Pill Text",
+            "name": "testimonials_hat_text",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "The reviews themselves are the “Google Reviews” posts in the sidebar — this page shows the same list as the homepage.",
+            "required": 0,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "Google Reviews",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_thinksme_roa_reviews_heading",
+            "label": "Heading",
+            "name": "testimonials_heading",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "Read Our Reviews",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_thinksme_tab_roa_faq",
+            "label": "FAQ",
+            "name": "",
+            "aria-label": "",
+            "type": "tab",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "placement": "top",
+            "endpoint": 0,
+            "selected": 0
+        },
+        {
+            "key": "field_thinksme_roa_faq_hat",
+            "label": "Pill Text",
+            "name": "faq_hat_text",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "The questions themselves are the FAQ posts in the sidebar — this page shows the same list as the homepage.",
+            "required": 0,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "Common Questions",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_thinksme_roa_faq_heading",
+            "label": "Heading",
+            "name": "faq_heading",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "Questions Singapore Business Owners Ask Us First",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_thinksme_tab_roa_cta",
+            "label": "Final CTA",
+            "name": "",
+            "aria-label": "",
+            "type": "tab",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "placement": "top",
+            "endpoint": 0,
+            "selected": 0
+        },
+        {
+            "key": "field_thinksme_roa_cta_title",
+            "label": "Title",
+            "name": "cta_title",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "Need help?",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_thinksme_roa_cta_text",
+            "label": "Text",
+            "name": "cta_text",
+            "aria-label": "",
+            "type": "textarea",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "rows": 3,
+            "new_lines": "",
+            "default_value": "Reach out with your requirements, and our experts will be happy to assist you — no commitment, no pressure.",
+            "maxlength": "",
+            "placeholder": ""
+        },
+        {
+            "key": "field_thinksme_roa_cta_google_rating",
+            "label": "Google Rating",
+            "name": "cta_google_rating",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "Shown next to the Google logo and five stars.",
+            "required": 0,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "4.9",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_thinksme_roa_cta_button_text",
+            "label": "Button Text",
+            "name": "cta_button_text",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "Contact Us",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_thinksme_roa_cta_button_link",
+            "label": "Button Link",
+            "name": "cta_button_link",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "#",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_thinksme_roa_cta_image",
+            "label": "Photo",
+            "name": "cta_image",
+            "aria-label": "",
+            "type": "image",
+            "instructions": "Wide photo band under the CTA. Recommended 2560x1122px. Leave empty to use the theme default.",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "return_format": "array",
+            "preview_size": "medium",
+            "library": "all",
+            "min_width": 0,
+            "min_height": 0,
+            "min_size": 0,
+            "max_width": 0,
+            "max_height": 0,
+            "max_size": 0,
+            "mime_types": ""
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "page_template",
+                "operator": "==",
+                "value": "page-registered-office-address.php"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "Registered Office Address page sections: hero, the plan (pricing card + copy), the navy services block with expanding cards, the scroll-driven “Why” rail, the shared Google Reviews slider, and the final CTA. The testimonials_* and cta_* field names repeat the Home group’s names under different keys, which is what lets template-parts\/testimonials.php and cta.php stay page-agnostic.",
+    "show_in_rest": 0,
+    "display_title": "",
+    "allow_ai_access": false,
+    "ai_description": "",
+    "modified": 1786392510,
+    "local_file": "\/Users\/davidrestrepo\/Desktop\/studio\/thinks-me\/app\/public\/wp-content\/themes\/thinksme\/acf-json\/group_thinksme_roa.json"
+}

@@ -129,7 +129,7 @@ function thinksme_enqueue_assets() {
 
 	// Office cards re-pointing the Google Maps embed — contact page only
 	// (see template-parts/offices-map.php).
-	if ( is_page_template( 'page-contact-us.php' ) ) {
+	if ( 'page-contact-us.php' === thinksme_current_template() ) {
 		wp_enqueue_script(
 			'thinksme-contact-map',
 			get_template_directory_uri() . '/assets/js/contact-map.js',
@@ -138,8 +138,140 @@ function thinksme_enqueue_assets() {
 			true
 		);
 	}
+
+	// Registered Office Address page only: the expanding service cards
+	// (template-parts/roa-block.php), the scroll-driven progress rail
+	// (template-parts/roa-why.php), and the two carousels this page reuses from
+	// the homepage — the certifications logo marquee and the Google Reviews
+	// slider, both of which need Swiper, hence the vendor pair.
+	if ( 'page-registered-office-address.php' === thinksme_current_template() ) {
+		wp_enqueue_script(
+			'thinksme-roa-block',
+			get_template_directory_uri() . '/assets/js/roa-block.js',
+			array(),
+			THINKSME_VERSION,
+			true
+		);
+
+		wp_enqueue_script(
+			'thinksme-roa-progress',
+			get_template_directory_uri() . '/assets/js/roa-progress.js',
+			array(),
+			THINKSME_VERSION,
+			true
+		);
+
+		wp_enqueue_style(
+			'swiper',
+			get_template_directory_uri() . '/assets/css/vendor/swiper/swiper-bundle.min.css',
+			array(),
+			THINKSME_SWIPER_VERSION
+		);
+		wp_enqueue_script(
+			'swiper',
+			get_template_directory_uri() . '/assets/js/vendor/swiper/swiper-bundle.min.js',
+			array(),
+			THINKSME_SWIPER_VERSION,
+			true
+		);
+		wp_enqueue_script(
+			'thinksme-logos-slider',
+			get_template_directory_uri() . '/assets/js/logos-slider.js',
+			array( 'swiper' ),
+			THINKSME_VERSION,
+			true
+		);
+		wp_enqueue_script(
+			'thinksme-testimonials-slider',
+			get_template_directory_uri() . '/assets/js/testimonials-slider.js',
+			array( 'swiper' ),
+			THINKSME_VERSION,
+			true
+		);
+	}
+
+	// Company Incorporation Local page only: the free-tools tabs
+	// (template-parts/ci-tools.php), plus the same two carousels ROA reuses from
+	// the homepage — the certifications logo marquee and the Google Reviews
+	// slider, both of which need Swiper, hence the vendor pair.
+	if ( 'page-company-incorporation-local.php' === thinksme_current_template() ) {
+		wp_enqueue_script(
+			'thinksme-ci-tools',
+			get_template_directory_uri() . '/assets/js/ci-tools.js',
+			array(),
+			THINKSME_VERSION,
+			true
+		);
+
+		wp_enqueue_style(
+			'swiper',
+			get_template_directory_uri() . '/assets/css/vendor/swiper/swiper-bundle.min.css',
+			array(),
+			THINKSME_SWIPER_VERSION
+		);
+		wp_enqueue_script(
+			'swiper',
+			get_template_directory_uri() . '/assets/js/vendor/swiper/swiper-bundle.min.js',
+			array(),
+			THINKSME_SWIPER_VERSION,
+			true
+		);
+		wp_enqueue_script(
+			'thinksme-logos-slider',
+			get_template_directory_uri() . '/assets/js/logos-slider.js',
+			array( 'swiper' ),
+			THINKSME_VERSION,
+			true
+		);
+		wp_enqueue_script(
+			'thinksme-testimonials-slider',
+			get_template_directory_uri() . '/assets/js/testimonials-slider.js',
+			array( 'swiper' ),
+			THINKSME_VERSION,
+			true
+		);
+	}
 }
 add_action( 'wp_enqueue_scripts', 'thinksme_enqueue_assets' );
+
+/**
+ * Filename of the template WordPress actually resolved for this request.
+ *
+ * Deliberately not is_page_template(): that reads the `_wp_page_template` post
+ * meta, so it is only true when the template was picked in Page Attributes. Our
+ * page templates are *also* named for their page slug, so WP happily serves
+ * page-contact-us.php / page-registered-office-address.php to a page that never
+ * had the attribute set — and every per-page script would then silently fail to
+ * enqueue on a page that is plainly using that template.
+ *
+ * 'template_include' resolves before the template is included, and therefore
+ * before get_header() fires 'wp_enqueue_scripts', so the value is ready in time.
+ *
+ * @param string|null $template Full template path, when called from the filter.
+ * @return string Template basename, or '' before the filter has run.
+ */
+function thinksme_current_template( $template = null ) {
+	static $current = '';
+
+	if ( null !== $template ) {
+		$current = basename( $template );
+	}
+
+	return $current;
+}
+
+/**
+ * Record the resolved template and pass it through untouched.
+ *
+ * @param string $template Full template path.
+ * @return string
+ */
+function thinksme_record_current_template( $template ) {
+	thinksme_current_template( $template );
+
+	return $template;
+}
+add_filter( 'template_include', 'thinksme_record_current_template' );
 
 /**
  * Customizer controls for the client logos carousel (template-parts/logos-slider.php),
@@ -522,6 +654,150 @@ function thinksme_menu_icon_choices( $field ) {
 	return $field;
 }
 add_filter( 'acf/load_field/name=menu_icon', 'thinksme_menu_icon_choices' );
+
+/**
+ * Icon set the Registered Office Address page can use — shared by the service
+ * cards (template-parts/roa-block.php) and the progress rail
+ * (template-parts/roa-why.php), since both draw the same 27.4px black-stroke
+ * glyph in the same 64px yellow disc.
+ *
+ * Same arrangement as thinksme_menu_icons() above: slug => admin label, where
+ * the slug is the filename in assets/images/icons/roa/ and this list is what
+ * populates the ACF selects, so adding an icon is one SVG plus one line here
+ * with nothing to re-sync in acf-json/.
+ *
+ * @return array
+ */
+function thinksme_roa_icons() {
+	return array(
+		'buildings'       => __( 'Office building', 'thinksme' ),
+		'envelope-open'   => __( 'Open envelope', 'thinksme' ),
+		'folder-lock'     => __( 'Folder with padlock', 'thinksme' ),
+		'receipt'         => __( 'Receipt', 'thinksme' ),
+		'envelope-simple' => __( 'Envelope', 'thinksme' ),
+		'door-open'       => __( 'Open door', 'thinksme' ),
+		'map-pin'         => __( 'Map pin', 'thinksme' ),
+		'shield-check'    => __( 'Shield with check', 'thinksme' ),
+	);
+}
+
+/**
+ * URL for a service card icon. An unset or stale slug falls back to the first
+ * icon in the set, so the card looks intentional rather than broken.
+ *
+ * @param string $slug Icon slug.
+ * @return string
+ */
+function thinksme_roa_icon_url( $slug ) {
+	$icons = thinksme_roa_icons();
+
+	if ( ! is_string( $slug ) || ! isset( $icons[ $slug ] ) ) {
+		$slug = 'buildings';
+	}
+
+	return get_template_directory_uri() . '/assets/images/icons/roa/' . $slug . '.svg';
+}
+
+/**
+ * Feed thinksme_roa_icons() into the page's icon selects. ACF filters on an
+ * exact field name, and both the service cards and the progress rail are flat
+ * fields (ACF free has no Repeater), so the filter is registered once per field
+ * rather than in one call.
+ *
+ * @param array $field ACF field.
+ * @return array
+ */
+function thinksme_roa_icon_choices( $field ) {
+	$field['choices'] = thinksme_roa_icons();
+
+	return $field;
+}
+foreach ( array( 1, 2, 3, 4 ) as $thinksme_roa_n ) {
+	add_filter( "acf/load_field/name=roa_card_{$thinksme_roa_n}_icon", 'thinksme_roa_icon_choices' );
+	add_filter( "acf/load_field/name=roa_why_step_{$thinksme_roa_n}_icon", 'thinksme_roa_icon_choices' );
+}
+unset( $thinksme_roa_n );
+
+/**
+ * Icon set the Company Incorporation Local page can use — shared by the pricing
+ * cards, the what's-included cards, the two route cards and the bento
+ * (template-parts/ci-*.php), all of which draw the same black-stroke glyph in a
+ * yellow disc.
+ *
+ * Kept separate from thinksme_roa_icons() rather than merged with it even where
+ * the two overlap: these are this page's own exports, and folding them together
+ * would mean a glyph swapped for one page silently changed the other.
+ *
+ * Same arrangement as the sets above: slug => admin label, where the slug is the
+ * filename in assets/images/icons/ci/ and this list is what populates the ACF
+ * selects, so adding an icon is one SVG plus one line here with nothing to
+ * re-sync in acf-json/.
+ *
+ * @return array
+ */
+function thinksme_ci_icons() {
+	return array(
+		'shield-check'    => __( 'Shield with check', 'thinksme' ),
+		'folders'         => __( 'Folders', 'thinksme' ),
+		'user-check'      => __( 'Person with check', 'thinksme' ),
+		'buildings'       => __( 'Office building', 'thinksme' ),
+		'receipt'         => __( 'Receipt', 'thinksme' ),
+		'envelope-simple' => __( 'Envelope', 'thinksme' ),
+		'phone'           => __( 'Phone', 'thinksme' ),
+		'package'         => __( 'Package', 'thinksme' ),
+		'lightning'       => __( 'Lightning bolt', 'thinksme' ),
+		'headset'         => __( 'Headset', 'thinksme' ),
+	);
+}
+
+/**
+ * URL for a Company Incorporation Local icon. An unset or stale slug falls back
+ * to the first icon in the set, so the card looks intentional rather than
+ * broken — same contract as thinksme_roa_icon_url().
+ *
+ * @param string $slug Icon slug.
+ * @return string
+ */
+function thinksme_ci_icon_url( $slug ) {
+	$icons = thinksme_ci_icons();
+
+	if ( ! is_string( $slug ) || ! isset( $icons[ $slug ] ) ) {
+		$slug = 'shield-check';
+	}
+
+	return get_template_directory_uri() . '/assets/images/icons/ci/' . $slug . '.svg';
+}
+
+/**
+ * Feed thinksme_ci_icons() into the page's icon selects. ACF filters on an exact
+ * field name and every one of these is a flat field (ACF free has no Repeater),
+ * so the filter is registered once per field.
+ *
+ * The bento (ci-why.php) only has icons on cards 1, 2 and 4 — card 3 is the
+ * photo and card 5 leads with its own image — which is why that list is not a
+ * plain range.
+ *
+ * @param array $field ACF field.
+ * @return array
+ */
+function thinksme_ci_icon_choices( $field ) {
+	$field['choices'] = thinksme_ci_icons();
+
+	return $field;
+}
+foreach ( array( 1, 2, 3 ) as $thinksme_ci_n ) {
+	add_filter( "acf/load_field/name=ci_pricing_card_{$thinksme_ci_n}_icon", 'thinksme_ci_icon_choices' );
+}
+foreach ( array( 1, 2, 3, 4 ) as $thinksme_ci_n ) {
+	add_filter( "acf/load_field/name=ci_includes_card_{$thinksme_ci_n}_icon", 'thinksme_ci_icon_choices' );
+}
+foreach ( array( 1, 2 ) as $thinksme_ci_n ) {
+	add_filter( "acf/load_field/name=ci_ways_card_{$thinksme_ci_n}_icon", 'thinksme_ci_icon_choices' );
+}
+foreach ( array( 1, 2, 4 ) as $thinksme_ci_n ) {
+	add_filter( "acf/load_field/name=ci_why_card_{$thinksme_ci_n}_icon", 'thinksme_ci_icon_choices' );
+}
+unset( $thinksme_ci_n );
 
 /**
  * Contact form — validation and delivery for template-parts/contact-form.php.
