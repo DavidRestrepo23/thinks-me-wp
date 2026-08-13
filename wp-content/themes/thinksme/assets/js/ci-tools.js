@@ -30,6 +30,12 @@
 		return document.getElementById( tab.getAttribute( 'aria-controls' ) );
 	}
 
+	// Below lg the strip is hidden and this <select> is the control instead
+	// (src/base.css, Figma 100:10). It drives the same tabs, and it is kept in
+	// step when the strip is what moved, so a resize across the breakpoint never
+	// shows a dropdown naming a tab that isn't open.
+	var dropdown = group.querySelector( '.ci-tools__select-field' );
+
 	function select( tab, moveFocus ) {
 		for ( var i = 0; i < tabs.length; i++ ) {
 			var isActive = tabs[ i ] === tab;
@@ -48,9 +54,23 @@
 			}
 		}
 
+		if ( dropdown && dropdown.value !== tab.id ) {
+			dropdown.value = tab.id;
+		}
+
 		if ( moveFocus ) {
 			tab.focus();
 		}
+	}
+
+	if ( dropdown ) {
+		dropdown.addEventListener( 'change', function () {
+			var tab = document.getElementById( this.value );
+
+			if ( tab ) {
+				select( tab, false );
+			}
+		} );
 	}
 
 	for ( var i = 0; i < tabs.length; i++ ) {

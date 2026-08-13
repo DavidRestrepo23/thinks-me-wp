@@ -1,0 +1,16 @@
+<svg preserveAspectRatio="none" overflow="visible" style="display: block;" width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="Gauge" clip-path="url(#clip0_0_4)">
+<g id="Vector">
+</g>
+<path id="Vector_2" d="M4.5 33.0001V28.712C4.5 17.9345 13.1531 9.03762 23.9306 9.00012C26.4972 8.99099 29.0404 9.48864 31.4143 10.4645C33.7881 11.4404 35.946 12.8753 37.7641 14.687C39.5822 16.4986 41.0247 18.6514 42.009 21.0217C42.9933 23.3921 43.5 25.9335 43.5 28.5001V33.0001C43.5 33.3979 43.342 33.7795 43.0607 34.0608C42.7794 34.3421 42.3978 34.5001 42 34.5001H6C5.60218 34.5001 5.22064 34.3421 4.93934 34.0608C4.65804 33.7795 4.5 33.3979 4.5 33.0001Z" stroke="black" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"/>
+<path id="Vector_3" d="M24 9V15" stroke="black" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"/>
+<path id="Vector_4" d="M19.5 34.5L31.5 18" stroke="black" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"/>
+<path id="Vector_5" d="M37.5 25.5H43.2712" stroke="black" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"/>
+<path id="Vector_6" d="M4.75781 25.5H10.4972" stroke="black" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+<defs>
+<clipPath id="clip0_0_4">
+<rect width="48" height="48" fill="white"/>
+</clipPath>
+</defs>
+</svg>

@@ -8,14 +8,18 @@
  * roa_why_text, and per step (1..4) roa_why_step_N_icon (select, same runtime
  * icon list as the service cards), _title, _text.
  *
- * The section pins itself while you scroll past it: assets/js/roa-progress.js
- * gives the section a tall scroll runway and writes --roa-progress (0..1) as
+ * The section pins itself while you scroll past it: assets/js/progress-rail.js
+ * gives the section a tall scroll runway and writes --rail-progress (0..1) as
  * you move through it, and the CSS turns that number into the height of each
  * connector's yellow fill. Progress reaches 1 on the last step — "No P.O. Boxes
  * Allowed" in the design — and the sticky child releases there, so the page
  * carries on scrolling normally.
  *
- * Pinning is an enhancement, not the layout: --roa-progress defaults to 1, so
+ * The rail's markup and CSS (.rail*, data-progress-rail/-pin) are shared with
+ * template-parts/ci-requirements.php on the Accounting & Bookkeeping page; only
+ * the copy column beside it and the track colour belong to this page.
+ *
+ * Pinning is an enhancement, not the layout: --rail-progress defaults to 1, so
  * with the script gone (or on a phone, or under prefers-reduced-motion, or on a
  * viewport too short to hold the rail) the section is a plain block with every
  * connector already filled. The script only pins when it has checked the
@@ -70,15 +74,16 @@ if ( ! $steps ) {
 }
 
 // One connector between each pair of steps — also the divisor the CSS uses to
-// slice --roa-progress into per-connector fills, so it has to be the real count.
+// slice --rail-progress into per-connector fills, so it has to be the real count.
 $lines = max( 1, count( $steps ) - 1 );
 ?>
 <section
 	id="roa-why"
 	class="roa-why w-full px-lg lg:px-3xl py-xl lg:py-[40px]"
-	style="--roa-lines: <?php echo esc_attr( $lines ); ?>;"
+	data-progress-rail
+	style="--rail-lines: <?php echo esc_attr( $lines ); ?>;"
 >
-	<div class="roa-why__pin flex flex-col lg:flex-row lg:items-start gap-3xl lg:gap-[144px] w-full">
+	<div data-progress-pin class="flex flex-col lg:flex-row lg:items-start gap-3xl lg:gap-[144px] w-full">
 		<div class="flex flex-col justify-center gap-xl lg:gap-[48px] w-full lg:w-[548px] lg:shrink-0">
 			<div class="flex flex-col items-start justify-center gap-md w-full">
 				<span class="bg-brand-yellow-soft/35 border border-brand-yellow-border rounded-pill h-[32px] px-md inline-flex items-center justify-center text-xs font-medium text-text-primary">
@@ -94,23 +99,23 @@ $lines = max( 1, count( $steps ) - 1 );
 			</p>
 		</div>
 
-		<ol class="roa-why__list w-full lg:flex-1 lg:min-w-0">
+		<ol class="rail w-full lg:flex-1 lg:min-w-0">
 			<?php foreach ( $steps as $index => $step ) : ?>
-				<li class="roa-why__step">
-					<span class="roa-why__rail" aria-hidden="true">
-						<span class="roa-why__icon">
+				<li class="rail__step">
+					<span class="rail__marker" aria-hidden="true">
+						<span class="rail__icon">
 							<img src="<?php echo esc_url( $step['icon'] ); ?>" alt="" class="size-[27.4px]">
 						</span>
 
 						<?php if ( $index < count( $steps ) - 1 ) : ?>
-							<?php // --roa-step is this connector's slice of the overall progress; see .roa-why__line-fill in src/base.css. ?>
-							<span class="roa-why__line" style="--roa-step: <?php echo esc_attr( $index ); ?>;">
-								<span class="roa-why__line-fill"></span>
+							<?php // --rail-step is this connector's slice of the overall progress; see .rail__line-fill in src/base.css. ?>
+							<span class="rail__line" style="--rail-step: <?php echo esc_attr( $index ); ?>;">
+								<span class="rail__line-fill"></span>
 							</span>
 						<?php endif; ?>
 					</span>
 
-					<div class="roa-why__body">
+					<div class="rail__body">
 						<h3 class="font-medium text-[28px] leading-[1.2] text-text-heading-dark">
 							<?php echo esc_html( $step['title'] ); ?>
 						</h3>

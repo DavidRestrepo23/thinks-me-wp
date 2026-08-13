@@ -1,0 +1,16 @@
+<svg preserveAspectRatio="none" overflow="visible" style="display: block;" width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="ClockCountdown" clip-path="url(#clip0_0_16)">
+<g id="Vector">
+</g>
+<path id="Vector_2" d="M28 17C27.4912 23.16 22.2913 28 16 28C12.8174 28 9.76516 26.7357 7.51472 24.4853C5.26428 22.2348 4 19.1826 4 16C4 9.70875 8.84 4.50875 15 4" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+<path id="Vector_3" d="M16 9V16H23" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+<path id="Vector_4" d="M20 5.75C20.6904 5.75 21.25 5.19036 21.25 4.5C21.25 3.80964 20.6904 3.25 20 3.25C19.3096 3.25 18.75 3.80964 18.75 4.5C18.75 5.19036 19.3096 5.75 20 5.75Z" fill="black"/>
+<path id="Vector_5" d="M24.5 8.75C25.1904 8.75 25.75 8.19036 25.75 7.5C25.75 6.80964 25.1904 6.25 24.5 6.25C23.8096 6.25 23.25 6.80964 23.25 7.5C23.25 8.19036 23.8096 8.75 24.5 8.75Z" fill="black"/>
+<path id="Vector_6" d="M27.5 13.25C28.1904 13.25 28.75 12.6904 28.75 12C28.75 11.3096 28.1904 10.75 27.5 10.75C26.8096 10.75 26.25 11.3096 26.25 12C26.25 12.6904 26.8096 13.25 27.5 13.25Z" fill="black"/>
+</g>
+<defs>
+<clipPath id="clip0_0_16">
+<rect width="32" height="32" fill="white"/>
+</clipPath>
+</defs>
+</svg>

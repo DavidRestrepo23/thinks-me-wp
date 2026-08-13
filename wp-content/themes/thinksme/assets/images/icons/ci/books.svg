@@ -1,0 +1,18 @@
+<svg preserveAspectRatio="none" overflow="visible" style="display: block;" width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="Books" clip-path="url(#clip0_0_22)">
+<g id="Vector">
+</g>
+<path id="Vector_2" d="M13 5H7C6.44772 5 6 5.44772 6 6V26C6 26.5523 6.44772 27 7 27H13C13.5523 27 14 26.5523 14 26V6C14 5.44772 13.5523 5 13 5Z" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+<path id="Vector_3" d="M27.2086 25.7222L21.3574 26.9722C21.2284 26.9996 21.0953 27.0013 20.9657 26.9771C20.836 26.9529 20.7125 26.9033 20.6021 26.8311C20.4918 26.759 20.3968 26.6657 20.3226 26.5567C20.2484 26.4477 20.1965 26.3251 20.1699 26.196L16.0224 6.47595C15.9666 6.21545 16.0161 5.94346 16.1601 5.71934C16.3042 5.49522 16.531 5.33718 16.7911 5.2797L22.6424 4.0297C22.7713 4.00226 22.9045 4.0006 23.0341 4.02482C23.1637 4.04903 23.2872 4.09863 23.3976 4.17078C23.508 4.24293 23.603 4.33619 23.6772 4.4452C23.7514 4.55421 23.8033 4.67681 23.8299 4.80595L27.9774 24.526C28.0332 24.7865 27.9836 25.0584 27.8396 25.2826C27.6956 25.5067 27.4688 25.6647 27.2086 25.7222Z" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+<path id="Vector_4" d="M6 9H14" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+<path id="Vector_5" d="M6 23H14" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+<path id="Vector_6" d="M16.6445 9.43531L24.4508 7.75781" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+<path id="Vector_7" d="M17.4727 13.3806L25.2802 11.7031" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+<path id="Vector_8" d="M19.5469 23.242L27.3531 21.5645" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+<defs>
+<clipPath id="clip0_0_22">
+<rect width="32" height="32" fill="white"/>
+</clipPath>
+</defs>
+</svg>

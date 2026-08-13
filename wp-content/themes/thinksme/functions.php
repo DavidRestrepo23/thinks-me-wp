@@ -16,6 +16,10 @@ define( 'THINKSME_SWIPER_VERSION', '14.0.7' );
 // Primary-nav walker — builds the desktop megamenu out of the menu's own depth.
 require_once get_template_directory() . '/inc/class-thinksme-nav-walker.php';
 
+// Copy and images for the two Company Incorporation pages, which share one set
+// of template parts and differ only in what this file gives them.
+require_once get_template_directory() . '/inc/ci-content.php';
+
 /**
  * Theme setup.
  */
@@ -139,23 +143,36 @@ function thinksme_enqueue_assets() {
 		);
 	}
 
+	// The scroll-driven progress rail, shared by template-parts/roa-why.php and
+	// template-parts/ci-requirements.php. The script is markup-driven
+	// (data-progress-rail) and no-ops without a rail on the page, but there is no
+	// reason to ship it to templates that never carry one.
+	if ( in_array(
+		thinksme_current_template(),
+		array(
+			'page-registered-office-address.php',
+			'page-accounting-bookkeeping.php',
+			'page-corporate-tax.php',
+		),
+		true
+	) ) {
+		wp_enqueue_script(
+			'thinksme-progress-rail',
+			get_template_directory_uri() . '/assets/js/progress-rail.js',
+			array(),
+			THINKSME_VERSION,
+			true
+		);
+	}
+
 	// Registered Office Address page only: the expanding service cards
-	// (template-parts/roa-block.php), the scroll-driven progress rail
-	// (template-parts/roa-why.php), and the two carousels this page reuses from
+	// (template-parts/roa-block.php) and the two carousels this page reuses from
 	// the homepage — the certifications logo marquee and the Google Reviews
 	// slider, both of which need Swiper, hence the vendor pair.
 	if ( 'page-registered-office-address.php' === thinksme_current_template() ) {
 		wp_enqueue_script(
 			'thinksme-roa-block',
 			get_template_directory_uri() . '/assets/js/roa-block.js',
-			array(),
-			THINKSME_VERSION,
-			true
-		);
-
-		wp_enqueue_script(
-			'thinksme-roa-progress',
-			get_template_directory_uri() . '/assets/js/roa-progress.js',
 			array(),
 			THINKSME_VERSION,
 			true
@@ -190,15 +207,51 @@ function thinksme_enqueue_assets() {
 		);
 	}
 
-	// Company Incorporation Local page only: the free-tools tabs
-	// (template-parts/ci-tools.php), plus the same two carousels ROA reuses from
-	// the homepage — the certifications logo marquee and the Google Reviews
-	// slider, both of which need Swiper, hence the vendor pair.
-	if ( 'page-company-incorporation-local.php' === thinksme_current_template() ) {
+	// The six pages built out of the ci-* template parts: the pricing cards'
+	// mobile slider, plus the same two carousels ROA reuses from the homepage —
+	// the certifications logo marquee and the Google Reviews slider, both of
+	// which need Swiper, hence the vendor pair.
+	if ( in_array(
+		thinksme_current_template(),
+		array(
+			'page-company-incorporation-local.php',
+			'page-company-incorporation-foreign.php',
+			'page-corporate-secretary.php',
+			'page-accounting-bookkeeping.php',
+			'page-corporate-tax.php',
+			'page-gst-registration.php',
+		),
+		true
+	) ) {
+		// The free-tools tabs (template-parts/ci-tools.php). Accounting &
+		// Bookkeeping, Corporate Tax and GST Registration are the pages in this
+		// group whose design has no tools section, so they are the ones that don't
+		// need them — Corporate Tax has the calculator instead, enqueued below.
+		if ( ! in_array(
+			thinksme_current_template(),
+			array(
+				'page-accounting-bookkeeping.php',
+				'page-corporate-tax.php',
+				'page-gst-registration.php',
+			),
+			true
+		) ) {
+			wp_enqueue_script(
+				'thinksme-ci-tools',
+				get_template_directory_uri() . '/assets/js/ci-tools.js',
+				array(),
+				THINKSME_VERSION,
+				true
+			);
+		}
+
+		// The pricing cards' mobile slider — Swiper below lg only, see the note in
+		// assets/js/ci-plans.js. The vendor pair it depends on is enqueued just
+		// below for the two carousels this page shares with the homepage.
 		wp_enqueue_script(
-			'thinksme-ci-tools',
-			get_template_directory_uri() . '/assets/js/ci-tools.js',
-			array(),
+			'thinksme-ci-plans',
+			get_template_directory_uri() . '/assets/js/ci-plans.js',
+			array( 'swiper' ),
 			THINKSME_VERSION,
 			true
 		);
@@ -230,6 +283,39 @@ function thinksme_enqueue_assets() {
 			THINKSME_VERSION,
 			true
 		);
+
+		// The Corporate Secretary, Corporate Tax and GST Registration pages are the
+		// ones with the card carousel (template-parts/ci-why-slider.php); the
+		// script no-ops without it, but there is no reason to ship it to the rest.
+		if ( in_array(
+			thinksme_current_template(),
+			array(
+				'page-corporate-secretary.php',
+				'page-corporate-tax.php',
+				'page-gst-registration.php',
+			),
+			true
+		) ) {
+			wp_enqueue_script(
+				'thinksme-ci-why-slider',
+				get_template_directory_uri() . '/assets/js/ci-why-slider.js',
+				array( 'swiper' ),
+				THINKSME_VERSION,
+				true
+			);
+		}
+
+		// The tax estimate (template-parts/ci-calculator.php) — Corporate Tax only,
+		// and the one tool in the theme that computes rather than switching tabs.
+		if ( 'page-corporate-tax.php' === thinksme_current_template() ) {
+			wp_enqueue_script(
+				'thinksme-ci-calculator',
+				get_template_directory_uri() . '/assets/js/ci-calculator.js',
+				array(),
+				THINKSME_VERSION,
+				true
+			);
+		}
 	}
 }
 add_action( 'wp_enqueue_scripts', 'thinksme_enqueue_assets' );
@@ -747,6 +833,28 @@ function thinksme_ci_icons() {
 		'package'         => __( 'Package', 'thinksme' ),
 		'lightning'       => __( 'Lightning bolt', 'thinksme' ),
 		'headset'         => __( 'Headset', 'thinksme' ),
+		'star'            => __( 'Star', 'thinksme' ),
+		'user-sound'      => __( 'Person speaking', 'thinksme' ),
+		'calendar-dots'   => __( 'Calendar', 'thinksme' ),
+		'arrows-left-right' => __( 'Left/right arrows', 'thinksme' ),
+		'users-three'     => __( 'Three people', 'thinksme' ),
+		'tag'             => __( 'Price tag', 'thinksme' ),
+		'file-magnifying-glass' => __( 'Document under a magnifier', 'thinksme' ),
+		'books'           => __( 'Books', 'thinksme' ),
+		'file-text'       => __( 'Document', 'thinksme' ),
+		'calendar-check'  => __( 'Calendar with a check', 'thinksme' ),
+		'certificate'     => __( 'Certificate', 'thinksme' ),
+		'seal-check'      => __( 'Seal with a check', 'thinksme' ),
+		'bank'            => __( 'Bank', 'thinksme' ),
+		'hand-coins'      => __( 'Hand with coins', 'thinksme' ),
+		'chart-line-up'   => __( 'Rising chart', 'thinksme' ),
+		'globe-hemisphere-west' => __( 'Globe', 'thinksme' ),
+		'percent'         => __( 'Percent sign', 'thinksme' ),
+		'clock-countdown' => __( 'Clock counting down', 'thinksme' ),
+		'calculator'      => __( 'Calculator', 'thinksme' ),
+		'hand-heart'      => __( 'Hand holding a heart', 'thinksme' ),
+		'gauge'           => __( 'Gauge', 'thinksme' ),
+		'file-arrow-up'   => __( 'Document being uploaded', 'thinksme' ),
 	);
 }
 
@@ -794,8 +902,27 @@ foreach ( array( 1, 2, 3, 4 ) as $thinksme_ci_n ) {
 foreach ( array( 1, 2 ) as $thinksme_ci_n ) {
 	add_filter( "acf/load_field/name=ci_ways_card_{$thinksme_ci_n}_icon", 'thinksme_ci_icon_choices' );
 }
-foreach ( array( 1, 2, 4 ) as $thinksme_ci_n ) {
+// Card 3 of the bento carries an icon only on the page whose design writes copy
+// into that slot — see template-parts/ci-why.php.
+foreach ( array( 1, 2, 3, 4 ) as $thinksme_ci_n ) {
 	add_filter( "acf/load_field/name=ci_why_card_{$thinksme_ci_n}_icon", 'thinksme_ci_icon_choices' );
+}
+// The Accounting & Bookkeeping page's two icon-card grids and its requirements
+// rail (template-parts/ci-grid.php, ci-requirements.php).
+foreach ( array( 1, 2, 3, 4, 5, 6 ) as $thinksme_ci_n ) {
+	add_filter( "acf/load_field/name=ci_grid_switching_card_{$thinksme_ci_n}_icon", 'thinksme_ci_icon_choices' );
+	add_filter( "acf/load_field/name=ci_grid_same_firm_card_{$thinksme_ci_n}_icon", 'thinksme_ci_icon_choices' );
+	// The Corporate Tax page's own grid instance (template-parts/ci-grid.php).
+	add_filter( "acf/load_field/name=ci_grid_needs_card_{$thinksme_ci_n}_icon", 'thinksme_ci_icon_choices' );
+}
+// Five steps rather than four: the Corporate Tax frame's rail has one more than
+// the Accounting one's, and the field only exists on the page that draws it.
+foreach ( array( 1, 2, 3, 4, 5 ) as $thinksme_ci_n ) {
+	add_filter( "acf/load_field/name=ci_requirements_step_{$thinksme_ci_n}_icon", 'thinksme_ci_icon_choices' );
+}
+// The Corporate Tax figures band (template-parts/ci-stats.php).
+foreach ( array( 1, 2, 3, 4 ) as $thinksme_ci_n ) {
+	add_filter( "acf/load_field/name=ci_stats_card_{$thinksme_ci_n}_icon", 'thinksme_ci_icon_choices' );
 }
 unset( $thinksme_ci_n );
 

@@ -41,6 +41,11 @@
      hover states) — it's --color-brand-yellow darkened ~12% so a yellow button
      still reads as the same colour while clearly reacting to the pointer. */
   --color-brand-yellow-dark: #dcb200;
+  /* yellow/100 and yellow/600 — the selected exemption scheme in the Corporate Tax
+     calculator (template-parts/ci-calculator.php). Warmer than
+     --color-brand-yellow-soft, which is the pill's near-white. */
+  --color-brand-yellow-tint: #fef8e1;
+  --color-brand-yellow-strong: #deb407;
 
   /* Color — "Three Ways" cards stack (Start / Grow; Run reuses --color-surface-dark) */
   --color-card-start: #ffe064;
@@ -70,6 +75,12 @@
   --color-surface-panel: #fbfbfb;
   /* background/brand/regular — the highlighted middle pricing card */
   --color-surface-brand-regular: #4781cd;
+  /* brand/950 — the VS badge and the numbered discs on the Corporate Tax page's
+     late-filing section (template-parts/ci-penalties.php). Deeper than
+     --color-surface-dark, which is every navy panel in the theme. */
+  --color-surface-navy-deep: #10243c;
+  /* green/100 — the "filed on time" side of that same comparison */
+  --color-surface-success-soft: #e8f8ee;
 
   /* Color — text */
   --color-text-primary: #242424;
@@ -79,6 +90,14 @@
   /* gray/900 — megamenu column headings and card titles. Deliberately not
      --color-text-primary: the newer Figma frames use this slightly cooler grey. */
   --color-text-strong: #2a2f37;
+  /* green/600 — the "From S$850" figure on the Corporate Tax comparison */
+  --color-text-success: #37ae63;
+  /* brand/950 — the GST hero's promotional price line, the one place a figure is
+     set in the deep navy rather than --color-text-primary. */
+  --color-text-navy: #10243c;
+  /* gray/400 — struck-through "usual price" figures (the GST hero and its
+     registration card). Light enough to read as superseded, dark enough to read. */
+  --color-text-faint: #aeb6c2;
 
   /* Color — borders */
   --color-border-soft: #d0d5dc;
@@ -92,6 +111,8 @@
   --color-border-focus: #316bb4;
   /* stroke/brand/dark — underline on the nav item whose megamenu is open */
   --color-border-brand-dark: #204574;
+  /* green/700 — border of the "filed on time" side of the Corporate Tax comparison */
+  --color-border-success: #2d8f51;
 
   /* Color — status */
   --color-success: #1ec03b;
@@ -1583,24 +1604,32 @@ button.roa-card {
 }
 
 /* ---------------------------------------------------------------------------
-   Registered Office Address — "Why Your Business Needs…" progress rail
-   (template-parts/roa-why.php, Figma node 68:564).
+   Scroll-driven progress rail — shared by template-parts/roa-why.php (Figma
+   68:564) and template-parts/ci-requirements.php (Figma 102:3515).
 
-   The rail is four steps joined by connectors, and the connectors fill as the
-   section is scrolled. assets/js/roa-progress.js writes one number,
-   --roa-progress (0..1), and everything below is derived from it — including
-   the default of 1, which is what makes the un-enhanced section (no JS, phone,
-   reduced motion, short viewport) render complete rather than empty.
+   A rail is steps joined by connectors, and the connectors fill as the section
+   is scrolled. assets/js/progress-rail.js writes one number, --rail-progress
+   (0..1), and everything below is derived from it — including the default of 1,
+   which is what makes an un-enhanced section (no JS, phone, reduced motion,
+   short viewport) render complete rather than empty.
 
-   Figma's geometry: 64px icon, 126px connector, so 190px between step tops. The
-   connector is `flex: 1` against a 126px floor instead of a fixed height, so a
-   step whose copy runs long stretches the rail rather than breaking it.
+   Figma's geometry is the same in both: 64px icon, 126px connector, so 190px
+   between step tops. The connector is `flex: 1` against a 126px floor instead
+   of a fixed height, so a step whose copy runs long stretches the rail rather
+   than breaking it.
+
+   The track colour is a property rather than a value because the two sections
+   sit on different grounds — white on ROA, navy on Accounting.
 --------------------------------------------------------------------------- */
-.roa-why {
-  --roa-progress: 1;
+[data-progress-rail] {
+  --rail-progress: 1;
+  --rail-track: #f2f2f2;
+  /* Figma's connector height on both pages. A section whose pinned block would
+     otherwise be taller than the viewport overrides it — see .ci-requirements. */
+  --rail-connector: 126px;
 }
 
-.roa-why__list {
+.rail {
   display: flex;
   flex-direction: column;
   margin: 0;
@@ -1608,20 +1637,22 @@ button.roa-card {
   list-style: none;
 }
 
-.roa-why__step {
+.rail__step {
   display: flex;
   align-items: stretch;
   gap: var(--space-xl);
-  min-height: 190px;
+  /* 64px icon plus the connector under it — Figma's 190px when the connector is
+     at its full height. */
+  min-height: calc(64px + var(--rail-connector));
 }
 
 /* The last step has no connector under it, so it only needs to be as tall as
    its own content. */
-.roa-why__step:last-child {
+.rail__step:last-child {
   min-height: 0;
 }
 
-.roa-why__rail {
+.rail__marker {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -1629,7 +1660,7 @@ button.roa-card {
   width: 64px;
 }
 
-.roa-why__icon {
+.rail__icon {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -1640,33 +1671,33 @@ button.roa-card {
   background-color: var(--color-brand-yellow);
 }
 
-.roa-why__line {
+.rail__line {
   position: relative;
-  flex: 1 1 126px;
-  min-height: 126px;
+  flex: 1 1 var(--rail-connector);
+  min-height: var(--rail-connector);
   width: 3px;
-  background-color: #f2f2f2;
+  background-color: var(--rail-track);
 }
 
-/* Each connector owns one equal slice of the overall scrub: with --roa-lines
-   connectors, connector --roa-step fills across progress
-   [step / lines, (step + 1) / lines]. Multiplying back out by --roa-lines and
+/* Each connector owns one equal slice of the overall scrub: with --rail-lines
+   connectors, connector --rail-step fills across progress
+   [step / lines, (step + 1) / lines]. Multiplying back out by --rail-lines and
    subtracting its index turns that slice into its own 0..1, and clamp() keeps
    the ones before and after it pinned full and empty. */
-.roa-why__line-fill {
+.rail__line-fill {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: clamp(
     0%,
-    calc((var(--roa-progress) * var(--roa-lines) - var(--roa-step)) * 100%),
+    calc((var(--rail-progress) * var(--rail-lines) - var(--rail-step)) * 100%),
     100%
   );
   background-color: var(--color-brand-yellow);
 }
 
-.roa-why__body {
+.rail__body {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -1678,11 +1709,11 @@ button.roa-card {
   padding-bottom: var(--space-xl);
 }
 
-.roa-why__step:last-child .roa-why__body {
+.rail__step:last-child .rail__body {
   padding-bottom: 0;
 }
 
-/* Only ever set by assets/js/roa-progress.js, and only once it has confirmed
+/* Only ever set by assets/js/progress-rail.js, and only once it has confirmed
    the pinned block fits the viewport. The inline height it writes alongside
    this attribute is the scroll runway; this is what the runway scrubs.
 
@@ -1691,12 +1722,12 @@ button.roa-card {
    real travel shorter than section height minus pin height — the number the
    script scrubs against — and the last connector would stop just short of full.
    Nothing is lost visually: the pin is a full viewport tall and centres in it. */
-.roa-why[data-pinned="true"] {
+[data-progress-rail][data-pinned="true"] {
   padding-top: 0;
   padding-bottom: 0;
 }
 
-.roa-why[data-pinned="true"] .roa-why__pin {
+[data-progress-rail][data-pinned="true"] [data-progress-pin] {
   position: sticky;
   top: 0;
   align-items: center;
@@ -1705,9 +1736,116 @@ button.roa-card {
 
 /* scroll-reveal.js parks every section under a translateY until it is revealed.
    A transform on the sticky element's own ancestor chain is the classic way to
-   break `position: sticky`, so this section keeps the fade and drops the lift. */
-.has-scroll-reveal #main-content > section.roa-why {
+   break `position: sticky`, so these sections keep the fade and drop the lift. */
+.has-scroll-reveal #main-content > section[data-progress-rail] {
   transform: none;
+}
+
+/* The Accounting & Bookkeeping rail (template-parts/ci-requirements.php) stacks
+   its heading above the rail inside one navy panel, where ROA's sits beside it.
+   At Figma's 126px connectors that panel is ~1100px tall — taller than a laptop
+   viewport — and progress-rail.js would refuse to pin it, which is the one thing
+   this section exists to do. So the connector is sized against the viewport
+   instead: full height on a tall screen, compressed on a short one, with a floor
+   that keeps the rail legible. The panel's padding and the rail's top margin are
+   held down in the template for the same reason — and they have to be
+   unconditional rather than keyed on [data-pinned], because the script measures
+   the block *unpinned* to decide whether it fits. */
+.ci-requirements {
+  --rail-connector: clamp(56px, 7svh, 126px);
+}
+
+/* More air above the rail than the sections around it get: it is a full-height
+   navy panel that pins, so it reads as a chapter break rather than as the next
+   block in the flow, and the section before it needs to finish.
+
+   The id gives this (1,1,1), which is what it takes to land on both pages that
+   use the part: on Accounting `.sections-spaced > section + section` (0,2,0)
+   already sets 80px here and would outrank a `mt-*` utility on the section, so
+   putting the value in the template's class list would have moved Corporate Tax
+   only. Margins sit outside `offsetHeight`, so nothing here changes the fit test
+   or the scroll runway progress-rail.js measures. */
+#main-content > section.ci-requirements {
+  margin-top: 56px;
+}
+
+@media (min-width: 1024px) {
+  #main-content > section.ci-requirements {
+    margin-top: 120px;
+  }
+}
+
+/* The Corporate Tax rail (Figma 108:4664) is the same panel with five steps
+   instead of four, and at the sizes above it comes out ~968px — past a laptop
+   viewport, so the script refuses to pin it and the section loses the one
+   behaviour it exists for. Five steps need ~236px back, and every value here is
+   what pays for part of it: a shorter connector floor, a heading that scales with
+   the viewport rather than sitting at Figma's 64px on every screen, and the
+   panel's padding and the rail's margin one step down the scale. On a tall display
+   the clamps land back on the design's own numbers, so this is a short-viewport
+   accommodation and not a second design.
+
+   Keyed on the fifth step existing rather than on a class or a data attribute:
+   the count is what makes the panel too tall, and `:has` can read it, so nothing
+   in PHP has to describe its own layout. The four-step rail above is untouched. */
+.ci-requirements:has(.rail__step:nth-child(5)) {
+  --rail-connector: clamp(32px, 4.4svh, 126px);
+}
+
+/* Beats the template's `py-xl` / `mt-xl` / `lg:text-3xl` utilities on specificity
+   — `:has()` takes its argument's — which is why these can stay in one place
+   instead of becoming conditional classes in the template. Unconditional, not
+   keyed on [data-pinned]: the script measures the block *unpinned* to decide
+   whether it fits, so a rule that only applied once pinned could never get it
+   there. */
+.ci-requirements:has(.rail__step:nth-child(5)) .ci-requirements__panel {
+  padding-top: var(--space-lg);
+  padding-bottom: var(--space-lg);
+}
+
+.ci-requirements:has(.rail__step:nth-child(5)) h2 {
+  font-size: clamp(40px, 5.5svh, 64px);
+}
+
+.ci-requirements:has(.rail__step:nth-child(5)) .rail {
+  margin-top: var(--space-lg);
+}
+
+/* With the connector floor this low the steps are sized by their copy rather than
+   by the rail's geometry, so the last of the 236px comes out of the copy block:
+   the gap under each step's text, and a step title that scales with the viewport
+   the way the section heading now does. Both land on Figma's 32px and 28px again
+   on a tall display. */
+.ci-requirements:has(.rail__step:nth-child(5)) .rail__body {
+  padding-bottom: var(--space-md);
+}
+
+.ci-requirements:has(.rail__step:nth-child(5)) .rail__body h3 {
+  font-size: clamp(20px, 2.8svh, 28px);
+}
+
+/* ---------------------------------------------------------------------------
+   Extra air between the sections of one page (page-accounting-bookkeeping.php).
+
+   80px from `lg` on top of the padding the sections already carry, so ~160px
+   reads between two blocks; 40px below it, where the sections are narrower and
+   the same gap eats most of a phone screen. `section + section`, so the hero
+   stays where it is against the header — a top margin there would push the
+   page's first screen down for no reason.
+
+   A class on that page's <main> rather than margins inside the template parts:
+   every ci-* part is shared with four other pages, and this is one page's
+   rhythm. Margins are also outside offsetHeight, so the pinned rail in this page
+   (ci-requirements) measures and scrubs exactly as before.
+--------------------------------------------------------------------------- */
+.sections-spaced > section + section {
+  margin-top: 40px;
+}
+
+@media (min-width: 1024px) {
+  .sections-spaced > section + section {
+    margin-top: var(--space-3xl);
+  }
 }
 
 /* ---------------------------------------------------------------------------
@@ -2048,6 +2186,91 @@ button:focus-visible {
    sets by position — see the note in ci-pricing.php about why this isn't a
    per-card field. Everything here is palette and geometry; there is no JS.
 --------------------------------------------------------------------------- */
+/* Below lg the three plans are a swipe slider, not a stack, and it bleeds out
+   through the navy panel's px-lg so the next card peeks in at the panel edge.
+   Two states share these rules:
+
+   - un-enhanced (`.ci-plans` without `.swiper`): a CSS scroll-snap rail. This is
+     what mobile gets with scripting off — swipeable, just not looping.
+   - enhanced: assets/js/ci-plans.js stamps Swiper's container/wrapper/slide
+     classes on and hands the same three cards to Swiper for loop + autoplay.
+     Swiper translates the track itself, so the scroll container and the snap
+     have to come back off — hence the :not(.swiper) gate.
+
+   Cards keep their natural heights and sit on the bottom edge, so the buttons
+   line up across slides the way the stretched columns make them line up on
+   desktop. Above lg neither state applies and the track is a plain flex row. */
+@media (max-width: 1023.98px) {
+  /* Doubled up because swiper-bundle.css centres `.swiper` with auto margins at
+     the same specificity, and it is enqueued after the theme's stylesheet. */
+  .ci-plans,
+  .ci-plans.swiper {
+    margin-inline: calc(var(--space-lg) * -1);
+  }
+
+  .ci-plans__track {
+    align-items: flex-end;
+  }
+
+  .ci-plans:not(.swiper) .ci-plans__track {
+    /* Padding less the gap is what shows of the neighbouring card. */
+    padding-inline: var(--space-xl);
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .ci-plans:not(.swiper) .ci-plans__track::-webkit-scrollbar {
+    display: none;
+  }
+
+  .ci-plans:not(.swiper) .ci-plan {
+    /* 100% is the rail's content box — already the viewport minus both peeks. */
+    flex: 0 0 100%;
+    min-width: 0;
+    scroll-snap-align: center;
+  }
+
+  /* Swiper measures slide width + spaceBetween itself and positions the track
+     from those numbers, so the CSS gap has to go or every slide lands short of
+     where Swiper thinks it is. Same for the slide's height: Swiper's own
+     `.swiper-slide { height: 100% }` would stretch all three cards to the
+     tallest, which is the desktop behaviour, not this one. */
+  .ci-plans.swiper .ci-plans__track {
+    gap: 0;
+  }
+
+  .ci-plans.swiper .ci-plan {
+    /* `.swiper-slide { display: block }` also outranks the template's `flex`
+       utility, which drops the column and leaves the "MOST POPULAR" tab as an
+       inline span against the card's left edge instead of centred over it. */
+    display: flex;
+    width: calc(100% - var(--space-xl) * 2);
+    height: auto;
+  }
+
+  /* A section that prices one package — the Corporate Tax split (Figma 108:4833)
+     — has nothing to swipe to, so it is a plain card rather than a rail: the
+     bleed and the peek exist to show the next card, and with none they just leave
+     the only card narrower than the section around it. ci-plans.js already bows
+     out below two cards, so this is only the rail's own styling. */
+  .ci-plans--single {
+    margin-inline: 0;
+  }
+
+  .ci-plans--single:not(.swiper) .ci-plans__track {
+    padding-inline: 0;
+    overflow-x: visible;
+    scroll-snap-type: none;
+  }
+
+  .ci-plans--single:not(.swiper) .ci-plan {
+    flex: 1 1 auto;
+  }
+}
+
 .ci-plan__card {
   display: flex;
   flex-direction: column;
@@ -2175,6 +2398,67 @@ button:focus-visible {
   border-color: var(--color-text-on-dark);
 }
 
+/* The same outlined button where the section is white rather than navy — the
+   Corporate Tax split layout (Figma 108:4833). White-on-white is invisible, so
+   only the palette changes. */
+.ci-plan__button--dark {
+  border-color: var(--color-border-faint);
+  color: var(--color-text-primary);
+}
+
+.ci-plan__button--dark:hover,
+.ci-plan__button--dark:focus-visible {
+  background-color: var(--color-surface-faint);
+  border-color: var(--color-border-soft);
+}
+
+/* Highlighted card in the split layout. Figma marks it with the label as a pill
+   inside the card's top corner instead of the tab the navy panel hangs above it,
+   and fills the card faint grey rather than blue — on white, the blue fill the
+   panel uses would read as a different section rather than as the same card. */
+.ci-plan[data-featured="badge"] .ci-plan__card {
+  background-color: var(--color-surface-faint);
+  border-color: var(--color-border-faint);
+}
+
+/* The split frame's card (Figma 108:4867): 32px of padding rather than 40, one
+   rule above the feature list instead of a rule between each item, and the button
+   on the card's own grey rather than under it. */
+.ci-plan[data-variant="split"] .ci-plan__card {
+  padding: var(--space-xl);
+}
+
+.ci-plan[data-variant="split"] .ci-plan__features {
+  padding-top: var(--space-xl);
+  border-top: 1px solid var(--color-border-faint);
+  gap: var(--space-lg);
+}
+
+.ci-plan[data-variant="split"] .ci-plan__features > li + li {
+  margin-top: 0;
+  padding-top: 0;
+  border-top: 0;
+}
+
+/* The rule belongs to the row above the button, not to the button itself, so it
+   spans the card's padding box and nothing about .btn-split has to be overridden. */
+.ci-plan__cta {
+  padding-top: var(--space-xl);
+  border-top: 1px solid var(--color-border-faint);
+}
+
+.ci-plan__pill {
+  align-self: flex-start;
+  padding: 8px 16px;
+  border-radius: var(--radius-pill);
+  background-color: var(--color-brand-yellow);
+  font-weight: 700;
+  font-size: 14px;
+  line-height: var(--line-height-loose);
+  color: var(--color-text-primary);
+  white-space: nowrap;
+}
+
 /* ---------------------------------------------------------------------------
    Company Incorporation Local — free-tools tabs (template-parts/ci-tools.php).
 
@@ -2182,45 +2466,119 @@ button:focus-visible {
    [hidden]; all of the open/closed appearance is here, so with the script gone
    the first panel is still styled and visible.
 --------------------------------------------------------------------------- */
+/* No gap from lg up: the tab strip sits flush on the panel, its top corners
+   rounded into it, which is what makes the active tab read as attached to the
+   thing it opens. Below lg the strip is a detached pill (the <select>), so the
+   gap comes back — see the dropdown block below. */
 .ci-tools {
   display: flex;
   flex-direction: column;
   align-items: center;
+  gap: 0;
 }
 
-/* Below lg the strip wraps: three labels this long overflow a phone, and a
-   horizontally scrolling strip hid tabs 2 and 3 off the viewport edge with no
-   affordance. Wrapped, every tab is visible; the strip keeps its tinted rounded
-   top so it still reads as sitting on the panel. */
-.ci-tools__list {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: var(--space-xs);
-  align-items: center;
-  max-width: 100%;
-  padding: var(--space-xs);
-  background-color: rgba(36, 36, 36, 0.05);
-  border-top-left-radius: var(--radius-lg);
-  border-top-right-radius: var(--radius-lg);
-}
-
-@media (min-width: 1024px) {
-  .ci-tools__list {
-    flex-wrap: nowrap;
-    gap: var(--space-md);
-    padding: 0;
-    border-top-left-radius: var(--radius-sm);
-    border-top-right-radius: var(--radius-sm);
+@media (max-width: 1023.98px) {
+  .ci-tools {
+    gap: 40px;
   }
 }
 
+/* Figma node 100:10: below lg the tab strip becomes a dropdown — a yellow pill
+   carrying the active tool's name and a caret in a bordered circle. The pill is
+   the wrapper, the <select> is a transparent layer filling it (so the whole
+   pill is the hit target), and the circle is one pseudo-element: a <select>
+   can't have children, and the platform's own arrow is what `appearance: none`
+   removes.
+   Only one of the two controls is ever displayed, and `display: none` takes the
+   other out of the accessibility tree with it, so nothing is announced twice. */
+.ci-tools__select {
+  display: none;
+}
+
+@media (max-width: 1023.98px) {
+  .ci-tools__select {
+    position: relative;
+    display: block;
+    width: 100%;
+    /* Figma's card: the 323px row plus its 16px padding either side. */
+    max-width: 355px;
+    background-color: var(--color-brand-yellow);
+    border-radius: var(--radius-sm);
+  }
+}
+
+.ci-tools__select-field {
+  appearance: none;
+  width: 100%;
+  /* The right inset clears the caret circle: 16px pill padding + 40px circle
+     + 8px of air. Vertically it is the circle's 40px plus 12px top and bottom,
+     which is where the pill's 64px height comes from. */
+  padding: 12px 64px 12px var(--space-md);
+  min-height: 64px;
+  background-color: transparent;
+  border: 0;
+  border-radius: inherit;
+  font-family: inherit;
+  font-weight: 500;
+  font-size: var(--font-size-sm);
+  line-height: var(--line-height-loose);
+  color: var(--color-text-primary);
+  cursor: pointer;
+}
+
+/* The rotation turns the shared CaretRight.svg into a caret-down, the same way
+   the header's submenu caret does. It spins the circle with it, which is free —
+   a bordered circle looks the same at any angle. */
+.ci-tools__select::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  right: var(--space-md);
+  width: 40px;
+  height: 40px;
+  border: 1px solid rgba(0, 0, 0, 0.32);
+  border-radius: var(--radius-pill);
+  background-image: url("../images/icons/caret-right.svg");
+  background-position: center;
+  background-size: 16px 16px;
+  background-repeat: no-repeat;
+  transform: translateY(-50%) rotate(90deg);
+  pointer-events: none;
+}
+
+.ci-tools__select-field:focus-visible {
+  outline: 2px solid var(--color-text-primary);
+  outline-offset: 2px;
+}
+
+/* Above lg the strip is Figma's row of tabs sitting on the panel; below lg it
+   is hidden in favour of the select above. */
+.ci-tools__list {
+  display: flex;
+  justify-content: center;
+  gap: var(--space-md);
+  align-items: center;
+  max-width: 100%;
+  background-color: rgba(36, 36, 36, 0.05);
+  border-top-left-radius: var(--radius-sm);
+  border-top-right-radius: var(--radius-sm);
+}
+
+/* After the rule above, not with the select's own block: same specificity, so
+   whichever comes last wins. */
+@media (max-width: 1023.98px) {
+  .ci-tools__list {
+    display: none;
+  }
+}
+
+/* Square-bottomed: each tab sits on the panel below it. */
 .ci-tools__tab {
   flex-shrink: 0;
-  /* Fully rounded while the strip wraps; square-bottomed once it is a row of
-     tabs sitting on the panel. */
-  padding: 10px var(--space-md);
+  padding: 12px var(--space-lg);
   border-radius: var(--radius-sm);
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
   background-color: transparent;
   font-weight: 500;
   font-size: var(--font-size-sm);
@@ -2229,14 +2587,6 @@ button:focus-visible {
   white-space: nowrap;
   cursor: pointer;
   transition: background-color 0.2s ease;
-}
-
-@media (min-width: 1024px) {
-  .ci-tools__tab {
-    padding: 12px var(--space-lg);
-    border-bottom-left-radius: 0;
-    border-bottom-right-radius: 0;
-  }
 }
 
 .ci-tools__tab[data-active="true"] {
@@ -2261,6 +2611,29 @@ button:focus-visible {
   border-radius: var(--radius-lg);
 }
 
+/* The input and its optional glyph. The wrapper is what flexes in the form row;
+   the icon is absolutely placed inside it and the input keeps room for it. */
+.ci-tools__field {
+  position: relative;
+  display: block;
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.ci-tools__field-icon {
+  position: absolute;
+  left: var(--space-lg);
+  top: 50%;
+  transform: translateY(-50%);
+  width: 24px;
+  height: 24px;
+  pointer-events: none;
+}
+
+.ci-tools__field--has-icon .ci-tools__input {
+  padding-left: calc(var(--space-lg) + 24px + var(--space-sm));
+}
+
 .ci-tools__input {
   width: 100%;
   padding: var(--space-md) var(--space-lg);
@@ -2275,6 +2648,115 @@ button:focus-visible {
 .ci-tools__input::placeholder {
   color: var(--color-text-primary);
   opacity: 0.5;
+}
+
+/* ---------------------------------------------------------------------------
+   Corporate Secretary — the "why founders choose us" carousel
+   (template-parts/ci-why-slider.php).
+
+   Figma draws five 515px cards as a row wider than the frame (102:2410), so this
+   is a slider at every width, not only on a phone — the difference from
+   .ci-plans, which is a row on desktop and a slider below lg.
+
+   Two states share these rules, the same bargain ci-plans makes:
+
+   - un-enhanced (`.ci-why-slider` without `.swiper`): a CSS scroll-snap rail,
+     which is what the section is with scripting off — swipeable, no arrows.
+   - enhanced: assets/js/ci-why-slider.js stamps Swiper's container/wrapper/slide
+     classes on and hands it the same cards. Swiper translates the track itself,
+     so the scroll container, the snap and the CSS gap all have to come back off.
+
+   The rail is padded rather than the section, so the first card lines up with the
+   page's copy while the row runs off the right edge.
+--------------------------------------------------------------------------- */
+.ci-why-slider__track {
+  gap: var(--space-md);
+}
+
+.ci-why-slider:not(.swiper) .ci-why-slider__track {
+  padding-inline: var(--space-lg);
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+}
+
+.ci-why-slider:not(.swiper) .ci-why-slider__track::-webkit-scrollbar {
+  display: none;
+}
+
+.ci-why-slide {
+  flex: 0 0 auto;
+  width: min(86vw, 515px);
+  scroll-snap-align: start;
+}
+
+/* Swiper measures slide width + spaceBetween itself and positions the track from
+   those numbers, so the CSS gap has to go or every slide lands short of where
+   Swiper thinks it is. `.swiper` is padded in place of the track it no longer
+   scrolls, and the slide's `display: block` has to be undone — the card is a
+   column whose copy block grows to the tallest slide. */
+.ci-why-slider.swiper {
+  padding-inline: var(--space-lg);
+}
+
+.ci-why-slider.swiper .ci-why-slider__track {
+  gap: 0;
+}
+
+/* The width is repeated here, not inherited from `.ci-why-slide`: swiper's own
+   `.swiper-slide { width: 100% }` is a single class too and its stylesheet is
+   enqueued after the theme's, so the plain rule loses and every slide fills the
+   viewport. `display` is repeated for the same reason — `.swiper-slide` sets
+   `block`, which drops the card's column. */
+.ci-why-slider.swiper .ci-why-slide {
+  display: flex;
+  width: min(86vw, 515px);
+  height: auto;
+}
+
+@media (min-width: 1024px) {
+  .ci-why-slider:not(.swiper) .ci-why-slider__track {
+    padding-inline: var(--space-3xl);
+    gap: var(--space-xl);
+  }
+
+  .ci-why-slider.swiper {
+    padding-inline: var(--space-3xl);
+  }
+}
+
+.ci-why-slide__photo {
+  position: relative;
+  aspect-ratio: 515 / 412;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+
+/* Figma's navy gradient over the photo's lower edge, drawn at 80% opacity in a
+   box taller than the photo — the percentages here are its stops remapped onto
+   the part that is actually visible, and the alpha is 0.6 x 0.8. It is
+   decoration, so it is a pseudo-element rather than a second image. */
+.ci-why-slide__photo::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: linear-gradient(184deg, rgba(11, 37, 88, 0) 54%, rgba(11, 37, 88, 0.48) 95%);
+  pointer-events: none;
+}
+
+.ci-why-slide__body {
+  background-color: var(--color-surface-faint);
+  border: 1px solid var(--color-border-faint);
+  border-radius: var(--radius-lg);
+  padding: var(--space-lg);
+}
+
+@media (min-width: 1024px) {
+  .ci-why-slide__body {
+    padding: var(--space-xl);
+  }
 }
 
 /* ---------------------------------------------------------------------------
@@ -2326,6 +2808,226 @@ button:focus-visible {
   }
 }
 
+/* ---------------------------------------------------------------------------
+   Corporate Tax — late-filing comparison (template-parts/ci-penalties.php).
+   Figma: node 108:4630.
+
+   The tone is the design's, set per side in inc/ci-content.php: the penalty reads
+   red on faint grey, the fee green on green. Only these two exist — a third value
+   would fall back to the grey panel rather than an unstyled one.
+--------------------------------------------------------------------------- */
+.ci-penalties__panel[data-tone="danger"] {
+  background-color: var(--color-surface-faint);
+  border: 1px solid var(--color-border-faint);
+}
+
+.ci-penalties__panel[data-tone="danger"] .ci-penalties__value {
+  font-weight: 500;
+  color: var(--color-danger);
+}
+
+.ci-penalties__panel[data-tone="success"] {
+  background-color: var(--color-surface-success-soft);
+  border: 1px solid var(--color-border-success);
+}
+
+.ci-penalties__panel[data-tone="success"] .ci-penalties__value {
+  font-weight: 700;
+  color: var(--color-text-success);
+}
+
+/* In the flow between the two panels while they are stacked — there is no gap to
+   centre it in, and an absolute badge over a stack lands on the panel above it.
+   Negative margins on the stacked reading so it still straddles the seam. */
+.ci-penalties__badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  align-self: center;
+  width: 97px;
+  height: 97px;
+  margin: -40px 0;
+  border-radius: var(--radius-pill);
+  background-color: var(--color-surface-navy-deep);
+  font-weight: 500;
+  font-size: var(--font-size-xl);
+  letter-spacing: var(--tracking-tight);
+  color: var(--color-brand-yellow);
+  /* Above both panels either way: they carry their own background. */
+  position: relative;
+  z-index: 1;
+}
+
+@media (min-width: 1024px) {
+  .ci-penalties__badge {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    margin: 0;
+    transform: translate(-50%, -50%);
+    font-size: 32px;
+  }
+}
+
+/* ---------------------------------------------------------------------------
+   Corporate Tax — the tax estimate panel (template-parts/ci-calculator.php).
+   Figma: node 108:4603.
+
+   Same navy panel as the free-tools one (.ci-tools__panel), with two differences
+   the design draws: the exemption schemes are cards inside the panel rather than
+   tabs above it, and the panel has a result to show. The scheme cards are labels
+   around native radios, so `:has` is what styles the selected one — there is no
+   class for the script to move, and the selection survives with no script at all.
+--------------------------------------------------------------------------- */
+.ci-calc {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-xl);
+  position: relative;
+  width: 100%;
+  max-width: 765px;
+  padding: var(--space-xl);
+  padding-top: 48px;
+  background-color: var(--color-surface-dark);
+  border: 1px solid var(--color-border-faint);
+  border-radius: var(--radius-xl);
+}
+
+/* Figma 108:4627: the stub of the tab strip the tools panel has on the other
+   pages, left peeking over this panel's top edge. Decoration only. */
+.ci-calc__tab {
+  position: absolute;
+  top: -1px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(397px, 60%);
+  height: 19px;
+  background-color: var(--color-brand-yellow);
+  border-bottom-left-radius: var(--radius-md);
+  border-bottom-right-radius: var(--radius-md);
+}
+
+.ci-calc__modes {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-md);
+  width: 100%;
+  border: 0;
+  padding: 0;
+  margin: 0;
+}
+
+@media (min-width: 640px) {
+  .ci-calc__modes {
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-xl);
+  }
+}
+
+.ci-calc__mode {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  min-height: 100px;
+  padding: var(--space-md) var(--space-lg);
+  background-color: var(--color-surface-faint);
+  border: 1px solid var(--color-border-faint);
+  border-radius: var(--radius-sm);
+  text-align: center;
+  cursor: pointer;
+  transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.ci-calc__mode:has(:checked) {
+  background-color: var(--color-brand-yellow-tint);
+  border-color: var(--color-brand-yellow-strong);
+}
+
+/* The radio itself is off-screen, so the ring has to be drawn on the label or
+   keyboard users can't see where they are. */
+.ci-calc__mode:has(:focus-visible) {
+  outline: 2px solid var(--color-brand-yellow-strong);
+  outline-offset: 2px;
+}
+
+.ci-calc__mode-label {
+  font-weight: 500;
+  font-size: var(--font-size-sm);
+  line-height: var(--line-height-loose);
+  color: var(--color-surface-navy-deep);
+}
+
+.ci-calc__mode-text {
+  font-size: var(--font-size-xs);
+  line-height: var(--line-height-loose);
+  color: var(--color-text-primary);
+  opacity: 0.5;
+}
+
+.ci-calc__input {
+  width: 100%;
+  height: 58px;
+  padding: var(--space-md) var(--space-lg);
+  background-color: var(--color-surface-faint);
+  border: 1px solid var(--color-border-faint);
+  border-radius: var(--radius-sm);
+  font-size: var(--font-size-sm);
+  line-height: var(--line-height-loose);
+  color: var(--color-text-primary);
+}
+
+.ci-calc__input::placeholder {
+  color: var(--color-text-primary);
+  opacity: 1;
+}
+
+/* The result is the one thing on this panel Figma doesn't draw — it stops at the
+   Calculate button. Built out of the panel's own vocabulary rather than invented:
+   the figure takes the pricing card's price size, on the translucent white the
+   navy sections already use for a raised block. */
+.ci-calc__result {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-xs);
+  width: 100%;
+  padding: var(--space-lg);
+  background-color: var(--color-surface-dark-glass);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: var(--radius-md);
+  text-align: center;
+}
+
+.ci-calc__result-label {
+  font-size: var(--font-size-xs);
+  line-height: var(--line-height-loose);
+  color: var(--color-text-on-dark);
+  opacity: 0.7;
+}
+
+.ci-calc__amount {
+  font-weight: 500;
+  font-size: 40px;
+  line-height: 1.2;
+  color: var(--color-text-on-dark);
+}
+
+.ci-calc__saved {
+  font-size: var(--font-size-xs);
+  line-height: var(--line-height-loose);
+  color: var(--color-brand-yellow);
+}
+
+.ci-calc__error {
+  font-size: var(--font-size-xs);
+  line-height: var(--line-height-loose);
+  text-align: center;
+  color: var(--color-brand-yellow);
+}
+
 @media (prefers-reduced-motion: reduce) {
   a,
   button,
@@ -2337,7 +3039,8 @@ button:focus-visible {
   .site-header__menu > li > a::before,
   .roa-card,
   .roa-card__icon,
-  .roa-card__title {
+  .roa-card__title,
+  .ci-calc__mode {
     transition: none;
   }
 

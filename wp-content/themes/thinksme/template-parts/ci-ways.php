@@ -1,10 +1,16 @@
 <?php
 /**
- * Company Incorporation Local — two ways to get started: section copy and two
+ * Company Incorporation, Local and Foreign — two ways to get started: section copy and two
  * route cards on the left, a package summary card on the right.
  * Figma: node 85:1757, file "Untitled" (vzdpOnH1U36oXcFcugiyE5).
  *
- * ACF (Company Incorporation Local page): ci_ways_hat_text, ci_ways_heading,
+ * Shared verbatim by page-company-incorporation-local.php and
+ * page-company-incorporation-foreign.php: same markup, same ACF field names,
+ * different words and photographs. Every default below comes from
+ * thinksme_ci_defaults() in inc/ci-content.php, which is the one place the two
+ * pages differ — change the design's copy there, not here.
+ *
+ * ACF (both Company Incorporation pages): ci_ways_hat_text, ci_ways_heading,
  * ci_ways_text; per route card (1..2) ci_ways_card_N_icon (select, fed at
  * runtime from thinksme_ci_icons()), _title, _text, _link; and for the package
  * card ci_ways_plan_badge, _title, _text, _price, _badge_1, _badge_2,
@@ -29,18 +35,8 @@
 
 $icons_uri = get_template_directory_uri() . '/assets/images/icons';
 
-$card_defaults = array(
-	1 => array(
-		'icon'  => 'envelope-simple',
-		'title' => 'Start DIY Online',
-		'text'  => 'Complete it yourself in our digital portal',
-	),
-	2 => array(
-		'icon'  => 'phone',
-		'title' => 'Talk to a Specialist',
-		'text'  => 'Free 30-minute consultation, no obligation',
-	),
-);
+$d             = thinksme_ci_defaults( 'ways' );
+$card_defaults = $d['cards'];
 
 $cards = array();
 
@@ -59,11 +55,7 @@ foreach ( $card_defaults as $n => $default ) {
 	);
 }
 
-$feature_defaults = array(
-	1 => 'ACRA name reservation & registration',
-	2 => 'Corporate secretary & registered address — 12 months',
-	3 => 'Annual return filing (Year 1) + priority support',
-);
+$feature_defaults = $d['plan']['features'];
 
 $features = array();
 
@@ -75,20 +67,20 @@ foreach ( $feature_defaults as $n => $default ) {
 	}
 }
 
-$plan_title       = thinksme_field( 'ci_ways_plan_title', false, 'Standard Package' );
-$plan_badge       = thinksme_field( 'ci_ways_plan_badge', false, 'MOST POPULAR' );
-$plan_text        = thinksme_field( 'ci_ways_plan_text', false, 'Full first-year coverage. The most common choice for new SME owners.' );
-$plan_price       = thinksme_field( 'ci_ways_plan_price', false, 'S$888' );
-$plan_badge_1     = thinksme_field( 'ci_ways_plan_badge_1', false, 'First year · all-in' );
-$plan_badge_2     = thinksme_field( 'ci_ways_plan_badge_2', false, 'S$315 ACRA fee included' );
-$plan_button_text = thinksme_field( 'ci_ways_plan_button_text', false, 'Get Started' );
-$plan_button_link = thinksme_field( 'ci_ways_plan_button_link', false, '/contact-us' );
+$plan_title       = thinksme_field( 'ci_ways_plan_title', false, $d['plan']['title'] );
+$plan_badge       = thinksme_field( 'ci_ways_plan_badge', false, $d['plan']['badge'] );
+$plan_text        = thinksme_field( 'ci_ways_plan_text', false, $d['plan']['text'] );
+$plan_price       = thinksme_field( 'ci_ways_plan_price', false, $d['plan']['price'] );
+$plan_badge_1     = thinksme_field( 'ci_ways_plan_badge_1', false, $d['plan']['badge_1'] );
+$plan_badge_2     = thinksme_field( 'ci_ways_plan_badge_2', false, $d['plan']['badge_2'] );
+$plan_button_text = thinksme_field( 'ci_ways_plan_button_text', false, $d['plan']['button_text'] );
+$plan_button_link = thinksme_field( 'ci_ways_plan_button_link', false, $d['plan']['button_link'] );
 ?>
 <section id="ci-ways" class="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-xl lg:gap-3xl w-full px-lg lg:px-3xl py-xl lg:py-[40px]">
 	<div class="flex flex-col gap-xl lg:gap-3xl w-full lg:basis-[602px] lg:min-w-0">
 		<div class="flex flex-col gap-xl">
 			<div class="flex flex-col items-start gap-md">
-				<?php $hat = thinksme_field( 'ci_ways_hat_text', false, 'Quick Registration | Transparent Pricing | Reliable support' ); ?>
+				<?php $hat = thinksme_field( 'ci_ways_hat_text', false, $d['hat'] ); ?>
 				<?php if ( $hat ) : ?>
 					<span class="bg-brand-yellow-soft/35 border border-brand-yellow-border rounded-pill min-h-[32px] px-md py-[6px] inline-flex items-center justify-center text-xs font-medium text-text-primary">
 						<?php echo esc_html( $hat ); ?>
@@ -96,11 +88,11 @@ $plan_button_link = thinksme_field( 'ci_ways_plan_button_link', false, '/contact
 				<?php endif; ?>
 
 				<h2 class="font-medium text-2xl lg:text-3xl leading-tight tracking-hero text-text-primary max-w-[512px]">
-					<?php echo esc_html( thinksme_field( 'ci_ways_heading', false, 'Two Ways to Get Started' ) ); ?>
+					<?php echo esc_html( thinksme_field( 'ci_ways_heading', false, $d['heading'] ) ); ?>
 				</h2>
 			</div>
 
-			<?php $intro = thinksme_field( 'ci_ways_text', false, 'Move fast on your own, or have a specialist walk you through it — either way, the same ACRA-registered filing and 12-month bundle applies.' ); ?>
+			<?php $intro = thinksme_field( 'ci_ways_text', false, $d['text'] ); ?>
 			<?php if ( $intro ) : ?>
 				<p class="font-normal text-sm leading-loose text-text-heading-dark">
 					<?php echo esc_html( $intro ); ?>

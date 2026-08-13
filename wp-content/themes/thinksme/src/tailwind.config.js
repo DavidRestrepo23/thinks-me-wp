@@ -12,6 +12,8 @@ module.exports = {
           "yellow-soft": "#fefbf0",
           "yellow-border": "#ffdd55",
           "yellow-dark": "#dcb200",
+          "yellow-tint": "#fef8e1",
+          "yellow-strong": "#deb407",
         },
         card: {
           start: "#ffe064",
@@ -29,6 +31,8 @@ module.exports = {
           muted: "#f6f7f9",
           faint: "#f8f8f8",
           panel: "#fbfbfb",
+          "navy-deep": "#10243c",
+          "success-soft": "#e8f8ee",
         },
         text: {
           primary: "#242424",
@@ -36,6 +40,9 @@ module.exports = {
           "on-dark": "#ffffff",
           "heading-dark": "#000000",
           strong: "#2a2f37",
+          success: "#37ae63",
+          navy: "#10243c",
+          faint: "#aeb6c2",
         },
         border: {
           soft: "#d0d5dc",
@@ -45,6 +52,7 @@ module.exports = {
           hairline: "#f5f5f5",
           focus: "#316bb4",
           "brand-dark": "#204574",
+          success: "#2d8f51",
         },
         accent: {
           green: "#4dc779",

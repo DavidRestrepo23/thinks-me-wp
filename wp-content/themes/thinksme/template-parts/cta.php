@@ -16,7 +16,10 @@
 
 $icons_uri = get_template_directory_uri() . '/assets/images/icons';
 $image     = thinksme_field( 'cta_image' );
-$image_url = ! empty( $image['url'] ) ? $image['url'] : get_template_directory_uri() . '/assets/images/cta/cta-photo.jpg';
+// The fallback is a filter so a page can supply its own photo without this part
+// learning which page it is on — see thinksme_ci_cta_photo() in inc/ci-content.php.
+$default_url = apply_filters( 'thinksme_cta_photo', get_template_directory_uri() . '/assets/images/cta/cta-photo.jpg' );
+$image_url   = ! empty( $image['url'] ) ? $image['url'] : $default_url;
 $image_alt = ! empty( $image['alt'] ) ? $image['alt'] : '';
 $rating    = thinksme_field( 'cta_google_rating', false, '4.9' );
 ?>
