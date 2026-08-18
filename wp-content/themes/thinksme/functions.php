@@ -153,6 +153,7 @@ function thinksme_enqueue_assets() {
 			'page-registered-office-address.php',
 			'page-accounting-bookkeeping.php',
 			'page-corporate-tax.php',
+			'page-property-cashout.php',
 		),
 		true
 	) ) {
@@ -165,19 +166,31 @@ function thinksme_enqueue_assets() {
 		);
 	}
 
-	// Registered Office Address page only: the expanding service cards
-	// (template-parts/roa-block.php) and the two carousels this page reuses from
-	// the homepage — the certifications logo marquee and the Google Reviews
-	// slider, both of which need Swiper, hence the vendor pair.
-	if ( 'page-registered-office-address.php' === thinksme_current_template() ) {
+	// The expanding card row, shared by template-parts/roa-block.php and
+	// template-parts/ci-steps.php. This was roa-block.js and is now attribute-driven
+	// (data-expand-cards), so it no-ops on a page without a row — but there is no
+	// reason to ship it to templates that never draw one.
+	if ( in_array(
+		thinksme_current_template(),
+		array(
+			'page-registered-office-address.php',
+			'page-business-loan.php',
+		),
+		true
+	) ) {
 		wp_enqueue_script(
-			'thinksme-roa-block',
-			get_template_directory_uri() . '/assets/js/roa-block.js',
+			'thinksme-expand-cards',
+			get_template_directory_uri() . '/assets/js/expand-cards.js',
 			array(),
 			THINKSME_VERSION,
 			true
 		);
+	}
 
+	// Registered Office Address page only: the two carousels this page reuses from
+	// the homepage — the certifications logo marquee and the Google Reviews
+	// slider, both of which need Swiper, hence the vendor pair.
+	if ( 'page-registered-office-address.php' === thinksme_current_template() ) {
 		wp_enqueue_style(
 			'swiper',
 			get_template_directory_uri() . '/assets/css/vendor/swiper/swiper-bundle.min.css',
@@ -207,10 +220,12 @@ function thinksme_enqueue_assets() {
 		);
 	}
 
-	// The six pages built out of the ci-* template parts: the pricing cards'
+	// The seven pages built out of the ci-* template parts: the pricing cards'
 	// mobile slider, plus the same two carousels ROA reuses from the homepage —
 	// the certifications logo marquee and the Google Reviews slider, both of
-	// which need Swiper, hence the vendor pair.
+	// which need Swiper, hence the vendor pair. Every script in here is
+	// markup-driven and no-ops on a page whose design omits its section, which is
+	// why Property Cashout (no pricing, no reviews) can share the block.
 	if ( in_array(
 		thinksme_current_template(),
 		array(
@@ -220,25 +235,31 @@ function thinksme_enqueue_assets() {
 			'page-accounting-bookkeeping.php',
 			'page-corporate-tax.php',
 			'page-gst-registration.php',
+			'page-property-cashout.php',
+			'page-business-loan.php',
+			'page-mortgage-loans.php',
 		),
 		true
 	) ) {
-		// The free-tools tabs (template-parts/ci-tools.php). Accounting &
-		// Bookkeeping, Corporate Tax and GST Registration are the pages in this
-		// group whose design has no tools section, so they are the ones that don't
-		// need them — Corporate Tax has the calculator instead, enqueued below.
-		if ( ! in_array(
+		// Tab strips (assets/js/tabs.js). The free-tools panel
+		// (template-parts/ci-tools.php) on the incorporation pages, and the
+		// eligibility checklist (template-parts/ci-eligibility.php) on Property
+		// Cashout. Accounting & Bookkeeping, Corporate Tax, GST Registration and
+		// Business Loan draw neither, so they are the pages that don't need it —
+		// Corporate Tax and Business Loan have the calculator instead, enqueued below.
+		if ( in_array(
 			thinksme_current_template(),
 			array(
-				'page-accounting-bookkeeping.php',
-				'page-corporate-tax.php',
-				'page-gst-registration.php',
+				'page-company-incorporation-local.php',
+				'page-company-incorporation-foreign.php',
+				'page-corporate-secretary.php',
+				'page-property-cashout.php',
 			),
 			true
 		) ) {
 			wp_enqueue_script(
-				'thinksme-ci-tools',
-				get_template_directory_uri() . '/assets/js/ci-tools.js',
+				'thinksme-tabs',
+				get_template_directory_uri() . '/assets/js/tabs.js',
 				array(),
 				THINKSME_VERSION,
 				true
@@ -305,9 +326,18 @@ function thinksme_enqueue_assets() {
 			);
 		}
 
-		// The tax estimate (template-parts/ci-calculator.php) — Corporate Tax only,
-		// and the one tool in the theme that computes rather than switching tabs.
-		if ( 'page-corporate-tax.php' === thinksme_current_template() ) {
+		// The calculator (template-parts/ci-calculator.php) — the tax estimate on
+		// Corporate Tax and the flat-rate loan instalment on Business Loan, the one
+		// tool in the theme that computes rather than switching tabs. Which sum it
+		// does is data-mode on the form; the script reads it.
+		if ( in_array(
+			thinksme_current_template(),
+			array(
+				'page-corporate-tax.php',
+				'page-business-loan.php',
+			),
+			true
+		) ) {
 			wp_enqueue_script(
 				'thinksme-ci-calculator',
 				get_template_directory_uri() . '/assets/js/ci-calculator.js',
@@ -855,6 +885,26 @@ function thinksme_ci_icons() {
 		'hand-heart'      => __( 'Hand holding a heart', 'thinksme' ),
 		'gauge'           => __( 'Gauge', 'thinksme' ),
 		'file-arrow-up'   => __( 'Document being uploaded', 'thinksme' ),
+		'house'           => __( 'House', 'thinksme' ),
+		'magnifying-glass' => __( 'Magnifying glass', 'thinksme' ),
+		'trend-down'      => __( 'Falling arrow', 'thinksme' ),
+		'stack'           => __( 'Stacked layers', 'thinksme' ),
+		'lock-key-open'   => __( 'Open padlock', 'thinksme' ),
+		'user-focus'      => __( 'Person in a frame', 'thinksme' ),
+		'briefcase'       => __( 'Briefcase', 'thinksme' ),
+		'chart-bar'       => __( 'Bar chart', 'thinksme' ),
+		'question'        => __( 'Question mark', 'thinksme' ),
+		'seal-warning'    => __( 'Seal with an exclamation mark', 'thinksme' ),
+		'arrows-split'    => __( 'Splitting arrows', 'thinksme' ),
+		'binoculars'      => __( 'Binoculars', 'thinksme' ),
+		'scales'          => __( 'Scales', 'thinksme' ),
+		'house-line'      => __( 'House outline', 'thinksme' ),
+		'arrows-clockwise' => __( 'Circling arrows', 'thinksme' ),
+		'chart-line'      => __( 'Line chart', 'thinksme' ),
+		'lock-key'        => __( 'Locked padlock', 'thinksme' ),
+		'trend-up'        => __( 'Rising arrow', 'thinksme' ),
+		'user-circle'     => __( 'Person in a circle', 'thinksme' ),
+		'bell-ringing'    => __( 'Ringing bell', 'thinksme' ),
 	);
 }
 
@@ -914,6 +964,14 @@ foreach ( array( 1, 2, 3, 4, 5, 6 ) as $thinksme_ci_n ) {
 	add_filter( "acf/load_field/name=ci_grid_same_firm_card_{$thinksme_ci_n}_icon", 'thinksme_ci_icon_choices' );
 	// The Corporate Tax page's own grid instance (template-parts/ci-grid.php).
 	add_filter( "acf/load_field/name=ci_grid_needs_card_{$thinksme_ci_n}_icon", 'thinksme_ci_icon_choices' );
+	// The Business Loan page's own (template-parts/ci-grid.php).
+	add_filter( "acf/load_field/name=ci_grid_approval_card_{$thinksme_ci_n}_icon", 'thinksme_ci_icon_choices' );
+	// The Remittance page's own (template-parts/ci-grid.php).
+	add_filter( "acf/load_field/name=ci_grid_why_ofx_card_{$thinksme_ci_n}_icon", 'thinksme_ci_icon_choices' );
+	// The Mortgage Loans page's three (template-parts/ci-grid.php).
+	add_filter( "acf/load_field/name=ci_grid_types_card_{$thinksme_ci_n}_icon", 'thinksme_ci_icon_choices' );
+	add_filter( "acf/load_field/name=ci_grid_why_card_{$thinksme_ci_n}_icon", 'thinksme_ci_icon_choices' );
+	add_filter( "acf/load_field/name=ci_grid_decision_card_{$thinksme_ci_n}_icon", 'thinksme_ci_icon_choices' );
 }
 // Five steps rather than four: the Corporate Tax frame's rail has one more than
 // the Accounting one's, and the field only exists on the page that draws it.
@@ -924,7 +982,56 @@ foreach ( array( 1, 2, 3, 4, 5 ) as $thinksme_ci_n ) {
 foreach ( array( 1, 2, 3, 4 ) as $thinksme_ci_n ) {
 	add_filter( "acf/load_field/name=ci_stats_card_{$thinksme_ci_n}_icon", 'thinksme_ci_icon_choices' );
 }
+// The Property Cashout page's two overlapping-card frames
+// (template-parts/ci-stack.php). One instance per Figma frame, so the field names
+// carry the instance the way ci-grid.php's do.
+foreach ( array( 1, 2, 3, 4, 5 ) as $thinksme_ci_n ) {
+	add_filter( "acf/load_field/name=ci_stack_benefits_card_{$thinksme_ci_n}_icon", 'thinksme_ci_icon_choices' );
+	add_filter( "acf/load_field/name=ci_stack_why_card_{$thinksme_ci_n}_icon", 'thinksme_ci_icon_choices' );
+	// The Business Loan page's own instance of that section, plus its three-step row
+	// (template-parts/ci-steps.php) — three cards, so that loop is its own below.
+	add_filter( "acf/load_field/name=ci_stack_bankers_card_{$thinksme_ci_n}_icon", 'thinksme_ci_icon_choices' );
+}
+foreach ( array( 1, 2, 3 ) as $thinksme_ci_n ) {
+	add_filter( "acf/load_field/name=ci_steps_card_{$thinksme_ci_n}_icon", 'thinksme_ci_icon_choices' );
+}
 unset( $thinksme_ci_n );
+
+/**
+ * A body class naming the template WordPress actually resolved, e.g.
+ * `tpl-remittance` for page-remittance.php.
+ *
+ * WordPress already adds `page-template-page-remittance-php`, but only when the
+ * template was picked in Page Attributes — the theme's page templates are also
+ * named for their page slug, so WP serves them to pages that never had that
+ * attribute set and the class is silently missing there. Same trap
+ * thinksme_current_template() documents for the per-page script enqueues, and the
+ * same fix: read what the template_include filter recorded.
+ *
+ * Used for the handful of spacing rules that belong to one page but live in a part
+ * every page shares — see `.tpl-remittance #main-content > section#faq` in
+ * src/base.css. Not a licence to style pages from CSS generally: a difference that
+ * belongs to a section still belongs in inc/ci-content.php as a value.
+ *
+ * @param array $classes Body classes.
+ * @return array
+ */
+function thinksme_template_body_class( $classes ) {
+	$template = thinksme_current_template();
+
+	if ( ! $template ) {
+		return $classes;
+	}
+
+	$slug = preg_replace( '/^page-|\.php$/', '', $template );
+
+	if ( $slug ) {
+		$classes[] = 'tpl-' . sanitize_html_class( $slug );
+	}
+
+	return $classes;
+}
+add_filter( 'body_class', 'thinksme_template_body_class' );
 
 /**
  * Contact form — validation and delivery for template-parts/contact-form.php.

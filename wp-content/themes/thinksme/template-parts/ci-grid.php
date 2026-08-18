@@ -1,13 +1,13 @@
 <?php
 /**
- * Accounting & Bookkeeping and Corporate Tax — a grid of icon cards under a
- * heading.
+ * Accounting & Bookkeeping, Corporate Tax and Business Loan — a grid of icon
+ * cards under a heading.
  * Figma: "Switching to Think SME, Without the Hassle" (102:3146), "The Same
- * Firm for Compliance, Digital, and Financing" (102:3726) and "What Every
- * Corporate Tax Filing Needs" (108:4558), file "Untitled"
- * (vzdpOnH1U36oXcFcugiyE5).
+ * Firm for Compliance, Digital, and Financing" (102:3726), "What Every
+ * Corporate Tax Filing Needs" (108:4558) and "What Actually Determines Loan
+ * Approval" (119:1871), file "Untitled" (vzdpOnH1U36oXcFcugiyE5).
  *
- * Those frames are the same component drawn three times: a yellow icon disc, a
+ * Those frames are the same component drawn four times: a yellow icon disc, a
  * title and a paragraph on a #f8f8f8 card, laid out in a grid. They differ in
  * alignment (centred vs left), disc size, how many cards there are and how many
  * columns they sit in, and whether one of the cells is a photograph instead of a
@@ -23,8 +23,9 @@
  * a page whose set has no such instance renders nothing, so the part is inert on
  * the three Company Incorporation pages exactly as ci-why-slider.php is.
  *
- * ACF (Accounting & Bookkeeping page): per instance ci_grid_{instance}_hat_text,
- * _heading, and per card (1..6) ci_grid_{instance}_card_N_icon (select, fed at
+ * ACF (Accounting & Bookkeeping, Corporate Tax and Business Loan pages): per
+ * instance ci_grid_{instance}_hat_text, _heading, _text (the Business Loan
+ * frame's intro line), and per card (1..6) ci_grid_{instance}_card_N_icon (select, fed at
  * runtime from thinksme_ci_icons()), _title, _text. A card whose title is empty
  * is skipped, the same rule every other ci-* section uses — except the photo
  * cell, which has no title by definition and is keyed off the defaults instead.
@@ -42,6 +43,16 @@
  * literal class names: a class assembled at runtime is never generated. The
  * defaults file is scanned like every other PHP file, so the literals there are
  * what make the utilities exist.
+ *
+ * A card can also carry a figure between its title and its copy (`value`, the
+ * Mortgage frame's rates), and an instance on a navy panel names its own
+ * `heading_class` / `hat_class` — a colour inherited from a wrapper loses to the
+ * hard `color` base.css sets on h1..h6, so the heading has to carry it itself.
+ *
+ * An instance can sit inside a panel rather than on the page: `panel_class` wraps
+ * the whole thing (the Remittance frame's pale rounded block, 123:2715) and
+ * `card_class` is what its cards are filled with, white there against #f8f8f8
+ * everywhere else. Both are values, so the panel is not a second layout.
  *
  * The photo cell is Figma's two-layer arrangement again — a photograph cropped
  * into the cell plus a cut-out of it that breaks 22px above the cell's top edge.
@@ -89,6 +100,10 @@ foreach ( $d['cards'] as $n => $default ) {
 	$cards[] = array(
 		'icon'  => thinksme_ci_icon_url( thinksme_field( "{$prefix}_card_{$n}_icon", false, $default['icon'] ) ),
 		'title' => $title,
+		// The Mortgage frame's fixed-or-floating pair puts a rate between the card's
+		// title and its copy (124:3388, 124:3397). Absent from every other instance, so
+		// an empty value renders nothing.
+		'value' => thinksme_field( "{$prefix}_card_{$n}_value", false, isset( $default['value'] ) ? $default['value'] : '' ),
 		'text'  => thinksme_field( "{$prefix}_card_{$n}_text", false, $default['text'] ),
 		'class' => $default['class'],
 	);
@@ -99,20 +114,46 @@ if ( ! $cards ) {
 }
 
 $centred = 'center' === $d['align'];
+
+// The Remittance frame draws this grid inside a pale panel with white cards
+// (123:2715), where every other instance sits on white with #f8f8f8 cards. Both
+// are one class string per instance, for the Tailwind reason the cards' spans are:
+// a class assembled at runtime is never generated.
+$panel_class = isset( $d['panel_class'] ) ? $d['panel_class'] : '';
+$card_class  = isset( $d['card_class'] ) ? $d['card_class'] : 'bg-surface-faint';
+
+// On a navy panel the header block has to invert. base.css sets a hard colour on
+// h1..h6, so the heading needs the class on the element itself — the note in
+// template-parts/ci-tools.php's history. The hat's own fill changes too: the pale
+// yellow pill disappears against navy, where Figma draws a white one.
+$heading_class = isset( $d['heading_class'] ) ? $d['heading_class'] : 'text-text-primary';
+$hat_class     = isset( $d['hat_class'] ) ? $d['hat_class'] : 'bg-brand-yellow-soft/35 border-brand-yellow-border text-text-primary';
 ?>
 <?php // The section's own padding is a per-instance default: the two frames sit at different distances from what precedes them, and "The Same Firm" follows the requirements panel with 160px of air in Figma rather than the 80px two adjacent sections give each other. ?>
 <section id="ci-grid-<?php echo esc_attr( $instance ); ?>" class="w-full px-lg lg:px-3xl <?php echo esc_attr( $d['section_class'] ); ?>">
+	<?php if ( $panel_class ) : ?>
+	<div class="<?php echo esc_attr( $panel_class ); ?>">
+	<?php endif; ?>
+
 	<div class="flex flex-col items-center gap-md text-center max-w-[1022px] mx-auto">
 		<?php $hat = thinksme_field( "{$prefix}_hat_text", false, $d['hat'] ); ?>
 		<?php if ( $hat ) : ?>
-			<span class="bg-brand-yellow-soft/35 border border-brand-yellow-border rounded-pill h-[32px] px-md inline-flex items-center justify-center text-xs font-medium text-text-primary">
+			<span class="<?php echo esc_attr( $hat_class ); ?> border rounded-pill h-[32px] px-md inline-flex items-center justify-center text-xs font-medium">
 				<?php echo esc_html( $hat ); ?>
 			</span>
 		<?php endif; ?>
 
-		<h2 class="font-medium text-2xl lg:text-3xl leading-tight tracking-hero text-text-primary">
+		<h2 class="font-medium text-2xl lg:text-3xl leading-tight tracking-hero <?php echo esc_attr( $heading_class ); ?>">
 			<?php echo esc_html( thinksme_field( "{$prefix}_heading", false, $d['heading'] ) ); ?>
 		</h2>
+
+		<?php // The Business Loan frame writes a line under the heading (119:1876); the three Accounting and Corporate Tax instances write none, so an instance without one renders nothing rather than holding a gap open. ?>
+		<?php $intro = thinksme_field( "{$prefix}_text", false, isset( $d['text'] ) ? $d['text'] : '' ); ?>
+		<?php if ( $intro ) : ?>
+			<p class="font-normal text-sm leading-loose <?php echo 'text-text-primary' === $heading_class ? 'text-text-secondary' : 'text-text-on-dark'; ?> max-w-[931px]">
+				<?php echo esc_html( $intro ); ?>
+			</p>
+		<?php endif; ?>
 	</div>
 
 	<div class="grid grid-cols-1 md:grid-cols-2 <?php echo esc_attr( $grid_class ); ?> gap-md lg:gap-[15px] mt-xl lg:mt-3xl">
@@ -127,7 +168,7 @@ $centred = 'center' === $d['align'];
 					>
 				</div>
 			<?php else : ?>
-				<article class="bg-surface-faint rounded-lg p-lg lg:p-[32px] flex flex-col gap-md <?php echo $centred ? 'items-center text-center justify-center' : 'justify-between'; ?> <?php echo esc_attr( $card['class'] ); ?>">
+				<article class="<?php echo esc_attr( $card_class ); ?> rounded-lg p-lg lg:p-[32px] flex flex-col gap-md <?php echo $centred ? 'items-center text-center justify-center' : 'justify-between'; ?> <?php echo esc_attr( $card['class'] ); ?>">
 					<span class="bg-brand-yellow rounded-pill inline-flex items-center justify-center shrink-0 <?php echo $centred ? 'size-[112px]' : 'size-[80px]'; ?>">
 						<img src="<?php echo esc_url( $card['icon'] ); ?>" alt="" class="<?php echo $centred ? 'size-[48px]' : 'size-[40px]'; ?>">
 					</span>
@@ -136,6 +177,12 @@ $centred = 'center' === $d['align'];
 						<h3 class="font-medium <?php echo $centred ? 'text-xl' : 'text-lg'; ?> leading-snug text-text-heading-dark">
 							<?php echo esc_html( $card['title'] ); ?>
 						</h3>
+
+						<?php if ( ! empty( $card['value'] ) ) : ?>
+							<p class="font-medium text-[32px] leading-tight tracking-hero text-text-primary">
+								<?php echo esc_html( $card['value'] ); ?>
+							</p>
+						<?php endif; ?>
 
 						<?php if ( $card['text'] ) : ?>
 							<p class="font-normal text-sm leading-loose text-text-secondary">
@@ -147,4 +194,21 @@ $centred = 'center' === $d['align'];
 			<?php endif; ?>
 		<?php endforeach; ?>
 	</div>
+
+	<?php
+	// The Mortgage frame repeats its rates disclaimer under the fixed-or-floating pair
+	// (124:3604) — the same line the figures band above already carries. It ships as
+	// the design writes it: the two sections are read minutes apart, and a rate note
+	// under the rates is not a duplication artefact the way a stray heading is.
+	$note = thinksme_field( "{$prefix}_note", false, isset( $d['note'] ) ? $d['note'] : '' );
+	?>
+	<?php if ( $note ) : ?>
+		<p class="mt-lg lg:mt-xl mx-auto max-w-[722px] text-center font-normal text-xs leading-loose <?php echo 'text-text-primary' === $heading_class ? 'text-text-primary' : 'text-text-on-dark'; ?>">
+			<?php echo esc_html( $note ); ?>
+		</p>
+	<?php endif; ?>
+
+	<?php if ( $panel_class ) : ?>
+	</div>
+	<?php endif; ?>
 </section>

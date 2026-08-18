@@ -10,6 +10,12 @@
  * Appearance > Customize > Client Logos Slider (see functions.php,
  * thinksme_customize_register()), so the client can adjust speed without
  * touching code.
+ *
+ * The script is not this part's alone: the Business Loan hero's partner-bank strip
+ * (template-parts/ci-hero.php, Figma 119:1737) is the same marquee at a different
+ * size, so it carries the same `logos-swiper` class and drives its differences
+ * through the data-* attributes below — `data-slides-desktop="auto"` for slides
+ * sized to their own logo and `data-space-desktop` for that frame's tighter gap.
  */
 
 $autoplay        = (bool) get_theme_mod( 'thinksme_logos_autoplay', true );
@@ -42,6 +48,14 @@ $client_logos = new WP_Query( $query_args );
 // hardcoded id would collide.
 $section_id = wp_unique_id( 'logos-clients-' );
 ?>
+<?php
+// The Mortgage Loans frame writes a line of small print under the marquee (124:3614)
+// — which packages its rebate applies to. It comes from that page's set rather than
+// from an argument, the same way faq.php reads its own question list, so the
+// homepage's two calls stay exactly what they were.
+$logos    = function_exists( 'thinksme_ci_defaults' ) ? thinksme_ci_defaults( 'logos' ) : array();
+$caption  = thinksme_field( 'logos_caption', false, isset( $logos['caption'] ) ? $logos['caption'] : '' );
+?>
 <section id="<?php echo esc_attr( $section_id ); ?>" class="w-full py-2xl">
 	<?php if ( $client_logos->have_posts() ) : ?>
 		<div
@@ -64,6 +78,11 @@ $section_id = wp_unique_id( 'logos-clients-' );
 				<?php endwhile; ?>
 			</div>
 		</div>
+	<?php endif; ?>
+	<?php if ( $caption ) : ?>
+		<p class="mt-lg mx-auto max-w-[525px] px-lg text-center font-normal text-sm leading-loose text-text-secondary">
+			<?php echo esc_html( $caption ); ?>
+		</p>
 	<?php endif; ?>
 	<?php wp_reset_postdata(); ?>
 </section>

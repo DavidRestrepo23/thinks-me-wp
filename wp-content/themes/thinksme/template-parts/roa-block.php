@@ -10,9 +10,12 @@
  *
  * Clicking a card expands it: the card widens, its title steps up to 28px and
  * its description appears, while the others fall back to icon + title. The
- * behaviour is assets/js/roa-block.js (which only moves data-active) and the
+ * behaviour is assets/js/expand-cards.js (which only moves data-active) and the
  * geometry is src/base.css, the same split the rest of the theme's card
- * sections use.
+ * sections use. That script was this section's own until the Business Loan frame
+ * drew the same interaction (template-parts/ci-steps.php); it is now driven by
+ * the data-expand-cards / data-expand-card attributes below rather than by these
+ * class names, which stay styling hooks.
  *
  * Every card is clickable, including ones the client hasn't written a
  * description for yet — otherwise, with Figma's content (copy on card 2 only)
@@ -94,14 +97,14 @@ if ( ! $cards ) {
 			<?php echo esc_html( thinksme_field( 'roa_block_heading', false, 'Registered Office Address and Virtual Mailroom Services' ) ); ?>
 		</h2>
 
-		<div class="roa-cards relative flex flex-col lg:flex-row gap-[15px] mt-xl lg:mt-[56px]">
+		<div class="roa-cards relative flex flex-col lg:flex-row gap-[15px] mt-xl lg:mt-[56px]" data-expand-cards>
 			<?php
 			foreach ( $cards as $n => $card ) :
 				$expandable = '' !== trim( $card['text'] );
 				$is_active  = $n === $active;
 				$state      = $is_active ? 'true' : 'false';
 
-				$attrs = ' class="roa-card" type="button" data-active="' . $state . '"';
+				$attrs = ' class="roa-card" type="button" data-expand-card data-active="' . $state . '"';
 
 				// Only a card with copy actually discloses anything; without it the
 				// button is a selection, and aria-expanded would promise a panel that

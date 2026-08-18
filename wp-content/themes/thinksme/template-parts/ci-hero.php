@@ -15,7 +15,27 @@
  * ci_hero_image. The GST Registration frame adds a promotional price above the
  * buttons — ci_hero_price_text, ci_hero_price_strike, ci_hero_price_note — and
  * each of those renders only when it has content, so the frames without them are
- * unchanged.
+ * unchanged. The Property Cashout frame adds two more of the same kind:
+ * ci_hero_text_2, a second intro paragraph (951:9001 — that frame is the only one
+ * whose hero runs to two), and three figure pills over the photograph
+ * (ci_hero_pill_N_value / _label, 951:9009 / 951:9019 / 951:9035).
+ *
+ * The Remittance frame replaces the hat pill with a partner logo (`logo`,
+ * `logo_class`), for the reason the note beside it gives. The Mortgage Loans frame
+ * adds a promotional pill above the buttons (`ci_hero_promo_text`) and gives its
+ * second brush stroke its own vector (`underline_2_file`), since its two strokes are
+ * different lengths.
+ *
+ * The pills' icons are whole 56px discs rather than glyphs, because Figma draws
+ * the navy disc and the yellow mark inside it as one vector group — so the SVG
+ * carries both and there is no disc in the markup to colour. Which disc goes
+ * where is a per-page default, not a client field: it belongs to the figure.
+ *
+ * Above lg the pills are absolutely placed on the image box at Figma's own
+ * offsets (their wrapper is `lg:contents`, so each pill positions against the box
+ * rather than against the wrapper). Below it they are a wrapped row under the
+ * photo: the design has no mobile frame for them, and they carry real figures, so
+ * hiding them would drop content rather than simplify a layout.
  *
  * Two buttons, not one: a solid split button for the primary action and an
  * outlined one carrying the phone number. The phone is an ACF field on this page
@@ -68,25 +88,72 @@ $is_stock  = empty( $photo['url'] );
 $photo_url = ! $is_stock ? $photo['url'] : thinksme_ci_image_url( $d['image'] );
 $photo_alt = ! empty( $photo['alt'] ) ? $photo['alt'] : '';
 
+// The Property Cashout frame's three figures over the photo. Absent everywhere
+// else, so an empty list renders nothing and the image box is unchanged.
+$pills = array();
+
+foreach ( ( isset( $d['pills'] ) ? $d['pills'] : array() ) as $n => $pill_default ) {
+	$value = thinksme_field( "ci_hero_pill_{$n}_value", false, $pill_default['value'] );
+
+	if ( '' === trim( $value ) ) {
+		continue;
+	}
+
+	$pills[] = array(
+		'icon'  => $pill_default['icon'],
+		'class' => $pill_default['class'],
+		'value' => $value,
+		'label' => thinksme_field( "ci_hero_pill_{$n}_label", false, $pill_default['label'] ),
+	);
+}
+
+// Every frame but the Remittance one strikes a whole line with the same long brush
+// stroke. That one strikes a single word mid-line (123:2690), which is its own
+// shorter, thicker vector rather than the shared one scaled down — scaling the long
+// stroke to a word's width thins it to a pencil line.
+$underline = isset( $d['underline_file'] ) ? $d['underline_file'] : 'ci/hero-underline.svg';
+// The Mortgage frame's two strokes are different lengths — a short one over a word on
+// the first line and a long one under the line below it — so the second slot takes
+// its own file, falling back to whatever the first one uses.
+$underline_2 = isset( $d['underline_2_file'] ) ? $d['underline_2_file'] : $underline;
+
 $button_text   = thinksme_field( 'ci_hero_button_text', false, $d['button_text'] );
 $button_link   = thinksme_field( 'ci_hero_button_link', false, $d['button_link'] );
 $button_2_text = thinksme_field( 'ci_hero_button_2_text', false, $d['button_2_text'] );
 $button_2_link = thinksme_field( 'ci_hero_button_2_link', false, $d['button_2_link'] );
 ?>
 <section id="ci-hero" class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-xl w-full px-lg lg:px-3xl py-xl lg:py-[40px]">
-	<div class="flex flex-col justify-center gap-xl w-full lg:basis-[703px] lg:min-w-0">
+	<?php // The two columns' widths are per-page defaults: the six older frames draw the copy at 703px beside a 609px image group, the Property Cashout one at 619 beside 583. That is not cosmetic — the column is what decides where the headline breaks, and the brush stroke and the figure pills are both placed against that break. ?>
+	<div class="flex flex-col justify-center gap-xl w-full <?php echo esc_attr( empty( $d['body_class'] ) ? 'lg:basis-[703px]' : $d['body_class'] ); ?> lg:min-w-0">
 		<div class="flex flex-col items-start gap-md">
-			<?php $hat = thinksme_field( 'ci_hero_hat_text', false, $d['hat'] ); ?>
-			<?php if ( $hat ) : ?>
-				<span class="bg-brand-yellow-soft border border-brand-yellow-border rounded-pill min-h-[32px] px-md py-[6px] inline-flex items-center justify-center text-xs font-medium text-text-primary">
-					<?php echo esc_html( $hat ); ?>
-				</span>
+			<?php
+			// The Remittance frame opens on a partner's logo instead of the pill every
+			// other frame draws (123:2692): the page is about that partner's rates, and a
+			// pill reading "OFX" beside a headline reading "Save with OFX" would say it
+			// twice. It is a per-page default rather than a field — it is the mark of the
+			// company the page is about, not copy — and a set that names one gets the logo
+			// in place of its hat, not as well as.
+			$logo = isset( $d['logo'] ) ? $d['logo'] : '';
+			?>
+			<?php if ( $logo ) : ?>
+				<img
+					src="<?php echo esc_url( thinksme_ci_image_url( $logo ) ); ?>"
+					alt="<?php echo esc_attr( isset( $d['logo_alt'] ) ? $d['logo_alt'] : '' ); ?>"
+					class="<?php echo esc_attr( $d['logo_class'] ); ?>"
+				>
+			<?php else : ?>
+				<?php $hat = thinksme_field( 'ci_hero_hat_text', false, $d['hat'] ); ?>
+				<?php if ( $hat ) : ?>
+					<span class="bg-brand-yellow-soft border border-brand-yellow-border rounded-pill min-h-[32px] px-md py-[6px] inline-flex items-center justify-center text-xs font-medium text-text-primary">
+						<?php echo esc_html( $hat ); ?>
+					</span>
+				<?php endif; ?>
 			<?php endif; ?>
 
 			<div class="relative w-full">
 				<?php // Positioned as a share of the column so it holds while the column flexes; hidden below lg, where the smaller type rewraps and the stroke would land on the wrong line. The offset is measured against this page's headline, so it travels with the copy in inc/ci-content.php. ?>
 				<img
-					src="<?php echo esc_url( "$icons_uri/ci/hero-underline.svg" ); ?>"
+					src="<?php echo esc_url( "$icons_uri/$underline" ); ?>"
 					alt=""
 					aria-hidden="true"
 					class="<?php echo esc_attr( $d['underline_class'] ); ?>"
@@ -95,7 +162,7 @@ $button_2_link = thinksme_field( 'ci_hero_button_2_link', false, $d['button_2_li
 				<?php // Figma strikes two lines of the Accounting & Bookkeeping headline rather than one (102:3131 and 102:3132), so a set can name a second stroke; the others leave it empty and draw none. ?>
 				<?php if ( ! empty( $d['underline_2_class'] ) ) : ?>
 					<img
-						src="<?php echo esc_url( "$icons_uri/ci/hero-underline.svg" ); ?>"
+						src="<?php echo esc_url( "$icons_uri/$underline_2" ); ?>"
 						alt=""
 						aria-hidden="true"
 						class="<?php echo esc_attr( $d['underline_2_class'] ); ?>"
@@ -108,11 +175,25 @@ $button_2_link = thinksme_field( 'ci_hero_button_2_link', false, $d['button_2_li
 			</div>
 		</div>
 
-		<?php $intro = thinksme_field( 'ci_hero_text', false, $d['text'] ); ?>
-		<?php if ( $intro ) : ?>
-			<p class="font-normal text-sm text-text-secondary leading-relaxed max-w-[578px]">
-				<?php echo esc_html( $intro ); ?>
-			</p>
+		<?php
+		$intro   = thinksme_field( 'ci_hero_text', false, $d['text'] );
+		$intro_2 = thinksme_field( 'ci_hero_text_2', false, isset( $d['text_2'] ) ? $d['text_2'] : '' );
+		?>
+		<?php if ( $intro || $intro_2 ) : ?>
+			<div class="flex flex-col gap-md max-w-[578px]">
+				<?php if ( $intro ) : ?>
+					<p class="font-normal text-sm text-text-secondary leading-relaxed">
+						<?php echo esc_html( $intro ); ?>
+					</p>
+				<?php endif; ?>
+
+				<?php // Only the Property Cashout frame writes a second paragraph here; every other set leaves it empty and this renders nothing. ?>
+				<?php if ( $intro_2 ) : ?>
+					<p class="font-normal text-sm text-text-secondary leading-relaxed">
+						<?php echo esc_html( $intro_2 ); ?>
+					</p>
+				<?php endif; ?>
+			</div>
 		<?php endif; ?>
 
 		<?php
@@ -145,6 +226,18 @@ $button_2_link = thinksme_field( 'ci_hero_button_2_link', false, $d['button_2_li
 			</div>
 		<?php endif; ?>
 
+		<?php
+		// The Mortgage frame puts a promotional line in a wide pill above the buttons
+		// (124:3274) — an offer, not a heading, and not the GST frame's struck-through
+		// price either. Optional, so every other frame renders nothing here.
+		$promo = thinksme_field( 'ci_hero_promo_text', false, isset( $d['promo_text'] ) ? $d['promo_text'] : '' );
+		?>
+		<?php if ( $promo ) : ?>
+			<p class="bg-brand-yellow-soft border border-brand-yellow-border rounded-pill w-full sm:w-auto sm:max-w-[436px] px-md py-[9px] text-center font-medium text-md leading-relaxed text-text-navy">
+				<?php echo esc_html( $promo ); ?>
+			</p>
+		<?php endif; ?>
+
 		<?php if ( $button_text || $button_2_text ) : ?>
 			<?php // Both buttons span the column on a phone — side by side they wrap to ragged widths, and a full-width target is easier to hit. ?>
 			<div class="flex flex-col sm:flex-row sm:flex-wrap sm:items-center gap-md sm:gap-lg">
@@ -168,7 +261,9 @@ $button_2_link = thinksme_field( 'ci_hero_button_2_link', false, $d['button_2_li
 		<?php endif; ?>
 	</div>
 
-	<div class="relative w-full max-w-[520px] mx-auto lg:max-w-none lg:mx-0 lg:basis-[609px] lg:min-w-0 <?php echo esc_attr( $d['image_box'] ); ?>">
+	<?php // The column and the photo's own box are two elements, not one, so the figure pills can be a sibling of the photo rather than a child of it. Inside it they were in normal flow under an absolutely positioned <img>, and a positioned element paints above in-flow content regardless of DOM order — the same rule ci-requirements.php's cityscape ran into. The column carries `relative` for the pills to position against above lg; the inner box keeps the aspect ratio the badge and photo-slot percentages are measured from, so the other six sets are unchanged. ?>
+	<div class="relative w-full max-w-[520px] mx-auto lg:max-w-none lg:mx-0 <?php echo esc_attr( empty( $d['image_col_class'] ) ? 'lg:basis-[609px]' : $d['image_col_class'] ); ?> lg:min-w-0">
+		<div class="relative w-full <?php echo esc_attr( $d['image_box'] ); ?>">
 		<?php if ( $is_stock ) : ?>
 			<?php // The supplied export already carries the card and its corners, so it is drawn straight into the box. ?>
 			<img src="<?php echo esc_url( $photo_url ); ?>" alt="<?php echo esc_attr( $photo_alt ); ?>" class="absolute inset-0 w-full h-full object-contain">
@@ -188,12 +283,95 @@ $button_2_link = thinksme_field( 'ci_hero_button_2_link', false, $d['button_2_li
 				<img src="<?php echo esc_url( $photo_url ); ?>" alt="<?php echo esc_attr( $photo_alt ); ?>" class="absolute inset-0 w-full h-full object-cover">
 			</div>
 
-			<img
-				src="<?php echo esc_url( "$images_uri/hero-badge.svg" ); ?>"
-				alt=""
-				aria-hidden="true"
-				class="<?php echo esc_attr( $d['badge_class'] ); ?>"
+			<?php // Gated on the placement class, not just on the upload: a set whose frame draws no badge (Property Cashout) names neither, and an unclassed <img> would land in the flow at its natural size. ?>
+			<?php if ( ! empty( $d['badge_class'] ) ) : ?>
+				<img
+					src="<?php echo esc_url( "$images_uri/hero-badge.svg" ); ?>"
+					alt=""
+					aria-hidden="true"
+					class="<?php echo esc_attr( $d['badge_class'] ); ?>"
+				>
+			<?php endif; ?>
+		<?php endif; ?>
+		</div>
+
+		<?php
+		// The Business Loan frame closes the image column with a row of partner-bank
+		// logos under a small label (119:1737 + 119:1750). Figma draws it as a masked
+		// marquee — 505px of logos inside a 439px frame, so the last wordmark is clipped
+		// there — but five logos are a row, not a carousel, and a marquee of five would
+		// scroll a claim rather than state it. Theme files and not a client field: they
+		// are the evidence for the hat's "19 core partner banks", the same reason the
+		// figure pills' discs are.
+		$banks = isset( $d['banks'] ) ? $d['banks'] : array();
+	?>
+	<?php if ( ! empty( $banks['logos'] ) ) : ?>
+		<?php // The label sits beside the strip rather than above it, as Figma draws it, and shrinks away below sm where the row needs the width more than the caption needs the line. ?>
+		<div class="flex items-center gap-lg mt-xl lg:mt-lg">
+			<?php if ( ! empty( $banks['label'] ) ) : ?>
+				<span class="shrink-0 font-normal text-[12px] leading-loose tracking-widest uppercase text-text-secondary whitespace-nowrap">
+					<?php echo esc_html( $banks['label'] ); ?>
+				</span>
+			<?php endif; ?>
+
+			<?php
+			// It is the theme's logo marquee, not a static row: Figma masks a 505px row
+			// into a 439px window with a fade at each end, which is a strip that moves.
+			// So it carries `logos-swiper` and assets/js/logos-slider.js drives it — the
+			// same loop-and-autoplay contract every other carousel in the theme has.
+			//
+			// The logos are rendered three times because Swiper wants roughly twice the
+			// visible count before it will loop, and at `slidesPerView: 'auto'` a 495px
+			// window shows about six of them — five, or even ten, still trips the warning
+			// and drops the loop. Same floor ci-why-slider.js clones around. Only the
+			// first pass carries names; the copies are aria-hidden, so the row still
+			// announces five banks once.
+			?>
+			<div
+				class="swiper logos-swiper ci-hero__banks min-w-0 grow"
+				data-autoplay="true"
+				data-autoplay-delay="4000"
+				data-pause-on-hover="true"
+				data-slides-desktop="auto"
+				data-space-desktop="37"
 			>
+				<div class="swiper-wrapper items-center">
+					<?php foreach ( array( false, true, true ) as $is_copy ) : ?>
+						<?php foreach ( $banks['logos'] as $bank ) : ?>
+							<div class="swiper-slide !w-auto flex items-center justify-center h-[40px]" <?php echo $is_copy ? 'aria-hidden="true"' : ''; ?>>
+								<img
+									src="<?php echo esc_url( thinksme_ci_image_url( $bank['file'] ) ); ?>"
+									alt="<?php echo $is_copy ? '' : esc_attr( $bank['name'] ); ?>"
+									loading="lazy"
+									class="<?php echo esc_attr( $bank['class'] ); ?> w-auto max-w-full object-contain"
+								>
+							</div>
+						<?php endforeach; ?>
+					<?php endforeach; ?>
+				</div>
+			</div>
+		</div>
+	<?php endif; ?>
+
+	<?php if ( $pills ) : ?>
+			<?php // `lg:contents` so each pill positions against the image box above lg, and the wrapper is a wrapped row under the photo below it. ?>
+			<div class="flex flex-wrap gap-md mt-lg lg:contents">
+				<?php foreach ( $pills as $pill ) : ?>
+					<div class="<?php echo esc_attr( $pill['class'] ); ?> flex items-center gap-md w-max lg:mt-0 bg-surface-navy-rich rounded-pill pl-md pr-lg py-md">
+						<img src="<?php echo esc_url( "$icons_uri/pc/{$pill['icon']}" ); ?>" alt="" aria-hidden="true" class="size-[56px] shrink-0">
+						<div class="flex flex-col">
+							<span class="font-medium text-xl leading-normal text-text-on-dark whitespace-nowrap">
+								<?php echo esc_html( $pill['value'] ); ?>
+							</span>
+							<?php if ( $pill['label'] ) : ?>
+								<span class="font-normal text-[12px] leading-loose tracking-widest uppercase text-text-on-dark/70 whitespace-nowrap">
+									<?php echo esc_html( $pill['label'] ); ?>
+								</span>
+							<?php endif; ?>
+						</div>
+					</div>
+				<?php endforeach; ?>
+			</div>
 		<?php endif; ?>
 	</div>
 </section>

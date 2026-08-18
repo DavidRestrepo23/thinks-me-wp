@@ -1,25 +1,27 @@
 <?php
 /**
- * Design-fidelity copy and images for the six pages built out of the ci-* parts.
+ * Design-fidelity copy and images for the ten pages built out of the ci-* parts.
  *
  * `page-company-incorporation-local.php`,
  * `page-company-incorporation-foreign.php`, `page-corporate-secretary.php`,
- * `page-accounting-bookkeeping.php`, `page-corporate-tax.php` and
- * `page-gst-registration.php` are the same page: the same sections in (nearly) the
- * same order, the same markup, the same ACF field *names*. Figma draws them as six
- * frames (85:1351.., 101:846, 102:1969, 102:3127, 108:4497 and 114:5287) whose
- * differences are the words, the photographs and which sections they include. So
- * the six pages share one set of
- * template parts (`template-parts/ci-*.php`) and this file is where they stop
- * being the same: every default those parts fall back to is looked up here, keyed
- * by whichever of the six templates WordPress resolved.
+ * `page-accounting-bookkeeping.php`, `page-corporate-tax.php`,
+ * `page-gst-registration.php`, `page-property-cashout.php` and
+ * `page-business-loan.php` are the same page: the same sections in (nearly) the
+ * same order, the same markup, the same ACF field *names*. Figma draws them as
+ * eight frames (85:1351.., 101:846, 102:1969, 102:3127, 108:4497, 114:5287,
+ * 119:1711, and 951:8993 in the newer "Think SME- INTERNAL" file) whose
+ * differences are the words, the photographs and which sections they
+ * include. So the eight pages share one set of template parts
+ * (`template-parts/ci-*.php`) and this file is where they stop being the same:
+ * every default those parts fall back to is looked up here, keyed by whichever of
+ * the seven templates WordPress resolved.
  *
  * Sections a page doesn't have simply have no set here, and the parts for them
- * return early — which is how the same list of parts serves six different
+ * return early — which is how the same list of parts serves seven different
  * frames without a flag per section.
  *
  * The alternative, another copy of all the template parts, would have duplicated
- * ~1,100 lines of identical markup and made every layout fix a six-file job.
+ * ~1,100 lines of identical markup and made every layout fix a seven-file job.
  * The alternative on the other side, leaving the copy in the database only,
  * would have kept it out of git and let a cleared field fall back to another
  * page's text.
@@ -42,10 +44,10 @@
  */
 
 /**
- * Which of the six pages is being rendered.
+ * Which of the ten pages is being rendered.
  *
  * Keys off thinksme_current_template() rather than is_page_template() for the
- * reason documented on that function: all four templates are also named for
+ * reason documented on that function: all seven templates are also named for
  * their page slug, so WP serves them to pages that never had the Page
  * Attributes template set, and is_page_template() reads exactly that missing
  * post meta.
@@ -54,7 +56,8 @@
  * loaded by one of these templates, and a set that renders is a better failure
  * than a section of blanks.
  *
- * @return string 'local', 'foreign', 'secretary', 'accounting', 'tax' or 'gst'.
+ * @return string 'local', 'foreign', 'secretary', 'accounting', 'tax', 'gst',
+ *                'cashout', 'loan', 'remittance' or 'mortgage'.
  */
 function thinksme_ci_content_set() {
 	$sets = array(
@@ -63,6 +66,10 @@ function thinksme_ci_content_set() {
 		'page-accounting-bookkeeping.php'        => 'accounting',
 		'page-corporate-tax.php'                 => 'tax',
 		'page-gst-registration.php'              => 'gst',
+		'page-property-cashout.php'              => 'cashout',
+		'page-business-loan.php'                 => 'loan',
+		'page-remittance.php'                    => 'remittance',
+		'page-mortgage-loans.php'                => 'mortgage',
 	);
 
 	$template = thinksme_current_template();
@@ -110,9 +117,9 @@ function thinksme_ci_defaults( $section ) {
 }
 
 /**
- * All six content sets, built once per request.
+ * All ten content sets, built once per request.
  *
- * Kept as one function rather than six so the pages' fields stay visibly
+ * Kept as one function rather than ten so the pages' fields stay visibly
  * parallel — a key present on one side and missing on another is obvious
  * here and invisible if they live apart.
  *
@@ -1608,6 +1615,1128 @@ function thinksme_ci_content() {
 		),
 	);
 
+	// The Property Cashout page, Figma frame 951:8993 ("Desktop Property Cashout",
+	// file "Think SME- INTERNAL", CgqSxvxd3aQeQSkLPhc48q). The fourth assembled
+	// frame, so the section order below is the canvas's own.
+	//
+	// This is the first set that is mostly *new* sections: `definition`, `compare`,
+	// `types`, `stack` (two instances) and `eligibility` are drawn on this frame
+	// alone and their parts return early everywhere else, the same way
+	// `ci-why-slider.php` is inert on the pages whose set names no `why_slider`.
+	// Only four sections are shared with the earlier frames — the hero, the logo
+	// marquee, the pinned rail (`requirements`) and the final CTA — and the frame
+	// draws no pricing, no free tools, no what's-included, no bento, no carousel
+	// and no Google Reviews.
+	//
+	// It is also the first set to name its own FAQ questions. Every earlier page
+	// takes them from the site-wide `faq_item` CPT; this frame writes six of its
+	// own, so `faq.php` now prefers a set's list when there is one. See the note
+	// there.
+	$cashout = array(
+		'hero'         => array(
+			'hat'              => 'Property Cashout Singapore',
+			'title'            => 'Unlock Up To 90% of Your Property Value',
+			'text'             => 'Your property is one of Singapore’s most valuable assets — and it doesn’t have to sit idle. At ThinkSME, we help Singapore SME owners use property cashout to release equity from their private residential, commercial, or industrial property and convert it into working capital for your business.',
+			// This frame is the only one whose hero runs to two paragraphs
+			// (951:9000 and 951:9001), which is why the second one is its own
+			// field rather than a line break inside the first.
+			'text_2'           => 'Property cashout in Singapore is one of the most flexible and cost-effective financing solutions available to SME owners.',
+			'button_text'      => 'Get Your Free Assessment',
+			'button_link'      => '/contact-us',
+			'button_2_text'    => '+65 6012 9642',
+			'button_2_link'    => 'tel:+6560129642',
+			// Figma's hero image group (951:9005), 583x586: the subject is cut out
+			// over the photo card and breaks above its top edge, so the group is
+			// taller than the 583x495 card. The export is flattened onto white,
+			// which is this page's own ground, so nothing is lost — the same
+			// shortcut the Accounting, Corporate Tax and GST sets take.
+			'image'            => 'pc/hero-image.jpg',
+			'image_box'        => 'aspect-[583/586]',
+			// Figma's own two columns (619 for the copy, 583 for the image group)
+			// rather than the 703/609 the six older frames draw. Load-bearing: the
+			// copy column is what breaks the headline into three lines, and both
+			// the brush stroke and the first figure pill are measured against that
+			// break — at 703px the headline rewraps and the pill lands on it.
+			'body_class'       => 'lg:basis-[619px]',
+			'image_col_class'  => 'lg:basis-[583px]',
+			'badge'            => '',
+			'badge_class'      => '',
+			'photo_slot_class' => 'absolute left-0 top-[15.53%] w-full h-[84.47%] overflow-hidden rounded-2xl',
+			// Measured against this headline breaking across three lines at 72px:
+			// Figma strikes the third line ("Property Value"), not the first.
+			'underline_class'  => 'hidden lg:block absolute left-0 top-[214px] w-[81.8%] rotate-[2.4deg] pointer-events-none select-none',
+			// Three figures floating over the photo (951:9009, 951:9019, 951:9035).
+			// Their icons are whole 56px discs rather than glyphs — Figma draws the
+			// disc fill and the yellow glyph as one vector group, so the SVG carries
+			// both and there is no disc in the markup to colour. Placement is a
+			// share of the image box, straight off the canvas.
+			'pills'            => array(
+				1 => array(
+					'icon'  => 'pill-ltv.svg',
+					'value' => '90%',
+					'label' => 'MAX LTV AVAILABLE',
+					'class' => 'lg:absolute lg:left-[-20.24%] lg:top-[13.14%]',
+				),
+				2 => array(
+					'icon'  => 'pill-lenders.svg',
+					'value' => '60+',
+					'label' => 'BANKS & LENDERS',
+					'class' => 'lg:absolute lg:left-[-6%] lg:top-[93.17%]',
+				),
+				3 => array(
+					'icon'  => 'pill-approval.svg',
+					'value' => '1-7',
+					'label' => 'DAYS APPROVAL',
+					'class' => 'lg:absolute lg:left-[68.27%] lg:top-[59.56%]',
+				),
+			),
+		),
+		// "What is Property Cashout in Singapore?" (951:9052): a pale panel with the
+		// heading and intro side by side above a worked example and a photograph.
+		'definition'   => array(
+			'hat'             => 'Definition',
+			'heading'         => 'What is Property Cashout in Singapore?',
+			// Two paragraphs with a bold lead-in, so this one is rendered through
+			// wpautop()/wp_kses() rather than esc_html() — see the note in
+			// template-parts/ci-definition.php.
+			'text'            => "<strong>Property Cashout Singapore</strong> allows you to unlock the equity in your property without selling it. Through cash-out refinancing, you can access additional funds while continuing to own your residential, commercial, or industrial property.\n\nIdeal for SME owners, property cashout provides lower interest rates, larger loan amounts, and flexible funding for business expansion, working capital, equipment purchases, or investment opportunities.",
+			'example_heading' => 'Example Calculation',
+			'example_text'    => 'If your commercial shophouse is valued at <strong>S$2,000,000</strong> and you have an outstanding mortgage of <strong>S$900,000</strong>, you may be able to access up to <strong>S$900,000 in additional cash</strong> through a property cashout refinancing — without selling the property.',
+			'formula'         => '<strong>Formula:</strong> (S$2M × 90% LTV) − S$900K outstanding = S$900K cashout available',
+			// Two-layer in Figma (951:9059) and exported flattened — onto #fbfbfb
+			// here rather than white, because that is the panel this photo sits on
+			// and Figma flattens onto whatever is actually behind the node.
+			'image'           => 'pc/definition-photo.jpg',
+			'image_box'       => 'aspect-[650/490]',
+		),
+		// "Property Cashout vs Traditional Mortgage Refinancing" (951:9075 +
+		// 951:9077). The two columns repeat the same eight row labels, so the label
+		// is one field per row and only the two descriptions differ — half the
+		// fields of a table that spelled both sides out.
+		'compare'      => array(
+			'heading'     => 'Property Cashout vs Traditional Mortgage Refinancing',
+			'col_1_label' => 'Property Cashout',
+			'col_2_label' => 'Standard Refinancing',
+			'rows'        => array(
+				1 => array(
+					'label'  => 'Purpose',
+					'text_1' => 'Unlock your property’s equity to raise funds for business expansion, working capital, investments, or personal financial goals.',
+					'text_2' => 'Refinance your existing mortgage to secure a lower interest rate or reduce monthly repayments.',
+				),
+				2 => array(
+					'label'  => 'Cash Received',
+					'text_1' => 'Receive additional cash by borrowing against your available property equity.',
+					'text_2' => 'No additional cash received. Your existing mortgage is simply replaced with a new loan.',
+				),
+				3 => array(
+					'label'  => 'Loan Amount',
+					'text_1' => 'Borrow up to 90% of your property’s valuation (subject to eligibility and lender assessment).',
+					'text_2' => 'Limited to your existing outstanding mortgage balance.',
+				),
+				4 => array(
+					'label'  => 'Interest Rate',
+					'text_1' => 'Competitive secured financing rates, typically around 1.5%–3.5% p.a., depending on lender and profile.',
+					'text_2' => 'Focused on obtaining the lowest available mortgage interest rate for your existing loan.',
+				),
+				5 => array(
+					'label'  => 'Loan Tenure',
+					'text_1' => 'Up to 15 years for business financing (subject to lender’s terms).',
+					'text_2' => 'Up to 30 years, depending on property type and borrower eligibility.',
+				),
+				6 => array(
+					'label'  => 'Processing Time',
+					'text_1' => 'Approval and disbursement can be completed in as fast as 1 week.',
+					'text_2' => 'Typically 4–12 weeks, depending on valuation and bank processing timelines.',
+				),
+				7 => array(
+					'label'  => 'Financing Options',
+					'text_1' => 'Access to 60+ banks, financial institutions, digital banks, and private lenders to secure the most suitable financing package.',
+					'text_2' => 'Usually limited to traditional local and international banks offering mortgage refinancing.',
+				),
+				8 => array(
+					'label'  => 'Best For',
+					'text_1' => 'Business owners and property investors who need additional capital while retaining property ownership.',
+					'text_2' => 'Homeowners looking to reduce mortgage costs without accessing additional funds.',
+				),
+			),
+		),
+		// "How Does Property Cashout Work in Singapore?" (951:9220) — the pinned
+		// progress rail, the section the client asked to keep working exactly as it
+		// does on the Corporate Tax page. Two things this frame adds to it and the
+		// other two rails leave empty: an intro under the heading, and a timing
+		// label under each step ("DAY 1", "WITHIN 24 HRS", …).
+		'requirements' => array(
+			'hat'        => 'Process',
+			'heading'    => 'How Does Property Cashout Work in Singapore?',
+			'text'       => 'ThinkSME guides you through every step — from free consultation to cash in your account.',
+			// The scattered-blocks artwork this frame puts behind its two navy
+			// panels, in place of the cityscape the other rails draw.
+			'background' => 'pc/panel-bg.svg',
+			'rail_class' => 'max-w-[588px]',
+			'steps'      => array(
+				1 => array(
+					'icon'  => 'house',
+					'title' => 'Property Valuation',
+					'text'  => 'A bank-appointed valuer determines your property’s market value and maximum loan amount.',
+					'meta'  => 'DAY 1',
+				),
+				2 => array(
+					'icon'  => 'calculator',
+					'title' => 'Assess Equity',
+					'text'  => 'We calculate: (Property Value × up to 90% LTV) minus outstanding balance = your available cashout.',
+					'meta'  => 'WITHIN 24 HRS',
+				),
+				3 => array(
+					'icon'  => 'magnifying-glass',
+					'title' => 'Choose Lender',
+					'text'  => 'ThinkSME compares 60+ banks and institutions to find your best rate, LTV, and terms.',
+					'meta'  => '2 – 3 DAYS',
+				),
+				4 => array(
+					'icon'  => 'file-arrow-up',
+					'title' => 'Submit Docs',
+					'text'  => 'Provide the property address and documents. ThinkSME prepares and submits your full application.',
+					'meta'  => '1 – 2 DAYS',
+				),
+				5 => array(
+					'icon'  => 'shield-check',
+					'title' => 'Approval & Drawdown',
+					'text'  => 'We provide approval-in-principle quickly. Full approval and disbursement within 2–7 working days.',
+					'meta'  => '2 – 7 DAYS',
+				),
+			),
+		),
+		// "Types of Property Eligible for Cashout in Singapore" (951:9448): four
+		// photo-over-card columns whose headline figure is the LTV.
+		'types'        => array(
+			'hat'     => 'Eligible Property Types',
+			'heading' => 'Types of Property Eligible for Cashout in Singapore',
+			'text'    => 'ThinkSME works with all major private property types in Singapore for equity withdrawal.',
+			'cards'   => array(
+				1 => array(
+					'label' => 'Private Residential',
+					'value' => 'Up to 85%',
+					'text'  => 'Condominium, Landed, SOHO',
+					'image' => 'pc/type-residential.jpg',
+				),
+				2 => array(
+					'label' => 'Commercial Property',
+					'value' => 'Up to 75%',
+					'text'  => 'Shophouse, Retail, Office unit',
+					'image' => 'pc/type-commercial.jpg',
+				),
+				3 => array(
+					'label' => 'Industrial Property',
+					'value' => 'Up to 75%',
+					'text'  => 'B1/B2 Factory, Warehouse, Ramp-up',
+					'image' => 'pc/type-industrial.jpg',
+				),
+				4 => array(
+					'label' => 'Mixed-Use',
+					'value' => 'Up to 80%',
+					'text'  => 'Heritage shophouse, HDB shophouse, Mixed retail-resi',
+					'image' => 'pc/type-mixed-use.jpg',
+				),
+			),
+		),
+		// Two frames of the same shape (951:9557 and 951:9444 + 951:9490 +
+		// 951:9545 + 951:9627): a photograph beside a column of overlapping cards
+		// whose last one is navy and tilted. `photo` says which side the photograph
+		// takes; everything else is identical, which is why this is one part called
+		// twice rather than two.
+		'stack'        => array(
+			'benefits' => array(
+				'hat'       => 'Why Use Property Cashout',
+				'heading'   => 'Key Benefits of Property Cashout for Singapore SMEs',
+				'photo'     => 'left',
+				'image'     => 'pc/benefits-photo.jpg',
+				'image_box' => 'aspect-[547/528]',
+				'cards'     => array(
+					1 => array(
+						'icon'  => 'trend-down',
+						'title' => 'Lower Interest Rates (Bank Rates)',
+						'text'  => 'Secured property loans carry rates from 1%+ p.a. vs 4–5% p.a. for unsecured SME loans — significantly reducing your cost of capital.',
+					),
+					2 => array(
+						'icon'  => 'stack',
+						'title' => 'Large Loan Quantum',
+						'text'  => 'Access S$200,000 to S$10,000,000+ depending on property value — far exceeding unsecured business loan limits.',
+					),
+					3 => array(
+						'icon'  => 'lock-key-open',
+						'title' => 'No Restriction on Use of Funds',
+						'text'  => 'Unlike government SME loans, cashout proceeds can be used for any business purpose — inventory, payroll, renovation, expansion, investment.',
+					),
+					4 => array(
+						'icon'  => 'house',
+						'title' => 'Retain Property Ownership',
+						'text'  => 'You continue to own and benefit from your property’s appreciation — while putting its equity to productive use today.',
+					),
+					5 => array(
+						'icon'  => 'calendar-dots',
+						'title' => 'Flexible Repayment Tenures',
+						'text'  => 'Loan tenures of up to 25–30 years mean manageable monthly repayments suited to your cash flow.',
+					),
+				),
+			),
+			'why'      => array(
+				'hat'       => 'Why ThinkSME',
+				'heading'   => 'Why Choose ThinkSME for Property Cashout in Singapore?',
+				'photo'     => 'right',
+				'image'     => 'pc/why-photo.jpg',
+				'image_box' => 'aspect-[547/415]',
+				'cards'     => array(
+					1 => array(
+						'icon'  => 'bank',
+						'title' => 'Access to 60+ Banks & Financial Institutions',
+						'text'  => 'Best rate guaranteed — we compare across the entire market so you never overpay.',
+					),
+					2 => array(
+						'icon'  => 'user-focus',
+						'title' => 'Dedicated Property Cashout Advisors',
+						'text'  => 'Expert guidance tailored to your property type and business goals — not generic advice.',
+					),
+					3 => array(
+						'icon'  => 'briefcase',
+						'title' => 'Full In-House Corporate Services',
+						'text'  => 'We handle your accounting, secretarial, and grants while securing your loan.',
+					),
+					4 => array(
+						'icon'  => 'clock-countdown',
+						'title' => 'Free Eligibility Assessment within 24 Hours',
+						'text'  => 'Know your options before committing to anything — zero cost, zero obligation.',
+					),
+					5 => array(
+						'icon'  => 'hand-coins',
+						'title' => 'Grant Advisory Integration',
+						'text'  => 'Maximise EDG, PSG & MRA grants alongside your cashout strategy.',
+					),
+				),
+			),
+		),
+		// "Eligibility Requirements for Property Cashout in Singapore" (951:9631):
+		// a navy panel with two tabs over a white card holding a checklist and a
+		// photograph.
+		//
+		// Figma draws only the first tab's panel, exactly as it draws only the first
+		// of ci-tools.php's three. Tab 2 therefore ships with the label and title
+		// the design writes and **no items** — the client fills its seven fields
+		// from wp-admin. Inventing a document list here would be inventing the
+		// client's copy, so the panel renders its title and photograph until they
+		// do.
+		'eligibility'  => array(
+			'hat'       => 'Am I Eligible?',
+			'heading'   => 'Eligibility Requirements for Property Cashout in Singapore',
+			'text'      => 'Here’s what you typically need. ThinkSME assesses your specific situation for free within 24 hours.',
+			// Two-layer in Figma (951:9840 over 951:9843) and flattened onto white
+			// — the white card, not the navy panel, is what sits behind it.
+			'image'     => 'pc/eligibility-photo.jpg',
+			'image_box' => 'aspect-[442/538]',
+			'tabs'      => array(
+				1 => array(
+					'label' => 'General Eligibility Criteria',
+					'title' => 'General Eligibility Criteria',
+					'items' => array(
+						1 => 'Property owner (individual or company-owned property accepted)',
+						2 => 'Singapore Citizen, Permanent Resident, or Foreign National (terms vary)',
+						3 => 'Property free from legal encumbrances or active disputes',
+						4 => 'Minimum property value of S$500,000 (most lenders)',
+						5 => 'Property must have sufficient equity above outstanding loans',
+						6 => 'Personal name: comply with MAS TDSR cap of 55% of gross income',
+						7 => 'Company name: TDSR does not apply — significantly more flexible',
+					),
+				),
+				2 => array(
+					'label' => 'Documents Typically Required',
+					'title' => 'Documents Typically Required',
+					'items' => array(
+						1 => '',
+						2 => '',
+						3 => '',
+						4 => '',
+						5 => '',
+						6 => '',
+						7 => '',
+					),
+				),
+			),
+		),
+		// The six questions this frame writes (951:9844). Only the first has an
+		// answer on the canvas; the rest open to just the question until the client
+		// fills them in, the same way faq.php's own CPT-less fallback does.
+		'faq'          => array(
+			'items' => array(
+				1 => array(
+					'question' => 'What is property cashout in Singapore?',
+					'answer'   => 'Property cashout in Singapore is the process of borrowing against the equity of a property you already own. Instead of selling the property, you take out a new loan (or top-up an existing mortgage) secured against the property’s value and receive the difference in cash. This cash can be used for any purpose, including funding your business operations, expansion, or investment.',
+				),
+				2 => array(
+					'question' => 'Can I use my HDB flat for cashout refinancing in Singapore?',
+					'answer'   => '',
+				),
+				3 => array(
+					'question' => 'How much can I borrow through property cashout in Singapore?',
+					'answer'   => '',
+				),
+				4 => array(
+					'question' => 'What is the interest rate for property cashout loans in Singapore?',
+					'answer'   => '',
+				),
+				5 => array(
+					'question' => 'How long does property cashout approval take in Singapore?',
+					'answer'   => '',
+				),
+				6 => array(
+					'question' => 'Can I use property cashout proceeds for my business?',
+					'answer'   => '',
+				),
+			),
+		),
+		'cta'          => array(
+			'image' => 'pc/cta-photo.jpg',
+		),
+	);
+
+	// The Business Loan page, Figma frame 119:1711 ("Desktop Business Loan", file
+	// "Untitled", vzdpOnH1U36oXcFcugiyE5). The fifth assembled frame, so the section
+	// order below is the canvas's own, read top to bottom:
+	//
+	//   hero (119:1713 + 119:1723 + the partner-bank strip 119:1737) → stats
+	//   (119:1751) → steps (119:1796) → calculator (119:1825) → grid "approval"
+	//   (119:1871) → ways (119:1932) → stack "bankers" (119:1991 + 119:1995 +
+	//   119:2179) → stack "why" (119:2182) → types (119:2043) → testimonials → faq
+	//   (119:2144) → cta (119:2146).
+	//
+	// It adds exactly one new part, `ci-steps.php` — the three-card row whose middle
+	// card is open — and reaches every other section through a value: the figures
+	// band grew a footnote, `ci-grid` grew an intro paragraph and a three-column
+	// track, `ci-types` grew a checklist per card, and `ci-calculator` grew a second
+	// mode. The frame draws no pricing table, no free-tools tabs, no what's-included
+	// cards, no bento, no card carousel, no pinned rail and no logo marquee, so those
+	// sections simply have no key here.
+	//
+	// Like the Property Cashout set it writes its own FAQ questions rather than
+	// taking the site-wide `faq_item` CPT — this frame's six are about business
+	// lending and nothing else.
+	$loan = array(
+		'hero'        => array(
+			'hat'              => '60+ Lenders · 19 Core Partner Banks · Ex-Banker Team',
+			'title'            => 'Compare SME Business Loans With One Application',
+			'text'             => 'One bank’s “no” isn’t the market’s answer. Our team — ex-bankers with 30+ years of combined experience — matches your application against 19 core partner banks and 60+ lenders overall, so you find the one whose criteria actually fit your business.',
+			'button_text'      => 'Check My Eligibility',
+			'button_link'      => '/contact-us',
+			'button_2_text'    => '+65 6012 9642',
+			'button_2_link'    => 'tel:+6560129642',
+			// Figma's whole image group (119:1723), 642x586: the lightbulb badge
+			// overhangs the photo card's top-left corner, so the group is wider and
+			// taller than the 583x484 card. The export carries the badge already, hence
+			// no `badge` here — see the note in template-parts/ci-hero.php.
+			'image'            => 'bl/hero-image.jpg',
+			'image_box'        => 'aspect-[642/586]',
+			'image_col_class'  => 'lg:basis-[642px]',
+			'badge'            => '',
+			// Only the upload branch needs these: where the photo sits inside the group
+			// and where the badge goes back on top of it.
+			'badge_class'      => 'absolute left-[0.8%] top-[12.4%] w-[18.3%] pointer-events-none select-none',
+			'photo_slot_class' => 'absolute left-[9%] top-[14.5%] w-[91%] h-[85.5%] overflow-hidden rounded-2xl',
+			// Figma strikes two of this headline's four lines (119:1714 and 119:1715),
+			// measured against it breaking at 72px in the 703px column.
+			'underline_class'  => 'hidden lg:block absolute left-0 top-[131px] w-[67.6%] rotate-[2.27deg] pointer-events-none select-none',
+			'underline_2_class' => 'hidden lg:block absolute left-0 top-[201px] w-[27.2%] -scale-y-100 rotate-[8.71deg] pointer-events-none select-none',
+			// The five partner banks under the photograph (119:1737 + 119:1750). Figma
+			// draws them as a masked marquee 505px wide inside a 439px frame, which is
+			// why the Standard Chartered wordmark is clipped mid-letter there; only its
+			// mark is carried over. Decoration for the claim the hat makes, so the
+			// logos are theme files and not a client field.
+			'banks'            => array(
+				'label' => 'PARTNER BANKS',
+				'logos' => array(
+					array( 'file' => 'bl/banks/dbs.png', 'name' => 'DBS', 'class' => 'h-[26px] lg:h-[32px]' ),
+					array( 'file' => 'bl/banks/citi.png', 'name' => 'Citi', 'class' => 'h-[24px] lg:h-[30px]' ),
+					array( 'file' => 'bl/banks/ocbc.png', 'name' => 'OCBC', 'class' => 'h-[26px] lg:h-[32px]' ),
+					array( 'file' => 'bl/banks/uob.png', 'name' => 'UOB', 'class' => 'h-[26px] lg:h-[32px]' ),
+					array( 'file' => 'bl/banks/standard-chartered.png', 'name' => 'Standard Chartered', 'class' => 'h-[28px] lg:h-[34px]' ),
+				),
+			),
+		),
+		// The figures band (119:1751). Same four-figure navy pill the Corporate Tax
+		// page draws, plus the footnote this frame writes under it (119:1795): the
+		// headline rate is a flat rate, and saying so under the number is the point.
+		'stats'       => array(
+			'note'  => '*Flat rate example — your actual rate depends on the lender and your profile. Ask us for the Effective Interest Rate (EIR) equivalent, which reflects the true cost more accurately than a flat rate.',
+			'cards' => array(
+				1 => array(
+					'icon'  => 'lightning',
+					'value' => 'From 4.05%*',
+					'label' => 'Flat Rate P.A.',
+				),
+				2 => array(
+					'icon'  => 'calendar-dots',
+					'value' => '2-4 Weeks',
+					'label' => 'Standard Full Approval',
+				),
+				3 => array(
+					'icon'  => 'clock-countdown',
+					'value' => '24Hrs',
+					'label' => 'Initial Eligibility Match',
+				),
+				4 => array(
+					'icon'  => 'shield-check',
+					'value' => '30+ Years',
+					'label' => 'Combined Ex-Banker Experience',
+				),
+			),
+		),
+		// "Get Funded in 3 Simple Steps" (119:1796): three cards, the middle one open.
+		// Figma writes copy for that one only and draws its own mouse cursor over it —
+		// the same situation template-parts/roa-block.php is in, and the reason the
+		// open card is "the first one with copy" rather than a field.
+		'steps'       => array(
+			'heading' => 'Get Funded in 3 Simple Steps',
+			'cards'   => array(
+				1 => array(
+					'icon'  => 'file-arrow-up',
+					'title' => 'Send Your Financial Documents',
+					'text'  => '',
+				),
+				2 => array(
+					'icon'  => 'chart-bar',
+					'title' => 'Get a Free Comparison Report',
+					'text'  => 'Our ex-banker team reviews your profile and shows which lenders actually fit, with real rate comparisons.',
+				),
+				3 => array(
+					'icon'  => 'hand-coins',
+					'title' => 'Get Your Funding',
+					'text'  => '',
+				),
+			),
+		),
+		// "Estimate Your Loan Repayments" (119:1825). The same navy calculator panel
+		// the Corporate Tax page draws, in its second mode: three inputs and a flat-rate
+		// instalment instead of one input and an exemption. `mode` is a per-page
+		// default because it is which frame the design draws — see the note in
+		// template-parts/ci-calculator.php.
+		'calculator'  => array(
+			'mode'         => 'loan',
+			'hat'          => 'Free Tools',
+			'heading'      => 'Estimate Your Loan Repayments',
+			'text'         => 'A quick indicative estimate based on flat rate pricing — not a loan offer.',
+			'title'        => 'Business Loan Calculator',
+			'panel_text'   => 'Enter your loan amount, tenure, and rate to estimate your monthly instalment.',
+			'amount_label' => 'Loan amount (S$)',
+			'placeholder'  => 'e.g. 200,000',
+			'tenure_label' => 'Loan tenure (years)',
+			// The tenures the frame's control offers. Figma draws the closed select
+			// showing "3 Years" and no open state, so the list is the control's own
+			// vocabulary — the EFS working capital ceiling is 5 years and the fixed
+			// asset one 15, which is what the range spans.
+			'tenures'      => array( 1, 2, 3, 4, 5, 7, 10, 15 ),
+			'tenure'       => 3,
+			'rate_label'   => 'Flat interest rate (% p.a.)',
+			'rate'         => '4.05',
+			'button_text'  => 'Calculate Repayment',
+			'button_link'  => '/contact-us',
+			'result_label' => 'Estimated monthly instalment',
+			'saved_label'  => 'Total repayable over the tenure',
+			'error_text'   => 'Enter a loan amount to see an estimate.',
+			'currency'     => 'S$',
+			'disclaimer'   => 'Based on flat rate methodology: interest is calculated on the original loan amount for the full tenure. This is illustrative only — your actual rate and approved amount depend on the lender and your company’s credit profile. Ask us for the Effective Interest Rate (EIR) equivalent for a true cost comparison.',
+		),
+		// "What Actually Determines Loan Approval" (119:1871): five icon cards in three
+		// columns with a photograph in the fifth cell — the same shape the Accounting
+		// page's "Same Firm" grid has, so it is a `ci-grid` instance rather than a part
+		// of its own. Three equal columns, which six columns can't divide, hence the
+		// track below.
+		'grid'        => array(
+			'approval' => array(
+				'hat'           => 'Is This You?',
+				'heading'       => 'What Actually Determines Loan Approval',
+				'text'          => 'A rejection rarely means “no bank will lend to you” — it usually means one bank’s specific criteria didn’t match your profile.',
+				'align'         => 'left',
+				'grid_class'    => 'lg:grid-cols-3',
+				'section_class' => 'py-xl lg:py-[40px]',
+				'cards'         => array(
+					1 => array(
+						'icon'  => 'question',
+						'title' => 'Your Bank Said No — Without Explaining Why',
+						'text'  => 'Approval depends on your personal credit profile, which bank you go with, existing banking relationships, and even how you answer credit questions — factors that vary hugely between institutions.',
+						'class' => 'lg:min-h-[404px]',
+					),
+					2 => array(
+						'icon'  => 'seal-warning',
+						'title' => 'You Don’t Want a “Black Mark”',
+						'text'  => 'A rejected application can leave a mark in a bank’s internal records, making future applications to that same bank harder. Getting matched right the first time avoids this.',
+						'class' => 'lg:min-h-[404px]',
+					),
+					3 => array(
+						'icon'  => 'arrows-split',
+						'title' => 'Different Banks, Wildly Different Answers',
+						'text'  => 'You could get rejected by one major bank and approved for S$100,000 by another — because each institution’s risk appetite and required paperwork genuinely differ that much.',
+						'class' => 'lg:min-h-[404px]',
+					),
+					4 => array(
+						'icon'  => 'calendar-dots',
+						'title' => 'Your Proposal Paperwork Isn’t Bank-Ready',
+						'text'  => 'Weak financial documentation or a poorly prepared credit proposal is one of the most common reasons for rejection or a lower-than-expected loan amount.',
+						'class' => 'lg:min-h-[378px]',
+					),
+					5 => array(
+						'photo' => 'bl/grid-photo.jpg',
+						// The photograph is cropped to the cell's own proportion at the design's
+						// 1440px and drawn from its bottom edge, so it fills the cell rather than
+						// reaching over the row above it — this frame's cards carry copy right down
+						// to their bottom padding, and the grid's row gap is only 15px. The corners
+						// are the cell's rather than baked into the JPEG.
+						'class' => 'lg:min-h-[378px] overflow-hidden rounded-lg',
+					),
+					6 => array(
+						'icon'  => 'binoculars',
+						'title' => 'You Want an Ex-Banker’s Perspective',
+						'text'  => 'Our team has 30+ years of combined banking experience — we know what banks are actually assessing before you submit, not after you’re rejected.',
+						'class' => 'lg:min-h-[378px]',
+					),
+				),
+			),
+		),
+		// "One Application, Matched Against 60+ Lenders" (119:1932): section copy and
+		// two contact cards on the left, the free-assessment card on the right. That is
+		// template-parts/ci-ways.php exactly, down to the arrow at the far right of
+		// each card — this frame just prices nothing, so the card's price and pills are
+		// empty and the part skips them.
+		'ways'        => array(
+			'hat'     => 'How It Works',
+			'heading' => 'One Application, Matched Against 60+ Lenders',
+			'text'    => 'We take your business profile once and match it against banks, digital lenders, and government-backed schemes — rather than you filling out the same form 20 times.',
+			'cards'   => array(
+				1 => array(
+					'icon'  => 'envelope-simple',
+					'title' => 'Check My Eligibility',
+					'text'  => 'Free, non-obligatory assessment',
+				),
+				2 => array(
+					'icon'  => 'phone',
+					'title' => 'Talk to Our Financing Team',
+					'text'  => 'Direct advisory, not a call centre',
+				),
+			),
+			'plan'    => array(
+				'badge'       => 'FREE ASSESSMENT',
+				'title'       => 'No Cost to Find Out Where You Stand',
+				'text'        => 'Our loan assessment and lender comparison are entirely free. If you choose to engage us to manage your application, that service is subject to a fee — we’ll walk you through it upfront before anything is charged.',
+				'price'       => '',
+				'badge_1'     => '',
+				'badge_2'     => '',
+				'features'    => array(
+					1 => 'Free assessment and lender comparison, no obligation',
+					2 => 'One profile matched across our full lender panel',
+					3 => 'Clear engagement terms explained before you commit',
+				),
+				'button_text' => 'Get My Free Assessment',
+				'button_link' => '/contact-us',
+			),
+		),
+		// Two frames of the overlapping-card shape (119:1991 + 119:1995 + 119:2179, and
+		// 119:2182). `photo` says which side the photograph takes: "Built by Bankers"
+		// puts it right, "Why Choose Think SME" puts it left.
+		'stack'       => array(
+			'bankers' => array(
+				'hat'       => 'Why Think SME',
+				'heading'   => 'Built by Bankers, Not Just Brokers',
+				'photo'     => 'right',
+				'image'     => 'bl/bankers-photo.jpg',
+				'image_box' => 'aspect-[1090/1075]',
+				'cards'     => array(
+					1 => array(
+						'icon'  => 'chart-line-up',
+						'title' => 'We Read Financials Like a Bank Does',
+						'text'  => 'Our team’s banking background means we know how your numbers will actually be assessed, before you apply.',
+					),
+					2 => array(
+						'icon'  => 'stack',
+						'title' => 'Same Firm for Compliance and Financing',
+						'text'  => 'Your accounts and structure are already clean because we likely handle your incorporation and bookkeeping too.',
+					),
+					3 => array(
+						'icon'  => 'user-focus',
+						'title' => 'A Person, Not a Portal',
+						'text'  => 'Our financing team works your application personally — not an algorithm that stops responding after a rejection.',
+					),
+					4 => array(
+						'icon'  => 'scales',
+						'title' => 'Genuinely Independent',
+						'text'  => 'We’re not tied to one bank — 60+ lenders means we recommend what fits you, not what pays us most.',
+					),
+					5 => array(
+						'icon'  => 'shield-check',
+						'title' => '',
+						'text'  => '',
+					),
+				),
+			),
+			'why'     => array(
+				'hat'       => 'Why Think SME',
+				'heading'   => 'Why Choose Think SME for SME Business Loans in Singapore?',
+				'photo'     => 'left',
+				'image'     => 'bl/why-photo.jpg',
+				'image_box' => 'aspect-[1094/1128]',
+				'cards'     => array(
+					1 => array(
+						'icon'  => 'trend-down',
+						'title' => 'Access to 60+ Banks & Financial Institutions',
+						'text'  => 'Best rate guaranteed — we compare across our full panel, including 19 core partner banks, so you never overpay.',
+					),
+					2 => array(
+						'icon'  => 'stack',
+						'title' => 'Dedicated Business Loan Advisors',
+						'text'  => 'Ex-bankers with 30+ years of combined experience — expert guidance tailored to your industry, not generic advice.',
+					),
+					3 => array(
+						'icon'  => 'lock-key-open',
+						'title' => 'Full In-House Corporate Services',
+						'text'  => 'We handle your accounting, secretarial, and grants while securing your loan.',
+					),
+					4 => array(
+						'icon'  => 'house',
+						'title' => 'Free Eligibility Assessment Within 24 Hours',
+						'text'  => 'Know your options before committing to anything — zero cost, zero obligation.',
+					),
+					5 => array(
+						'icon'  => 'calendar-dots',
+						'title' => 'Grant Advisory Integration',
+						'text'  => 'Maximise EDG, PSG & MRA grants alongside your financing strategy.',
+					),
+				),
+			),
+		),
+		// "Financing Options at a Glance" (119:2043): three photo-topped columns whose
+		// headline is the ceiling. The Property Cashout page's `ci-types` in three
+		// columns instead of four, with the checklist this frame adds under each
+		// description.
+		'types'       => array(
+			'hat'        => 'Loan Types',
+			'heading'    => 'Financing Options at a Glance',
+			'text'       => '',
+			'grid_class' => 'lg:grid-cols-3',
+			'image_box'  => 'aspect-[405/300]',
+			'cards'      => array(
+				1 => array(
+					'label'    => 'EFS Working Capital Loan',
+					'value'    => 'Up to S$500,000',
+					'text'     => 'Government risk-shared loan for day-to-day operating needs, up to 5-year repayment.',
+					'image'    => 'bl/type-working-capital.jpg',
+					'features' => array(
+						1 => '30% local shareholding required',
+						2 => 'Repayment up to 5 years',
+						3 => 'Shared risk with Enterprise Singapore',
+					),
+				),
+				2 => array(
+					'label'    => 'EFS Fixed Asset Loan',
+					'value'    => 'Up to S$30 million',
+					'text'     => 'For equipment, machinery, or business premises, with tenure up to 15 years.',
+					'image'    => 'bl/type-fixed-asset.jpg',
+					'features' => array(
+						1 => 'Covers property & equipment purchase',
+						2 => 'Up to 15-year tenure',
+						3 => 'Available through DBS, OCBC, UOB',
+					),
+				),
+				3 => array(
+					'label'    => 'Trade & Invoice Financing',
+					'value'    => 'Up to S$10 million',
+					'text'     => 'Unlocks cash tied up in receivables, inventory, or overseas trade cycles.',
+					'image'    => 'bl/type-trade.jpg',
+					'features' => array(
+						1 => 'Inventory & factoring financing',
+						2 => 'Overseas working capital',
+						3 => 'Bank guarantees included',
+					),
+				),
+				4 => array(
+					'label'    => '',
+					'value'    => '',
+					'text'     => '',
+					'image'    => '',
+					'features' => array(),
+				),
+			),
+		),
+		// The six questions this frame writes (119:2144). Only the first has an answer
+		// on the canvas; the rest open to just the question until the client fills them
+		// in, exactly as on the Property Cashout page.
+		'faq'         => array(
+			'items' => array(
+				1 => array(
+					'question' => 'What is the Working Capital Loan (WCL)?',
+					'answer'   => 'The SME Working Capital Loan is a government-assisted financing scheme under the Enterprise Financing Scheme (EFS-WCL), helping SMEs finance operational cash flow needs. Eligible businesses can access up to S$500,000, with risk shared 50/50 between the lender and Enterprise Singapore.',
+				),
+				2 => array(
+					'question' => 'Why shouldn’t I just apply to banks myself?',
+					'answer'   => '',
+				),
+				3 => array(
+					'question' => 'Why would one bank reject me but another approve me?',
+					'answer'   => '',
+				),
+				4 => array(
+					'question' => 'Can I take a new loan if I already have a WCL?',
+					'answer'   => '',
+				),
+				5 => array(
+					'question' => 'How fast can I get funded?',
+					'answer'   => '',
+				),
+				6 => array(
+					'question' => 'How much do I have to pay you?',
+					'answer'   => '',
+				),
+			),
+		),
+		'cta'         => array(
+			'image' => 'bl/cta-photo.jpg',
+		),
+	);
+
+	// The Remittance page, Figma frame 123:2687 ("Desktop Remittance", file
+	// "Untitled", vzdpOnH1U36oXcFcugiyE5). The shortest frame in the family — four
+	// sections and a footer — read off the canvas:
+	//
+	//   hero (123:2689 + 123:2701) → grid "why_ofx" (123:2715) → signup (123:2747 +
+	//   123:2748 + the two flanking photographs) → faq → cta.
+	//
+	// It is a partner page rather than a service page: the offer is OFX's rates
+	// through Think SME, which is why the hero opens on OFX's logo instead of a hat
+	// pill and why the copy names the partner throughout.
+	//
+	// One new part, `ci-signup.php`. Everything else is a value: the hero's `logo`
+	// slot and, on the grid, a pale panel with white cards (`panel_class` /
+	// `card_class`). The frame draws no pricing, no free tools, no figures band, no
+	// calculator, no what's-included, no bento, no carousel, no pinned rail, no logo
+	// marquee and no Google Reviews, so none of those sections have a key here.
+	//
+	// Its FAQ is the **site-wide** one: unlike Property Cashout and Business Loan
+	// this frame draws the same six questions the homepage does, so the set names no
+	// `faq` list and faq.php falls back to the `faq_item` CPT. Its final CTA is the
+	// site-wide one too, photograph included, so there is no `cta` key either.
+	$remittance = array(
+		'hero'   => array(
+			// The hat is unused on this page — the logo below takes its place — but it
+			// stays defined so the field has something to fall back to if the client
+			// clears the logo out of the theme.
+			'hat'              => 'Remittance',
+			'logo'             => 'rm/ofx-logo.svg',
+			'logo_alt'         => 'OFX',
+			'logo_class'       => 'h-[48px] lg:h-[64px] w-auto',
+			'title'            => 'Save with OFX and Think SME partner rates',
+			'text'             => 'Whether your business is paying international suppliers, overseas staff or selling to a global customer base, understanding your foreign exchange expenses could mean savings for your business.',
+			'button_text'      => 'Sign Up with OFX',
+			'button_link'      => '/contact-us',
+			'button_2_text'    => '+65 6012 9642',
+			'button_2_link'    => 'tel:+6560129642',
+			// Figma's whole image group (123:2701), 642x523: the lightbulb badge
+			// overhangs the photo card's top-left corner, so the group is bigger than
+			// the 537x403 card. The export carries the badge already, hence no `badge`.
+			'image'            => 'rm/hero-image.jpg',
+			'image_box'        => 'aspect-[642/523]',
+			'image_col_class'  => 'lg:basis-[642px]',
+			'badge'            => '',
+			'badge_class'      => 'absolute left-[0.8%] top-[2.1%] w-[19.5%] pointer-events-none select-none',
+			'photo_slot_class' => 'absolute left-[9.2%] top-[16.1%] w-[90.8%] h-[83.9%] overflow-hidden rounded-2xl',
+			// One stroke, and it is mid-headline rather than under a whole line: Figma
+			// strikes the word "OFX" on the second line (123:2690), at 7.74deg.
+			'underline_file'   => 'rm/hero-underline.svg',
+			// Measured against the headline breaking across three lines at 72px: the stroke
+			// goes under the word "OFX" on the first line, not under a whole line, and the
+			// 7.74deg is baked into that vector rather than applied here.
+			'underline_class'  => 'hidden lg:block absolute left-[51.6%] top-[62px] w-[23.9%] pointer-events-none select-none',
+		),
+		// "Why Use OFX?" (123:2715): three centred icon cards, but on a pale panel with
+		// white cards rather than on the page with pale ones — the two class strings
+		// below are the whole difference from the Accounting page's centred grid.
+		'grid'   => array(
+			'why_ofx' => array(
+				'hat'           => 'Complete Corporate Services',
+				'heading'       => 'Why Use OFX?',
+				'align'         => 'center',
+				'grid_class'    => 'lg:grid-cols-3',
+				'section_class' => 'py-xl lg:py-[40px]',
+				'panel_class'   => 'bg-surface-panel rounded-[40px] lg:rounded-[56px] px-lg lg:px-[56px] py-xl lg:py-[112px]',
+				'card_class'    => 'bg-surface-white',
+				'cards'         => array(
+					1 => array(
+						'icon'  => 'star',
+						'title' => 'Enjoy Preferential Rates',
+						'text'  => 'Preferential exchange rates and no OFX fees on FX transfers* = real savings back into your wallet.',
+						'class' => 'lg:min-h-[345px]',
+					),
+					2 => array(
+						'icon'  => 'shield-check',
+						'title' => '24/7 OFXPERTS',
+						'text'  => 'Speak to a currency specialist 24/7. No long hold queues, no offshore call centres',
+						'class' => 'lg:min-h-[345px]',
+					),
+					3 => array(
+						'icon'  => 'user-sound',
+						'title' => 'Ease Of Use',
+						'text'  => 'Login and track your transfers when, where and how you want online or via the OFX app.',
+						'class' => 'lg:min-h-[345px]',
+					),
+				),
+			),
+		),
+		// The sign-up band (123:2747 + 123:2748). The asterisk on "FX Transfers*" is
+		// the design's own — it points at the fee note in the first card above.
+		'signup' => array(
+			'heading'       => 'Sign Up With OFX And Start Saving On FX Transfers*.',
+			'button_text'   => 'Sign Up With OFX',
+			'button_link'   => '/contact-us',
+			'button_2_text' => 'Download Brochure',
+			'button_2_link' => '/contact-us',
+			'photo_left'    => 'rm/signup-left.jpg',
+			'photo_right'   => 'rm/signup-right.jpg',
+		),
+	);
+
+	// The Mortgage Loans page, Figma frame 124:3265 ("Desktop mortgage-loans", file
+	// "Untitled", vzdpOnH1U36oXcFcugiyE5). Read off the canvas:
+	//
+	//   hero (124:3267 + 124:3523) → logos-slider with its own caption (124:3605) →
+	//   stats (124:3281) → grid "types" (124:3326) → ways (124:3537) → grid "why"
+	//   (124:3399, on a navy panel) → grid "decision" (124:3372) → testimonials →
+	//   faq → cta.
+	//
+	// It adds **no new template part at all** — the first page in the family that
+	// doesn't. What it needed instead were five optional bits inside sections that
+	// already existed: the hero's promotional pill and its own second brush stroke,
+	// the marquee's caption, a fourth check plus small print on the ways card, and on
+	// the grid a per-instance header colour (for the navy panel) and an optional
+	// figure between a card's title and its copy (for the two rate cards).
+	//
+	// Three `ci-grid` instances, which is what that part is for: `types` is the four
+	// centred cards, `why` the navy panel, `decision` the fixed-or-floating pair.
+	//
+	// Its FAQ and its final CTA are the site-wide ones — this frame draws the
+	// homepage's own questions and closing photograph — so there is no `faq` list and
+	// no `cta` key here.
+	$mortgage = array(
+		'hero'   => array(
+			'hat'               => '19 Banks Compared · Free Broker Service',
+			'title'             => 'Compare Best Mortgage Rates Across 19 Banks in One Call',
+			'text'              => 'Whether you’re buying your first home or refinancing an existing loan, one conversation with our team gets you rates from every major bank — including promotional pricing banks don’t publish.',
+			// Figma's own label reads "Copare My Rate" (124:3279). That is a typo, not
+			// copy — the same frame's headline spells the word — so it ships corrected
+			// rather than verbatim, unlike the duplication artefacts the Foreign and GST
+			// sets keep.
+			'button_text'       => 'Compare My Rate',
+			'button_link'       => '/contact-us',
+			'button_2_text'     => '+65 6012 9642',
+			'button_2_link'     => 'tel:+6560129642',
+			// The wide pill above the buttons (124:3274).
+			'promo_text'        => 'Promotional Cash Rebate of Up to S$1,000',
+			// Figma's whole image group (124:3523), 594x519: the lightbulb badge overhangs
+			// the photo card's top-left corner, so the group is bigger than the 575x457
+			// card. The export carries the badge already, hence no `badge`.
+			'image'             => 'ml/hero-image.jpg',
+			'image_box'         => 'aspect-[594/519]',
+			'body_class'        => 'lg:basis-[656px]',
+			'image_col_class'   => 'lg:basis-[594px]',
+			'badge'             => '',
+			'badge_class'       => 'absolute left-[16.8%] top-0 w-[21.1%] pointer-events-none select-none',
+			'photo_slot_class'  => 'absolute left-0 top-[12.1%] w-[100%] h-[87.9%] overflow-hidden rounded-2xl',
+			// 64px, not the 72px five of the frames draw.
+			'title_class'       => 'lg:text-[64px]',
+			// Two strokes of different lengths: a short one under "Best" on the first line
+			// (124:3270) and a long one under "Mortgage Rates" on the second (124:3271),
+			// which runs on past the words. Each is its own vector, since scaling one to the
+			// other's width changes its weight. Measured against this headline breaking
+			// across four lines at 64px in the 656px column, which is what Figma renders —
+			// its 701px text box is wider than the text needs.
+			'underline_file'    => 'ml/hero-underline-short.svg',
+			'underline_class'   => 'hidden lg:block absolute left-[45.9%] top-[60px] w-[19.6%] pointer-events-none select-none',
+			'underline_2_file'  => 'ml/hero-underline.svg',
+			'underline_2_class' => 'hidden lg:block absolute left-0 top-[112px] w-[70.3%] pointer-events-none select-none',
+		),
+		// The marquee's own small print (124:3614). The logos are the site-wide
+		// certifications group, same as every other page's marquee.
+		'logos'  => array(
+			'caption' => '*Cash rebate applies to selected packages only. Terms and conditions apply — ask us for full details during your consultation.',
+		),
+		// The rates band (124:3281). Four figures and the line that says they move.
+		'stats'  => array(
+			'note'  => 'Indicative rates, subjected to change from time to time — confirm up to date pricing during your consultation.',
+			'cards' => array(
+				1 => array(
+					'icon'  => 'trend-down',
+					'value' => '~1.27%',
+					'label' => 'Lowest Floating (Private)',
+				),
+				2 => array(
+					'icon'  => 'calendar-check',
+					'value' => '~1.30%',
+					'label' => 'Lowest Fixed (2-Year)',
+				),
+				3 => array(
+					'icon'  => 'percent',
+					'value' => '2.60%',
+					'label' => 'HDB Concessionary Rate',
+				),
+				4 => array(
+					'icon'  => 'bank',
+					'value' => '19',
+					'label' => 'Banks Compared',
+				),
+			),
+		),
+		'grid'   => array(
+			// "Switching to Think SME, Without the Hassle" (124:3326): four centred cards,
+			// no hat. The heading is the frame's own — it is the Accounting page's wording
+			// over a different set of cards, a duplication artefact like the Foreign
+			// frame's leftovers, and it ships verbatim.
+			'types'    => array(
+				'hat'           => '',
+				'heading'       => 'Switching to Think SME, Without the Hassle',
+				'align'         => 'center',
+				'grid_class'    => 'lg:grid-cols-4',
+				'section_class' => 'py-xl lg:py-[40px]',
+				'cards'         => array(
+					1 => array(
+						'icon'  => 'house-line',
+						'title' => 'New Home Purchase',
+						'text'  => 'HDB, condo, or landed — matched to the right package for your buyer profile.',
+						'class' => 'lg:min-h-[339px]',
+					),
+					2 => array(
+						'icon'  => 'arrows-clockwise',
+						'title' => 'Refinancing',
+						'text'  => 'Switch to a lower rate once your lock-in ends — most borrowers overpay simply by not reviewing.',
+						'class' => 'lg:min-h-[339px]',
+					),
+					3 => array(
+						'icon'  => 'chart-line',
+						'title' => 'Fixed vs. Floating (SORA)',
+						'text'  => 'We explain the real trade-off, not just the headline rate, based on your risk comfort.',
+						'class' => 'lg:min-h-[339px]',
+					),
+					4 => array(
+						'icon'  => 'bank',
+						'title' => 'HDB vs. Bank Loan',
+						'text'  => 'We help you weigh the HDB concessionary rate against current bank packages.',
+						'class' => 'lg:min-h-[339px]',
+					),
+				),
+			),
+			// "Same Team for Your Mortgage and Your Business" (124:3399): the same grid on a
+			// navy panel with white cards, which is why the header block names its own
+			// colours.
+			'why'      => array(
+				'hat'           => 'Why Think SME',
+				'heading'       => 'Same Team for Your Mortgage and Your Business',
+				'align'         => 'left',
+				'grid_class'    => 'lg:grid-cols-4',
+				'section_class' => 'py-xl lg:py-[40px]',
+				'panel_class'   => 'bg-surface-dark rounded-[40px] lg:rounded-[56px] px-lg lg:px-[56px] py-xl lg:py-[64px]',
+				'card_class'    => 'bg-surface-white',
+				'heading_class' => 'text-text-on-dark',
+				'hat_class'     => 'bg-surface-white border-brand-yellow-border text-text-primary',
+				'cards'         => array(
+					1 => array(
+						'icon'  => 'buildings',
+						'title' => 'One Consultation, 19 Banks',
+						'text'  => 'We do the calling. You get a side-by-side comparison, not 19 separate conversations.',
+						'class' => 'lg:min-h-[368px]',
+					),
+					2 => array(
+						'icon'  => 'chart-line-up',
+						'title' => 'Business Owner? We Already Know Your Numbers',
+						'text'  => 'If we handle your accounting or incorporation, your mortgage application is faster because your financials are already clean.',
+						'class' => 'lg:min-h-[368px]',
+					),
+					3 => array(
+						'icon'  => 'user-circle',
+						'title' => 'A Person, Not a Portal',
+						'text'  => 'Our mortgage team explains the trade-offs — not just the lowest headline rate.',
+						'class' => 'lg:min-h-[368px]',
+					),
+					4 => array(
+						'icon'  => 'bell-ringing',
+						'title' => 'We Flag Refinancing Windows',
+						'text'  => 'Once you’re a client, we tell you when your lock-in is ending — before your rate quietly resets higher.',
+						'class' => 'lg:min-h-[368px]',
+					),
+				),
+			),
+			// "Fixed or Floating (SORA)?" (124:3372): two centred cards, each with its rate
+			// between the title and the copy — the `value` slot that instance is the only
+			// user of.
+			'decision' => array(
+				'hat'           => 'The Big Decision',
+				'heading'       => 'Fixed or Floating (SORA)?',
+				// The frame repeats the figures band's disclaimer under these two cards
+				// (124:3604), which is where the rates it qualifies actually are.
+				'note'          => 'Indicative rates, subjected to change from time to time — confirm up to date pricing during your consultation.',
+				'align'         => 'center',
+				'grid_class'    => 'lg:grid-cols-2',
+				'section_class' => 'py-xl lg:py-[40px]',
+				'cards'         => array(
+					1 => array(
+						'icon'  => 'lock-key',
+						'title' => 'Fixed Rate',
+						'value' => '~1.30% (2-Year)',
+						'text'  => 'Payment stability for the lock-in period — no surprises if the market moves. Best if you value certainty or plan to hold the loan through the full lock-in.',
+						'class' => 'lg:min-h-[383px]',
+					),
+					2 => array(
+						'icon'  => 'trend-up',
+						'title' => 'Floating (SORA-Pegged)',
+						'value' => '~1.27%',
+						'text'  => 'Tracks the market benchmark plus a bank spread. Can be cheaper when SORA is low or falling, but instalments move if rates rise. Suits borrowers comfortable with some variability.',
+						'class' => 'lg:min-h-[383px]',
+					),
+				),
+			),
+		),
+		// "One Conversation Instead of 19 Calls" (124:3537): the same two-column section
+		// the incorporation and Business Loan frames draw, with four checks and a line
+		// of small print in the card.
+		'ways'   => array(
+			'hat'           => 'How It Works',
+			'heading'       => 'One Conversation Instead of 19 Calls',
+			// Figma sets this heading in a 602px box rather than the 512px the other frames
+			// use, which is what breaks it across two lines instead of four.
+			'heading_class' => 'max-w-[602px]',
+			'text'    => 'Tell us once what you need — purchase or refinance, property type, loan size — and we bring back real offers from across our banking panel.',
+			'cards'   => array(
+				1 => array(
+					'icon'  => 'chart-line-up',
+					'title' => 'Compare My Rate',
+					'text'  => 'Free, no obligation',
+				),
+				2 => array(
+					'icon'  => 'phone',
+					'title' => 'Talk to Our Mortgage Team',
+					'text'  => 'Direct advisory, not a call centre',
+				),
+			),
+			'plan'    => array(
+				'badge'       => 'Free to you',
+				'title'       => 'Zero Cost, Same Great Rate',
+				'text'        => 'Banks pay us a referral fee upon successful disbursement — your rate is identical to applying direct.',
+				'price'       => '',
+				'badge_1'     => '',
+				'badge_2'     => '',
+				'features'    => array(
+					1 => '19 banks compared in one consultation',
+					2 => 'Access to promotional rates not published online',
+					3 => 'Same rate as applying directly — no premium',
+					4 => 'Up to S$1,000 cash rebate on selected packages*',
+				),
+				'note'        => '*Terms and conditions apply. Ask us which packages qualify.',
+				'button_text' => 'Compare My Rate',
+				'button_link' => '/contact-us',
+			),
+		),
+	);
+
 	return array(
 		'local'      => $local,
 		'foreign'    => $foreign,
@@ -1615,6 +2744,10 @@ function thinksme_ci_content() {
 		'accounting' => $accounting,
 		'tax'        => $tax,
 		'gst'        => $gst,
+		'cashout'    => $cashout,
+		'loan'       => $loan,
+		'remittance' => $remittance,
+		'mortgage'   => $mortgage,
 	);
 }
 

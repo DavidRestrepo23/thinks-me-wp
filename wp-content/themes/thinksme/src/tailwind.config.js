@@ -32,7 +32,10 @@ module.exports = {
           faint: "#f8f8f8",
           panel: "#fbfbfb",
           "navy-deep": "#10243c",
+          "navy-rich": "#0b2558",
+          slate: "#515f7b",
           "success-soft": "#e8f8ee",
+          "yellow-pale": "#f8f7e5",
         },
         text: {
           primary: "#242424",
@@ -50,6 +53,7 @@ module.exports = {
           light: "#cacaca",
           faint: "#e8e8e8",
           hairline: "#f5f5f5",
+          pale: "#f3f3f3",
           focus: "#316bb4",
           "brand-dark": "#204574",
           success: "#2d8f51",

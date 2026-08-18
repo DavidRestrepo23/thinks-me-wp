@@ -81,6 +81,16 @@
   --color-surface-navy-deep: #10243c;
   /* green/100 — the "filed on time" side of that same comparison */
   --color-surface-success-soft: #e8f8ee;
+  /* brand/900 — the Property Cashout comparison table's own column and the three
+     figure pills over that page's hero photo. A step lighter than
+     --color-surface-navy-deep and a step deeper than --color-surface-dark. */
+  --color-surface-navy-rich: #0b2558;
+  /* The "Standard Refinancing" column beside it: the same table header, muted, so
+     the two columns read as ours and theirs rather than as two of ours. */
+  --color-surface-slate: #515f7b;
+  /* yellow/50 — the worked-example callout on the Property Cashout page. Warmer
+     and greener than --color-brand-yellow-tint, which is the calculator's. */
+  --color-surface-yellow-pale: #f8f7e5;
 
   /* Color — text */
   --color-text-primary: #242424;
@@ -107,6 +117,8 @@
   --color-border-faint: #e8e8e8;
   /* Company Incorporation Local: the outer pricing cards, barely off white */
   --color-border-hairline: #f5f5f5;
+  /* The rules between the Property Cashout comparison table's rows */
+  --color-border-pale: #f3f3f3;
   /* stroke/focus — border of the selected office card on the contact map */
   --color-border-focus: #316bb4;
   /* stroke/brand/dark — underline on the nav item whose megamenu is open */
@@ -1466,7 +1478,7 @@ button.btn-split {
    (template-parts/roa-block.php, Figma node 67:211).
 
    Every card ships the same markup; which one is open is the `data-active`
-   attribute alone, so assets/js/roa-block.js has nothing to do but move it.
+   attribute alone, so assets/js/expand-cards.js has nothing to do but move it.
    Same split as the theme's other card sections: JS owns the state, CSS owns
    the geometry — with the script gone, the card the template marked active
    stays open and the section still reads as the design.
@@ -1822,6 +1834,100 @@ button.roa-card {
 
 .ci-requirements:has(.rail__step:nth-child(5)) .rail__body h3 {
   font-size: clamp(20px, 2.8svh, 28px);
+}
+
+/* A rail whose steps carry a timing label (the Property Cashout process, Figma
+   951:9220) is a third line per step on top of everything above, and with the
+   connector floor already this low the steps are sized by their copy — so five of
+   them come out ~1008px and the script goes back to refusing the pin. That is the
+   one behaviour the client asked to keep working the way the Corporate Tax rail
+   does, so the copy block gives up the rest: the gaps inside it and under it drop
+   a step, the timing label sets solid rather than loose, and the heading and the
+   header's own gap come down with them. Every value is either a token one step
+   down or a clamp that lands back on Figma's number on a tall display.
+
+   Keyed on the label existing rather than on a class the template sets, for the
+   same reason the five-step rules key on the fifth step: the extra line is what
+   makes the panel too tall, `:has` can see it, and neither PHP nor the other two
+   rails have to know.
+
+   Both :has() are chained on purpose. `:has()` takes its argument's specificity,
+   so `:has(.rail__step:nth-child(5))` is (0,2,0) against `:has(.rail__meta)`'s
+   (0,1,0) — the five-step block above would win every value these two share no
+   matter which came last in the file. Chaining makes this the more specific
+   selector, and it reads as what it is: the extra savings a five-step rail that
+   also carries timing labels needs, on top of the ones above. */
+.ci-requirements:has(.rail__step:nth-child(5)):has(.rail__meta) {
+  --rail-connector: clamp(24px, 3.4svh, 126px);
+}
+
+.ci-requirements:has(.rail__step:nth-child(5)):has(.rail__meta) .rail__body {
+  gap: var(--space-xs);
+  padding-bottom: var(--space-xs);
+}
+
+.ci-requirements:has(.rail__step:nth-child(5)):has(.rail__meta) .rail__meta {
+  line-height: var(--line-height-normal);
+}
+
+.ci-requirements:has(.rail__step:nth-child(5)):has(.rail__meta) h2 {
+  font-size: clamp(36px, 4.8svh, 64px);
+}
+
+.ci-requirements:has(.rail__step:nth-child(5)):has(.rail__meta) .ci-requirements__header {
+  gap: var(--space-xs);
+}
+
+/* The last of it comes out of the copy itself, which is what the step heights are
+   made of once the gaps are gone: the body text, the step title and the timing
+   label all scale with the viewport instead of sitting at Figma's 16/20/14px on
+   every screen. 14px is --font-size-xs, already the theme's small-copy size, and
+   every clamp lands back on the design's number by ~840px of viewport — so a
+   laptop gets a slightly tighter rail that pins, and a desktop gets the drawing.
+   Without these the panel floors at ~800px and stops pinning on a 1366x768
+   screen, which is the case the section exists for. */
+.ci-requirements:has(.rail__step:nth-child(5)):has(.rail__meta) .rail__body p {
+  font-size: clamp(14px, 1.9svh, 16px);
+  line-height: 1.5;
+}
+
+.ci-requirements:has(.rail__step:nth-child(5)):has(.rail__meta) .rail__body h3 {
+  font-size: clamp(18px, 2.4svh, 28px);
+}
+
+.ci-requirements:has(.rail__step:nth-child(5)):has(.rail__meta) .rail__meta {
+  font-size: clamp(12px, 1.7svh, 14px);
+}
+
+/* The icon disc comes down with them so the marker column stays in proportion to
+   the copy beside it rather than looming over a tighter block. --rail-connector is
+   measured from it, so the 3px line keeps meeting the discs it joins. */
+.ci-requirements:has(.rail__step:nth-child(5)):has(.rail__meta) .rail__marker,
+.ci-requirements:has(.rail__step:nth-child(5)):has(.rail__meta) .rail__icon {
+  width: clamp(48px, 7.5svh, 64px);
+}
+
+.ci-requirements:has(.rail__step:nth-child(5)):has(.rail__meta) .rail__icon {
+  height: clamp(48px, 7.5svh, 64px);
+}
+
+.ci-requirements:has(.rail__step:nth-child(5)):has(.rail__meta) .rail__step {
+  min-height: calc(clamp(48px, 7.5svh, 64px) + var(--rail-connector));
+}
+
+/* And the cheapest line of all: on a short viewport the rail gets *wider*, so each
+   step's description wraps to fewer lines. Figma draws this rail 588px inside a
+   1392px panel, so the width was never the constraint — the height was, and two
+   lines of copy cost more than 130px of extra width ever will.
+
+   The clamp runs backwards on purpose: as the viewport shortens, `100svh` shrinks
+   and `1400px - 90svh` grows, so the rail opens out to 860px at its widest and
+   settles back on the design's 588px once there is room for it (~900px of
+   viewport). It overrides the template's `max-w-[588px]` on specificity, which is
+   why the width can stay a per-page default in inc/ci-content.php and this stays a
+   short-viewport accommodation rather than a second layout. */
+.ci-requirements:has(.rail__step:nth-child(5)):has(.rail__meta) .rail {
+  max-width: clamp(588px, calc(1400px - 90svh), 860px);
 }
 
 /* ---------------------------------------------------------------------------
@@ -2462,7 +2568,7 @@ button:focus-visible {
 /* ---------------------------------------------------------------------------
    Company Incorporation Local — free-tools tabs (template-parts/ci-tools.php).
 
-   assets/js/ci-tools.js only moves `data-active` / `aria-selected` and toggles
+   assets/js/tabs.js only moves `data-active` / `aria-selected` and toggles
    [hidden]; all of the open/closed appearance is here, so with the script gone
    the first panel is still styled and visible.
 --------------------------------------------------------------------------- */
@@ -2984,6 +3090,50 @@ button:focus-visible {
   opacity: 1;
 }
 
+/* The loan mode's labelled fields (119:1836): the amount and the tenure share a
+   row on the panel and the rate takes its own, which is Figma's arrangement and
+   also the only one that holds when the labels wrap. */
+.ci-calc__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-lg);
+  width: 100%;
+  margin: 0;
+}
+
+@media (min-width: 640px) {
+  .ci-calc__grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.ci-calc__field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+  width: 100%;
+  margin: 0;
+}
+
+.ci-calc__label {
+  font-weight: 500;
+  font-size: var(--font-size-sm);
+  line-height: var(--line-height-snug);
+  color: var(--color-text-on-dark);
+}
+
+/* The caret is the theme's own glyph rather than the platform's, so the control
+   matches the field beside it; `appearance: none` is what hands it over. */
+.ci-calc__select {
+  appearance: none;
+  padding-right: 48px;
+  background-image: var(--ci-calc-caret);
+  background-repeat: no-repeat;
+  background-position: right var(--space-lg) center;
+  background-size: 16px 16px;
+  cursor: pointer;
+}
+
 /* The result is the one thing on this panel Figma doesn't draw — it stops at the
    Calculate button. Built out of the panel's own vocabulary rather than invented:
    the figure takes the pricing card's price size, on the translucent white the
@@ -3028,6 +3178,628 @@ button:focus-visible {
   color: var(--color-brand-yellow);
 }
 
+
+/* ---------------------------------------------------------------------------
+   Property Cashout — paragraph runs inside a field that keeps inline markup
+   (template-parts/ci-definition.php).
+
+   wpautop() wraps each paragraph in its own <p>, and Tailwind's preflight zeroes
+   their margins, so without this a two-paragraph field renders as one block of
+   text. Only `p + p` carries the gap: a single paragraph needs no margin, and the
+   block's own wrapper already spaces it from what's around it.
+--------------------------------------------------------------------------- */
+.entry-copy > p + p {
+  margin-top: var(--space-md);
+}
+
+/* ---------------------------------------------------------------------------
+   Property Cashout — "Property Cashout vs Traditional Mortgage Refinancing"
+   (template-parts/ci-compare.php), Figma 951:9077.
+
+   One grid rather than a <table>, because below lg each row has to become a
+   stack of its two sides and a table cannot do that without giving up the
+   semantics it was chosen for. Each `.ci-compare__row` is `display: contents`
+   from lg, so its two cells become items of this grid and line up across rows;
+   below lg it is a card of its own and the row's cells sit inside it.
+--------------------------------------------------------------------------- */
+.ci-compare {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-md);
+}
+
+@media (min-width: 1024px) {
+  .ci-compare {
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+    border-radius: var(--radius-sm);
+    /* The header's own corners are rounded into this, and the last row's are
+       clipped square by it — which is how the design draws the table. */
+    overflow: hidden;
+  }
+}
+
+/* The two column headers exist only from lg. Below it the header would be eight
+   rows above the cell it names, so each cell carries its own tag instead. */
+.ci-compare__head {
+  display: none;
+}
+
+@media (min-width: 1024px) {
+  .ci-compare__head {
+    display: block;
+    padding: var(--space-lg) 40px;
+    font-weight: 500;
+    font-size: var(--font-size-sm);
+    line-height: var(--line-height-loose);
+    color: var(--color-text-on-dark);
+  }
+
+  /* Ours is the brand navy; theirs is the same header muted, so the two columns
+     read as ours and theirs rather than as two of ours. */
+  .ci-compare__head[data-tone="ours"] {
+    background-color: var(--color-surface-navy-rich);
+  }
+
+  .ci-compare__head[data-tone="theirs"] {
+    background-color: var(--color-surface-slate);
+  }
+}
+
+.ci-compare__row {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+  padding: var(--space-lg);
+  background-color: var(--color-surface-white);
+  border: 1px solid var(--color-border-pale);
+  border-radius: var(--radius-sm);
+}
+
+@media (min-width: 1024px) {
+  .ci-compare__row {
+    /* The two cells become items of .ci-compare itself, which is the only way a
+       row's halves can share a height with the halves of every other row. */
+    display: contents;
+  }
+}
+
+.ci-compare__cell {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-md);
+}
+
+@media (min-width: 1024px) {
+  .ci-compare__cell {
+    gap: var(--space-md);
+    padding: var(--space-lg) 40px;
+    background-color: var(--color-surface-white);
+    border-bottom: 1px solid var(--color-border-pale);
+  }
+
+  /* The rule between the columns, drawn once on the left-hand cell so it can't
+     double up against the table's own edge. */
+  .ci-compare__cell[data-tone="theirs"] {
+    border-left: 1px solid var(--color-border-pale);
+  }
+}
+
+.ci-compare__body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+  min-width: 0;
+}
+
+/* Which column this cell belongs to, in words, for the stacked layout only. */
+.ci-compare__tag {
+  align-self: flex-start;
+  margin-bottom: 4px;
+  padding: 2px var(--space-xs);
+  border-radius: var(--radius-pill);
+  background-color: var(--color-surface-faint);
+  font-weight: 500;
+  font-size: 12px;
+  line-height: var(--line-height-loose);
+  letter-spacing: var(--tracking-widest);
+  text-transform: uppercase;
+  color: var(--color-text-secondary);
+}
+
+@media (min-width: 1024px) {
+  .ci-compare__tag {
+    display: none;
+  }
+}
+
+.ci-compare__badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 32px;
+  height: 32px;
+}
+
+/* Both badges are Figma's rounded squares at a 10px radius, not circles — the
+   check badges elsewhere in the theme (roa-plan.php's benefit dots) are pills, so
+   this is worth being explicit about. */
+.ci-compare__badge {
+  border-radius: 10px;
+}
+
+.ci-compare__badge[data-tone="ours"] {
+  background-color: var(--color-accent-green);
+}
+
+.ci-compare__badge[data-tone="theirs"] {
+  background-color: var(--color-brand-yellow);
+}
+
+/* ---------------------------------------------------------------------------
+   Property Cashout — the overlapping card column (template-parts/ci-stack.php),
+   Figma 951:9562 + 951:9605 and 951:9490 + 951:9545.
+
+   The cards pull up over the one before them and each has to paint above its
+   predecessor, so the stacking order is a z-index per slot (--ci-stack-index,
+   set by PHP) rather than a class per card. The last card is the design's navy
+   one and is marked by position, not by a field — see the note in the template.
+--------------------------------------------------------------------------- */
+.ci-stack {
+  display: flex;
+  flex-direction: column;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.ci-stack__card {
+  position: relative;
+  z-index: calc(var(--ci-stack-index) + 1);
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-xl);
+  padding: var(--space-lg);
+  background-color: var(--color-surface-faint);
+  border: 1px solid var(--color-border-faint);
+  border-radius: var(--radius-md);
+}
+
+.ci-stack__card + .ci-stack__card {
+  margin-top: var(--space-md);
+}
+
+@media (min-width: 1024px) {
+  .ci-stack__card {
+    padding: 48px;
+  }
+
+  /* Figma's 187px pitch against a 235px card: the cards overlap by 48px, which
+     is exactly the padding, so the card above shows a band of itself and nothing
+     of its copy. */
+  .ci-stack__card + .ci-stack__card {
+    margin-top: -48px;
+  }
+
+  /* 2.07deg is what Figma's rotated bounding box works out to, and the 4px shift
+     left matches the card's own offset from the column. The shift is part of the
+     transform rather than a margin, because the tilt travels with the dark state
+     (see below) and a margin coming and going would reflow the column instead of
+     just turning the card. Desktop only: rotated at full width on a phone it would
+     overflow the viewport, and pulled together in one column the overlap reads as a
+     broken list rather than a stack. */
+  .ci-stack__card[data-tone="dark"] {
+    transform: rotate(-2.07deg) translateX(-4px);
+  }
+}
+
+/* The navy fill and the tilt are a *state*, not a slot: any card takes both while
+   it is hovered or holds focus, and the last card carries them at rest because that
+   is how Figma draws the bottom of the stack. Hovering also lifts the card over the
+   one overlapping it — the cards sit 48px into each other, so without the lift a
+   hovered card would show its new colour under its neighbour's edge.
+
+   Guarded on `hover: hover` so a tap on a phone doesn't leave a card stuck dark
+   with no way to move the state off it. The colours are here rather than on the
+   markup because the resting palette comes from utilities in the template: a rule
+   on the element with a class and a pseudo-class outranks a plain utility, which
+   is what lets one CSS block override both cards' text colours. */
+.ci-stack__card[data-tone="dark"] {
+  background-color: var(--color-surface-dark);
+  border-color: var(--color-surface-dark);
+}
+
+.ci-stack__card {
+  transition:
+    background-color 300ms ease,
+    border-color 300ms ease,
+    transform 300ms cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+
+.ci-stack__card h3,
+.ci-stack__card p {
+  transition: color 300ms ease;
+}
+
+@media (hover: hover) {
+  .ci-stack__card:hover,
+  .ci-stack__card:focus-within {
+    z-index: 20;
+    background-color: var(--color-surface-dark);
+    border-color: var(--color-surface-dark);
+  }
+
+  .ci-stack__card:hover h3,
+  .ci-stack__card:hover p,
+  .ci-stack__card:focus-within h3,
+  .ci-stack__card:focus-within p {
+    color: var(--color-text-on-dark);
+  }
+
+  /* Exactly one card is dark and tilted at a time: while the pointer is on another
+     card, the resting dark one straightens up and hands both over. Two dark cards in
+     a five-card stack read as two selections rather than as one following the
+     pointer, and the tilt is what makes the state look picked up off the stack. */
+  .ci-stack:has(.ci-stack__card:hover) .ci-stack__card[data-tone="dark"]:not(:hover) {
+    background-color: var(--color-surface-faint);
+    border-color: var(--color-border-faint);
+    transform: none;
+  }
+
+  .ci-stack:has(.ci-stack__card:hover) .ci-stack__card[data-tone="dark"]:not(:hover) h3 {
+    color: var(--color-text-primary);
+  }
+
+  .ci-stack:has(.ci-stack__card:hover) .ci-stack__card[data-tone="dark"]:not(:hover) p {
+    color: var(--color-text-secondary);
+  }
+}
+
+/* The tilt is desktop-only for the same reason the resting card's is: a rotated
+   full-width card overflows a phone's viewport, and below `lg` the cards don't
+   overlap, so there is no stack for one to be lifted out of. */
+@media (min-width: 1024px) and (hover: hover) {
+  .ci-stack__card:hover,
+  .ci-stack__card:focus-within {
+    transform: rotate(-2.07deg) translateX(-4px);
+  }
+}
+
+.ci-stack__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 64px;
+  height: 64px;
+  border-radius: var(--radius-pill);
+  background-color: var(--color-brand-yellow);
+}
+
+/* ---------------------------------------------------------------------------
+   Remittance — extra air above the FAQ (template-parts/faq.php on
+   page-remittance.php).
+
+   The sign-up band's left photograph hangs below the band's own box, so the 80px
+   `.sections-spaced` gives adjacent sections leaves the FAQ's hat 53px under a
+   photograph where Figma leaves ~100px of clear page. The FAQ is shared by every
+   page, so the extra step is scoped to this template's body class (see
+   thinksme_template_body_class() in functions.php) rather than added to the part.
+
+   The id is there to outrank `.sections-spaced > section + section`, the same
+   reason `#main-content > section.ci-requirements` carries one.
+--------------------------------------------------------------------------- */
+.tpl-remittance #main-content > section#faq {
+  margin-top: 80px;
+}
+
+@media (min-width: 1024px) {
+  .tpl-remittance #main-content > section#faq {
+    margin-top: 160px;
+  }
+}
+
+/* ---------------------------------------------------------------------------
+   Remittance — the sign-up band's two flanking photographs
+   (template-parts/ci-signup.php), Figma 123:2755 and 123:2759.
+
+   Figma rotates both on the canvas, so the tilt is baked into the exports and
+   there is nothing to rotate here: each one is placed in its own margin, the left
+   sitting low and the right high, which is how the two frame the headline between
+   them.
+
+   They only appear from 1280px. Between `lg` and there the centred column and the
+   two photographs want the same pixels — at 1024px a 300px photo per side would
+   lie across the headline — and they are decoration, so the band simply drops them
+   and keeps its copy. Same reasoning as the brush strokes in the heroes.
+--------------------------------------------------------------------------- */
+.ci-signup__photo {
+  display: none;
+}
+
+@media (min-width: 1280px) {
+  .ci-signup__photo {
+    display: block;
+    position: absolute;
+    width: clamp(200px, 20vw, 298px);
+    height: auto;
+    pointer-events: none;
+    user-select: none;
+  }
+
+  /* Figma's own offsets: the left photo starts 72px in and hangs below the
+     buttons, the right one sits ~29px from the edge and starts level with the
+     headline. */
+  .ci-signup__photo--left {
+    left: clamp(16px, 5vw, 72px);
+    bottom: -6%;
+  }
+
+  .ci-signup__photo--right {
+    right: clamp(16px, 2vw, 29px);
+    top: 0;
+    width: clamp(180px, 18vw, 264px);
+  }
+}
+
+/* ---------------------------------------------------------------------------
+   Business Loan — the partner-bank strip in the hero (template-parts/ci-hero.php),
+   Figma 119:1737 + 119:1750.
+
+   Figma draws it as a masked marquee: the label sits to the left of a 439px
+   window with 505px of logos behind it, and a rectangle at each end fades the row
+   out. So the fade is the section's own art rather than an accident of the crop,
+   and it is a mask here rather than two gradient overlays — the strip sits on the
+   page background, and an overlay would have to know what colour that is.
+
+   It runs on assets/js/logos-slider.js, the same marquee the logo sections use,
+   which is why the markup carries `logos-swiper` and its data-* settings.
+--------------------------------------------------------------------------- */
+.ci-hero__banks {
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent 0,
+    #000 24px,
+    #000 calc(100% - 40px),
+    transparent 100%
+  );
+  mask-image: linear-gradient(
+    to right,
+    transparent 0,
+    #000 24px,
+    #000 calc(100% - 40px),
+    transparent 100%
+  );
+}
+
+/* Swiper's own overflow clip would cut the mask's soft edge into a hard one. */
+.ci-hero__banks.swiper {
+  overflow: hidden;
+}
+
+/* Each slide is its own logo's width — swiper-bundle.css loads after this file but
+   `.swiper-slide` is a single class, so the descendant selector still wins. */
+.ci-hero__banks .swiper-slide {
+  width: auto;
+  flex-shrink: 0;
+}
+
+/* ---------------------------------------------------------------------------
+   Property Cashout — the eligibility tabs (template-parts/ci-eligibility.php),
+   Figma 951:9788.
+
+   Same idea as the free-tools strip (.ci-tools__list): the tabs sit flush on the
+   panel with their top corners rounded into it, which is what makes the open one
+   read as attached to the thing it opens. What differs is the ground — these sit
+   on a navy panel and open a white card, where the tools strip sits on white and
+   opens a navy one — and that there are two labels here rather than three, so
+   they still fit as a row on a phone and there is no <select> fallback.
+--------------------------------------------------------------------------- */
+.ci-elig {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0;
+}
+
+.ci-elig__list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--space-md);
+  max-width: 100%;
+}
+
+/* Square-bottomed: each tab sits on the card below it. */
+.ci-elig__tab {
+  flex-shrink: 0;
+  padding: 12px var(--space-lg);
+  border-radius: var(--radius-sm);
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+  /* white/5 over the navy panel — Figma's #243e61 on #183458. */
+  background-color: rgba(255, 255, 255, 0.05);
+  font-weight: 500;
+  font-size: var(--font-size-sm);
+  line-height: var(--line-height-loose);
+  color: var(--color-text-on-dark);
+  white-space: nowrap;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.ci-elig__tab[data-active="true"] {
+  background-color: var(--color-brand-yellow);
+  color: var(--color-text-primary);
+}
+
+.ci-elig__tab:hover:not([data-active="true"]) {
+  background-color: rgba(255, 255, 255, 0.12);
+}
+
+.ci-elig__panel {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xl);
+  align-items: center;
+  width: 100%;
+  padding: var(--space-lg);
+  background-color: var(--color-surface-white);
+  border-radius: var(--radius-xl);
+}
+
+@media (min-width: 1024px) {
+  .ci-elig__panel {
+    gap: 56px;
+    padding: 48px 40px;
+  }
+}
+
+/* Long labels wrap rather than scroll below lg, so the strip stops being a row
+   and each tab spans the width — a wrapped tab whose bottom corners are square
+   would otherwise leave a square edge floating mid-strip. */
+@media (max-width: 1023.98px) {
+  .ci-elig__tab {
+    white-space: normal;
+    border-radius: var(--radius-sm);
+  }
+
+  .ci-elig__list {
+    margin-bottom: var(--space-md);
+  }
+}
+
+/* ---------------------------------------------------------------------------
+   Business Loan — the three-step row whose open card widens
+   (template-parts/ci-steps.php, Figma 119:1796).
+
+   The same interaction as .roa-card above, on this frame's palette: pale cards on
+   white with a navy open one, where ROA's are navy on a navy panel with a yellow
+   open one. Both are driven by assets/js/expand-cards.js, which only moves
+   `data-active` — with the script gone the card the template marked open stays
+   open and the section still reads as the design.
+
+   Widths are pure flex-grow so they can animate: 2.05 ≈ 632 / 308.5, Figma's open
+   card over a collapsed one inside the 1280px row.
+
+   Below `lg` the row is a stack. The cards can't trade width there, so they
+   left-align at their natural height and only the palette, title size and
+   description change on activation.
+--------------------------------------------------------------------------- */
+.ci-step {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-lg);
+  width: 100%;
+  margin: 0;
+  padding: var(--space-xl) var(--space-lg);
+  border: 1px solid var(--color-border-faint);
+  border-radius: var(--radius-lg);
+  background-color: var(--color-surface-faint);
+  font-family: inherit;
+  text-align: left;
+  cursor: pointer;
+  transition:
+    flex-grow 400ms cubic-bezier(0.22, 0.61, 0.36, 1),
+    background-color 300ms ease,
+    border-color 300ms ease;
+}
+
+.ci-step[data-active="true"] {
+  border-color: transparent;
+  background-color: var(--color-surface-dark);
+}
+
+.ci-step__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 64px;
+  height: 64px;
+  border-radius: var(--radius-pill);
+  background-color: var(--color-brand-yellow);
+}
+
+.ci-step__body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+  width: 100%;
+}
+
+.ci-step__title {
+  font-weight: 500;
+  font-size: 20px;
+  line-height: var(--line-height-snug);
+  color: var(--color-text-primary);
+  transition:
+    font-size 300ms ease,
+    color 300ms ease;
+}
+
+.ci-step[data-active="true"] .ci-step__title {
+  font-size: 28px;
+  color: var(--color-text-on-dark);
+}
+
+.ci-step__text {
+  display: none;
+  font-size: var(--font-size-sm);
+  line-height: var(--line-height-loose);
+  color: var(--color-text-on-dark);
+}
+
+/* Held back until the card has most of its width, so the copy doesn't reflow
+   while the row is still animating. */
+.ci-step[data-active="true"] .ci-step__text {
+  display: block;
+  animation: ci-step-text-in 300ms ease 180ms both;
+}
+
+@keyframes ci-step-text-in {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@media (min-width: 1024px) {
+  /* 276px is Figma's card height; the collapsed cards centre their icon over a
+     bottom-aligned title, which is what `justify-between` plus the centred
+     alignment below gives them. */
+  .ci-step {
+    flex: 1 1 0;
+    align-items: center;
+    justify-content: space-between;
+    min-width: 0;
+    width: auto;
+    height: 276px;
+    text-align: center;
+  }
+
+  .ci-step[data-active="true"] {
+    flex-grow: 2.05;
+    align-items: flex-start;
+    justify-content: flex-start;
+    text-align: left;
+  }
+
+  .ci-step__body {
+    flex-grow: 0;
+  }
+
+  .ci-step[data-active="true"] .ci-step__body {
+    margin-top: var(--space-xl);
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   a,
   button,
@@ -3040,12 +3812,22 @@ button:focus-visible {
   .roa-card,
   .roa-card__icon,
   .roa-card__title,
-  .ci-calc__mode {
+  .ci-calc__mode,
+  .ci-elig__tab {
     transition: none;
   }
 
   .roa-card[data-active="true"] .roa-card__text {
     animation: none;
+  }
+
+  .ci-step[data-active="true"] .ci-step__text {
+    animation: none;
+  }
+
+  /* The tilt and the fill still apply — they are the state, not the motion. */
+  .ci-stack__card {
+    transition: none;
   }
 
   .btn-split:hover > span:last-child,

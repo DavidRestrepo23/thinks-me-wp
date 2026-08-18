@@ -1,0 +1,13 @@
+<svg preserveAspectRatio="none" overflow="visible" style="display: block;" width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="ChartLine" clip-path="url(#clip0_0_4)">
+<g id="Vector">
+</g>
+<path id="Vector_2" d="M42 39H6V9" stroke="black" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"/>
+<path id="Vector_3" d="M42 18L30 28.5L18 19.5L6 30" stroke="black" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+<defs>
+<clipPath id="clip0_0_4">
+<rect width="48" height="48" fill="white"/>
+</clipPath>
+</defs>
+</svg>

@@ -6,11 +6,21 @@
  * Figma: node 102:3515, file "Untitled" (vzdpOnH1U36oXcFcugiyE5).
  *
  * ACF (Accounting & Bookkeeping page): ci_requirements_hat_text,
- * ci_requirements_heading, and per step (1..4) ci_requirements_step_N_icon
- * (select, fed at runtime from thinksme_ci_icons()), _title, _text. The design's
- * copy lives in thinksme_ci_defaults( 'requirements' ); a page whose set has no
- * such section renders nothing, so this part is inert on the three Company
- * Incorporation pages.
+ * ci_requirements_heading, ci_requirements_text, and per step (1..5)
+ * ci_requirements_step_N_icon (select, fed at runtime from thinksme_ci_icons()),
+ * _title, _text, _meta. The design's copy lives in
+ * thinksme_ci_defaults( 'requirements' ); a page whose set has no such section
+ * renders nothing, so this part is inert on the three Company Incorporation pages.
+ *
+ * Two of those fields exist for the Property Cashout frame (951:9220) and are
+ * empty on the other two rails: `text`, an intro under the heading, and `meta`,
+ * the timing label under each step ("DAY 1", "WITHIN 24 HRS", …). Each renders
+ * only when it has content, so the Accounting and Corporate Tax rails are byte
+ * for byte what they were.
+ *
+ * The artwork behind the panel and the rail's own width are per-set defaults for
+ * the same reason: this frame puts scattered blocks behind its navy panels where
+ * the other two put the cityscape, and draws the rail 588px wide rather than 718.
  *
  * The rail is the same one template-parts/roa-why.php uses — same markup
  * (.rail*), same CSS, same assets/js/progress-rail.js, and Figma draws it to the
@@ -38,10 +48,9 @@
  * panel is taller than a laptop viewport, which is exactly the case the script
  * refuses to pin. See the .ci-requirements rules.
  *
- * The cityscape behind the panel is the same exported SVG ci-pricing.php uses.
+ * The artwork behind the panel defaults to the same exported cityscape SVG
+ * ci-pricing.php uses; a set can name its own instead.
  */
-
-$images_uri = get_template_directory_uri() . '/assets/images/ci';
 
 $d = thinksme_ci_defaults( 'requirements' );
 
@@ -62,8 +71,12 @@ foreach ( $d['steps'] as $n => $default ) {
 		'icon'  => thinksme_ci_icon_url( thinksme_field( "ci_requirements_step_{$n}_icon", false, $default['icon'] ) ),
 		'title' => $title,
 		'text'  => thinksme_field( "ci_requirements_step_{$n}_text", false, $default['text'] ),
+		'meta'  => thinksme_field( "ci_requirements_step_{$n}_meta", false, isset( $default['meta'] ) ? $default['meta'] : '' ),
 	);
 }
+
+$background = thinksme_ci_image_url( empty( $d['background'] ) ? 'ci/pricing-bg.svg' : $d['background'] );
+$rail_class = empty( $d['rail_class'] ) ? 'max-w-[718px]' : $d['rail_class'];
 
 if ( ! $steps ) {
 	return;
@@ -85,13 +98,13 @@ $lines = max( 1, count( $steps ) - 1 );
 		class="ci-requirements__panel relative overflow-hidden rounded-[40px] lg:rounded-[80px] bg-surface-dark px-lg lg:px-[56px] py-xl flex flex-col justify-center"
 	>
 		<img
-			src="<?php echo esc_url( "$images_uri/pricing-bg.svg" ); ?>"
+			src="<?php echo esc_url( $background ); ?>"
 			alt=""
 			aria-hidden="true"
 			class="absolute inset-x-0 top-0 w-full pointer-events-none select-none"
 		>
 
-		<div class="relative flex flex-col items-center gap-md text-center max-w-[812px] mx-auto">
+		<div class="ci-requirements__header relative flex flex-col items-center gap-md text-center max-w-[812px] mx-auto">
 			<?php $hat = thinksme_field( 'ci_requirements_hat_text', false, $d['hat'] ); ?>
 			<?php if ( $hat ) : ?>
 				<span class="bg-brand-yellow-soft border border-brand-yellow-border rounded-pill h-[32px] px-md inline-flex items-center justify-center text-xs font-medium text-text-primary">
@@ -102,10 +115,17 @@ $lines = max( 1, count( $steps ) - 1 );
 			<h2 class="font-medium text-2xl lg:text-3xl leading-[1.1] tracking-hero text-text-on-dark">
 				<?php echo esc_html( thinksme_field( 'ci_requirements_heading', false, $d['heading'] ) ); ?>
 			</h2>
+
+			<?php $intro = thinksme_field( 'ci_requirements_text', false, isset( $d['text'] ) ? $d['text'] : '' ); ?>
+			<?php if ( $intro ) : ?>
+				<p class="font-normal text-sm leading-relaxed text-text-on-dark">
+					<?php echo esc_html( $intro ); ?>
+				</p>
+			<?php endif; ?>
 		</div>
 
 		<?php // `relative` so the rail paints above the cityscape behind it: the artwork is absolutely positioned and would otherwise cover the first steps, which is where it overlaps. ?>
-		<ol class="rail relative w-full max-w-[718px] mx-auto mt-xl">
+		<ol class="rail relative w-full <?php echo esc_attr( $rail_class ); ?> mx-auto mt-xl">
 			<?php foreach ( $steps as $index => $step ) : ?>
 				<li class="rail__step">
 					<span class="rail__marker" aria-hidden="true">
@@ -130,6 +150,13 @@ $lines = max( 1, count( $steps ) - 1 );
 						<?php if ( $step['text'] ) : ?>
 							<p class="font-normal text-sm leading-loose">
 								<?php echo esc_html( $step['text'] ); ?>
+							</p>
+						<?php endif; ?>
+
+						<?php // The Property Cashout frame's timing label; every other rail leaves it empty. ?>
+						<?php if ( $step['meta'] ) : ?>
+							<p class="rail__meta font-bold text-xs leading-loose tracking-widest uppercase text-text-on-dark">
+								<?php echo esc_html( $step['meta'] ); ?>
 							</p>
 						<?php endif; ?>
 					</div>

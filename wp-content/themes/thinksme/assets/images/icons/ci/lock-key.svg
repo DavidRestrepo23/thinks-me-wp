@@ -1,0 +1,15 @@
+<svg preserveAspectRatio="none" overflow="visible" style="display: block;" width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="LockKey" clip-path="url(#clip0_0_4)">
+<g id="Vector">
+</g>
+<path id="Vector_2" d="M39 16.5H9C8.17157 16.5 7.5 17.1716 7.5 18V39C7.5 39.8284 8.17157 40.5 9 40.5H39C39.8284 40.5 40.5 39.8284 40.5 39V18C40.5 17.1716 39.8284 16.5 39 16.5Z" stroke="black" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"/>
+<path id="Vector_3" d="M16.5 16.5V10.5C16.5 8.51088 17.2902 6.60322 18.6967 5.1967C20.1032 3.79018 22.0109 3 24 3C25.9891 3 27.8968 3.79018 29.3033 5.1967C30.7098 6.60322 31.5 8.51088 31.5 10.5V16.5" stroke="black" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"/>
+<path id="Vector_4" d="M24 30C26.0711 30 27.75 28.3211 27.75 26.25C27.75 24.1789 26.0711 22.5 24 22.5C21.9289 22.5 20.25 24.1789 20.25 26.25C20.25 28.3211 21.9289 30 24 30Z" stroke="black" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"/>
+<path id="Vector_5" d="M24 30V34.5" stroke="black" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+<defs>
+<clipPath id="clip0_0_4">
+<rect width="48" height="48" fill="white"/>
+</clipPath>
+</defs>
+</svg>

@@ -1,0 +1,792 @@
+{
+    "key": "group_thinksme_rm",
+    "title": "Remittance Page Content",
+    "fields": [
+        {
+            "key": "field_thinksme_tab_rm_hero",
+            "label": "Hero",
+            "name": "",
+            "aria-label": "",
+            "type": "tab",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "placement": "top",
+            "endpoint": 0,
+            "selected": 0
+        },
+        {
+            "key": "field_thinksme_rm_hero_title",
+            "label": "Headline",
+            "name": "ci_hero_title",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "Three lines at the design's size. The brush stroke is placed under the word “OFX” on the first line, so a much shorter or longer headline will move it off that word. The OFX logo above the headline is part of the design rather than a field — it is the partner's mark, not copy.",
+            "required": 0,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "Save with OFX and Think SME partner rates",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_thinksme_rm_hero_text",
+            "label": "Intro Text",
+            "name": "ci_hero_text",
+            "aria-label": "",
+            "type": "textarea",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "rows": 4,
+            "new_lines": "",
+            "default_value": "Whether your business is paying international suppliers, overseas staff or selling to a global customer base, understanding your foreign exchange expenses could mean savings for your business.",
+            "maxlength": "",
+            "placeholder": ""
+        },
+        {
+            "key": "field_thinksme_rm_hero_button_text",
+            "label": "Button Text",
+            "name": "ci_hero_button_text",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "Sign Up with OFX",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_thinksme_rm_hero_button_link",
+            "label": "Button Link",
+            "name": "ci_hero_button_link",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "/contact-us",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_thinksme_rm_hero_button_2_text",
+            "label": "Second Button Text",
+            "name": "ci_hero_button_2_text",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "The outlined button beside the first one. This page’s own number, not the site-wide one in Customizer > Site Details — the two do not stay in sync.",
+            "required": 0,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "+65 6012 9642",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_thinksme_rm_hero_button_2_link",
+            "label": "Second Button Link",
+            "name": "ci_hero_button_2_link",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "tel:+6560129642",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_thinksme_rm_hero_image",
+            "label": "Photo",
+            "name": "ci_hero_image",
+            "aria-label": "",
+            "type": "image",
+            "instructions": "Optional. Falls back to this page’s own design photograph.",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "return_format": "array",
+            "preview_size": "medium",
+            "library": "all",
+            "min_width": 0,
+            "min_height": 0,
+            "min_size": 0,
+            "max_width": 0,
+            "max_height": 0,
+            "max_size": 0,
+            "mime_types": ""
+        },
+        {
+            "key": "field_thinksme_tab_rm_grid",
+            "label": "Why Use OFX?",
+            "name": "",
+            "aria-label": "",
+            "type": "tab",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "placement": "top",
+            "endpoint": 0,
+            "selected": 0
+        },
+        {
+            "key": "field_thinksme_rm_grid_hat_text",
+            "label": "Hat Text",
+            "name": "ci_grid_why_ofx_hat_text",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "Complete Corporate Services",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_thinksme_rm_grid_heading",
+            "label": "Heading",
+            "name": "ci_grid_why_ofx_heading",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "Why Use OFX?",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_thinksme_rm_grid_card_1_icon",
+            "label": "Card 1 — Icon",
+            "name": "ci_grid_why_ofx_card_1_icon",
+            "aria-label": "",
+            "type": "select",
+            "instructions": "The choices here are a placeholder: thinksme_ci_icon_choices() in functions.php replaces them at load time from thinksme_ci_icons(), so adding an icon never means re-syncing this group.",
+            "required": 0,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "shield-check": "Shield with check",
+                "house": "House",
+                "calculator": "Calculator",
+                "magnifying-glass": "Magnifying glass",
+                "file-arrow-up": "Document being uploaded",
+                "trend-down": "Falling arrow",
+                "stack": "Stacked layers",
+                "lock-key-open": "Open padlock",
+                "calendar-dots": "Calendar",
+                "bank": "Bank"
+            },
+            "default_value": "star",
+            "allow_null": 0,
+            "multiple": 0,
+            "ui": 0,
+            "return_format": "value",
+            "ajax": 0,
+            "placeholder": "",
+            "create_options": 0,
+            "save_options": 0
+        },
+        {
+            "key": "field_thinksme_rm_grid_card_1_title",
+            "label": "Card 1 — Title",
+            "name": "ci_grid_why_ofx_card_1_title",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "Clear the title to drop this card.",
+            "required": 0,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "Enjoy Preferential Rates",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_thinksme_rm_grid_card_1_text",
+            "label": "Card 1 — Description",
+            "name": "ci_grid_why_ofx_card_1_text",
+            "aria-label": "",
+            "type": "textarea",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "rows": 3,
+            "new_lines": "",
+            "default_value": "Preferential exchange rates and no OFX fees on FX transfers* = real savings back into your wallet.",
+            "maxlength": "",
+            "placeholder": ""
+        },
+        {
+            "key": "field_thinksme_rm_grid_card_2_icon",
+            "label": "Card 2 — Icon",
+            "name": "ci_grid_why_ofx_card_2_icon",
+            "aria-label": "",
+            "type": "select",
+            "instructions": "The choices here are a placeholder: thinksme_ci_icon_choices() in functions.php replaces them at load time from thinksme_ci_icons(), so adding an icon never means re-syncing this group.",
+            "required": 0,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "shield-check": "Shield with check",
+                "house": "House",
+                "calculator": "Calculator",
+                "magnifying-glass": "Magnifying glass",
+                "file-arrow-up": "Document being uploaded",
+                "trend-down": "Falling arrow",
+                "stack": "Stacked layers",
+                "lock-key-open": "Open padlock",
+                "calendar-dots": "Calendar",
+                "bank": "Bank"
+            },
+            "default_value": "shield-check",
+            "allow_null": 0,
+            "multiple": 0,
+            "ui": 0,
+            "return_format": "value",
+            "ajax": 0,
+            "placeholder": "",
+            "create_options": 0,
+            "save_options": 0
+        },
+        {
+            "key": "field_thinksme_rm_grid_card_2_title",
+            "label": "Card 2 — Title",
+            "name": "ci_grid_why_ofx_card_2_title",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "24/7 OFXPERTS",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_thinksme_rm_grid_card_2_text",
+            "label": "Card 2 — Description",
+            "name": "ci_grid_why_ofx_card_2_text",
+            "aria-label": "",
+            "type": "textarea",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "rows": 3,
+            "new_lines": "",
+            "default_value": "Speak to a currency specialist 24/7. No long hold queues, no offshore call centres",
+            "maxlength": "",
+            "placeholder": ""
+        },
+        {
+            "key": "field_thinksme_rm_grid_card_3_icon",
+            "label": "Card 3 — Icon",
+            "name": "ci_grid_why_ofx_card_3_icon",
+            "aria-label": "",
+            "type": "select",
+            "instructions": "The choices here are a placeholder: thinksme_ci_icon_choices() in functions.php replaces them at load time from thinksme_ci_icons(), so adding an icon never means re-syncing this group.",
+            "required": 0,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "shield-check": "Shield with check",
+                "house": "House",
+                "calculator": "Calculator",
+                "magnifying-glass": "Magnifying glass",
+                "file-arrow-up": "Document being uploaded",
+                "trend-down": "Falling arrow",
+                "stack": "Stacked layers",
+                "lock-key-open": "Open padlock",
+                "calendar-dots": "Calendar",
+                "bank": "Bank"
+            },
+            "default_value": "user-sound",
+            "allow_null": 0,
+            "multiple": 0,
+            "ui": 0,
+            "return_format": "value",
+            "ajax": 0,
+            "placeholder": "",
+            "create_options": 0,
+            "save_options": 0
+        },
+        {
+            "key": "field_thinksme_rm_grid_card_3_title",
+            "label": "Card 3 — Title",
+            "name": "ci_grid_why_ofx_card_3_title",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "Ease Of Use",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_thinksme_rm_grid_card_3_text",
+            "label": "Card 3 — Description",
+            "name": "ci_grid_why_ofx_card_3_text",
+            "aria-label": "",
+            "type": "textarea",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "rows": 3,
+            "new_lines": "",
+            "default_value": "Login and track your transfers when, where and how you want online or via the OFX app.",
+            "maxlength": "",
+            "placeholder": ""
+        },
+        {
+            "key": "field_thinksme_tab_rm_signup",
+            "label": "Sign-Up Band",
+            "name": "",
+            "aria-label": "",
+            "type": "tab",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "placement": "top",
+            "endpoint": 0,
+            "selected": 0
+        },
+        {
+            "key": "field_thinksme_rm_signup_heading",
+            "label": "Heading",
+            "name": "ci_signup_heading",
+            "aria-label": "",
+            "type": "textarea",
+            "instructions": "Clear the heading to drop the whole band. The asterisk points at the fee note in the first card above.",
+            "required": 0,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "rows": 3,
+            "new_lines": "",
+            "default_value": "Sign Up With OFX And Start Saving On FX Transfers*.",
+            "maxlength": "",
+            "placeholder": ""
+        },
+        {
+            "key": "field_thinksme_rm_signup_button_text",
+            "label": "Button Text",
+            "name": "ci_signup_button_text",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "Sign Up With OFX",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_thinksme_rm_signup_button_link",
+            "label": "Button Link",
+            "name": "ci_signup_button_link",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "/contact-us",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_thinksme_rm_signup_button_2_text",
+            "label": "Second Button Text",
+            "name": "ci_signup_button_2_text",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "Download Brochure",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_thinksme_rm_signup_button_2_link",
+            "label": "Second Button Link",
+            "name": "ci_signup_button_2_link",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "The two photographs beside the band are part of the design rather than fields: they are drawn at a tilt measured for those exports, and they carry nothing the headline doesn’t.",
+            "required": 0,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "/contact-us",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_thinksme_tab_rm_faq",
+            "label": "FAQ",
+            "name": "",
+            "aria-label": "",
+            "type": "tab",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "placement": "top",
+            "endpoint": 0,
+            "selected": 0
+        },
+        {
+            "key": "field_thinksme_rm_faq_hat_text",
+            "label": "Hat Text",
+            "name": "faq_hat_text",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "Common Questions",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_thinksme_rm_faq_heading",
+            "label": "Heading",
+            "name": "faq_heading",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "The questions themselves are the site-wide “FAQs” posts in the sidebar — this frame asks the same ones the homepage does, unlike the Property Cashout and Business Loan pages, which write their own.",
+            "required": 0,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "Questions Singapore Business Owners Ask Us First",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_thinksme_tab_rm_cta",
+            "label": "Final CTA",
+            "name": "",
+            "aria-label": "",
+            "type": "tab",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "placement": "top",
+            "endpoint": 0,
+            "selected": 0
+        },
+        {
+            "key": "field_thinksme_rm_cta_title",
+            "label": "Heading",
+            "name": "cta_title",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "Need help?",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_thinksme_rm_cta_text",
+            "label": "Text",
+            "name": "cta_text",
+            "aria-label": "",
+            "type": "textarea",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "rows": 3,
+            "new_lines": "",
+            "default_value": "Reach out with your requirements, and our experts will be happy to assist you — no commitment, no pressure.",
+            "maxlength": "",
+            "placeholder": ""
+        },
+        {
+            "key": "field_thinksme_rm_cta_google_rating",
+            "label": "Google Rating",
+            "name": "cta_google_rating",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "4.9",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_thinksme_rm_cta_button_text",
+            "label": "Button Text",
+            "name": "cta_button_text",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "Contact Us",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_thinksme_rm_cta_button_link",
+            "label": "Button Link",
+            "name": "cta_button_link",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "/contact-us",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_thinksme_rm_cta_image",
+            "label": "Photo",
+            "name": "cta_image",
+            "aria-label": "",
+            "type": "image",
+            "instructions": "Optional. Falls back to the site-wide closing photograph, which is the one this frame draws.",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "return_format": "array",
+            "preview_size": "medium",
+            "library": "all",
+            "min_width": 0,
+            "min_height": 0,
+            "min_size": 0,
+            "max_width": 0,
+            "max_height": 0,
+            "max_size": 0,
+            "mime_types": ""
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "page_template",
+                "operator": "==",
+                "value": "page-remittance.php"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "Remittance page sections, in the order they appear: hero, “Why Use OFX?”, the sign-up band, the FAQ and the final CTA. This is the shortest page in the family — its design draws no pricing, no free tools, no figures band and no Google Reviews. The OFX logo in the hero, and the two photographs beside the sign-up band, are part of the design rather than fields: they are a partner's mark and decoration drawn at a measured tilt. The faq_* and cta_* field names repeat the other pages’ names under different keys, which is what lets template-parts/faq.php and cta.php stay page-agnostic; unlike Property Cashout and Business Loan, the questions here are the site-wide “FAQs” posts. Everything is flat fields because ACF free has no Repeater — quantities are fixed by the layout, and empty entries are skipped rather than rendered blank. Leave a field empty and the design’s own copy renders instead: because the theme treats an empty value as “use the design default”, a field that ships with copy cannot be blanked from here, only replaced.",
+    "show_in_rest": 0
+}

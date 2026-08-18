@@ -7,6 +7,21 @@
  * the admin sidebar). Post title = question, ACF: answer (WYSIWYG). Section hat
  * and heading are ACF fields on the Home page (faq_hat_text, faq_heading).
  *
+ * One page overrides that list. Every frame up to the Property Cashout one asks
+ * the same site-wide questions, so the CPT was the whole content model; that frame
+ * (951:9844) writes six of its own, about property cashout and nothing else, which
+ * belong to the page rather than to the site. So a page whose ci-* set names a
+ * `faq` list wins over the CPT — its own flat fields (faq_item_N_question /
+ * _answer, 1..8, empties skipped) and, behind them, the design's questions from
+ * inc/ci-content.php. Pages whose set names none — every other one — read the CPT
+ * exactly as before, and thinksme_ci_defaults() returns array() outside the ci-*
+ * templates, so the homepage and the contact page are untouched too.
+ *
+ * Deliberately not a `faq_group` taxonomy on the CPT: that would put this page's
+ * questions in the same admin list as the site-wide ones and make "which page does
+ * this appear on" a thing the client has to get right on every future FAQ. Fields
+ * on the page are where per-page copy already lives in this theme.
+ *
  * Open/close is native <details>/<summary> sharing a `name` attribute, which
  * makes the browser enforce single-open accordion behaviour with no JS
  * (Baseline since late 2024) — same approach as template-parts/cards-stack.php.
@@ -30,27 +45,51 @@
 $icons_uri  = get_template_directory_uri() . '/assets/images/icons';
 $photos_uri = get_template_directory_uri() . '/assets/images/faq';
 
-$faqs = new WP_Query(
-	array(
-		'post_type'      => 'faq_item',
-		'posts_per_page' => -1,
-		'orderby'        => 'menu_order date',
-		'order'          => 'ASC',
-	)
-);
-
 $items = array();
 
-if ( $faqs->have_posts() ) {
-	while ( $faqs->have_posts() ) :
-		$faqs->the_post();
+// A ci-* page that writes its own questions. thinksme_ci_defaults() only exists
+// for those templates and returns array() elsewhere, so this is a no-op on every
+// other page and the CPT below stays the site-wide list it has always been.
+$page_faq = function_exists( 'thinksme_ci_defaults' ) ? thinksme_ci_defaults( 'faq' ) : array();
+
+if ( ! empty( $page_faq['items'] ) ) {
+	foreach ( $page_faq['items'] as $n => $default ) {
+		$question = thinksme_field( "faq_item_{$n}_question", false, $default['question'] );
+
+		if ( '' === trim( $question ) ) {
+			continue;
+		}
+
 		$items[] = array(
-			'question' => get_the_title(),
-			'answer'   => thinksme_field( 'answer', get_the_ID() ),
+			'question' => $question,
+			'answer'   => thinksme_field( "faq_item_{$n}_answer", false, $default['answer'] ),
 		);
-	endwhile;
-	wp_reset_postdata();
-} else {
+	}
+}
+
+if ( ! $items ) {
+	$faqs = new WP_Query(
+		array(
+			'post_type'      => 'faq_item',
+			'posts_per_page' => -1,
+			'orderby'        => 'menu_order date',
+			'order'          => 'ASC',
+		)
+	);
+
+	if ( $faqs->have_posts() ) {
+		while ( $faqs->have_posts() ) :
+			$faqs->the_post();
+			$items[] = array(
+				'question' => get_the_title(),
+				'answer'   => thinksme_field( 'answer', get_the_ID() ),
+			);
+		endwhile;
+		wp_reset_postdata();
+	}
+}
+
+if ( ! $items ) {
 	$items = array(
 		array(
 			'question' => 'How much does it cost to set up a company in Singapore?',

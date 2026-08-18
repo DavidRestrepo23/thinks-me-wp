@@ -30,11 +30,16 @@
  * the input and button from being dead chrome and gets replaced wholesale when
  * the real tools land. Nothing reads the `q` parameter today.
  *
- * Switching is assets/js/ci-tools.js, which only moves data-active /
- * aria-selected and toggles [hidden] on the panels; every pixel of the open and
- * closed states is `.ci-tab*` in src/base.css. With the script gone the first
- * tab's panel stays open and the section still reads as the design — the same
- * degradation contract roa-block.js has.
+ * Switching is assets/js/tabs.js, which only moves data-active / aria-selected
+ * and toggles [hidden] on the panels; every pixel of the open and closed states is
+ * `.ci-tools__*` in src/base.css. With the script gone the first tab's panel stays
+ * open and the section still reads as the design — the same degradation contract
+ * expand-cards.js has.
+ *
+ * That script is shared with template-parts/ci-eligibility.php and finds its work
+ * from the `data-tabs` / `data-tab` / `data-tab-panel` / `data-tab-select`
+ * attributes below rather than from these class names, which stay as the styling
+ * hooks they always were.
  *
  * Below lg the tab strip is replaced by a native <select> styled as Figma's
  * yellow caret pill (node 100:10); see the note above the markup.
@@ -95,12 +100,12 @@ $active = array_key_first( $tabs );
 
 	<?php $tools_label = thinksme_field( 'ci_tools_heading', false, 'Free tools' ); ?>
 
-	<div class="ci-tools w-full">
+	<div class="ci-tools w-full" data-tabs>
 		<?php // Below lg the strip is a dropdown instead (Figma node 100:10) — three labels this long can't be a row on a phone. A native <select> rather than a scripted listbox: it opens the platform's own picker, and it is the one control the design's caret pill can be built around without re-implementing keyboard and focus behaviour. Both controls are always in the DOM and CSS shows exactly one; `display: none` keeps the other out of the accessibility tree too, so the tabs are never announced twice. ?>
 		<div class="ci-tools__select">
 			<label class="sr-only" for="ci-tools-select"><?php echo esc_html( $tools_label ); ?></label>
-			<?php // The value is the tab button's id, so ci-tools.js activates the tab it already knows how to activate rather than mapping indexes. ?>
-			<select class="ci-tools__select-field" id="ci-tools-select">
+			<?php // The value is the tab button's id, so tabs.js activates the tab it already knows how to activate rather than mapping indexes. ?>
+			<select class="ci-tools__select-field" id="ci-tools-select" data-tab-select>
 				<?php foreach ( $tabs as $n => $tab ) : ?>
 					<option value="ci-tools-tab-<?php echo esc_attr( $n ); ?>" <?php selected( $n, $active ); ?>>
 						<?php echo esc_html( $tab['label'] ); ?>
@@ -115,6 +120,7 @@ $active = array_key_first( $tabs );
 					type="button"
 					class="ci-tools__tab"
 					role="tab"
+					data-tab
 					id="ci-tools-tab-<?php echo esc_attr( $n ); ?>"
 					aria-controls="ci-tools-panel-<?php echo esc_attr( $n ); ?>"
 					aria-selected="<?php echo $n === $active ? 'true' : 'false'; ?>"
@@ -130,6 +136,7 @@ $active = array_key_first( $tabs );
 			<div
 				class="ci-tools__panel"
 				role="tabpanel"
+				data-tab-panel
 				id="ci-tools-panel-<?php echo esc_attr( $n ); ?>"
 				aria-labelledby="ci-tools-tab-<?php echo esc_attr( $n ); ?>"
 				tabindex="0"

@@ -1,8 +1,9 @@
 <?php
 /**
- * Company Incorporation, Local and Foreign — two ways to get started: section copy and two
- * route cards on the left, a package summary card on the right.
- * Figma: node 85:1757, file "Untitled" (vzdpOnH1U36oXcFcugiyE5).
+ * Section copy and two route cards on the left, a summary card on the right.
+ * Figma: node 85:1757 (Company Incorporation, Local and Foreign), 119:1932
+ * (Business Loan) and 124:3537 (Mortgage Loans), file "Untitled"
+ * (vzdpOnH1U36oXcFcugiyE5).
  *
  * Shared verbatim by page-company-incorporation-local.php and
  * page-company-incorporation-foreign.php: same markup, same ACF field names,
@@ -22,8 +23,10 @@
  * click target the full card and leaves one link per card for a screen reader
  * instead of two.
  *
- * Features are three flat fields, empties skipped, for the same reason
- * ci-pricing.php and roa-plan.php use flat fields: ACF free has no Repeater.
+ * Features are flat fields, empties skipped, for the same reason ci-pricing.php and
+ * roa-plan.php use flat fields: ACF free has no Repeater. How many there are is the
+ * set's own business — three on the incorporation frames, four on the Mortgage one,
+ * which also closes the card with `ci_ways_plan_note`.
  *
  * The package card repeats content that also lives in ci-pricing.php. They are
  * deliberately separate fields rather than one shared source: Figma prices the
@@ -55,6 +58,8 @@ foreach ( $card_defaults as $n => $default ) {
 	);
 }
 
+// Four checks on the Mortgage frame against the incorporation frames' three, so the
+// loop runs over whatever the set names rather than a fixed range.
 $feature_defaults = $d['plan']['features'];
 
 $features = array();
@@ -87,7 +92,8 @@ $plan_button_link = thinksme_field( 'ci_ways_plan_button_link', false, $d['plan'
 					</span>
 				<?php endif; ?>
 
-				<h2 class="font-medium text-2xl lg:text-3xl leading-tight tracking-hero text-text-primary max-w-[512px]">
+				<?php // Capped at the width Figma sets the heading in, which is what decides where it breaks: 512px on the incorporation and Business Loan frames, 602px on the Mortgage one. ?>
+				<h2 class="font-medium text-2xl lg:text-3xl leading-tight tracking-hero text-text-primary <?php echo esc_attr( isset( $d['heading_class'] ) ? $d['heading_class'] : 'max-w-[512px]' ); ?>">
 					<?php echo esc_html( thinksme_field( 'ci_ways_heading', false, $d['heading'] ) ); ?>
 				</h2>
 			</div>
@@ -186,8 +192,25 @@ $plan_button_link = thinksme_field( 'ci_ways_plan_button_link', false, $d['plan'
 				</ul>
 			<?php endif; ?>
 
-			<?php if ( $plan_button_text ) : ?>
+			<?php
+			// The Mortgage frame closes the card with a line of small print under the checks
+			// (124:3602) — which packages the rebate applies to. Optional, so the
+			// incorporation frames end at their features.
+			$plan_note = thinksme_field( 'ci_ways_plan_note', false, isset( $d['plan']['note'] ) ? $d['plan']['note'] : '' );
+			?>
+			<?php if ( $plan_note ) : ?>
 				<hr class="border-0 border-t border-border-soft w-full">
+
+				<p class="font-normal text-sm leading-loose text-text-secondary">
+					<?php echo esc_html( $plan_note ); ?>
+				</p>
+			<?php endif; ?>
+
+			<?php if ( $plan_button_text ) : ?>
+				<?php // The rule above the button is skipped when the small print already drew one. ?>
+				<?php if ( ! $plan_note ) : ?>
+					<hr class="border-0 border-t border-border-soft w-full">
+				<?php endif; ?>
 
 				<a href="<?php echo esc_url( $plan_button_link ); ?>" class="btn-split flex items-center w-full">
 					<span class="bg-brand-yellow rounded-sm h-[50px] px-lg grow inline-flex items-center justify-center text-sm font-medium text-text-primary whitespace-nowrap">

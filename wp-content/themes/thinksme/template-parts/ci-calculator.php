@@ -1,17 +1,30 @@
 <?php
 /**
- * Corporate Tax — "Estimate Your Corporate Tax": the one free tool on this page,
- * a navy panel with two exemption schemes, an income field and a result.
- * Figma: node 108:4603, file "Untitled" (vzdpOnH1U36oXcFcugiyE5).
+ * The one calculator in the theme, drawn twice:
+ *
+ *   'tax'  — "Estimate Your Corporate Tax" (108:4603): two exemption schemes, one
+ *            chargeable-income field, a tax figure and what the exemption saved.
+ *   'loan' — "Estimate Your Loan Repayments" (119:1825): an amount, a tenure and a
+ *            flat rate, a monthly instalment and the total repayable.
+ *
+ * File "Untitled" (vzdpOnH1U36oXcFcugiyE5).
+ *
+ * `mode` is a per-page default, not a client field: it is which frame the design
+ * draws, the same arrangement ci-pricing.php's `layout` has. Everything outside the
+ * fields — the panel, its yellow tab, the heading block, the result block, the
+ * disclaimer — is shared, which is why this is one part with two field sets rather
+ * than a second near-copy.
  *
  * ACF (Corporate Tax page): ci_calculator_hat_text, ci_calculator_heading,
  * ci_calculator_text, ci_calculator_title, ci_calculator_panel_text,
  * ci_calculator_placeholder, ci_calculator_button_text / _link,
  * ci_calculator_result_label, ci_calculator_saved_label,
  * ci_calculator_disclaimer, and per scheme (1..2) ci_calculator_mode_N_label /
- * _text. The design's copy lives in thinksme_ci_defaults( 'calculator' ); a page
- * whose set has no such section renders nothing, so this part is inert on the
- * other four ci-* pages.
+ * _text. The Business Loan page has the same section fields plus its three field
+ * labels — ci_calculator_amount_label, _tenure_label, _rate_label — and no schemes.
+ * The design's copy lives in thinksme_ci_defaults( 'calculator' ); a page whose set
+ * has no such section renders nothing, so this part is inert on the other five ci-*
+ * pages.
  *
  * Unlike template-parts/ci-tools.php, this tool actually computes. That is the
  * difference between the two sections rather than an inconsistency: ci-tools ships
@@ -19,7 +32,14 @@
  * names the rate and names both exemption schemes — a Calculate button that only
  * navigated away would be a broken promise on the label.
  *
- * The arithmetic is IRAS's own shape and lives in the defaults, not in the script:
+ * The loan arithmetic is the flat-rate method the frame names on its own
+ * disclaimer: interest is charged on the original amount for the whole tenure, so
+ * total = amount + amount x rate x years and the instalment is that over the
+ * months. Deliberately not an amortising schedule — the panel says "flat rate", and
+ * computing a reducing-balance figure under that label would be answering a
+ * different question than the one on screen.
+ *
+ * The tax arithmetic is IRAS's own shape and lives in the defaults, not in the script:
  * `rate` is the flat corporate rate, and each scheme is a list of [band, exempt %]
  * applied to the bottom of chargeable income (SUTE 75% of the first 100k then 50%
  * of the next 100k; PTE 75% of the first 10k then 50% of the next 190k). Those
@@ -50,24 +70,31 @@ if ( ! $d ) {
 	return;
 }
 
+$mode = isset( $d['mode'] ) ? $d['mode'] : 'tax';
+
+// The exemption schemes belong to the tax frame; the loan one draws no radios at
+// all, so an empty list is the normal state there rather than a section with
+// nothing to compute.
 $modes = array();
 
-foreach ( $d['modes'] as $n => $default ) {
-	$label = thinksme_field( "ci_calculator_mode_{$n}_label", false, $default['label'] );
+if ( 'tax' === $mode ) {
+	foreach ( $d['modes'] as $n => $default ) {
+		$label = thinksme_field( "ci_calculator_mode_{$n}_label", false, $default['label'] );
 
-	if ( '' === trim( $label ) ) {
-		continue;
+		if ( '' === trim( $label ) ) {
+			continue;
+		}
+
+		$modes[ $n ] = array(
+			'label' => $label,
+			'text'  => thinksme_field( "ci_calculator_mode_{$n}_text", false, $default['text'] ),
+			'bands' => $default['bands'],
+		);
 	}
 
-	$modes[ $n ] = array(
-		'label' => $label,
-		'text'  => thinksme_field( "ci_calculator_mode_{$n}_text", false, $default['text'] ),
-		'bands' => $default['bands'],
-	);
-}
-
-if ( ! $modes ) {
-	return;
+	if ( ! $modes ) {
+		return;
+	}
 }
 
 $title        = thinksme_field( 'ci_calculator_title', false, $d['title'] );
@@ -78,7 +105,7 @@ $button_link  = thinksme_field( 'ci_calculator_button_link', false, $d['button_l
 $result_label = thinksme_field( 'ci_calculator_result_label', false, $d['result_label'] );
 $saved_label  = thinksme_field( 'ci_calculator_saved_label', false, $d['saved_label'] );
 $disclaimer   = thinksme_field( 'ci_calculator_disclaimer', false, $d['disclaimer'] );
-$active       = array_key_first( $modes );
+$active       = $modes ? array_key_first( $modes ) : 0;
 ?>
 <section id="ci-calculator" class="flex flex-col items-center gap-xl lg:gap-3xl w-full px-lg lg:px-3xl py-xl lg:py-[40px]">
 	<div class="flex flex-col items-center gap-md text-center max-w-[765px]">
@@ -101,12 +128,16 @@ $active       = array_key_first( $modes );
 		<?php endif; ?>
 	</div>
 
+	<?php // The tax frame's rate is fixed (IRAS's 17%) and rides on the form; the loan frame's is a field the visitor types, so there it is only the value the input starts on. ?>
 	<form
 		class="ci-calc"
 		action="<?php echo esc_url( $button_link ); ?>"
 		method="get"
+		data-mode="<?php echo esc_attr( $mode ); ?>"
 		data-rate="<?php echo esc_attr( $d['rate'] ); ?>"
 		data-currency="<?php echo esc_attr( $d['currency'] ); ?>"
+		<?php // The tenure select's caret is the theme's glyph rather than the platform's, handed to CSS the way faq.php hands over its +/- icons. ?>
+		style="--ci-calc-caret: url('<?php echo esc_url( "$icons_uri/caret-down.svg" ); ?>');"
 	>
 		<span class="ci-calc__tab" aria-hidden="true"></span>
 
@@ -125,41 +156,95 @@ $active       = array_key_first( $modes );
 			<?php endif; ?>
 		</div>
 
-		<?php // Native radios rather than scripted buttons: they carry their own keyboard behaviour and their own state, so the choice survives the script never loading and travels with the form when it doesn't. Each carries its own exemption bands — see the note at the top about why those live here. ?>
-		<fieldset class="ci-calc__modes">
-			<legend class="sr-only"><?php echo esc_html( $title ? $title : $d['title'] ); ?></legend>
+		<?php if ( $modes ) : ?>
+			<?php // Native radios rather than scripted buttons: they carry their own keyboard behaviour and their own state, so the choice survives the script never loading and travels with the form when it doesn't. Each carries its own exemption bands — see the note at the top about why those live here. ?>
+			<fieldset class="ci-calc__modes">
+				<legend class="sr-only"><?php echo esc_html( $title ? $title : $d['title'] ); ?></legend>
 
-			<?php foreach ( $modes as $n => $mode ) : ?>
-				<label class="ci-calc__mode">
-					<input
-						class="sr-only"
-						type="radio"
-						name="scheme"
-						value="<?php echo esc_attr( $n ); ?>"
-						data-bands="<?php echo esc_attr( wp_json_encode( $mode['bands'] ) ); ?>"
-						<?php checked( $n, $active ); ?>
-					>
-					<span class="ci-calc__mode-label"><?php echo esc_html( $mode['label'] ); ?></span>
+				<?php foreach ( $modes as $n => $scheme ) : ?>
+					<label class="ci-calc__mode">
+						<input
+							class="sr-only"
+							type="radio"
+							name="scheme"
+							value="<?php echo esc_attr( $n ); ?>"
+							data-bands="<?php echo esc_attr( wp_json_encode( $scheme['bands'] ) ); ?>"
+							<?php checked( $n, $active ); ?>
+						>
+						<span class="ci-calc__mode-label"><?php echo esc_html( $scheme['label'] ); ?></span>
 
-					<?php if ( $mode['text'] ) : ?>
-						<span class="ci-calc__mode-text"><?php echo esc_html( $mode['text'] ); ?></span>
-					<?php endif; ?>
-				</label>
-			<?php endforeach; ?>
-		</fieldset>
+						<?php if ( $scheme['text'] ) : ?>
+							<span class="ci-calc__mode-text"><?php echo esc_html( $scheme['text'] ); ?></span>
+						<?php endif; ?>
+					</label>
+				<?php endforeach; ?>
+			</fieldset>
+		<?php endif; ?>
 
 		<div class="flex flex-col gap-lg w-full">
-			<label class="sr-only" for="ci-calc-income"><?php echo esc_html( $placeholder ); ?></label>
-			<?php // inputmode rather than type="number": the spinner is meaningless on a currency amount, and a text field lets someone paste "1,250,000" without the browser discarding it. ?>
-			<input
-				class="ci-calc__input"
-				type="text"
-				id="ci-calc-income"
-				name="income"
-				inputmode="decimal"
-				autocomplete="off"
-				placeholder="<?php echo esc_attr( $placeholder ); ?>"
-			>
+			<?php if ( 'loan' === $mode ) : ?>
+				<?php
+				$amount_label = thinksme_field( 'ci_calculator_amount_label', false, $d['amount_label'] );
+				$tenure_label = thinksme_field( 'ci_calculator_tenure_label', false, $d['tenure_label'] );
+				$rate_label   = thinksme_field( 'ci_calculator_rate_label', false, $d['rate_label'] );
+				?>
+				<?php // Figma draws the amount and the tenure on one row and the rate on its own (119:1836); on a phone all three are their own row. ?>
+				<div class="ci-calc__grid">
+					<p class="ci-calc__field">
+						<label class="ci-calc__label" for="ci-calc-income"><?php echo esc_html( $amount_label ); ?></label>
+						<?php // inputmode rather than type="number": the spinner is meaningless on a currency amount, and a text field lets someone paste "1,250,000" without the browser discarding it. ?>
+						<input
+							class="ci-calc__input"
+							type="text"
+							id="ci-calc-income"
+							name="amount"
+							inputmode="decimal"
+							autocomplete="off"
+							placeholder="<?php echo esc_attr( $placeholder ); ?>"
+						>
+					</p>
+
+					<p class="ci-calc__field">
+						<label class="ci-calc__label" for="ci-calc-tenure"><?php echo esc_html( $tenure_label ); ?></label>
+						<?php // A native <select>: it carries its own keyboard behaviour, travels with the form when the script never loads, and is what Figma draws (a closed control with a caret). ?>
+						<select class="ci-calc__input ci-calc__select" id="ci-calc-tenure" name="tenure">
+							<?php foreach ( $d['tenures'] as $years ) : ?>
+								<option value="<?php echo esc_attr( $years ); ?>" <?php selected( $years, $d['tenure'] ); ?>>
+									<?php
+									/* translators: %s: number of years. */
+									echo esc_html( sprintf( _n( '%s Year', '%s Years', (int) $years, 'thinksme' ), number_format_i18n( $years ) ) );
+									?>
+								</option>
+							<?php endforeach; ?>
+						</select>
+					</p>
+				</div>
+
+				<p class="ci-calc__field">
+					<label class="ci-calc__label" for="ci-calc-rate"><?php echo esc_html( $rate_label ); ?></label>
+					<input
+						class="ci-calc__input"
+						type="text"
+						id="ci-calc-rate"
+						name="rate"
+						inputmode="decimal"
+						autocomplete="off"
+						value="<?php echo esc_attr( $d['rate'] ); ?>"
+					>
+				</p>
+			<?php else : ?>
+				<label class="sr-only" for="ci-calc-income"><?php echo esc_html( $placeholder ); ?></label>
+				<?php // inputmode rather than type="number": the spinner is meaningless on a currency amount, and a text field lets someone paste "1,250,000" without the browser discarding it. ?>
+				<input
+					class="ci-calc__input"
+					type="text"
+					id="ci-calc-income"
+					name="income"
+					inputmode="decimal"
+					autocomplete="off"
+					placeholder="<?php echo esc_attr( $placeholder ); ?>"
+				>
+			<?php endif; ?>
 
 			<?php if ( $button_text ) : ?>
 				<button type="submit" class="btn-split flex items-center w-full">

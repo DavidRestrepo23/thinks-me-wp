@@ -1,0 +1,15 @@
+<svg preserveAspectRatio="none" overflow="visible" style="display: block;" width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="ArrowsClockwise" clip-path="url(#clip0_0_4)">
+<g id="Vector">
+</g>
+<path id="Vector_2" d="M31.5 18H40.5V9" stroke="black" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"/>
+<path id="Vector_3" d="M40.5 18.0001L35.1975 12.6976C32.1267 9.62694 27.9691 7.89066 23.6265 7.86539C19.2839 7.84012 15.1063 9.52788 12 12.5626" stroke="black" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"/>
+<path id="Vector_4" d="M16.5 30H7.5V39" stroke="black" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"/>
+<path id="Vector_5" d="M7.5 30L12.8025 35.3025C15.8733 38.3732 20.0309 40.1095 24.3735 40.1347C28.7161 40.16 32.8937 38.4722 36 35.4375" stroke="black" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+<defs>
+<clipPath id="clip0_0_4">
+<rect width="48" height="48" fill="white"/>
+</clipPath>
+</defs>
+</svg>

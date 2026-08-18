@@ -1,5 +1,8 @@
 /**
- * Corporate tax estimate (template-parts/ci-calculator.php).
+ * The two estimates template-parts/ci-calculator.php draws: corporate tax
+ * (Corporate Tax page) and a flat-rate loan instalment (Business Loan page). Which
+ * one is `data-mode` on the form, because the panel's mode is a design default
+ * rather than something to infer from which fields happen to be present.
  *
  * Reads the rate and each scheme's exemption bands off the markup — they are ACF
  * defaults in inc/ci-content.php, because they are IRAS's numbers and they change
@@ -8,13 +11,19 @@
  * Without this file the section is still a working GET form: the schemes are
  * native radios and the button takes the visitor to the contact page with what
  * they typed. With it, submitting computes in place instead — the same
- * enhancement contract ci-tools.js and roa-block.js have.
+ * enhancement contract tabs.js and expand-cards.js have.
  *
- * The maths is IRAS's own shape: exemption applies to the *bottom* of chargeable
- * income, band by band, and the flat rate is charged on what is left.
+ * The tax maths is IRAS's own shape: exemption applies to the *bottom* of
+ * chargeable income, band by band, and the flat rate is charged on what is left.
  *
  *   exempt = Σ min(remaining, band) × percent
  *   tax    = (income − exempt) × rate
+ *
+ * The loan maths is the flat-rate method the panel names on its own disclaimer —
+ * interest on the original amount for the whole tenure, not a reducing balance:
+ *
+ *   total    = amount + amount × rate × years
+ *   monthly  = total / (years × 12)
  *
  * Rounded to whole dollars on purpose: an estimate printed to the cent claims a
  * precision it doesn't have.
@@ -26,7 +35,10 @@
 		return;
 	}
 
-	var input  = form.querySelector( '.ci-calc__input' );
+	var mode   = form.getAttribute( 'data-mode' ) || 'tax';
+	var input  = form.querySelector( '#ci-calc-income' ) || form.querySelector( '.ci-calc__input' );
+	var tenure = form.querySelector( '#ci-calc-tenure' );
+	var rateIn = form.querySelector( '#ci-calc-rate' );
 	var result = form.querySelector( '.ci-calc__result' );
 	var amount = form.querySelector( '[data-calc-amount]' );
 	var saved  = form.querySelector( '[data-calc-saved]' );
@@ -40,6 +52,12 @@
 	var currency = form.getAttribute( 'data-currency' ) || '';
 
 	if ( ! isFinite( rate ) ) {
+		return;
+	}
+
+	// The loan panel needs both of its other controls; without them there is nothing
+	// to compute and the form stays the plain GET it is without this file.
+	if ( 'loan' === mode && ( ! tenure || ! rateIn ) ) {
 		return;
 	}
 
@@ -99,6 +117,37 @@
 			return;
 		}
 
+		if ( 'loan' === mode ) {
+			var years    = parseAmount( tenure.value );
+			var flatRate = parseAmount( rateIn.value );
+
+			// A blank or nonsense rate is 0% rather than no estimate: the instalment on
+			// the principal alone is still a true figure, and the field shows what it is.
+			if ( ! isFinite( flatRate ) || flatRate < 0 ) {
+				flatRate = 0;
+			}
+
+			if ( ! isFinite( years ) || years <= 0 ) {
+				show( result, false );
+				show( error, true );
+
+				return;
+			}
+
+			var total = income + ( income * ( flatRate / 100 ) * years );
+
+			amount.textContent = format( total / ( years * 12 ) );
+
+			if ( saved ) {
+				saved.textContent = format( total );
+			}
+
+			show( error, false );
+			show( result, true );
+
+			return;
+		}
+
 		var remaining = income;
 		var exempt    = 0;
 		var list      = bands();
@@ -146,9 +195,26 @@
 	}
 
 	// A figure left on screen from the previous income is worse than none: it
-	// reads as the answer to what is in the field now.
+	// reads as the answer to what is in the field now. Same for the loan panel's two
+	// other controls, and changing the tenure with an amount already typed re-runs
+	// the estimate the way switching scheme does above.
 	input.addEventListener( 'input', function () {
 		show( result, false );
 		show( error, false );
 	} );
+
+	if ( rateIn ) {
+		rateIn.addEventListener( 'input', function () {
+			show( result, false );
+			show( error, false );
+		} );
+	}
+
+	if ( tenure ) {
+		tenure.addEventListener( 'change', function () {
+			if ( '' !== input.value.trim() ) {
+				estimate();
+			}
+		} );
+	}
 } )();
