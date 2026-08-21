@@ -143,6 +143,23 @@ function thinksme_enqueue_assets() {
 		);
 	}
 
+	// TOC scrollspy — Privacy Policy (template-parts/legal-toc.php, numbered list)
+	// and single blog posts (template-parts/blog-toc.php, the rail-with-fill
+	// variant — same script, same [data-toc-scrollspy]/[data-toc-link]/
+	// [data-toc-section] contract; it additionally moves [data-toc-fill] when a
+	// group has one and no-ops on that step otherwise, so one file serves both
+	// skins. Markup-driven and no-ops without a TOC on the page, but there is no
+	// reason to ship it to templates that never draw one.
+	if ( in_array( thinksme_current_template(), array( 'page-privacy-policy-2.php', 'single.php' ), true ) ) {
+		wp_enqueue_script(
+			'thinksme-toc-scrollspy',
+			get_template_directory_uri() . '/assets/js/toc-scrollspy.js',
+			array(),
+			THINKSME_VERSION,
+			true
+		);
+	}
+
 	// The scroll-driven progress rail, shared by template-parts/roa-why.php and
 	// template-parts/ci-requirements.php. The script is markup-driven
 	// (data-progress-rail) and no-ops without a rail on the page, but there is no
@@ -154,6 +171,8 @@ function thinksme_enqueue_assets() {
 			'page-accounting-bookkeeping.php',
 			'page-corporate-tax.php',
 			'page-property-cashout.php',
+			'page-psg-grant.php',
+			'page-mra-grant.php',
 		),
 		true
 	) ) {
@@ -238,6 +257,8 @@ function thinksme_enqueue_assets() {
 			'page-property-cashout.php',
 			'page-business-loan.php',
 			'page-mortgage-loans.php',
+			'page-psg-grant.php',
+			'page-mra-grant.php',
 		),
 		true
 	) ) {
@@ -377,6 +398,54 @@ function thinksme_current_template( $template = null ) {
 }
 
 /**
+ * URL of the blog index (page-thinksme-blogs.php, slug "thinksme-blogs").
+ * Looked up by slug rather than hardcoding the page ID, since post IDs aren't
+ * portable across environments (this site's was assigned when the page was
+ * created in wp-admin, not chosen). Used by blog-related.php's "View All
+ * Posts" button and by blog-grid.php's own search/filter/pagination links.
+ * Falls back to the home URL only if the page is ever renamed or deleted, the
+ * same graceful-degradation get_post_type_archive_link() calls elsewhere
+ * already fall back to.
+ *
+ * @return string
+ */
+function thinksme_blog_index_url() {
+	static $url = null;
+
+	if ( null === $url ) {
+		$page = get_page_by_path( 'thinksme-blogs' );
+		$url  = $page ? get_permalink( $page ) : home_url( '/' );
+	}
+
+	return $url;
+}
+
+/**
+ * Reads and sanitizes this request's blog-index filter state (`blog_s`,
+ * `blog_cat`, `paged`) once, so template-parts/blog-filters.php and
+ * template-parts/blog-grid.php can't read it two slightly different ways.
+ *
+ * The search field is `blog_s`, deliberately not WordPress' own `s` — `s` is
+ * one of WP's public query vars, and a request for a static page's own
+ * pretty-permalink URL with `?s=...` appended gets parsed by WP's main query
+ * as a *search* request rather than a *page* request (pagename + s is an
+ * impossible combination WP resolves as 404, not as "run the page template
+ * with s available"). Confirmed the hard way: /thinksme-blogs/?s=GST 404'd
+ * before this was renamed, even though page-thinksme-blogs.php never once
+ * reads WP's `$wp_query`. A same-named-but-different query var sidesteps the
+ * conflict entirely since WP's request parser doesn't treat it specially.
+ *
+ * @return array{blog_s: string, blog_cat: string, paged: int}
+ */
+function thinksme_blog_query_vars() {
+	return array(
+		'blog_s'   => isset( $_GET['blog_s'] ) ? sanitize_text_field( wp_unslash( $_GET['blog_s'] ) ) : '', // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- GET filter, not a state-changing action.
+		'blog_cat' => isset( $_GET['blog_cat'] ) ? sanitize_title( wp_unslash( $_GET['blog_cat'] ) ) : '', // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- GET filter, not a state-changing action.
+		'paged'    => isset( $_GET['paged'] ) ? max( 1, (int) $_GET['paged'] ) : 1, // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- GET filter, not a state-changing action.
+	);
+}
+
+/**
  * Record the resolved template and pass it through untouched.
  *
  * @param string $template Full template path.
@@ -423,6 +492,12 @@ function thinksme_customize_register( $wp_customize ) {
 		),
 		'thinksme_linkedin_url'    => array(
 			'label'   => __( 'LinkedIn URL', 'thinksme' ),
+			'type'    => 'url',
+			'default' => '',
+			'sanitize' => 'esc_url_raw',
+		),
+		'thinksme_pinterest_url'   => array(
+			'label'   => __( 'Pinterest URL (blog post share row)', 'thinksme' ),
 			'type'    => 'url',
 			'default' => '',
 			'sanitize' => 'esc_url_raw',
@@ -905,6 +980,16 @@ function thinksme_ci_icons() {
 		'trend-up'        => __( 'Rising arrow', 'thinksme' ),
 		'user-circle'     => __( 'Person in a circle', 'thinksme' ),
 		'bell-ringing'    => __( 'Ringing bell', 'thinksme' ),
+		'lightbulb'       => __( 'Lightbulb', 'thinksme' ),
+		'plant'           => __( 'Seedling', 'thinksme' ),
+		'folder-open'     => __( 'Open folder', 'thinksme' ),
+		'archive'         => __( 'Archive box', 'thinksme' ),
+		'chart-pie-slice' => __( 'Pie chart', 'thinksme' ),
+		'megaphone'       => __( 'Megaphone', 'thinksme' ),
+		'compass'         => __( 'Compass', 'thinksme' ),
+		'folder-simple-star' => __( 'Folder with a star', 'thinksme' ),
+		'handshake'       => __( 'Handshake', 'thinksme' ),
+		'storefront'      => __( 'Shopfront', 'thinksme' ),
 	);
 }
 
@@ -994,6 +1079,21 @@ foreach ( array( 1, 2, 3, 4, 5 ) as $thinksme_ci_n ) {
 }
 foreach ( array( 1, 2, 3 ) as $thinksme_ci_n ) {
 	add_filter( "acf/load_field/name=ci_steps_card_{$thinksme_ci_n}_icon", 'thinksme_ci_icon_choices' );
+}
+// The PSG Grant page's three grid instances (template-parts/ci-grid.php). Eight
+// rather than six: its "Everything Included With Xero" band is the widest grid in
+// the family, two rows of four.
+foreach ( array( 1, 2, 3, 4, 5, 6, 7, 8 ) as $thinksme_ci_n ) {
+	add_filter( "acf/load_field/name=ci_grid_benefits_card_{$thinksme_ci_n}_icon", 'thinksme_ci_icon_choices' );
+	add_filter( "acf/load_field/name=ci_grid_features_card_{$thinksme_ci_n}_icon", 'thinksme_ci_icon_choices' );
+	add_filter( "acf/load_field/name=ci_grid_credentials_card_{$thinksme_ci_n}_icon", 'thinksme_ci_icon_choices' );
+}
+// The MRA Grant page's "Our solutions" grid (template-parts/ci-grid.php) and its
+// eligibility rail (ci-requirements.php). Four each — the frame draws four columns
+// and four steps — so this is its own loop rather than a range shared with the
+// grids above.
+foreach ( array( 1, 2, 3, 4 ) as $thinksme_ci_n ) {
+	add_filter( "acf/load_field/name=ci_grid_solutions_card_{$thinksme_ci_n}_icon", 'thinksme_ci_icon_choices' );
 }
 unset( $thinksme_ci_n );
 

@@ -3800,6 +3800,78 @@ button:focus-visible {
   }
 }
 
+/* Legal-page table of contents (template-parts/legal-toc.php). Numbered links
+   default to the "1. Introduction" active look the static Figma screenshot
+   draws; assets/js/toc-scrollspy.js moves data-active as the reader scrolls. */
+.legal-toc a {
+  display: block;
+  font-weight: 400;
+  color: var(--color-text-secondary);
+  transition: color 0.2s ease;
+}
+
+.legal-toc a[data-active="true"] {
+  font-weight: 700;
+  color: var(--color-surface-dark);
+}
+
+/* Blog post rail TOC (template-parts/blog-toc.php). Active item is full
+   weight/opacity black; the rest sit at 40% opacity, matching Figma's static
+   screenshot. The moving yellow fill is positioned by assets/js/toc-scrollspy.js. */
+.blog-toc__link {
+  display: block;
+  font-weight: 400;
+  color: var(--color-text-primary);
+  opacity: 0.4;
+  transition: opacity 0.2s ease, font-weight 0.2s ease;
+}
+
+.blog-toc__link[data-active="true"] {
+  font-weight: 500;
+  opacity: 1;
+}
+
+/* Blog index pager (template-parts/blog-grid.php), wp_kses_post()-ing
+   paginate_links() output — its own .page-numbers/.current/.dots classes,
+   not ones this theme chose, styled to match Figma's small circular markers
+   (134:807) rather than replacing the control. */
+.blog-pager .page-numbers {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: var(--radius-pill);
+  border: 1px solid var(--color-border-light);
+  background-color: var(--color-surface-white);
+  font-weight: 500;
+  font-size: var(--font-size-sm);
+  color: var(--color-text-primary);
+  transition: border-color 0.2s ease, background-color 0.2s ease;
+}
+
+.blog-pager .page-numbers.current {
+  background-color: var(--color-brand-yellow);
+  border-color: var(--color-brand-yellow);
+}
+
+.blog-pager .page-numbers.dots {
+  border: 0;
+  background: none;
+}
+
+.blog-pager a.page-numbers.prev,
+.blog-pager a.page-numbers.next {
+  width: 24px;
+  height: 24px;
+  border: 0;
+  background: none;
+}
+
+.blog-pager a.page-numbers:hover {
+  border-color: var(--color-brand-yellow-dark);
+}
+
 @media (prefers-reduced-motion: reduce) {
   a,
   button,
@@ -3813,7 +3885,10 @@ button:focus-visible {
   .roa-card__icon,
   .roa-card__title,
   .ci-calc__mode,
-  .ci-elig__tab {
+  .ci-elig__tab,
+  .legal-toc a,
+  .blog-toc__link,
+  .blog-pager .page-numbers {
     transition: none;
   }
 

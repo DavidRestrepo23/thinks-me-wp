@@ -49,6 +49,15 @@
  * `heading_class` / `hat_class` — a colour inherited from a wrapper loses to the
  * hard `color` base.css sets on h1..h6, so the heading has to carry it itself.
  *
+ * The PSG Grant frame draws this component twice more and needed six further class
+ * strings, every one of which defaults to what the instances before it drew:
+ * `heading_size_class` (its benefits band sets 48px, between the shared 40/64
+ * steps), `header_class` (that band's heading is measured in a 552px box, not
+ * 1022), `card_pad_class` (its columns have no card behind them, so they have no
+ * padding either), `disc_class` / `icon_class` (56/32 against the centred 112/48)
+ * and `title_class` / `text_class` (28px white and white, against 24px and #505050).
+ * Values, not a second layout — the same call every other knob here made.
+ *
  * An instance can sit inside a panel rather than on the page: `panel_class` wraps
  * the whole thing (the Remittance frame's pale rounded block, 123:2715) and
  * `card_class` is what its cards are filled with, white there against #f8f8f8
@@ -122,12 +131,40 @@ $centred = 'center' === $d['align'];
 $panel_class = isset( $d['panel_class'] ) ? $d['panel_class'] : '';
 $card_class  = isset( $d['card_class'] ) ? $d['card_class'] : 'bg-surface-faint';
 
+// The card's own radius and padding, separate from its fill because the PSG Grant
+// frame's benefits band (127:537) draws four columns *without* a card behind them —
+// on that navy panel a card is a transparent column, and 32px of padding inside a
+// fill nobody can see only narrows the copy. Every other instance takes the
+// original pair.
+$card_pad_class = isset( $d['card_pad_class'] ) ? $d['card_pad_class'] : 'rounded-lg p-lg lg:p-[32px]';
+
 // On a navy panel the header block has to invert. base.css sets a hard colour on
 // h1..h6, so the heading needs the class on the element itself — the note in
 // template-parts/ci-tools.php's history. The hat's own fill changes too: the pale
 // yellow pill disappears against navy, where Figma draws a white one.
 $heading_class = isset( $d['heading_class'] ) ? $d['heading_class'] : 'text-text-primary';
 $hat_class     = isset( $d['hat_class'] ) ? $d['hat_class'] : 'bg-brand-yellow-soft/35 border-brand-yellow-border text-text-primary';
+
+// Four more per-instance class strings, all defaulting to what every instance drew
+// before them, for the PSG Grant frame's two new bands. Its benefits panel
+// (127:537) sets its heading at 48px between the 40px and 64px steps of the shared
+// scale, and its columns carry a 56px disc, a 28px title and white copy where the
+// centred instances draw 112px, 24px and #505050. Its features grid (127:534 +
+// 127:934) is the shared centred card again but with 20px titles. Values, not a
+// second layout — and one whole class string each, for the Tailwind reason the
+// cards' spans are.
+$heading_size_class = isset( $d['heading_size_class'] ) ? $d['heading_size_class'] : 'text-2xl lg:text-3xl';
+$header_class       = isset( $d['header_class'] ) ? $d['header_class'] : 'max-w-[1022px]';
+$disc_class         = isset( $d['disc_class'] ) ? $d['disc_class'] : ( $centred ? 'size-[112px]' : 'size-[80px]' );
+$icon_class         = isset( $d['icon_class'] ) ? $d['icon_class'] : ( $centred ? 'size-[48px]' : 'size-[40px]' );
+$title_class        = isset( $d['title_class'] ) ? $d['title_class'] : ( $centred ? 'text-xl text-text-heading-dark' : 'text-lg text-text-heading-dark' );
+// How the card distributes its own height. The centred instances centre it, which is
+// right when every card's copy runs to the same number of lines and wrong when one
+// title wraps further than its neighbours' — there the discs stop lining up across
+// the row, which is what the PSG Grant frame draws them doing (top-aligned, 127:539
+// and 127:829). A value, so the instances that centre keep centring.
+$card_justify_class = isset( $d['card_justify_class'] ) ? $d['card_justify_class'] : ( $centred ? 'justify-center' : 'justify-between' );
+$text_class         = isset( $d['text_class'] ) ? $d['text_class'] : 'text-text-secondary';
 ?>
 <?php // The section's own padding is a per-instance default: the two frames sit at different distances from what precedes them, and "The Same Firm" follows the requirements panel with 160px of air in Figma rather than the 80px two adjacent sections give each other. ?>
 <section id="ci-grid-<?php echo esc_attr( $instance ); ?>" class="w-full px-lg lg:px-3xl <?php echo esc_attr( $d['section_class'] ); ?>">
@@ -135,7 +172,7 @@ $hat_class     = isset( $d['hat_class'] ) ? $d['hat_class'] : 'bg-brand-yellow-s
 	<div class="<?php echo esc_attr( $panel_class ); ?>">
 	<?php endif; ?>
 
-	<div class="flex flex-col items-center gap-md text-center max-w-[1022px] mx-auto">
+	<div class="flex flex-col items-center gap-md text-center <?php echo esc_attr( $header_class ); ?> mx-auto">
 		<?php $hat = thinksme_field( "{$prefix}_hat_text", false, $d['hat'] ); ?>
 		<?php if ( $hat ) : ?>
 			<span class="<?php echo esc_attr( $hat_class ); ?> border rounded-pill h-[32px] px-md inline-flex items-center justify-center text-xs font-medium">
@@ -143,7 +180,7 @@ $hat_class     = isset( $d['hat_class'] ) ? $d['hat_class'] : 'bg-brand-yellow-s
 			</span>
 		<?php endif; ?>
 
-		<h2 class="font-medium text-2xl lg:text-3xl leading-tight tracking-hero <?php echo esc_attr( $heading_class ); ?>">
+		<h2 class="font-medium <?php echo esc_attr( $heading_size_class ); ?> leading-tight tracking-hero <?php echo esc_attr( $heading_class ); ?>">
 			<?php echo esc_html( thinksme_field( "{$prefix}_heading", false, $d['heading'] ) ); ?>
 		</h2>
 
@@ -168,13 +205,13 @@ $hat_class     = isset( $d['hat_class'] ) ? $d['hat_class'] : 'bg-brand-yellow-s
 					>
 				</div>
 			<?php else : ?>
-				<article class="<?php echo esc_attr( $card_class ); ?> rounded-lg p-lg lg:p-[32px] flex flex-col gap-md <?php echo $centred ? 'items-center text-center justify-center' : 'justify-between'; ?> <?php echo esc_attr( $card['class'] ); ?>">
-					<span class="bg-brand-yellow rounded-pill inline-flex items-center justify-center shrink-0 <?php echo $centred ? 'size-[112px]' : 'size-[80px]'; ?>">
-						<img src="<?php echo esc_url( $card['icon'] ); ?>" alt="" class="<?php echo $centred ? 'size-[48px]' : 'size-[40px]'; ?>">
+				<article class="<?php echo esc_attr( $card_class ); ?> <?php echo esc_attr( $card_pad_class ); ?> flex flex-col gap-md <?php echo $centred ? 'items-center text-center' : ''; ?> <?php echo esc_attr( $card_justify_class ); ?> <?php echo esc_attr( $card['class'] ); ?>">
+					<span class="bg-brand-yellow rounded-pill inline-flex items-center justify-center shrink-0 <?php echo esc_attr( $disc_class ); ?>">
+						<img src="<?php echo esc_url( $card['icon'] ); ?>" alt="" class="<?php echo esc_attr( $icon_class ); ?>">
 					</span>
 
 					<div class="flex flex-col gap-md <?php echo $centred ? 'items-center' : ''; ?>">
-						<h3 class="font-medium <?php echo $centred ? 'text-xl' : 'text-lg'; ?> leading-snug text-text-heading-dark">
+						<h3 class="font-medium <?php echo esc_attr( $title_class ); ?> leading-snug">
 							<?php echo esc_html( $card['title'] ); ?>
 						</h3>
 
@@ -185,7 +222,7 @@ $hat_class     = isset( $d['hat_class'] ) ? $d['hat_class'] : 'bg-brand-yellow-s
 						<?php endif; ?>
 
 						<?php if ( $card['text'] ) : ?>
-							<p class="font-normal text-sm leading-loose text-text-secondary">
+							<p class="font-normal text-sm leading-loose <?php echo esc_attr( $text_class ); ?>">
 								<?php echo esc_html( $card['text'] ); ?>
 							</p>
 						<?php endif; ?>

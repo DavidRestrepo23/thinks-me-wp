@@ -22,15 +22,21 @@ $default_url = apply_filters( 'thinksme_cta_photo', get_template_directory_uri()
 $image_url   = ! empty( $image['url'] ) ? $image['url'] : $default_url;
 $image_alt = ! empty( $image['alt'] ) ? $image['alt'] : '';
 $rating    = thinksme_field( 'cta_google_rating', false, '4.9' );
+// Two more filters for the same reason the photo is one: the PSG Grant frame closes
+// on "Let's work together" over its own line of copy (127:865, 127:866), and this
+// part has no business knowing which page it is on. inc/ci-content.php answers them
+// from the current set; every other page gets the strings below.
+$title     = apply_filters( 'thinksme_cta_title', 'Need help?' );
+$text      = apply_filters( 'thinksme_cta_text', 'Reach out with your requirements, and our experts will be happy to assist you — no commitment, no pressure.' );
 ?>
 <section id="cta" class="flex flex-col gap-xl lg:gap-2xl w-full mt-xl md:mt-3xl pb-3xl px-lg lg:px-3xl">
 	<div class="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-xl w-full">
 		<div class="flex flex-col gap-lg max-w-[500px]">
 			<h2 class="font-medium text-2xl lg:text-3xl leading-tight text-text-primary" style="letter-spacing: -0.01em;">
-				<?php echo esc_html( thinksme_field( 'cta_title', false, 'Need help?' ) ); ?>
+				<?php echo esc_html( thinksme_field( 'cta_title', false, $title ) ); ?>
 			</h2>
 			<p class="font-normal text-md text-text-secondary leading-normal tracking-wide">
-				<?php echo esc_html( thinksme_field( 'cta_text', false, 'Reach out with your requirements, and our experts will be happy to assist you — no commitment, no pressure.' ) ); ?>
+				<?php echo esc_html( thinksme_field( 'cta_text', false, $text ) ); ?>
 			</p>
 		</div>
 

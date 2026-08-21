@@ -17,6 +17,11 @@
  * exactly as before, and thinksme_ci_defaults() returns array() outside the ci-*
  * templates, so the homepage and the contact page are untouched too.
  *
+ * A set that writes its own questions can name its own `hat` and `heading` beside
+ * them (the PSG Grant frame titles the section "Questions Business Owners Ask Us
+ * First", one word short of the site-wide line). Both fall back to the site-wide
+ * strings, so a set that names neither — every other one — is unchanged.
+ *
  * Deliberately not a `faq_group` taxonomy on the CPT: that would put this page's
  * questions in the same admin list as the site-wide ones and make "which page does
  * this appear on" a thing the client has to get right on every future FAQ. Fields
@@ -119,10 +124,10 @@ if ( ! $items ) {
 		<div class="flex flex-col gap-xl w-full min-w-0 lg:flex-[54_1_0%]">
 			<div class="flex flex-col items-start gap-md">
 				<span class="bg-brand-yellow-soft border border-brand-yellow-border rounded-pill h-[32px] px-lg inline-flex items-center justify-center text-xs font-medium text-text-primary">
-					<?php echo esc_html( thinksme_field( 'faq_hat_text', false, 'Common Questions' ) ); ?>
+					<?php echo esc_html( thinksme_field( 'faq_hat_text', false, empty( $page_faq['hat'] ) ? 'Common Questions' : $page_faq['hat'] ) ); ?>
 				</span>
 				<h2 class="font-medium text-2xl lg:text-3xl leading-tight text-text-primary" style="letter-spacing: -0.01em;">
-					<?php echo esc_html( thinksme_field( 'faq_heading', false, 'Questions Singapore Business Owners Ask Us First' ) ); ?>
+					<?php echo esc_html( thinksme_field( 'faq_heading', false, empty( $page_faq['heading'] ) ? 'Questions Singapore Business Owners Ask Us First' : $page_faq['heading'] ) ); ?>
 				</h2>
 			</div>
 

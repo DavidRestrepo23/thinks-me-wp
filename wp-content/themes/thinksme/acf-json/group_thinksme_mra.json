@@ -1,0 +1,1832 @@
+{
+    "key": "group_thinksme_mra",
+    "title": "MRA Grant Page Content",
+    "location": [
+        [
+            {
+                "param": "page_template",
+                "operator": "==",
+                "value": "page-mra-grant.php"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "MRA Grant page sections, in the order they appear: hero, the MRA-in-short statement, what the grant covers, who can apply, our solutions, the Google Reviews slider, what you can expect and the final CTA. Only one block on this page is new to the theme — the centred statement with the ring around “70%” — and the three accreditation marks under it are theme artwork rather than fields, like the two on the PSG Grant page. Everything else is a section another page already draws, so the two ticked lists are the same component with different values and their fields are grouped by section above. This frame writes no FAQ, so unlike most pages there are no faq_* fields here and the page draws no FAQ section. The testimonials_* and cta_* field names repeat the other pages’ names under different keys, which is what lets template-parts/testimonials.php and cta.php stay page-agnostic. Everything is flat fields because ACF free has no Repeater — quantities are fixed by the layout, and empty entries are skipped rather than rendered blank. Leave a field empty and the design’s own copy renders instead: because the theme treats an empty value as “use the design default”, a field that ships with copy cannot be blanked from here, only replaced.",
+    "show_in_rest": 0,
+    "fields": [
+        {
+            "key": "field_thinksme_tab_mra_hero",
+            "label": "Hero",
+            "name": "",
+            "aria-label": "",
+            "type": "tab",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "placement": "top",
+            "endpoint": 0,
+            "selected": 0
+        },
+        {
+            "key": "field_thinksme_mra_ci_hero_hat_text",
+            "label": "Hat Text",
+            "name": "ci_hero_hat_text",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "Market Readiness Assistance Grant",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_thinksme_mra_ci_hero_title",
+            "label": "Headline",
+            "name": "ci_hero_title",
+            "aria-label": "",
+            "type": "textarea",
+            "instructions": "The design sets this at 64px across three lines. This frame draws no brush stroke under it, so the length is free — unlike the other hero frames.",
+            "required": 0,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "rows": 4,
+            "new_lines": "",
+            "default_value": "Secure a government supported Grant to reach new international markets",
+            "maxlength": "",
+            "placeholder": ""
+        },
+        {
+            "key": "field_thinksme_mra_ci_hero_text",
+            "label": "Intro Text",
+            "name": "ci_hero_text",
+            "aria-label": "",
+            "type": "textarea",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "rows": 6,
+            "new_lines": "",
+            "default_value": "MRA (Market Readiness Assistance Grant) MRA Grant is a grant by Enterprise Singapore for established local SMEs to help them to improve their market knowledge, strengthen their capabilities and expand their networks, as well as to connect them to partners and opportunities overseas.",
+            "maxlength": "",
+            "placeholder": ""
+        },
+        {
+            "key": "field_thinksme_mra_ci_hero_button_text",
+            "label": "Button Text",
+            "name": "ci_hero_button_text",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "Check My Eligibility",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_thinksme_mra_ci_hero_button_link",
+            "label": "Button Link",
+            "name": "ci_hero_button_link",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "/contact-us",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_thinksme_mra_ci_hero_button_2_text",
+            "label": "Second Button Text",
+            "name": "ci_hero_button_2_text",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "+65 6012 9642",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_thinksme_mra_ci_hero_button_2_link",
+            "label": "Second Button Link",
+            "name": "ci_hero_button_2_link",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "tel:+6560129642",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_thinksme_mra_ci_hero_image",
+            "label": "Photo",
+            "name": "ci_hero_image",
+            "aria-label": "",
+            "type": "image",
+            "instructions": "Leave empty to keep the design’s photograph. An upload is placed in the photo’s own slot and the yellow badge is drawn back over its left edge.",
+            "required": 0,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "return_format": "array",
+            "library": "all",
+            "min_width": "",
+            "min_height": "",
+            "min_size": "",
+            "max_width": "",
+            "max_height": "",
+            "max_size": "",
+            "mime_types": "",
+            "preview_size": "medium"
+        },
+        {
+            "key": "field_thinksme_tab_mra_statement",
+            "label": "MRA in Short",
+            "name": "",
+            "aria-label": "",
+            "type": "tab",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "placement": "top",
+            "endpoint": 0,
+            "selected": 0
+        },
+        {
+            "key": "field_thinksme_mra_ci_statement_text",
+            "label": "Statement",
+            "name": "ci_statement_text",
+            "aria-label": "",
+            "type": "textarea",
+            "instructions": "The ring around “70%” is placed against this sentence breaking into five lines at 40px. A much shorter or longer sentence will circle different words; the ring is desktop-only either way.",
+            "required": 0,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "rows": 5,
+            "new_lines": "",
+            "default_value": "To help local SMEs get a foothold in overseas markets, the Market Readiness Grant was set up to provide funds to take the first steps. The MRA will cover up to 70% of eligible costs (capped at S$100,000) for each company in each new market.",
+            "maxlength": "",
+            "placeholder": ""
+        },
+        {
+            "key": "field_thinksme_mra_ci_statement_button_text",
+            "label": "Button Text",
+            "name": "ci_statement_button_text",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "View full list of supportable activities",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_thinksme_mra_ci_statement_button_link",
+            "label": "Button Link",
+            "name": "ci_statement_button_link",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "/contact-us",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_thinksme_tab_mra_covers",
+            "label": "What the Grant Covers",
+            "name": "",
+            "aria-label": "",
+            "type": "tab",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "placement": "top",
+            "endpoint": 0,
+            "selected": 0
+        },
+        {
+            "key": "field_thinksme_mra_ci_criteria_covers_hat_text",
+            "label": "Hat Text",
+            "name": "ci_criteria_covers_hat_text",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "Empty on this page — the design draws no pill above this heading.",
+            "required": 0,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_thinksme_mra_ci_criteria_covers_heading",
+            "label": "Heading",
+            "name": "ci_criteria_covers_heading",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "What covers in MRA Grant in Singapore?",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_thinksme_mra_ci_criteria_covers_text",
+            "label": "Intro Text",
+            "name": "ci_criteria_covers_text",
+            "aria-label": "",
+            "type": "textarea",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "rows": 3,
+            "new_lines": "",
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": ""
+        },
+        {
+            "key": "field_thinksme_mra_ci_criteria_covers_list_title",
+            "label": "List Sub-heading",
+            "name": "ci_criteria_covers_list_title",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "Empty on this page — the heading above stands for the list.",
+            "required": 0,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_thinksme_mra_ci_criteria_covers_image",
+            "label": "Photo",
+            "name": "ci_criteria_covers_image",
+            "aria-label": "",
+            "type": "image",
+            "instructions": "Leave empty to keep the design’s photograph.",
+            "required": 0,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "return_format": "array",
+            "library": "all",
+            "min_width": "",
+            "min_height": "",
+            "min_size": "",
+            "max_width": "",
+            "max_height": "",
+            "max_size": "",
+            "mime_types": "",
+            "preview_size": "medium"
+        },
+        {
+            "key": "field_thinksme_mra_ci_criteria_covers_item_1",
+            "label": "Item 1",
+            "name": "ci_criteria_covers_item_1",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "Overseas market promotion (capped at S$20,000)",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_thinksme_mra_ci_criteria_covers_item_2",
+            "label": "Item 2",
+            "name": "ci_criteria_covers_item_2",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "Overseas business development (capped at S$50,000)",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_thinksme_mra_ci_criteria_covers_item_3",
+            "label": "Item 3",
+            "name": "ci_criteria_covers_item_3",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "Overseas market set-up (capped at S$30,000)",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_thinksme_mra_ci_criteria_covers_item_4",
+            "label": "Item 4",
+            "name": "ci_criteria_covers_item_4",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_thinksme_mra_ci_criteria_covers_item_5",
+            "label": "Item 5",
+            "name": "ci_criteria_covers_item_5",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_thinksme_mra_ci_criteria_covers_item_6",
+            "label": "Item 6",
+            "name": "ci_criteria_covers_item_6",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_thinksme_mra_ci_criteria_covers_item_7",
+            "label": "Item 7",
+            "name": "ci_criteria_covers_item_7",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_thinksme_mra_ci_criteria_covers_button_text",
+            "label": "Button Text",
+            "name": "ci_criteria_covers_button_text",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "Let’s Work Together",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_thinksme_mra_ci_criteria_covers_button_link",
+            "label": "Button Link",
+            "name": "ci_criteria_covers_button_link",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "/contact-us",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_thinksme_tab_mra_requirements",
+            "label": "Who Can Apply",
+            "name": "",
+            "aria-label": "",
+            "type": "tab",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "placement": "top",
+            "endpoint": 0,
+            "selected": 0
+        },
+        {
+            "key": "field_thinksme_mra_ci_requirements_hat_text",
+            "label": "Hat Text",
+            "name": "ci_requirements_hat_text",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "Process",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_thinksme_mra_ci_requirements_heading",
+            "label": "Heading",
+            "name": "ci_requirements_heading",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "Who can apply For MRA Grant in Singapore?",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_thinksme_mra_ci_requirements_text",
+            "label": "Intro Text",
+            "name": "ci_requirements_text",
+            "aria-label": "",
+            "type": "textarea",
+            "instructions": "Empty on this page — the design writes no line under this heading.",
+            "required": 0,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "rows": 3,
+            "new_lines": "",
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": ""
+        },
+        {
+            "key": "field_thinksme_mra_ci_requirements_step_1_icon",
+            "label": "Criterion 1 — Icon",
+            "name": "ci_requirements_step_1_icon",
+            "aria-label": "",
+            "type": "select",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {},
+            "default_value": "buildings",
+            "return_format": "value",
+            "multiple": 0,
+            "allow_null": 0,
+            "ui": 0,
+            "ajax": 0,
+            "placeholder": ""
+        },
+        {
+            "key": "field_thinksme_mra_ci_requirements_step_1_title",
+            "label": "Criterion 1 — Text",
+            "name": "ci_requirements_step_1_title",
+            "aria-label": "",
+            "type": "textarea",
+            "instructions": "This frame writes the whole criterion into the title; the second line and the timing label below stay empty.",
+            "required": 0,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "rows": 3,
+            "new_lines": "",
+            "default_value": "Business entity is registered/incorporated in Singapore",
+            "maxlength": "",
+            "placeholder": ""
+        },
+        {
+            "key": "field_thinksme_mra_ci_requirements_step_1_text",
+            "label": "Criterion 1 — Second Line",
+            "name": "ci_requirements_step_1_text",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_thinksme_mra_ci_requirements_step_1_meta",
+            "label": "Criterion 1 — Label",
+            "name": "ci_requirements_step_1_meta",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_thinksme_mra_ci_requirements_step_2_icon",
+            "label": "Criterion 2 — Icon",
+            "name": "ci_requirements_step_2_icon",
+            "aria-label": "",
+            "type": "select",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {},
+            "default_value": "compass",
+            "return_format": "value",
+            "multiple": 0,
+            "allow_null": 0,
+            "ui": 0,
+            "ajax": 0,
+            "placeholder": ""
+        },
+        {
+            "key": "field_thinksme_mra_ci_requirements_step_2_title",
+            "label": "Criterion 2 — Text",
+            "name": "ci_requirements_step_2_title",
+            "aria-label": "",
+            "type": "textarea",
+            "instructions": "This frame writes the whole criterion into the title; the second line and the timing label below stay empty.",
+            "required": 0,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "rows": 3,
+            "new_lines": "",
+            "default_value": "New market entry criteria, i.e. target overseas country whereby the applicant has not exceeded S$100,000 in overseas sales in each of the last three preceding years",
+            "maxlength": "",
+            "placeholder": ""
+        },
+        {
+            "key": "field_thinksme_mra_ci_requirements_step_2_text",
+            "label": "Criterion 2 — Second Line",
+            "name": "ci_requirements_step_2_text",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_thinksme_mra_ci_requirements_step_2_meta",
+            "label": "Criterion 2 — Label",
+            "name": "ci_requirements_step_2_meta",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_thinksme_mra_ci_requirements_step_3_icon",
+            "label": "Criterion 3 — Icon",
+            "name": "ci_requirements_step_3_icon",
+            "aria-label": "",
+            "type": "select",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {},
+            "default_value": "chart-pie-slice",
+            "return_format": "value",
+            "multiple": 0,
+            "allow_null": 0,
+            "ui": 0,
+            "ajax": 0,
+            "placeholder": ""
+        },
+        {
+            "key": "field_thinksme_mra_ci_requirements_step_3_title",
+            "label": "Criterion 3 — Text",
+            "name": "ci_requirements_step_3_title",
+            "aria-label": "",
+            "type": "textarea",
+            "instructions": "This frame writes the whole criterion into the title; the second line and the timing label below stay empty.",
+            "required": 0,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "rows": 3,
+            "new_lines": "",
+            "default_value": "At least 30% local shareholding",
+            "maxlength": "",
+            "placeholder": ""
+        },
+        {
+            "key": "field_thinksme_mra_ci_requirements_step_3_text",
+            "label": "Criterion 3 — Second Line",
+            "name": "ci_requirements_step_3_text",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_thinksme_mra_ci_requirements_step_3_meta",
+            "label": "Criterion 3 — Label",
+            "name": "ci_requirements_step_3_meta",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_thinksme_mra_ci_requirements_step_4_icon",
+            "label": "Criterion 4 — Icon",
+            "name": "ci_requirements_step_4_icon",
+            "aria-label": "",
+            "type": "select",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {},
+            "default_value": "chart-bar",
+            "return_format": "value",
+            "multiple": 0,
+            "allow_null": 0,
+            "ui": 0,
+            "ajax": 0,
+            "placeholder": ""
+        },
+        {
+            "key": "field_thinksme_mra_ci_requirements_step_4_title",
+            "label": "Criterion 4 — Text",
+            "name": "ci_requirements_step_4_title",
+            "aria-label": "",
+            "type": "textarea",
+            "instructions": "This frame writes the whole criterion into the title; the second line and the timing label below stay empty.",
+            "required": 0,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "rows": 3,
+            "new_lines": "",
+            "default_value": "Group Annual Sales Turnover of not more than S$100 million; or Company’s Group Employment Size of not more than 200 employees",
+            "maxlength": "",
+            "placeholder": ""
+        },
+        {
+            "key": "field_thinksme_mra_ci_requirements_step_4_text",
+            "label": "Criterion 4 — Second Line",
+            "name": "ci_requirements_step_4_text",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_thinksme_mra_ci_requirements_step_4_meta",
+            "label": "Criterion 4 — Label",
+            "name": "ci_requirements_step_4_meta",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_thinksme_tab_mra_solutions",
+            "label": "Our Solutions",
+            "name": "",
+            "aria-label": "",
+            "type": "tab",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "placement": "top",
+            "endpoint": 0,
+            "selected": 0
+        },
+        {
+            "key": "field_thinksme_mra_ci_grid_solutions_hat_text",
+            "label": "Hat Text",
+            "name": "ci_grid_solutions_hat_text",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "Empty on this page — the design draws no pill above this heading.",
+            "required": 0,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_thinksme_mra_ci_grid_solutions_heading",
+            "label": "Heading",
+            "name": "ci_grid_solutions_heading",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "Our solutions",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_thinksme_mra_ci_grid_solutions_text",
+            "label": "Intro Text",
+            "name": "ci_grid_solutions_text",
+            "aria-label": "",
+            "type": "textarea",
+            "instructions": "Empty on this page — the design writes no line under this heading.",
+            "required": 0,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "rows": 3,
+            "new_lines": "",
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": ""
+        },
+        {
+            "key": "field_thinksme_mra_ci_grid_solutions_card_1_icon",
+            "label": "Card 1 — Icon",
+            "name": "ci_grid_solutions_card_1_icon",
+            "aria-label": "",
+            "type": "select",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {},
+            "default_value": "scales",
+            "return_format": "value",
+            "multiple": 0,
+            "allow_null": 0,
+            "ui": 0,
+            "ajax": 0,
+            "placeholder": ""
+        },
+        {
+            "key": "field_thinksme_mra_ci_grid_solutions_card_1_title",
+            "label": "Card 1 — Title",
+            "name": "ci_grid_solutions_card_1_title",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "Advisory, Legal and Documentation Services",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_thinksme_mra_ci_grid_solutions_card_1_text",
+            "label": "Card 1 — Text",
+            "name": "ci_grid_solutions_card_1_text",
+            "aria-label": "",
+            "type": "textarea",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "rows": 4,
+            "new_lines": "",
+            "default_value": "We provide a customized plan, expert guidance, and market intelligence to help you confidently expand internationally, handling legal processes from IP to licensing and joint ventures.",
+            "maxlength": "",
+            "placeholder": ""
+        },
+        {
+            "key": "field_thinksme_mra_ci_grid_solutions_card_2_icon",
+            "label": "Card 2 — Icon",
+            "name": "ci_grid_solutions_card_2_icon",
+            "aria-label": "",
+            "type": "select",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {},
+            "default_value": "handshake",
+            "return_format": "value",
+            "multiple": 0,
+            "allow_null": 0,
+            "ui": 0,
+            "ajax": 0,
+            "placeholder": ""
+        },
+        {
+            "key": "field_thinksme_mra_ci_grid_solutions_card_2_title",
+            "label": "Card 2 — Title",
+            "name": "ci_grid_solutions_card_2_title",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "Business Matching",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_thinksme_mra_ci_grid_solutions_card_2_text",
+            "label": "Card 2 — Text",
+            "name": "ci_grid_solutions_card_2_text",
+            "aria-label": "",
+            "type": "textarea",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "rows": 4,
+            "new_lines": "",
+            "default_value": "We identify and connect you with the right overseas partners, from licensees and distributors to joint venture partners, and organize face-to-face meetings for efficient, high-value collaboration.",
+            "maxlength": "",
+            "placeholder": ""
+        },
+        {
+            "key": "field_thinksme_mra_ci_grid_solutions_card_3_icon",
+            "label": "Card 3 — Icon",
+            "name": "ci_grid_solutions_card_3_icon",
+            "aria-label": "",
+            "type": "select",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {},
+            "default_value": "megaphone",
+            "return_format": "value",
+            "multiple": 0,
+            "allow_null": 0,
+            "ui": 0,
+            "ajax": 0,
+            "placeholder": ""
+        },
+        {
+            "key": "field_thinksme_mra_ci_grid_solutions_card_3_title",
+            "label": "Card 3 — Title",
+            "name": "ci_grid_solutions_card_3_title",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "Overseas Marketing & PR",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_thinksme_mra_ci_grid_solutions_card_3_text",
+            "label": "Card 3 — Text",
+            "name": "ci_grid_solutions_card_3_text",
+            "aria-label": "",
+            "type": "textarea",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "rows": 4,
+            "new_lines": "",
+            "default_value": "We build brand awareness for your product overseas through in-store promotions, road shows, pop-up stores, and pitching, shaping the first impression that drives purchase decisions.",
+            "maxlength": "",
+            "placeholder": ""
+        },
+        {
+            "key": "field_thinksme_mra_ci_grid_solutions_card_4_icon",
+            "label": "Card 4 — Icon",
+            "name": "ci_grid_solutions_card_4_icon",
+            "aria-label": "",
+            "type": "select",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {},
+            "default_value": "storefront",
+            "return_format": "value",
+            "multiple": 0,
+            "allow_null": 0,
+            "ui": 0,
+            "ajax": 0,
+            "placeholder": ""
+        },
+        {
+            "key": "field_thinksme_mra_ci_grid_solutions_card_4_title",
+            "label": "Card 4 — Title",
+            "name": "ci_grid_solutions_card_4_title",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "Overseas Trade Fairs",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_thinksme_mra_ci_grid_solutions_card_4_text",
+            "label": "Card 4 — Text",
+            "name": "ci_grid_solutions_card_4_text",
+            "aria-label": "",
+            "type": "textarea",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "rows": 4,
+            "new_lines": "",
+            "default_value": "We help your brand stand out at foreign trade fairs, from research and show selection to design, construction, and virtual trade fair execution, connecting you with competitors, customers, and partners while building export market visibility.",
+            "maxlength": "",
+            "placeholder": ""
+        },
+        {
+            "key": "field_thinksme_tab_mra_testimonials",
+            "label": "Google Reviews",
+            "name": "",
+            "aria-label": "",
+            "type": "tab",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "placement": "top",
+            "endpoint": 0,
+            "selected": 0
+        },
+        {
+            "key": "field_thinksme_mra_testimonials_hat_text",
+            "label": "Hat Text",
+            "name": "testimonials_hat_text",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "Google Reviews",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_thinksme_mra_testimonials_heading",
+            "label": "Heading",
+            "name": "testimonials_heading",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "See Why Clients Recommend Think SME",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_thinksme_tab_mra_expect",
+            "label": "What You Can Expect",
+            "name": "",
+            "aria-label": "",
+            "type": "tab",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "placement": "top",
+            "endpoint": 0,
+            "selected": 0
+        },
+        {
+            "key": "field_thinksme_mra_ci_criteria_expect_hat_text",
+            "label": "Hat Text",
+            "name": "ci_criteria_expect_hat_text",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "Empty on this page — the design draws no pill above this heading.",
+            "required": 0,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_thinksme_mra_ci_criteria_expect_heading",
+            "label": "Heading",
+            "name": "ci_criteria_expect_heading",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "What You Can Expect",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_thinksme_mra_ci_criteria_expect_text",
+            "label": "Intro Text",
+            "name": "ci_criteria_expect_text",
+            "aria-label": "",
+            "type": "textarea",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "rows": 3,
+            "new_lines": "",
+            "default_value": "The right funding and the right solution can escalate you to your maximum potential.",
+            "maxlength": "",
+            "placeholder": ""
+        },
+        {
+            "key": "field_thinksme_mra_ci_criteria_expect_list_title",
+            "label": "List Sub-heading",
+            "name": "ci_criteria_expect_list_title",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "Empty on this page — the heading above stands for the list.",
+            "required": 0,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_thinksme_mra_ci_criteria_expect_image",
+            "label": "Photo",
+            "name": "ci_criteria_expect_image",
+            "aria-label": "",
+            "type": "image",
+            "instructions": "Leave empty to keep the design’s photograph.",
+            "required": 0,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "return_format": "array",
+            "library": "all",
+            "min_width": "",
+            "min_height": "",
+            "min_size": "",
+            "max_width": "",
+            "max_height": "",
+            "max_size": "",
+            "mime_types": "",
+            "preview_size": "medium"
+        },
+        {
+            "key": "field_thinksme_mra_ci_criteria_expect_item_1",
+            "label": "Item 1",
+            "name": "ci_criteria_expect_item_1",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "A team of experts to accompany you in the development of the right strategies for you business",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_thinksme_mra_ci_criteria_expect_item_2",
+            "label": "Item 2",
+            "name": "ci_criteria_expect_item_2",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "Constant search for ways of improving your process",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_thinksme_mra_ci_criteria_expect_item_3",
+            "label": "Item 3",
+            "name": "ci_criteria_expect_item_3",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "Guidance on grant management",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_thinksme_mra_ci_criteria_expect_item_4",
+            "label": "Item 4",
+            "name": "ci_criteria_expect_item_4",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "Full application and project development step by step",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_thinksme_mra_ci_criteria_expect_item_5",
+            "label": "Item 5",
+            "name": "ci_criteria_expect_item_5",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_thinksme_mra_ci_criteria_expect_item_6",
+            "label": "Item 6",
+            "name": "ci_criteria_expect_item_6",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_thinksme_mra_ci_criteria_expect_item_7",
+            "label": "Item 7",
+            "name": "ci_criteria_expect_item_7",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_thinksme_mra_ci_criteria_expect_button_text",
+            "label": "Button Text",
+            "name": "ci_criteria_expect_button_text",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "Let’s Work Together",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_thinksme_mra_ci_criteria_expect_button_link",
+            "label": "Button Link",
+            "name": "ci_criteria_expect_button_link",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "/contact-us",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_thinksme_tab_mra_cta",
+            "label": "Final CTA",
+            "name": "",
+            "aria-label": "",
+            "type": "tab",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "placement": "top",
+            "endpoint": 0,
+            "selected": 0
+        },
+        {
+            "key": "field_thinksme_mra_cta_title",
+            "label": "Heading",
+            "name": "cta_title",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "Need help?",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_thinksme_mra_cta_text",
+            "label": "Text",
+            "name": "cta_text",
+            "aria-label": "",
+            "type": "textarea",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "rows": 3,
+            "new_lines": "",
+            "default_value": "Reach out with your requirements, and our experts will be happy to assist you — no commitment, no pressure.",
+            "maxlength": "",
+            "placeholder": ""
+        },
+        {
+            "key": "field_thinksme_mra_cta_google_rating",
+            "label": "Google Rating",
+            "name": "cta_google_rating",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "4.9",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_thinksme_mra_cta_button_text",
+            "label": "Button Text",
+            "name": "cta_button_text",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "Contact Us",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_thinksme_mra_cta_button_link",
+            "label": "Button Link",
+            "name": "cta_button_link",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "/contact-us",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_thinksme_mra_cta_image",
+            "label": "Photo",
+            "name": "cta_image",
+            "aria-label": "",
+            "type": "image",
+            "instructions": "Leave empty to keep the design’s photograph.",
+            "required": 0,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "return_format": "array",
+            "library": "all",
+            "min_width": "",
+            "min_height": "",
+            "min_size": "",
+            "max_width": "",
+            "max_height": "",
+            "max_size": "",
+            "mime_types": "",
+            "preview_size": "medium"
+        }
+    ]
+}

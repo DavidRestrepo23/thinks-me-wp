@@ -26,6 +26,13 @@
  * second brush stroke its own vector (`underline_2_file`), since its two strokes are
  * different lengths.
  *
+ * The PSG Grant frame (127:514) adds two more per-set defaults, both because its
+ * headline is a 40px *paragraph* rather than a display line: `title_size_class`,
+ * which replaces the whole responsive ramp instead of only its desktop step, and
+ * `badge_file`, since its badge is its own vector and its stock export already has
+ * that badge composed in — so it names the file for the upload branch without
+ * naming `badge` for the stock one.
+ *
  * The pills' icons are whole 56px discs rather than glyphs, because Figma draws
  * the navy disc and the yellow mark inside it as one vector group — so the SVG
  * carries both and there is no disc in the markup to colour. Which disc goes
@@ -78,8 +85,7 @@
  * already uses.
  */
 
-$icons_uri  = get_template_directory_uri() . '/assets/images/icons';
-$images_uri = get_template_directory_uri() . '/assets/images/ci';
+$icons_uri = get_template_directory_uri() . '/assets/images/icons';
 
 $d = thinksme_ci_defaults( 'hero' );
 
@@ -168,8 +174,20 @@ $button_2_link = thinksme_field( 'ci_hero_button_2_link', false, $d['button_2_li
 						class="<?php echo esc_attr( $d['underline_2_class'] ); ?>"
 					>
 				<?php endif; ?>
-				<?php // 72px is what five of the six frames draw; the GST one sets 64px, so the desktop step is a per-page default with those 72px as the fallback. ?>
-					<h1 class="relative font-medium text-[40px] sm:text-[56px] <?php echo esc_attr( empty( $d['title_class'] ) ? 'lg:text-[72px]' : $d['title_class'] ); ?> leading-none tracking-hero text-text-primary">
+				<?php
+				// 72px is what five of the six frames draw; the GST one sets 64px, so the desktop
+				// step is a per-page default with those 72px as the fallback.
+				//
+				// The PSG Grant frame needs the *whole* ramp instead of its last step: its
+				// headline is a 40px paragraph (127:519), which is what the shared ramp already
+				// sets on a phone — so `lg:text-[40px]` alone would leave the tablet band larger
+				// than the desktop one. A set that names `title_size_class` replaces the ramp;
+				// every other one keeps it and only names the step.
+				$title_size_class = isset( $d['title_size_class'] )
+					? $d['title_size_class']
+					: 'text-[40px] sm:text-[56px] ' . ( empty( $d['title_class'] ) ? 'lg:text-[72px]' : $d['title_class'] );
+				?>
+					<h1 class="relative font-medium <?php echo esc_attr( $title_size_class ); ?> leading-none tracking-hero text-text-primary">
 					<?php echo esc_html( thinksme_field( 'ci_hero_title', false, $d['title'] ) ); ?>
 				</h1>
 			</div>
@@ -283,10 +301,20 @@ $button_2_link = thinksme_field( 'ci_hero_button_2_link', false, $d['button_2_li
 				<img src="<?php echo esc_url( $photo_url ); ?>" alt="<?php echo esc_attr( $photo_alt ); ?>" class="absolute inset-0 w-full h-full object-cover">
 			</div>
 
-			<?php // Gated on the placement class, not just on the upload: a set whose frame draws no badge (Property Cashout) names neither, and an unclassed <img> would land in the flow at its natural size. ?>
+			<?php
+			// Gated on the placement class, not just on the upload: a set whose frame draws no
+			// badge (Property Cashout) names neither, and an unclassed <img> would land in the
+			// flow at its natural size.
+			//
+			// The file is a per-set default too, because the PSG Grant frame's badge (127:527)
+			// is its own vector rather than the incorporation one — and that set composes the
+			// badge into its stock export, so it names `badge_file` for this branch without
+			// naming `badge` for the other.
+			$badge_file = empty( $d['badge_file'] ) ? 'ci/hero-badge.svg' : $d['badge_file'];
+			?>
 			<?php if ( ! empty( $d['badge_class'] ) ) : ?>
 				<img
-					src="<?php echo esc_url( "$images_uri/hero-badge.svg" ); ?>"
+					src="<?php echo esc_url( thinksme_ci_image_url( $badge_file ) ); ?>"
 					alt=""
 					aria-hidden="true"
 					class="<?php echo esc_attr( $d['badge_class'] ); ?>"

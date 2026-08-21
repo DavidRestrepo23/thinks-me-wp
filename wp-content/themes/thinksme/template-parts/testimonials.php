@@ -128,10 +128,10 @@ $avatar_colors = array( '#4285f4', '#34a853', '#fbbc05', '#ea4335' );
 >
 	<div class="flex flex-col items-center gap-lg text-center px-lg">
 		<span class="bg-brand-yellow-soft border border-brand-yellow-border rounded-pill h-[32px] px-lg inline-flex items-center justify-center text-xs font-medium text-text-primary">
-			<?php echo esc_html( thinksme_field( 'testimonials_hat_text', false, 'Google Reviews' ) ); ?>
+			<?php echo esc_html( thinksme_field( 'testimonials_hat_text', false, apply_filters( 'thinksme_testimonials_hat', 'Google Reviews' ) ) ); ?>
 		</span>
 		<h2 class="font-medium text-2xl lg:text-3xl leading-tight text-text-primary max-w-[749px]" style="letter-spacing: -0.01em;">
-			<?php echo esc_html( thinksme_field( 'testimonials_heading', false, 'See Why Clients Recommend Think SME' ) ); ?>
+			<?php echo esc_html( thinksme_field( 'testimonials_heading', false, apply_filters( 'thinksme_testimonials_heading', 'See Why Clients Recommend Think SME' ) ) ); ?>
 		</h2>
 	</div>
 

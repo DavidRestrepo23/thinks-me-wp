@@ -57,7 +57,7 @@
  * than a section of blanks.
  *
  * @return string 'local', 'foreign', 'secretary', 'accounting', 'tax', 'gst',
- *                'cashout', 'loan', 'remittance' or 'mortgage'.
+ *                'cashout', 'loan', 'remittance', 'mortgage', 'psg' or 'mra'.
  */
 function thinksme_ci_content_set() {
 	$sets = array(
@@ -70,6 +70,8 @@ function thinksme_ci_content_set() {
 		'page-business-loan.php'                 => 'loan',
 		'page-remittance.php'                    => 'remittance',
 		'page-mortgage-loans.php'                => 'mortgage',
+		'page-psg-grant.php'                     => 'psg',
+		'page-mra-grant.php'                     => 'mra',
 	);
 
 	$template = thinksme_current_template();
@@ -2737,6 +2739,589 @@ function thinksme_ci_content() {
 		),
 	);
 
+	// The PSG Grant page, Figma frame 127:512 ("Desktop PSG Grant", file "Untitled",
+	// vzdpOnH1U36oXcFcugiyE5). The sixth assembled frame in that file, so the section
+	// order below is the canvas's own, read top to bottom:
+	//
+	//   hero (127:514 + the photo group 127:524/127:526 + the badge 127:527) →
+	//   accreditations (127:895) → grid "benefits" (127:537) → grid "features"
+	//   (127:574 + 127:934) → criteria "criteria" (127:580 + 127:618) →
+	//   requirements (127:627) → criteria "invoicenow" (127:901 + 127:622) →
+	//   grid "credentials" (127:821) → testimonials → faq (127:860) → cta (127:861).
+	//
+	// It adds exactly two parts, `ci-criteria.php` — the ticked list beside a
+	// photograph, drawn twice — and `ci-accreditations.php`, the two marks between
+	// rules under the hero. Everything else on the page is a section an earlier frame
+	// already draws: the hero, `ci-grid` three times, the pinned rail, the reviews
+	// slider, the FAQ and the closing CTA.
+	//
+	// Nine sections the other pages have are missing from this frame and so are simply
+	// not called: the pricing cards, the free-tools tabs, the two routes, the
+	// what's-included cards, the figures band, the calculator, the "why" bento, the
+	// card carousel and the logo marquee — that last one because this page's two
+	// credentials are the `accreditations` strip, not a marquee of client logos.
+	//
+	// Like the Property Cashout and Business Loan frames it writes its own six FAQ
+	// questions rather than drawing the site-wide `faq_item` CPT, and it titles the
+	// section one word short of the site-wide heading — hence `hat` and `heading`
+	// beside the list here, which faq.php now falls back to.
+	$psg = array(
+		'hero'            => array(
+			'hat'              => 'IMDA Pre-Approved Vendor · SMEs Go Digital',
+			// The one headline in the family that is a paragraph rather than a display line:
+			// Figma sets it at 40px in a 620px box (127:519), which is why this set names
+			// `title_size_class` — the shared ramp already sets 40px on a phone, so replacing
+			// only its desktop step would leave the tablet band larger than the desktop one.
+			'title'            => 'SMEs are eligible for up to 50% Productivity Solutions Grant (PSG) support for the adoption of Xero Cloud Accounting Software, a Pre-Approved Solution under the IMDA SMEs Go Digital programme.',
+			'title_size_class' => 'text-[28px] sm:text-[32px] lg:text-[40px]',
+			'text'             => 'As a vendor of pre-approved PSG Xero solutions, you are eligible for substantial cost savings through our offerings — with the setup, training, and ongoing support handled by our own Xero Certified Advisor team.',
+			'button_text'      => 'Talk With Our Experts',
+			'button_link'      => '/contact-us',
+			'button_2_text'    => '+65 6012 9642',
+			'button_2_link'    => 'tel:+6560129642',
+			// Figma's whole image group: the badge (127:527) overhangs the photo card's
+			// top-left corner, so the group is 626x528 where the card is 583x457 — the
+			// constraint ci-hero.php documents. The export is the card composited under that
+			// badge onto white, which is this page's own ground. The third layer Figma draws
+			// (127:526, a cut-out of the same shot) is not carried over: it sits *behind* the
+			// card and its own top 57px are empty, so the frame renders nothing of it.
+			'image'            => 'psg/hero-image.jpg',
+			'image_box'        => 'aspect-[626/528]',
+			// 620 for the copy rather than the 703 the six older frames draw, because Figma
+			// sets the headline in a 620px box and both brush strokes are measured against
+			// the lines that box produces. 626 beside it is the image group, badge included.
+			'body_class'       => 'lg:basis-[620px]',
+			'image_col_class'  => 'lg:basis-[626px]',
+			// The badge is composed into the export above, so the stock branch draws none;
+			// `badge_file` is for the upload branch, which paints it back over a plain photo.
+			'badge'            => '',
+			'badge_class'      => 'absolute left-0 top-0 w-[20%] pointer-events-none select-none',
+			'badge_file'       => 'psg/hero-badge.svg',
+			'photo_slot_class' => 'absolute left-[6.87%] top-[13.45%] w-[93.13%] h-[86.55%] overflow-hidden rounded-2xl',
+			// Two strokes, both measured against this headline at 40px in that 620px column:
+			// a long one through "Xero Cloud Accounting" (127:515) and a short one under
+			// "Software," on the line below (127:516). Their own vectors rather than the
+			// shared stroke scaled, for the reason the Remittance set gives.
+			'underline_file'    => 'psg/hero-underline.svg',
+			'underline_class'   => 'hidden lg:block absolute left-[8.6%] top-[142px] w-[72.4%] rotate-[2.64deg] pointer-events-none select-none',
+			'underline_2_file'  => 'psg/hero-underline-short.svg',
+			'underline_2_class' => 'hidden lg:block absolute left-[26.8%] top-[181px] w-[27.3%] -scale-y-100 rotate-[172.03deg] pointer-events-none select-none',
+		),
+		// The two marks under the hero (127:895). Theme files and not client fields —
+		// see the note in template-parts/ci-accreditations.php.
+		'accreditations'  => array(
+			'logos' => array(
+				array(
+					'file'  => 'psg/logo-xero-advisor.png',
+					'name'  => 'Xero Certified Advisor',
+					'class' => 'h-[40px] lg:h-[56px]',
+				),
+				array(
+					'file'  => 'psg/logo-imda-psg.png',
+					'name'  => 'IMDA Pre-Approved Solution — eligible for up to 50% Productivity Solutions Grant (PSG) support',
+					'class' => 'h-[40px] lg:h-[56px]',
+				),
+			),
+		),
+		'grid'            => array(
+			// "How the PSG Grant Benefits Your Business" (127:537): the shared centred grid
+			// on a navy panel, with no card behind each column — hence `card_class` /
+			// `card_pad_class`, and the smaller disc, title and white copy the panel needs.
+			'benefits'    => array(
+				'hat'                => '',
+				'heading'            => 'How the PSG Grant Benefits Your Business',
+				'align'              => 'center',
+				'grid_class'         => 'lg:grid-cols-4',
+				'section_class'      => 'py-xl lg:py-[40px]',
+				'panel_class'        => 'bg-surface-dark rounded-[40px] lg:rounded-[56px] px-lg lg:px-3xl py-2xl lg:py-3xl',
+				'card_class'         => 'bg-transparent',
+				'card_pad_class'     => 'p-0',
+				'card_justify_class' => 'justify-start',
+				'heading_class'      => 'text-text-on-dark',
+				'heading_size_class' => 'text-2xl lg:text-[48px]',
+				'header_class'       => 'max-w-[552px]',
+				'disc_class'         => 'size-[56px]',
+				'icon_class'         => 'size-[32px]',
+				'title_class'        => 'text-lg lg:text-[28px] text-text-on-dark',
+				'text_class'         => 'text-text-on-dark',
+				'cards'              => array(
+					1 => array(
+						'icon'  => 'trend-down',
+						'title' => 'Lower Upfront Cost',
+						'text'  => 'Up to 50% of qualifying costs subsidised, lowering the financial barrier to adopting Xero.',
+						'class' => '',
+					),
+					2 => array(
+						'icon'  => 'gauge',
+						'title' => 'Enhanced Efficiency',
+						'text'  => 'Cloud accounting streamlines day-to-day operations, freeing up time spent on manual bookkeeping.',
+						'class' => '',
+					),
+					3 => array(
+						'icon'  => 'lightbulb',
+						'title' => 'Fosters Innovation',
+						'text'  => 'Modern tools free your team to focus on growth and competitiveness, not paperwork.',
+						'class' => '',
+					),
+					4 => array(
+						'icon'  => 'plant',
+						'title' => 'Long-Term Sustainability',
+						'text'  => 'Better processes and cost savings compound over time, supporting sustainable growth.',
+						'class' => '',
+					),
+				),
+			),
+			// "Everything Included With Xero" (127:574 + 127:934): eight centred cards over
+			// two rows of four, titles a step down from the shared 24px.
+			'features'    => array(
+				'hat'            => 'Cloud-Based Xero Accounting',
+				'heading'        => 'Everything Included With Xero',
+				'text'           => 'Manage your accounting software from anywhere — here’s what’s covered.',
+				'align'          => 'center',
+				'grid_class'     => 'lg:grid-cols-4',
+				'section_class'  => 'py-xl lg:py-[40px]',
+				'card_pad_class' => 'rounded-lg px-md py-xl',
+				'card_justify_class' => 'justify-start',
+				'title_class'    => 'text-lg text-text-heading-dark',
+				'cards'          => array(
+					1 => array(
+						'icon'  => 'folder-open',
+						'title' => 'E-Invoicing',
+						'text'  => 'Send, receive, and automate invoices directly within the platform for faster payments.',
+						'class' => 'lg:min-h-[331px]',
+					),
+					2 => array(
+						'icon'  => 'archive',
+						'title' => 'Inventory',
+						'text'  => 'Track stock levels, set reorder points, and monitor product profitability.',
+						'class' => 'lg:min-h-[331px]',
+					),
+					3 => array(
+						'icon'  => 'file-text',
+						'title' => 'Pay Bills & Expenses',
+						'text'  => 'Manage supplier invoices, set up recurring bills, and schedule payments.',
+						'class' => 'lg:min-h-[331px]',
+					),
+					4 => array(
+						'icon'  => 'shield-check',
+						'title' => 'Security',
+						'text'  => 'Multi-factor authentication, encryption, and regular backups keep your data safe.',
+						'class' => 'lg:min-h-[331px]',
+					),
+					5 => array(
+						'icon'  => 'buildings',
+						'title' => 'Bank Reconciliation',
+						'text'  => 'Connect bank accounts and automatically match transactions to your records.',
+						'class' => 'lg:min-h-[331px]',
+					),
+					6 => array(
+						'icon'  => 'user-check',
+						'title' => 'Unlimited Users',
+						'text'  => 'Remote access for unlimited users — collaborate with your team in real time.',
+						'class' => 'lg:min-h-[331px]',
+					),
+					7 => array(
+						'icon'  => 'chart-pie-slice',
+						'title' => 'Multi-Currency',
+						'text'  => 'Automatically calculate gains and losses, invoice, and reconcile in multiple currencies.',
+						'class' => 'lg:min-h-[331px]',
+					),
+					8 => array(
+						'icon'  => 'megaphone',
+						'title' => 'Invoice Reminders',
+						'text'  => 'Automatic nudges for overdue invoices, helping maintain healthy cash flow.',
+						'class' => 'lg:min-h-[331px]',
+					),
+				),
+			),
+			// "Go Digital With a Partner Who's Actually Credentialed" (127:821): the same
+			// centred grid on the pale panel with white cards the Remittance frame draws.
+			'credentials' => array(
+				'hat'           => 'Complete Corporate Services',
+				'heading'       => 'Go Digital With a Partner Who’s Actually Credentialed',
+				'text'          => 'We’re dedicated to helping SMEs transform their accounting processes — backed by real, verifiable credentials, not just a claim.',
+				'align'         => 'center',
+				'grid_class'    => 'lg:grid-cols-4',
+				'section_class' => 'py-xl lg:py-[40px]',
+				'panel_class'   => 'bg-surface-panel rounded-[40px] lg:rounded-[56px] px-lg lg:px-[56px] py-xl lg:py-[112px]',
+				'card_class'    => 'bg-surface-white',
+				'card_justify_class' => 'justify-start',
+				'header_class'  => 'max-w-[880px]',
+				'cards'         => array(
+					1 => array(
+						'icon'  => 'star',
+						'title' => 'Xero Certified Advisor',
+						'text'  => 'Setup, migration, and ongoing support handled by a team that’s actually certified on the platform.',
+						'class' => 'lg:min-h-[372px]',
+					),
+					2 => array(
+						'icon'  => 'shield-check',
+						'title' => 'ACRA Registered Filing Agent',
+						'text'  => 'The same firm that can also handle your incorporation, secretary, and compliance filings.',
+						'class' => 'lg:min-h-[372px]',
+					),
+					3 => array(
+						'icon'  => 'star',
+						'title' => 'IMDA Pre-Approved PSG Grant Vendor',
+						// Figma's own spelling of "Officially". Shipped verbatim, the same call the
+						// Foreign and GST frames' leftovers got — a typo in body copy is the client's
+						// to correct, and the field is right there in wp-admin.
+						'text'  => 'Officialy listed with IMDA and independently verifiable — not just a badge on a page.',
+						'class' => 'lg:min-h-[372px]',
+					),
+					4 => array(
+						'icon'  => 'folder-simple-star',
+						'title' => 'We Handle the Paperwork',
+						'text'  => 'From eligibility check to Business Grants Portal submission — we guide the process end to end.',
+						'class' => 'lg:min-h-[372px]',
+					),
+				),
+			),
+		),
+		// The two ticked-list frames (127:580 + 127:618 and 127:901 + 127:622), one part
+		// called twice — see template-parts/ci-criteria.php.
+		'criteria'        => array(
+			'criteria'   => array(
+				'hat'        => 'Grant Criteria & Process',
+				'heading'    => 'Am I Eligible, and How Do I Apply?',
+				'list_title' => 'PSG Grant Criteria',
+				'photo'      => 'right',
+				'image'      => 'psg/criteria-photo.jpg',
+				'image_box'  => 'aspect-[547/590]',
+				'items'      => array(
+					1 => 'Registered and operating in Singapore',
+					2 => 'At least 30% local shareholding (including new start-ups)',
+					3 => 'Solution used in Singapore, relevant to your industry',
+					4 => 'Solution must be a government-approved offering',
+					5 => 'Grants cover up to 50% of qualifying costs',
+					6 => '',
+					7 => '',
+				),
+			),
+			'invoicenow' => array(
+				'hat'       => 'Grant Criteria & Process',
+				'heading'   => 'InvoiceNow',
+				'text'      => 'Send invoices digitally between the accounting systems of suppliers and buyers. Invoices are transmitted automatically through a secure network, eliminating manual entry.',
+				'photo'     => 'left',
+				'image'     => 'psg/invoicenow-photo.jpg',
+				'image_box' => 'aspect-[547/678]',
+				'items'     => array(
+					1 => 'Time-saving — no manual re-entry',
+					2 => 'Faster payments end to end',
+					3 => 'Convenient, secure network transmission',
+					4 => '',
+					5 => '',
+					6 => '',
+					7 => '',
+				),
+				// The authorities behind the claim (127:928 + 127:933), not client uploads.
+				'logos'     => array(
+					array(
+						'file'  => 'psg/logo-imda-invoicenow.png',
+						'name'  => 'IMDA SMEs Go Digital and InvoiceNow',
+						'class' => 'h-[40px] lg:h-[49px]',
+					),
+					array(
+						'file'  => 'psg/logo-iras.png',
+						'name'  => 'Inland Revenue Authority of Singapore',
+						'class' => 'h-[56px] lg:h-[72px]',
+					),
+				),
+			),
+		),
+		// "How to Apply" (127:627) — the pinned progress rail, four steps. This frame is
+		// the one that writes its whole step into the *title*: Figma draws no second line
+		// under any of them and no timing label, so `text` and `meta` stay empty and
+		// ci-requirements.php renders neither. The scattered-blocks artwork behind the
+		// panel is the Property Cashout page's, the same export, so it is reused rather
+		// than shipped twice.
+		'requirements'    => array(
+			'hat'        => 'Process',
+			'heading'    => 'How to Apply',
+			'background' => 'pc/panel-bg.svg',
+			'steps'      => array(
+				1 => array(
+					'icon'  => 'users-three',
+					'title' => 'Assess your business needs and identify eligible solutions that fit your objectives.',
+					'text'  => '',
+				),
+				2 => array(
+					'icon'  => 'compass',
+					'title' => 'Review funding options and guidelines on the Business Grants Portal.',
+					'text'  => '',
+				),
+				3 => array(
+					'icon'  => 'folder-open',
+					'title' => 'Prepare your business registration details and vendor quotes.',
+					'text'  => '',
+				),
+				4 => array(
+					'icon'  => 'shield-check',
+					'title' => 'Submit your application, then purchase and claim once approved — typically 2–4 weeks.',
+					'text'  => '',
+				),
+			),
+		),
+		// The reviews slider is the shared one; this frame only retitles it (127:859),
+		// one word off the site-wide heading.
+		'testimonials'    => array(
+			'hat'     => 'Google Reviews',
+			'heading' => 'See Why Founders Recommend Think SME',
+		),
+		// The six questions this frame writes (127:860). Only the first has an answer on
+		// the canvas; the rest open to just the question until the client fills them in,
+		// the same way the Property Cashout and Business Loan sets do.
+		'faq'             => array(
+			'hat'     => 'Common Questions',
+			'heading' => 'Questions Business Owners Ask Us First',
+			'items'   => array(
+				1 => array(
+					'question' => 'What is Xero accounting software?',
+					'answer'   => 'Xero is a cloud-based accounting software that allows you to manage your finances, invoices, and transactions from anywhere, anytime.',
+				),
+				2 => array(
+					'question' => 'What is the PSG Grant?',
+					'answer'   => '',
+				),
+				3 => array(
+					'question' => 'How does the PSG Grant benefit my business?',
+					'answer'   => '',
+				),
+				4 => array(
+					'question' => 'How can I apply for the PSG Grant?',
+					'answer'   => '',
+				),
+				5 => array(
+					'question' => 'Is my business eligible for the PSG Grant?',
+					'answer'   => '',
+				),
+				6 => array(
+					'question' => 'How much funding support can I receive?',
+					'answer'   => '',
+				),
+			),
+		),
+		'cta'             => array(
+			'title' => 'Let’s work together',
+			'text'  => 'Our team of experienced consultants is on hand to discuss your goals and how PSG-supported Xero can help.',
+			'image' => 'psg/cta-photo.jpg',
+		),
+	);
+
+	// MRA Grant (Figma frame 130:1489, "Desktop MRA Grant", file "Untitled").
+	// The twelfth page in this family and the second grant page. Nine sections, all
+	// but one of them a component an earlier page already draws: the hero, the pinned
+	// eligibility rail, the accreditation strip, one card grid, the ticked-list frame
+	// twice, the reviews slider and the closing CTA. The one new part is
+	// `statement` — the centred sentence with the ring around "70%" — which is
+	// template-parts/ci-statement.php and inert everywhere else.
+	//
+	// This frame writes no FAQ and no logo marquee, so this set names neither and the
+	// template calls neither. It also writes nothing over the reviews slider or the
+	// closing CTA beyond a photograph, so `testimonials` is absent and `cta` names
+	// only its image — the shared strings in cta.php are already this frame's words.
+	$mra = array(
+		'hero'           => array(
+			'hat'               => 'Market Readiness Assistance Grant',
+			'title'             => 'Secure a government supported Grant to reach new international markets',
+			// 64px rather than the 72px five of the frames draw, the same step the GST
+			// frame takes — so only the desktop step is named, not the whole ramp.
+			'title_class'       => 'lg:text-[64px]',
+			'text'              => 'MRA (Market Readiness Assistance Grant) MRA Grant is a grant by Enterprise Singapore for established local SMEs to help them to improve their market knowledge, strengthen their capabilities and expand their networks, as well as to connect them to partners and opportunities overseas.',
+			'button_text'       => 'Check My Eligibility',
+			'button_link'       => '/contact-us',
+			'button_2_text'     => '+65 6012 9642',
+			'button_2_link'     => 'tel:+6560129642',
+			// Figma's whole image group: the lightbulb badge (130:1502) overhangs the photo
+			// card's left edge and the cut-out of the same shot breaks above its top one, so
+			// the group is 618x529 where the card is 583x457 — the constraint ci-hero.php
+			// documents. The export is all three layers flattened onto white, which is this
+			// page's own ground.
+			'image'             => 'mra/hero-image.jpg',
+			'image_box'         => 'aspect-[618/529]',
+			// 656 for the copy (130:1491) rather than the 703 the six older frames draw, and
+			// 618 beside it is the image group, badge included.
+			'body_class'        => 'lg:basis-[656px]',
+			'image_col_class'   => 'lg:basis-[618px]',
+			// The badge is composed into the export above, so the stock branch draws none;
+			// `badge_file` is for the upload branch, which paints it back over a plain photo.
+			'badge'             => '',
+			'badge_class'       => 'absolute left-0 top-[3.1%] w-[20.2%] pointer-events-none select-none',
+			'badge_file'        => 'mra/hero-badge.svg',
+			'photo_slot_class'  => 'absolute left-[5.66%] top-[13.5%] w-[94.34%] h-[86.5%] overflow-hidden rounded-2xl',
+			// This is the one hero in the family whose headline carries no brush stroke —
+			// Figma draws none over 130:1494 — so the class is `hidden` rather than empty:
+			// ci-hero.php always emits the <img> and an unclassed one lands in the flow at
+			// its natural size.
+			'underline_class'   => 'hidden',
+		),
+		// The centred sentence with the hand-drawn ring around "70%" (130:1512 + 130:1513)
+		// and its button (130:1514) — template-parts/ci-statement.php, and this is the
+		// only set that names it.
+		'statement'      => array(
+			'text'        => 'To help local SMEs get a foothold in overseas markets, the Market Readiness Grant was set up to provide funds to take the first steps. The MRA will cover up to 70% of eligible costs (capped at S$100,000) for each company in each new market.',
+			'button_text' => 'View full list of supportable activities',
+			'button_link' => '/contact-us',
+			// Measured against this sentence breaking into five lines at 40px in Figma's
+			// 1039px box, the same way every brush stroke in this theme is placed.
+			'ring_file'   => 'mra/statement-circle.svg',
+			'ring_class'  => 'hidden lg:block absolute left-[31.5%] top-[134px] w-[12%] pointer-events-none select-none',
+		),
+		// The three marks between rules under the statement (130:1737). Theme files and
+		// not client fields — see the note in template-parts/ci-accreditations.php. This
+		// frame draws three where the PSG one draws two.
+		'accreditations' => array(
+			'logos' => array(
+				array(
+					'file'  => 'mra/logo-sg-digital.png',
+					'name'  => 'SG:Digital',
+					'class' => 'h-[32px] lg:h-[48px]',
+				),
+				array(
+					'file'  => 'mra/logo-imda.png',
+					'name'  => 'Infocomm Media Development Authority',
+					'class' => 'h-[40px] lg:h-[56px]',
+				),
+				array(
+					'file'  => 'mra/logo-enterprise-sg.png',
+					'name'  => 'Enterprise Singapore',
+					'class' => 'h-[40px] lg:h-[56px]',
+				),
+			),
+		),
+		// The two ticked-list frames (130:1520 + 130:1515 and 130:1798 + 130:1793), the
+		// same part the PSG page calls twice — see template-parts/ci-criteria.php. Both
+		// put the photograph on the left here, and both close on a button, which is what
+		// that part's `button_text` / `button_link` were added for.
+		'criteria'       => array(
+			'covers' => array(
+				'hat'         => '',
+				'heading'     => 'What covers in MRA Grant in Singapore?',
+				'photo'       => 'left',
+				'image'       => 'mra/covers-photo.jpg',
+				'image_box'   => 'aspect-[547/606]',
+				'button_text' => 'Let’s Work Together',
+				'button_link' => '/contact-us',
+				'items'       => array(
+					1 => 'Overseas market promotion (capped at S$20,000)',
+					2 => 'Overseas business development (capped at S$50,000)',
+					3 => 'Overseas market set-up (capped at S$30,000)',
+					4 => '',
+					5 => '',
+					6 => '',
+					7 => '',
+				),
+			),
+			'expect' => array(
+				'hat'         => '',
+				'heading'     => 'What You Can Expect',
+				'text'        => 'The right funding and the right solution can escalate you to your maximum potential.',
+				'photo'       => 'left',
+				'image'       => 'mra/expect-photo.jpg',
+				'image_box'   => 'aspect-[547/561]',
+				'button_text' => 'Let’s Work Together',
+				'button_link' => '/contact-us',
+				'items'       => array(
+					// Figma opens this line on a zero-width space (130:1808); it is dropped
+					// rather than shipped, since it is an editing artefact and not a character
+					// anyone can see or delete from wp-admin.
+					1 => 'A team of experts to accompany you in the development of the right strategies for you business',
+					2 => 'Constant search for ways of improving your process',
+					3 => 'Guidance on grant management',
+					4 => 'Full application and project development step by step',
+					5 => '',
+					6 => '',
+					7 => '',
+				),
+			),
+		),
+		// "Who can apply For MRA Grant in Singapore?" (130:1694 + 130:1698) — the pinned
+		// progress rail, four steps. Like the PSG rail this frame writes the whole
+		// criterion into the *title*: no second line under any of them and no timing
+		// label, so `text` and `meta` stay empty and ci-requirements.php renders neither.
+		// The scattered-blocks artwork behind the panel is the Property Cashout export,
+		// the same one the PSG rail reuses. Figma draws the rail 852px wide inside its
+		// 1392px panel rather than the 588/718 the other rails take.
+		'requirements'   => array(
+			'hat'        => 'Process',
+			'heading'    => 'Who can apply For MRA Grant in Singapore?',
+			'background' => 'pc/panel-bg.svg',
+			'rail_class' => 'max-w-[852px]',
+			'steps'      => array(
+				1 => array(
+					'icon'  => 'buildings',
+					'title' => 'Business entity is registered/incorporated in Singapore',
+					'text'  => '',
+				),
+				2 => array(
+					'icon'  => 'compass',
+					'title' => 'New market entry criteria, i.e. target overseas country whereby the applicant has not exceeded S$100,000 in overseas sales in each of the last three preceding years',
+					'text'  => '',
+				),
+				3 => array(
+					'icon'  => 'chart-pie-slice',
+					'title' => 'At least 30% local shareholding',
+					'text'  => '',
+				),
+				4 => array(
+					'icon'  => 'chart-bar',
+					'title' => 'Group Annual Sales Turnover of not more than S$100 million; or Company’s Group Employment Size of not more than 200 employees',
+					'text'  => '',
+				),
+			),
+		),
+		'grid'           => array(
+			// "Our solutions" (130:1744): the shared centred grid on the pale panel with
+			// white cards, the same shape the Remittance and PSG frames draw. Four cards,
+			// 20px titles, and no hat and no intro line — this frame writes a heading and
+			// nothing else above the row.
+			'solutions' => array(
+				'hat'                => '',
+				'heading'            => 'Our solutions',
+				'align'              => 'center',
+				'grid_class'         => 'lg:grid-cols-4',
+				'section_class'      => 'py-xl lg:py-[40px]',
+				'panel_class'        => 'bg-surface-panel rounded-[40px] lg:rounded-[80px] px-lg lg:px-[56px] py-2xl lg:py-3xl',
+				'card_class'         => 'bg-surface-white',
+				'card_pad_class'     => 'rounded-lg px-md py-xl',
+				'card_justify_class' => 'justify-start',
+				'title_class'        => 'text-lg text-text-heading-dark',
+				'header_class'       => 'max-w-[880px]',
+				'cards'              => array(
+					1 => array(
+						'icon'  => 'scales',
+						'title' => 'Advisory, Legal and Documentation Services',
+						'text'  => 'We provide a customized plan, expert guidance, and market intelligence to help you confidently expand internationally, handling legal processes from IP to licensing and joint ventures.',
+						'class' => 'lg:min-h-[455px]',
+					),
+					2 => array(
+						'icon'  => 'handshake',
+						'title' => 'Business Matching',
+						'text'  => 'We identify and connect you with the right overseas partners, from licensees and distributors to joint venture partners, and organize face-to-face meetings for efficient, high-value collaboration.',
+						'class' => 'lg:min-h-[455px]',
+					),
+					3 => array(
+						'icon'  => 'megaphone',
+						'title' => 'Overseas Marketing & PR',
+						'text'  => 'We build brand awareness for your product overseas through in-store promotions, road shows, pop-up stores, and pitching, shaping the first impression that drives purchase decisions.',
+						'class' => 'lg:min-h-[455px]',
+					),
+					4 => array(
+						'icon'  => 'storefront',
+						'title' => 'Overseas Trade Fairs',
+						'text'  => 'We help your brand stand out at foreign trade fairs, from research and show selection to design, construction, and virtual trade fair execution, connecting you with competitors, customers, and partners while building export market visibility.',
+						'class' => 'lg:min-h-[455px]',
+					),
+				),
+			),
+		),
+		// This frame closes on the shared CTA verbatim — "Need help?" over the line
+		// cta.php already carries — so the set names only its photograph.
+		'cta'            => array(
+			'image' => 'mra/cta-photo.jpg',
+		),
+	);
+
 	return array(
 		'local'      => $local,
 		'foreign'    => $foreign,
@@ -2748,6 +3333,8 @@ function thinksme_ci_content() {
 		'loan'       => $loan,
 		'remittance' => $remittance,
 		'mortgage'   => $mortgage,
+		'psg'        => $psg,
+		'mra'        => $mra,
 	);
 }
 
@@ -2771,3 +3358,58 @@ function thinksme_ci_cta_photo( $url ) {
 	return empty( $cta['image'] ) ? $url : thinksme_ci_image_url( $cta['image'] );
 }
 add_filter( 'thinksme_cta_photo', 'thinksme_ci_cta_photo' );
+
+/**
+ * Answer the shared CTA's and reviews slider's copy from the current page's set.
+ *
+ * Same arrangement as thinksme_ci_cta_photo() above and for the same reason:
+ * `template-parts/cta.php` and `template-parts/testimonials.php` are shared by
+ * every page and have no business knowing which one they are on, so each exposes
+ * its fallback string as a filter. Only the PSG Grant frame writes its own — it
+ * closes on "Let's work together" (127:865) and titles its reviews "See Why
+ * Founders Recommend Think SME" (127:859) — so every other set names none of these
+ * keys and the incoming string passes through unchanged. A value typed into
+ * `cta_title` / `testimonials_heading` in wp-admin still wins over all of it.
+ *
+ * @param string $value Default string from the shared part.
+ * @return string
+ */
+function thinksme_ci_cta_title( $value ) {
+	$cta = thinksme_ci_defaults( 'cta' );
+
+	return empty( $cta['title'] ) ? $value : $cta['title'];
+}
+add_filter( 'thinksme_cta_title', 'thinksme_ci_cta_title' );
+
+/**
+ * @param string $value Default string from the shared part.
+ * @return string
+ */
+function thinksme_ci_cta_text( $value ) {
+	$cta = thinksme_ci_defaults( 'cta' );
+
+	return empty( $cta['text'] ) ? $value : $cta['text'];
+}
+add_filter( 'thinksme_cta_text', 'thinksme_ci_cta_text' );
+
+/**
+ * @param string $value Default string from the shared part.
+ * @return string
+ */
+function thinksme_ci_testimonials_hat( $value ) {
+	$d = thinksme_ci_defaults( 'testimonials' );
+
+	return empty( $d['hat'] ) ? $value : $d['hat'];
+}
+add_filter( 'thinksme_testimonials_hat', 'thinksme_ci_testimonials_hat' );
+
+/**
+ * @param string $value Default string from the shared part.
+ * @return string
+ */
+function thinksme_ci_testimonials_heading( $value ) {
+	$d = thinksme_ci_defaults( 'testimonials' );
+
+	return empty( $d['heading'] ) ? $value : $d['heading'];
+}
+add_filter( 'thinksme_testimonials_heading', 'thinksme_ci_testimonials_heading' );

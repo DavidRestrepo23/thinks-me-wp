@@ -1,0 +1,34 @@
+{
+    "key": "group_thinksme_blog_post",
+    "title": "Blog Post Content",
+    "location": [
+        [
+            {
+                "param": "post_type",
+                "operator": "==",
+                "value": "post"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "show_in_rest": 0,
+    "description": "Single blog post template (single.php), Figma frame 134:113 (\"Desktop Blog Post\", file \"Untitled\", vzdpOnH1U36oXcFcugiyE5). The hero photo is the post's native Featured Image, not a field here — WordPress already has that mechanism. The one thing the design draws that WordPress has no native slot for is the embedded-video block between the second and third content sections (134:151): a clickable thumbnail over a photo, optional per post. It renders with the design's own stock photo and play button whenever a URL is set here, and is skipped entirely otherwise — the same design-fidelity-fallback-until-skip convention testimonials.php and ci-hero.php's image branches use.",
+    "modified": 1786387211,
+    "fields": [
+        {
+            "key": "field_thinksme_blog_video_url",
+            "label": "Featured Video URL",
+            "name": "blog_video_url",
+            "type": "url",
+            "instructions": "Optional. Renders the video block after the second section of the article, matching Figma node 134:151. Left empty, the block is skipped rather than shown as a dead link.",
+            "required": 0,
+            "default_value": ""
+        }
+    ]
+}
