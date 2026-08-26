@@ -37,10 +37,14 @@
  * Only the first one has an answer in the design; the rest ship without one and
  * open to just the question until the client fills them in.
  *
- * The photo collage keeps Figma's overlap by holding its 548x894 aspect ratio
- * and positioning every piece in percentages of that box, so it scales with the
- * column instead of needing a mobile spec. Below the desktop breakpoint the row
- * stacks and it lands under the accordion.
+ * The photo is a single ACF image field on the Home page (faq_photo) — empty
+ * falls back to the design's own photo. The bulb badge stays fixed decorative
+ * art, not client-editable.
+ *
+ * The photo box keeps Figma's 548x894 aspect ratio, with the bulb badge
+ * positioned as a percentage of that box. The Mobile Homepage frame
+ * (144:494, node 144:916) draws no photo under the FAQ list at all, so the
+ * collage is `hidden` below `lg` rather than stacking under the accordion.
  *
  * The two columns share the row with flex-grow 54/46 (Figma's 648:548 split)
  * rather than fixed pixel widths, so nothing overflows between 1024px and
@@ -49,6 +53,11 @@
 
 $icons_uri  = get_template_directory_uri() . '/assets/images/icons';
 $photos_uri = get_template_directory_uri() . '/assets/images/faq';
+
+$photo = thinksme_field( 'faq_photo' );
+
+$photo_url = ! empty( $photo['url'] ) ? $photo['url'] : "$photos_uri/faq-photo-1.jpg";
+$photo_alt = ! empty( $photo['alt'] ) ? $photo['alt'] : '';
 
 $items = array();
 
@@ -150,23 +159,12 @@ if ( ! $items ) {
 			</div>
 		</div>
 
-		<?php
-		// Percentages of the 548x894 collage box, straight from the Figma offsets:
-		// photo 1 is 480x436 at (0,0), photo 2 is 465x439 at (83,455), and the
-		// bulb badge is 125x124 at (227,399), overlapping both.
-		?>
-		<div class="faq-collage relative w-full max-w-[548px] mx-auto lg:mx-0 aspect-[548/894] lg:flex-[46_1_0%]" aria-hidden="true">
+		<div class="faq-collage hidden lg:block relative w-full max-w-[548px] mx-auto lg:mx-0 aspect-[548/894] lg:flex-[46_1_0%]" aria-hidden="true">
 			<img
-				src="<?php echo esc_url( "$photos_uri/faq-photo-1.jpg" ); ?>"
-				alt=""
+				src="<?php echo esc_url( $photo_url ); ?>"
+				alt="<?php echo esc_attr( $photo_alt ); ?>"
 				loading="lazy"
-				class="absolute top-0 left-0 w-[87.59%] h-[48.77%] rounded-[40px] lg:rounded-[60px] object-cover"
-			>
-			<img
-				src="<?php echo esc_url( "$photos_uri/faq-photo-2.jpg" ); ?>"
-				alt=""
-				loading="lazy"
-				class="absolute top-[50.89%] left-[15.15%] w-[84.85%] h-[49.11%] rounded-[40px] lg:rounded-[60px] object-cover"
+				class="absolute inset-0 w-full h-full rounded-[40px] lg:rounded-[60px] object-cover"
 			>
 			<img
 				src="<?php echo esc_url( "$icons_uri/faq-bulb.svg" ); ?>"

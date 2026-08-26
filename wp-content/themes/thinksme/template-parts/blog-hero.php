@@ -33,7 +33,7 @@ $has_photo = has_post_thumbnail();
 		<?php endif; ?>
 
 		<div class="relative z-10 flex flex-col items-center justify-center gap-xl text-center">
-			<h1 class="font-medium text-[32px] sm:text-[44px] lg:text-[56px] leading-none tracking-normal lg:tracking-[-0.56px] text-text-on-dark max-w-[861px]">
+			<h1 class="font-medium text-[40px] sm:text-[44px] lg:text-[56px] leading-none tracking-normal lg:tracking-[-0.56px] text-text-on-dark max-w-[861px]">
 				<?php the_title(); ?>
 			</h1>
 

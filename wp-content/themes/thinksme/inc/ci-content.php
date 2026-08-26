@@ -2770,10 +2770,10 @@ function thinksme_ci_content() {
 			'hat'              => 'IMDA Pre-Approved Vendor · SMEs Go Digital',
 			// The one headline in the family that is a paragraph rather than a display line:
 			// Figma sets it at 40px in a 620px box (127:519), which is why this set names
-			// `title_size_class` — the shared ramp already sets 40px on a phone, so replacing
-			// only its desktop step would leave the tablet band larger than the desktop one.
+			// `title_size_class` — flat at every breakpoint, since 40px is both the phone
+			// size the shared ramp already uses and the desktop size this frame draws.
 			'title'            => 'SMEs are eligible for up to 50% Productivity Solutions Grant (PSG) support for the adoption of Xero Cloud Accounting Software, a Pre-Approved Solution under the IMDA SMEs Go Digital programme.',
-			'title_size_class' => 'text-[28px] sm:text-[32px] lg:text-[40px]',
+			'title_size_class' => 'text-[40px]',
 			'text'             => 'As a vendor of pre-approved PSG Xero solutions, you are eligible for substantial cost savings through our offerings — with the setup, training, and ongoing support handled by our own Xero Certified Advisor team.',
 			'button_text'      => 'Talk With Our Experts',
 			'button_link'      => '/contact-us',

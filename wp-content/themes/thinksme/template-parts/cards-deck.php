@@ -144,6 +144,11 @@ foreach ( $defaults as $n => $default ) {
 						<?php endif; ?>
 
 						<?php if ( $card['image_url'] ) : ?>
+							<!-- Mobile (144:494 node I144:540;319:2407): static, in-flow, full card
+								 width, below the button — no rotation, no overlap with the copy. -->
+							<div class="cards-deck__media-mobile lg:hidden w-full aspect-[4/5] rounded-lg overflow-hidden mt-lg">
+								<img src="<?php echo esc_url( $card['image_url'] ); ?>" alt="<?php echo esc_attr( $card['image_alt'] ); ?>" class="w-full h-full object-cover">
+							</div>
 							<!-- top/right are the *unrotated* box; the 2.86deg rotation grows the
 								 bounding box by ~11x7px, landing it on Figma's 691x69 bbox. -->
 							<div class="cards-deck__media hidden lg:block absolute top-[76px] right-[59px] w-[301px] h-[439px] rounded-lg overflow-hidden rotate-[2.86deg]">

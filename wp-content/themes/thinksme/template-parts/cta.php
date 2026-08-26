@@ -5,22 +5,29 @@
  * Figma: node 27:1983, file "Untitled" (vzdpOnH1U36oXcFcugiyE5).
  *
  * ACF (Home page): cta_title, cta_text, cta_google_rating, cta_button_text,
- * cta_button_link, cta_image. The image falls back to the photo exported from
- * Figma so the section is complete before the client uploads their own.
+ * cta_button_link, cta_image, cta_image_mobile. The image falls back to the
+ * photo exported from Figma so the section is complete before the client
+ * uploads their own; cta_image_mobile is optional and only overrides the
+ * band below lg — left empty, mobile reuses cta_image (or its own fallback).
  *
- * The photo keeps Figma's 1280x561 proportion via aspect-ratio instead of a
- * fixed height, so it scales down with the viewport. In Figma the band is two
- * overlapping layers (a cut-out of the subject over the full frame); only the
- * full photo is needed here.
+ * The desktop photo keeps Figma's 1280x561 proportion via aspect-ratio instead
+ * of a fixed height. The Mobile Homepage frame (144:494, node 144:918) draws a
+ * different, taller card for this band — 362x295, radius 21px — plus a cut-out
+ * of the subject breaking above it; the cut-out's own pixels don't start until
+ * well past that overhang on this photo, so it renders as an empty sliver and
+ * is dropped. Only the full photo is needed, at its own aspect/radius below lg.
  */
 
 $icons_uri = get_template_directory_uri() . '/assets/images/icons';
-$image     = thinksme_field( 'cta_image' );
+$image        = thinksme_field( 'cta_image' );
+$image_mobile = thinksme_field( 'cta_image_mobile' );
 // The fallback is a filter so a page can supply its own photo without this part
 // learning which page it is on — see thinksme_ci_cta_photo() in inc/ci-content.php.
-$default_url = apply_filters( 'thinksme_cta_photo', get_template_directory_uri() . '/assets/images/cta/cta-photo.jpg' );
-$image_url   = ! empty( $image['url'] ) ? $image['url'] : $default_url;
-$image_alt = ! empty( $image['alt'] ) ? $image['alt'] : '';
+$default_url      = apply_filters( 'thinksme_cta_photo', get_template_directory_uri() . '/assets/images/cta/cta-photo.jpg' );
+$image_url        = ! empty( $image['url'] ) ? $image['url'] : $default_url;
+$image_alt        = ! empty( $image['alt'] ) ? $image['alt'] : '';
+$image_mobile_url = ! empty( $image_mobile['url'] ) ? $image_mobile['url'] : $image_url;
+$image_mobile_alt = ! empty( $image_mobile['alt'] ) ? $image_mobile['alt'] : $image_alt;
 $rating    = thinksme_field( 'cta_google_rating', false, '4.9' );
 // Two more filters for the same reason the photo is one: the PSG Grant frame closes
 // on "Let's work together" over its own line of copy (127:865, 127:866), and this
@@ -67,7 +74,10 @@ $text      = apply_filters( 'thinksme_cta_text', 'Reach out with your requiremen
 		</div>
 	</div>
 
-	<div class="w-full rounded-xl overflow-hidden aspect-[1280/561]">
+	<div class="block lg:hidden w-full rounded-[21px] overflow-hidden aspect-[362/295]">
+		<img src="<?php echo esc_url( $image_mobile_url ); ?>" alt="<?php echo esc_attr( $image_mobile_alt ); ?>" loading="lazy" class="w-full h-full object-cover">
+	</div>
+	<div class="hidden lg:block w-full rounded-xl overflow-hidden aspect-[1280/561]">
 		<img src="<?php echo esc_url( $image_url ); ?>" alt="<?php echo esc_attr( $image_alt ); ?>" loading="lazy" class="w-full h-full object-cover">
 	</div>
 </section>

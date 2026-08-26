@@ -100,7 +100,7 @@ $active = array_key_first( $tabs );
 
 	<?php $tools_label = thinksme_field( 'ci_tools_heading', false, 'Free tools' ); ?>
 
-	<div class="ci-tools w-full" data-tabs>
+	<div class="ci-tools w-full max-w-[1026px] mx-auto" data-tabs>
 		<?php // Below lg the strip is a dropdown instead (Figma node 100:10) — three labels this long can't be a row on a phone. A native <select> rather than a scripted listbox: it opens the platform's own picker, and it is the one control the design's caret pill can be built around without re-implementing keyboard and focus behaviour. Both controls are always in the DOM and CSS shows exactly one; `display: none` keeps the other out of the accessibility tree too, so the tabs are never announced twice. ?>
 		<div class="ci-tools__select">
 			<label class="sr-only" for="ci-tools-select"><?php echo esc_html( $tools_label ); ?></label>

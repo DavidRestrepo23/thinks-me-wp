@@ -79,7 +79,7 @@ $button_2_link = thinksme_field( 'hero_button_2_link', false, 'tel:+6560129642' 
 ?>
 <section id="hero" class="flex flex-col items-center gap-xl lg:gap-[48px] w-full px-lg lg:px-[47px] py-xl lg:py-[40px]">
 	<div class="flex flex-col items-center gap-md w-full max-w-[1093px]">
-		<span class="bg-brand-yellow-soft border border-brand-yellow-border rounded-pill h-[32px] px-md inline-flex items-center justify-center text-center text-xs font-medium text-text-primary">
+		<span class="hidden lg:inline-flex bg-brand-yellow-soft border border-brand-yellow-border rounded-pill h-[32px] px-md items-center justify-center text-center text-xs font-medium text-text-primary">
 			<?php echo esc_html( thinksme_field( 'hero_hat_text', false, "Singapore's All-in-One SME Partner · IMDA Pre-Approved Vendor" ) ); ?>
 		</span>
 
@@ -101,16 +101,16 @@ $button_2_link = thinksme_field( 'hero_button_2_link', false, 'tel:+6560129642' 
 				<?php echo esc_html( thinksme_field( 'hero_subtitle', false, 'Company incorporation in 24 hours. Accounting, Corporate Secretary, GST & tax compliance. Business loans from 60+ lenders. Property cashout. PSG Xero grant. One team, full support.' ) ); ?>
 			</p>
 
-			<div class="flex flex-wrap justify-center gap-lg items-start">
-				<a href="<?php echo esc_url( $button_1_link ); ?>" class="btn-split inline-flex items-center">
-					<span class="bg-brand-yellow rounded-sm h-[50px] px-lg inline-flex items-center justify-center text-sm font-medium text-text-primary whitespace-nowrap">
+			<div class="flex flex-col sm:flex-row sm:flex-wrap justify-center gap-lg items-stretch sm:items-start w-full max-w-[362px] sm:max-w-none">
+				<a href="<?php echo esc_url( $button_1_link ); ?>" class="btn-split inline-flex items-center w-full sm:w-auto">
+					<span class="bg-brand-yellow rounded-sm h-[50px] px-lg inline-flex flex-1 sm:flex-none items-center justify-center text-sm font-medium text-text-primary whitespace-nowrap">
 						<?php echo esc_html( $button_1_text ); ?>
 					</span>
 					<span class="bg-brand-yellow rounded-sm size-[50px] inline-flex items-center justify-center shrink-0">
 						<img src="<?php echo esc_url( "$icons_uri/arrow-up-right-dark.svg" ); ?>" alt="" class="size-[24px]">
 					</span>
 				</a>
-				<a href="<?php echo esc_url( $button_2_link ); ?>" class="btn-outline border border-border-medium rounded-sm h-[50px] px-lg inline-flex items-center justify-center text-sm font-medium text-text-primary whitespace-nowrap">
+				<a href="<?php echo esc_url( $button_2_link ); ?>" class="btn-outline border border-border-medium rounded-sm h-[50px] px-lg inline-flex items-center justify-center text-sm font-medium text-text-primary whitespace-nowrap w-full sm:w-auto">
 					<?php echo esc_html( $button_2_text ); ?>
 				</a>
 			</div>

@@ -30,7 +30,7 @@ $button_link = thinksme_field( 'hiring_button_link', false, '' );
 				<?php echo esc_html( thinksme_field( 'hiring_hat_text', false, 'Enjoy!' ) ); ?>
 			</span>
 
-			<h2 class="font-medium text-[32px] sm:text-2xl lg:text-3xl leading-tight text-text-primary">
+			<h2 class="font-medium text-2xl lg:text-3xl leading-tight text-text-primary">
 				<?php echo nl2br( esc_html( thinksme_field( 'hiring_title', false, "We’re Hiring!\nJoin Our Team Today!" ) ) ); ?>
 			</h2>
 		</div>

@@ -192,7 +192,7 @@ foreach ( $row_labels as $r => $default_label ) {
 		<span class="bg-brand-yellow-soft border border-brand-yellow-border rounded-pill h-[32px] px-lg inline-flex items-center justify-center text-xs font-medium text-text-primary">
 			<?php echo esc_html( thinksme_field( 'overview_hat_text', false, 'Everything Under One Roof' ) ); ?>
 		</span>
-		<h2 class="font-medium text-3xl text-text-primary" style="letter-spacing: var(--tracking-tight);">
+		<h2 class="font-medium text-2xl lg:text-3xl text-text-primary" style="letter-spacing: var(--tracking-tight);">
 			<?php echo esc_html( thinksme_field( 'overview_heading', false, 'Three Ways Think SME Serves Your Business' ) ); ?>
 		</h2>
 		<p class="font-normal text-md text-text-secondary" style="max-width: 592px; letter-spacing: var(--tracking-tight);">

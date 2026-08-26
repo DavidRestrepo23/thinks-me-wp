@@ -65,7 +65,7 @@ foreach ( $sections as $section ) {
 		<div class="flex flex-col gap-[48px] min-w-0 grow">
 			<?php foreach ( $items as $item ) : ?>
 				<div id="<?php echo esc_attr( $item['id'] ); ?>" data-toc-section class="flex flex-col gap-md scroll-mt-[100px]">
-					<h2 class="font-medium text-[32px] leading-[1.2] text-text-primary">
+					<h2 class="font-medium text-2xl leading-[1.2] text-text-primary">
 						<?php echo esc_html( $item['title'] ); ?>
 					</h2>
 					<div class="entry-content">

@@ -117,7 +117,7 @@ $socials = array(
 		<div class="flex flex-col gap-[48px] min-w-0 grow">
 			<?php foreach ( $sections as $i => $section ) : ?>
 				<div id="<?php echo esc_attr( $section['id'] ); ?>" data-toc-section class="flex flex-col gap-md scroll-mt-[120px]">
-					<h2 class="font-medium text-[32px] leading-[1.2] text-text-primary">
+					<h2 class="font-medium text-2xl leading-[1.2] text-text-primary">
 						<?php echo esc_html( $section['title'] ); ?>
 					</h2>
 					<div class="entry-content">

@@ -32,6 +32,30 @@ document.addEventListener( 'DOMContentLoaded', function () {
 		// instead of a slide-then-pause carousel. Higher = slower/smoother.
 		var scrollSpeed = parseInt( el.dataset.autoplayDelay, 10 ) || 4000;
 
+		// Swiper needs roughly twice as many slides as are visible at once before
+		// it will loop cleanly; short of that it pads the loop with blank slots,
+		// which is what made the certifications strip (6 logos, slidesPerView 5)
+		// read as a few icons adrift with uneven gaps instead of an even row. Not
+		// needed in `auto` mode: that caller (the Business Loan hero's bank strip)
+		// already duplicates its own logos in the template, since it also controls
+		// their order. wrapper/slide classes are already in the markup here, unlike
+		// ci-why-slider.js, so only the clone loop is needed.
+		if ( ! autoWidth ) {
+			var wrapper = el.querySelector( '.swiper-wrapper' );
+			var realSlides = Array.prototype.slice.call( el.querySelectorAll( '.swiper-slide' ) );
+			var target = 2 * Math.max( 3, 4, slidesDesktop );
+
+			if ( wrapper && realSlides.length && realSlides.length < target ) {
+				var i = 0;
+				while ( wrapper.querySelectorAll( '.swiper-slide' ).length < target ) {
+					var copy = realSlides[ i % realSlides.length ].cloneNode( true );
+					copy.setAttribute( 'aria-hidden', 'true' );
+					wrapper.appendChild( copy );
+					i++;
+				}
+			}
+		}
+
 		new Swiper( el, {
 			loop: true,
 			slidesPerView: autoWidth ? 'auto' : 3,

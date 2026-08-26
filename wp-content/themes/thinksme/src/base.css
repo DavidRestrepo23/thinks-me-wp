@@ -175,6 +175,12 @@
   --space-2xl: 41px;
   --space-3xl: 80px;
   --space-4xl: 118px;
+
+  /* Rendered height of #site-header, kept in sync by header-nav.js so the
+     mobile nav panel (fixed, full-viewport) can start right below it instead
+     of guessing a fixed number that drifts whenever the header's own padding
+     changes. */
+  --site-header-height: 84px;
 }
 
 *,
@@ -323,10 +329,17 @@
    (= scale 0.955) with its top edge at 35px and rotated 2.74deg, and the
    backmost is 935px wide (= scale 0.881), top edge at 6px, rotated -1deg.
    transform-origin is the top center so the scale doesn't fight the
-   translate — top edge lands at var(--deck-front-top) + translateY. */
+   translate — top edge lands at var(--deck-front-top) + translateY.
+
+   Mobile height comes from the Mobile Homepage frame (144:494, node 144:540
+   "Card Sticky"): the front card's own content box is 830px tall — badge,
+   title, description, button and (unlike desktop) an in-flow photo below it
+   — inside an 886px component, so front-top is 56px. Base used to be a
+   guessed 460px/70px, tuned only against the desktop frame; the card was
+   clipping the mobile photo template-parts/cards-deck.php now renders. */
 .cards-deck {
-  --deck-card-height: 460px;
-  --deck-front-top: 70px;
+  --deck-card-height: 830px;
+  --deck-front-top: 56px;
   --deck-peek-1: -48px;
   --deck-peek-2: -66px;
   --deck-rotate-1: 2deg;
@@ -561,7 +574,9 @@
   the plain-text fallback rendered when no menu is assigned yet.
 */
 .site-header {
-  position: relative;
+  position: sticky;
+  top: 0;
+  z-index: 40;
 }
 
 .site-header__nav,
@@ -732,6 +747,18 @@
     box-shadow: 0 16px 40px rgba(0, 0, 0, 0.08);
   }
 
+  /* A menu with fewer than three top-level items has no fourth column to fill
+     the gap with — three fixed tracks would leave the panel's own empty
+     space stretched out to its right. Track count follows the actual item
+     count instead, capped at the drawn 3. */
+  .megamenu__grid:has(> .megamenu__col:nth-child(1):last-child) {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .megamenu__grid:has(> .megamenu__col:nth-child(2):last-child) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
   .megamenu__col {
     padding: var(--space-xl) var(--space-lg);
     border-right: 1px solid var(--color-border-soft);
@@ -744,6 +771,30 @@
      cards just looks like a mistake. */
   .megamenu__col:nth-child(3n):not(.megamenu__col--card) {
     background-color: var(--color-surface-muted);
+  }
+
+  /* :nth-child(n+4), not :last-child — the grid is 3 columns, so only a 4th+
+     column ever lands in a second row. At 3 or fewer columns there's one row
+     and no divider belongs on the last one. */
+  .megamenu__col:nth-child(n + 4) {
+    border-top: 1px solid var(--color-border-soft);
+  }
+
+  /* In the grid panel a flush border-top on the column box runs to the
+     panel's own edges, past the column's horizontal padding — inset it to
+     line up with the card's icon/caret instead. */
+  .megamenu__col--card:nth-child(n + 4) {
+    position: relative;
+    border-top: none;
+  }
+
+  .megamenu__col--card:nth-child(n + 4)::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: var(--space-lg);
+    right: var(--space-lg);
+    border-top: 1px solid var(--color-border-soft);
   }
 }
 
@@ -785,6 +836,16 @@
 .megamenu__col--card {
   display: flex;
   align-items: flex-start;
+}
+
+/* Mobile only: the burger drawer's plain indented list, so a flush edge-to-edge
+   line reads as a normal list divider. Scoped below 1024px (rather than left
+   unconditional) so it can't out-cascade the inset version the grid panel
+   uses at desktop widths purely by sitting later in the file. */
+@media (max-width: 1023.98px) {
+  .megamenu__col--card:last-child {
+    border-top: 1px solid var(--color-border-soft);
+  }
 }
 
 .megamenu__card {
@@ -867,32 +928,57 @@
   transform: translateY(-7px) rotate(-45deg);
 }
 
+/* ---------------------------------------------------------------------------
+   Mobile nav panel (header.php, assets/js/header-nav.js).
+   Figma: the same "Untitled" file's mobile frames for the primary nav.
+
+   A full-viewport drill-down, not the old small dropdown: the root list is
+   screen 1 (item + chevron, tap anywhere to go to screen 2), and tapping an
+   item with children swaps in that item's .megamenu — the same panel desktop
+   opens on hover — as screen 2, with a back button standing in for the item
+   list. Two screens only: nothing in the design nests a card inside a card,
+   so header-nav.js never needs more than one level of "back".
+--------------------------------------------------------------------------- */
 @media (max-width: 1023px) {
   .site-header__nav {
     display: none;
-    position: absolute;
-    top: 100%;
+    position: fixed;
+    top: var(--site-header-height);
     left: 0;
     right: 0;
+    bottom: 0;
     z-index: 60;
     flex-direction: column;
     align-items: stretch;
-    gap: var(--space-md);
+    gap: 0;
     height: auto;
-    padding: var(--space-lg);
+    padding: 0;
     background-color: var(--color-surface-white);
-    border-bottom: 1px solid var(--color-border-soft);
-    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.06);
+    border-bottom: 0;
+    box-shadow: none;
   }
 
   .site-header[data-nav-open="true"] .site-header__nav {
     display: flex;
   }
 
+  .site-header__nav-scroll {
+    flex: 1 1 auto;
+    overflow-y: auto;
+    /* No top padding here — it would leave a gap between the scrollport's
+       true top and .site-header__subnav's sticky stop point (which lands at
+       this element's padding edge), through which a scrolled-past card's top
+       sliver would show above the sticky bar instead of being covered by it.
+       The equivalent top spacing lives on .site-header__subnav and
+       .site-header__menu instead, so each covers its own. */
+    padding: 0 var(--space-lg) var(--space-lg);
+  }
+
   .site-header__menu {
     flex-direction: column;
     align-items: stretch;
     height: auto;
+    padding-top: var(--space-lg);
   }
 
   /* Submenus sit inline on mobile — a hover flyout has nothing to hover. */
@@ -905,8 +991,112 @@
     min-width: 0;
   }
 
+  /* Root list: one row per top-level item, divided by hairlines, chevron
+     pinned to the row's right edge regardless of whether the item has a
+     submenu — the design draws the same affordance on every row, including
+     leaf items like "Blog", so it's decorative there rather than gated on
+     .menu-item-has-children. */
+  .site-header__menu > li + li {
+    border-top: 1px solid var(--color-border-soft);
+  }
+
+  .site-header__menu > li > a,
+  .site-header__menu > li > span {
+    justify-content: space-between;
+  }
+
+  /* Undo the desktop "caret pointing down, ready to flip up on hover" — on
+     mobile a tap replaces the whole screen, so the caret just points right,
+     same as everywhere else in the theme's card lists. */
+  .site-header__menu > li.menu-item-has-children > a::after {
+    transform: none;
+  }
+
+  .site-header__menu > li:not(.menu-item-has-children) > a::after,
+  .site-header__menu > li:not(.menu-item-has-children) > span::after {
+    content: "";
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    background-image: url("../images/icons/caret-right.svg");
+    background-size: contain;
+    background-repeat: no-repeat;
+  }
+
+  /* The megamenu panel is desktop's hover flyout; on mobile it's screen 2,
+     hidden until header-nav.js marks one .is-active after moving it into
+     .site-header__submenu-slot (see that element below — it has to leave the
+     root <li> because .is-drilled hides the whole list, .megamenu included,
+     and display:none on an ancestor can't be undone by a child rule). */
+  .megamenu {
+    display: none;
+  }
+
+  .megamenu.is-active {
+    display: block;
+  }
+
+  .megamenu__col {
+    padding: var(--space-xl) 0 0;
+  }
+
+  .site-header__nav.is-drilled .site-header__menu {
+    display: none;
+  }
+
+  .site-header__submenu-slot:empty {
+    display: none;
+  }
+
+  /* Back button + tapped item's title, standing in for the root list while a
+     submenu is open. Sticky so it stays put while a long card list scrolls
+     under it, the way the root list's own header would if it were still on
+     screen. */
+  .site-header__subnav {
+    display: grid;
+    grid-template-columns: 24px 1fr 24px;
+    align-items: center;
+    gap: var(--space-sm);
+    position: sticky;
+    top: 0;
+    padding: var(--space-lg) 0;
+    margin-bottom: var(--space-md);
+    background-color: var(--color-surface-white);
+    border-bottom: 1px solid var(--color-border-soft);
+  }
+
+  .site-header__subnav[hidden] {
+    display: none;
+  }
+
+  .site-header__back {
+    grid-column: 1;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+  }
+
+  /* Same caret-right.svg every card uses, just pointed the other way rather
+     than shipping a second asset for one button. */
+  .site-header__back img {
+    width: 20px;
+    height: 20px;
+    transform: rotate(180deg);
+  }
+
+  .site-header__subnav-title {
+    grid-column: 2;
+    text-align: center;
+    font-weight: 600;
+    font-size: var(--font-size-md);
+    color: var(--color-text-strong);
+  }
+
   .site-header__call {
-    width: 100%;
+    flex: none;
+    margin: var(--space-lg);
   }
 }
 

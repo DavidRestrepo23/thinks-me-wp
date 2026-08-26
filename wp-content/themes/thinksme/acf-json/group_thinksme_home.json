@@ -1158,6 +1158,17 @@
             "default_value": "Questions Singapore Business Owners Ask Us First"
         },
         {
+            "key": "field_thinksme_faq_photo",
+            "label": "Photo",
+            "name": "faq_photo",
+            "type": "image",
+            "instructions": "Leave empty to use the theme default.",
+            "required": 0,
+            "return_format": "array",
+            "preview_size": "medium",
+            "library": "all"
+        },
+        {
             "key": "field_thinksme_tab_cta",
             "label": "Final CTA",
             "name": "",
@@ -1217,6 +1228,17 @@
             "return_format": "array",
             "preview_size": "medium",
             "library": "all"
+        },
+        {
+            "key": "field_thinksme_cta_image_mobile",
+            "label": "Photo (mobile)",
+            "name": "cta_image_mobile",
+            "type": "image",
+            "instructions": "Optional. Shown instead of \"Photo\" below the lg breakpoint. Leave empty to reuse the photo above on mobile too.",
+            "required": 0,
+            "return_format": "array",
+            "preview_size": "medium",
+            "library": "all"
         }
     ],
     "location": [
@@ -1236,5 +1258,5 @@
     "hide_on_screen": "",
     "active": true,
     "show_in_rest": 0,
-    "modified": 1785943130
+    "modified": 1787605500
 }

@@ -27,7 +27,7 @@ $icons_uri = get_template_directory_uri() . '/assets/images/icons';
 ?>
 <section class="w-full px-lg lg:px-3xl pt-xl lg:pt-3xl">
 	<div class="relative bg-surface-dark rounded-2xl flex flex-col justify-center gap-xs px-lg py-xl lg:px-[64px] lg:py-[20px] lg:min-h-[251px]">
-		<h1 class="relative z-10 font-medium text-[32px] sm:text-[48px] lg:text-[72px] leading-[1.04] tracking-normal lg:tracking-[-0.72px] text-text-on-dark lg:max-w-[485px]">
+		<h1 class="relative z-10 font-medium text-[40px] sm:text-[48px] lg:text-[72px] leading-[1.04] tracking-normal lg:tracking-[-0.72px] text-text-on-dark lg:max-w-[485px]">
 			<?php echo esc_html( $title ); ?>
 		</h1>
 
