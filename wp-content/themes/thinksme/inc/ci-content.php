@@ -72,6 +72,7 @@ function thinksme_ci_content_set() {
 		'page-mortgage-loans.php'                => 'mortgage',
 		'page-psg-grant.php'                     => 'psg',
 		'page-mra-grant.php'                     => 'mra',
+		'page-about-us.php'                      => 'about',
 	);
 
 	$template = thinksme_current_template();
@@ -3322,6 +3323,269 @@ function thinksme_ci_content() {
 		),
 	);
 
+	// The About Us page, Figma frame 157:280 ("Desktop About"). Not one of the
+	// eleven service pages above — it shares this file only because it reuses
+	// `ci-hero`, `ci-grid` (three instances) and `ci-stack` (one instance) the
+	// same way they do, so its design fallbacks belong in the same one place
+	// rather than scattered across its own template parts.
+	$about = array(
+		'hero'    => array(
+			'hat'              => 'Partner for Business Success',
+			'title'            => 'Helping Entrepreneurs Start, Run and Grow Their Businesses With Confidence',
+			'text'             => 'At Think SME, we believe every entrepreneur deserves more than just a service provider. We provide the guidance, expertise and business solutions that help founders build successful businesses with confidence.',
+			'button_text'      => "Let's Build Your Business Together",
+			'button_link'      => '/contact-us',
+			'button_2_text'    => '+65 6012 9642',
+			'button_2_link'    => 'tel:+6560129642',
+			// Figma's whole image group (157:300 + the badge 157:304), 619x534: the
+			// badge overhangs the photo card's top-left corner, so the group is bigger
+			// than the card. The export carries card, corners and badge already
+			// composed on transparency, so the stock branch draws no badge over it —
+			// and `upload_composed` says the field's own content is that same export,
+			// which is what stops the badge being painted on twice.
+			'image'            => 'about/hero-image.png',
+			'image_box'        => 'aspect-[619/534]',
+			'badge'            => '',
+			'upload_composed'  => true,
+			// Unused while `upload_composed` stands, but kept correct against the group
+			// box above so the bare-photo branch still has Figma's numbers if a set
+			// ever wants it: badge at 0,0 of the group, card inset into it.
+			'badge_class'      => 'absolute left-0 top-0 w-[20.6%] h-[23.46%] pointer-events-none select-none',
+			'photo_slot_class' => 'absolute left-[4.19%] top-[8.14%] w-[95.81%] h-[91.86%] overflow-hidden rounded-2xl',
+			// This headline breaks across four lines at 64px rather than the family's
+			// usual 72px, so the desktop step is a per-page default.
+			'title_class'      => 'lg:text-[64px]',
+			'underline_class'  => 'hidden lg:block absolute left-[-0.3%] top-[122px] w-[92.6%] rotate-[1.83deg] pointer-events-none select-none',
+		),
+		'story'   => array(
+			'icon'    => 'about/story-icon.svg',
+			'title'   => 'What "Partner for Business Success" actually means:',
+			'items'   => array(
+				"We're there from incorporation, not just at the start",
+				'We stay through compliance, accounting, and financing',
+				'We support expansion into new markets and technology',
+				'One partner, every stage — not a patchwork of vendors',
+			),
+			'hat'     => 'Our Story',
+			'heading' => 'Every successful business starts with a leap of faith.',
+			// Paragraph 3 is the one Figma sets in bold (157:512) — a position in the
+			// design, not a client choice, the same convention every other bold-by-slot
+			// treatment in this theme follows.
+			'text_1'  => 'Leaving a stable job, investing your savings and building something from scratch is exciting — but can also be overwhelming.',
+			'text_2'  => 'Too often, entrepreneurs spend more time worrying about incorporation, compliance, accounting and financing than growing their business.',
+			'text_3'  => "That's why Think SME was founded.",
+			'text_4'  => 'We set out to become more than another corporate service provider. Our goal is to become the long-term business partner entrepreneurs can rely on — from starting a company to securing financing, adopting technology and expanding into new markets.',
+		),
+		'grid'    => array(
+			'drive'   => array(
+				'hat'           => '',
+				'heading'       => 'What Drive Us',
+				'align'         => 'center',
+				'panel_class'   => 'bg-surface-dark rounded-[40px] lg:rounded-[48px] px-lg lg:px-[56px] py-xl lg:py-[64px]',
+				'heading_class' => 'text-text-on-dark',
+				'section_class' => 'py-xl lg:py-[40px]',
+				// Three equal cards across the panel (157:517 draws them flex-1 in a
+				// 1280px row), which six columns cannot divide — the same reason the
+				// Corporate Tax frame's four equal cards name their own track.
+				'grid_class'    => 'lg:grid-cols-3',
+				// Figma pads these 24px horizontally against 32px vertically (157:518),
+				// where every earlier instance is square at 32px, and sets 32px between
+				// the disc, the title and the copy where they draw 16px.
+				'card_pad_class' => 'rounded-lg px-lg py-xl',
+				'card_gap_class' => 'gap-xl',
+				// The Values card runs longer than Vision's or Mission's (157:538's three
+				// bullets against a one-line paragraph each), and Figma keeps every card
+				// top-aligned rather than centering the shorter two — the same read the
+				// PSG Grant frame's own `justify-start` override documents.
+				'card_justify_class' => 'justify-start',
+				'cards'         => array(
+					1 => array(
+						'class' => '',
+						'icon'  => 'eye',
+						'title' => 'Vision',
+						'text'  => "To become Singapore's most trusted business growth partner, empowering entrepreneurs and SMEs to build sustainable, successful businesses.",
+					),
+					2 => array(
+						'class' => '',
+						'icon'  => 'lightning',
+						'title' => 'Mission',
+						'text'  => 'We simplify the business journey by delivering expert guidance, integrated solutions and meaningful partnerships that help entrepreneurs turn ideas into thriving businesses.',
+					),
+					// Figma writes this card as three bold-led bullets rather than a plain
+					// paragraph (157:538) — `items` renders that list; `text` stays the
+					// fallback for a client who clears all three back to a single line.
+					3 => array(
+						'class' => '',
+						'icon'  => 'star',
+						'title' => 'Values',
+						'text'  => '',
+						'items' => array(
+							array(
+								'bold' => 'Client Success Comes First',
+								'text' => " — our clients' success is the measure of our own; we always act in their best interests and are committed to helping them achieve sustainable business growth.",
+							),
+							array(
+								'bold' => 'We Guide With Expertise —',
+								'text' => ' we do more than deliver services, providing trusted advice, practical solutions, and continuous guidance that empower entrepreneurs to make confident decisions.',
+							),
+							array(
+								'bold' => 'Grow Together —',
+								'text' => ' lasting partnerships create lasting businesses; we continuously improve ourselves while creating new opportunities for our clients, partners, and team.',
+							),
+						),
+					),
+				),
+			),
+			'credentials' => array(
+				'hat'       => 'Why Businesses Trust Think SME',
+				'heading'   => 'Real Credentials, Not Just Claims',
+				'align'     => 'center',
+				'text'      => "We're dedicated to helping SMEs transform their accounting processes — backed by real, verifiable credentials, not just a claim.",
+				'grid_class' => 'lg:grid-cols-4',
+				'section_class' => 'py-xl lg:py-[40px]',
+				'cards'     => array(
+					1 => array(
+						'class' => '',
+						'icon'  => 'calculator',
+						'title' => 'ACRA Registered Filing Agent',
+						'text'  => 'Authorised to file incorporation, corporate secretary, and compliance documents directly with ACRA.',
+					),
+					2 => array(
+						'class' => '',
+						'icon'  => 'file-text',
+						'title' => 'IRAS Tax Filing Agent',
+						'text'  => 'Authorised to prepare and submit corporate tax and GST filings directly with IRAS.',
+					),
+					3 => array(
+						'class' => '',
+						'icon'  => 'seal-check',
+						'title' => 'Xero Certified Advisor',
+						'text'  => 'Setup, migration, and ongoing support from a team actually certified on the platform.',
+					),
+					4 => array(
+						'class' => '',
+						'icon'  => 'percent',
+						'title' => 'IMDA Pre-Approved PSG Vendor',
+						'text'  => 'Our Xero solutions qualify clients for Productivity Solutions Grant support.',
+					),
+				),
+			),
+			'explore' => array(
+				'hat'               => "Wherever You're Starting From",
+				'hat_class'         => 'bg-white border-brand-yellow-border text-text-navy',
+				'heading'           => 'Explore How We Can Help',
+				'heading_size_class' => 'text-2xl lg:text-[52px]',
+				'heading_class'     => 'text-text-on-dark',
+				'align'             => 'left',
+				'text'              => 'ThinkSME guides you through every step — from free consultation to cash in your account.',
+				'panel_class'       => 'bg-surface-dark rounded-[40px] lg:rounded-[48px] px-lg lg:px-[56px] py-xl lg:py-[64px]',
+				'card_class'        => 'bg-white border border-[rgba(19,47,83,0.08)]',
+				'card_pad_class'    => 'rounded-[28px] p-[28px]',
+				'grid_class'        => 'lg:grid-cols-4',
+				'section_class'     => 'py-xl lg:py-[40px]',
+				'cards'             => array(
+					1 => array(
+						'class' => '',
+						'icon'        => 'shield-check',
+						'title'       => 'Incorporate Your Company',
+						'text'        => 'Register your Singapore company from S$888, ACRA-filed in 1–3 days.',
+						'button_text' => 'Learn More',
+						'button_link' => '/company-incorporation-local',
+					),
+					2 => array(
+						'class' => '',
+						'icon'        => 'hand-coins',
+						'title'       => 'Get a Business Loan',
+						'text'        => 'Compare 60+ banks and lenders with one application — free, ex-banker team.',
+						'button_text' => 'Learn More',
+						'button_link' => '/business-loan',
+					),
+					3 => array(
+						'class' => '',
+						'icon'        => 'house-line',
+						'title'       => 'Unlock Property Equity',
+						'text'        => 'Cash out equity from your property at mortgage-level rates, without selling it.',
+						'button_text' => 'Learn More',
+						'button_link' => '/property-cashout',
+					),
+					4 => array(
+						'class' => '',
+						'icon'        => 'seal-check',
+						'title'       => 'Claim the PSG Grant',
+						'text'        => 'Up to 50% PSG support for Xero cloud accounting — IMDA pre-approved.',
+						'button_text' => 'Learn More',
+						'button_link' => '/psg-grant',
+					),
+				),
+			),
+		),
+		'promise' => array(
+			'hat'         => 'Our Brand Promise',
+			'heading'     => 'From First Step to Every Milestone.',
+			'text'        => 'Because every entrepreneur deserves a partner who grows with them.',
+			'button_text' => "Let's Build Your Business Together",
+			'button_link' => '/contact-us',
+		),
+		'stack'   => array(
+			'serve' => array(
+				'hat'     => 'Who We Serve',
+				'heading' => 'Built for Every Stage of the Journey',
+				'photo'   => 'right',
+				'image'   => 'about/serve-photo.jpg',
+				'image_box' => 'aspect-[547/415]',
+				'cards'   => array(
+					1 => array(
+						'icon'  => 'user-focus',
+						'title' => 'First-Time Founders',
+						'text'  => 'Taking the leap for the first time and need a partner who explains the "why," not just the "what."',
+					),
+					2 => array(
+						'icon'  => 'chart-line-up',
+						'title' => 'Growing SMEs',
+						'text'  => 'Need reliable accounting, financing and strategic guidance to scale with confidence.',
+					),
+					3 => array(
+						'icon'  => 'briefcase',
+						'title' => 'Foreign Entrepreneurs',
+						'text'  => 'Setting up in Singapore remotely and need a local partner who can act as their eyes on the ground.',
+					),
+					4 => array(
+						'icon'  => 'clock-countdown',
+						'title' => 'SMEs Seeking Financing',
+						'text'  => 'Looking for business loans or property cashout through our 60+ lender network.',
+					),
+					5 => array(
+						'icon'  => 'bank',
+						'title' => 'Grant Applicants',
+						'text'  => 'Applying for PSG or other government grants and need an IMDA pre-approved vendor.',
+					),
+					// The last card is styled navy and tilted by position — see the note
+					// in template-parts/ci-stack.php.
+					6 => array(
+						'icon'  => 'hand-coins',
+						'title' => 'Switching Providers',
+						'text'  => 'Unhappy with their current accountant or corporate secretary and ready for a single accountable partner.',
+					),
+				),
+			),
+		),
+		'mission' => array(
+			'hat'     => 'Why Think SME Exists',
+			'heading' => "Most business owners don't fail because they lack passion.",
+			'text_1'  => 'They struggle because they have to navigate incorporation, compliance, accounting, financing, grants and technology — all while trying to grow their business.',
+			'text_2'  => 'We believe entrepreneurs should spend their time building their business, not figuring out paperwork.',
+			// Figma sets this closing line in bold (157:846) — a position, like the
+			// Our Story paragraph above.
+			'text_3'  => "That's why we bring everything together under one trusted partner.",
+			'image'   => 'about/mission-photo.jpg',
+		),
+		// This frame closes on the shared CTA verbatim — "Need help?" over its own
+		// line rather than cta.php's generic one — so the set names no photograph.
+		'cta'     => array(
+			'text' => 'From first step to every milestone — talk to us about what you\'re building.',
+		),
+	);
+
 	return array(
 		'local'      => $local,
 		'foreign'    => $foreign,
@@ -3335,6 +3599,7 @@ function thinksme_ci_content() {
 		'mortgage'   => $mortgage,
 		'psg'        => $psg,
 		'mra'        => $mra,
+		'about'      => $about,
 	);
 }
 

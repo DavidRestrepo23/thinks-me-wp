@@ -718,6 +718,39 @@
     display: block;
   }
 
+  /* Hover bridge. The nav item is shorter than the header (the logo and the
+     Call Us button set that height), so between the item's bottom edge and the
+     header's there is a band that belongs to neither the <li> nor the panel —
+     the pointer crosses it on the way down, :hover drops and the panel closes
+     before it can be reached. The panel's own 8px padding only covers the gap
+     *below* the header, not this one.
+
+     The bridge is a pseudo-element on the item's <a>, so it is a descendant of
+     the same <li> the panel hangs off and hovering it keeps that <li> hovered.
+     It is NOT on the <li>: a `position: relative` there would shrink the
+     viewport-wide panel to the width of the nav item (see the note above).
+     It only exists while the item is open, or it would sit over the page and
+     swallow hovers on whatever is under the header. */
+  .site-header__menu li.menu-item-has-children > a {
+    position: relative;
+  }
+
+  .site-header__menu li.menu-item-has-children:hover > a::before,
+  .site-header__menu li.menu-item-has-children:focus-within > a::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 100%;
+    height: 24px;
+    /* This is the same ::before the hover underline further down paints
+       yellow, and that rule is the lower-specificity one — without these two
+       the bridge is a visible 24px yellow block under the item rather than
+       the invisible strip it is meant to be. */
+    background: none;
+    transform: none;
+  }
+
   /* The page behind the open panel: white 30% + a 5px blur (Figma node
      63:1028). Anchored to the panel and sized in vh so it covers everything
      below the header without covering the header itself — and it lives out here
@@ -750,12 +783,16 @@
   /* A menu with fewer than three top-level items has no fourth column to fill
      the gap with — three fixed tracks would leave the panel's own empty
      space stretched out to its right. Track count follows the actual item
-     count instead, capped at the drawn 3. */
-  .megamenu__grid:has(> .megamenu__col:nth-child(1):last-child) {
+     count instead, capped at the drawn 3.
+
+     Scoped away from the dropdown panel below, which is always one column:
+     `:has()` takes its argument's specificity, so these two are (0,4,0) and
+     would out-rank any plain selector the dropdown could write. */
+  li:not(.menu-item--dropdown) > .megamenu > .megamenu__grid:has(> .megamenu__col:nth-child(1):last-child) {
     grid-template-columns: minmax(0, 1fr);
   }
 
-  .megamenu__grid:has(> .megamenu__col:nth-child(2):last-child) {
+  li:not(.menu-item--dropdown) > .megamenu > .megamenu__grid:has(> .megamenu__col:nth-child(2):last-child) {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
@@ -795,6 +832,208 @@
     left: var(--space-lg);
     right: var(--space-lg);
     border-top: 1px solid var(--color-border-soft);
+  }
+
+  /* -------------------------------------------------------------------------
+     Dropdown panel. Figma: node 172:148, same file.
+
+     Same markup as the megamenu above and the same cards — a 544px panel
+     holding one column of them instead of the viewport-wide grid. The walker
+     decides which of the two an item opens and says so with
+     .menu-item--dropdown (see is_dropdown() there for the rule); everything
+     below only has to undo the grid.
+     ------------------------------------------------------------------------- */
+
+  /* The one place a top-level <li> may be a positioning context. The megamenu
+     must not have one — it spans the viewport and would collapse to the width
+     of the nav item (see the note above) — but that is exactly what a dropdown
+     anchored under its own item wants.
+
+     `align-self: stretch` is what makes the <li> as tall as the header rather
+     than as tall as its <a>: `top: 100%` is measured against it, so without
+     the stretch the panel would open halfway up the header. It also means the
+     band under the label belongs to the <li>, so the pointer never leaves it
+     on the way down and this item needs no hover bridge. */
+  /* `.site-header__nav` and `.site-header__menu` already ask for `height:
+     100%`, but the header has no height of its own (the logo and the Call Us
+     button set it), so a percentage resolves to auto and the nav ends up as
+     tall as its links — 56px inside an 82px header. Stretching the nav gives
+     the percentage something definite to resolve against, which is what makes
+     `top: 100%` on the dropdown land on the header's bottom edge instead of
+     26px above it. The links stay vertically centred either way.
+
+     `height: auto` has to come with the stretch: a flex item only stretches
+     while its cross size is auto, and `height: 100%` — which is what this
+     element already carried, resolving to auto against a header that has no
+     height — is not auto as far as that rule is concerned. Once the nav is
+     stretched its own height is definite, so `.site-header__menu`'s existing
+     `height: 100%` starts resolving too. */
+  .site-header__nav {
+    align-self: stretch;
+    height: auto;
+  }
+
+  /* The scrollport between the nav and the list (it exists for the mobile
+     drawer) is the other link in that chain — leave it centred and the list's
+     `height: 100%` has nothing definite to resolve against either. */
+  .site-header__nav-scroll {
+    align-self: stretch;
+  }
+
+  .site-header__menu > li.menu-item--dropdown {
+    position: relative;
+    align-self: stretch;
+    display: flex;
+    align-items: center;
+  }
+
+  .site-header__menu > li.menu-item--dropdown > .megamenu {
+    /* Centred on its nav item. `translate` rather than `transform`, so it
+       can't be clobbered by — or clobber — the transform the hover underline
+       animates on the pseudo-elements around it. */
+    left: 50%;
+    right: auto;
+    translate: -50% 0;
+    /* Figma's 544px, minus the 8px the panel keeps from each edge of a narrow
+       window. */
+    width: min(544px, calc(100vw - 16px));
+  }
+
+  /* The dropdown dims the page behind it like the megamenu does, but it can't
+     use the same pseudo-element to do it. The megamenu's backdrop is drawn
+     from the panel (`.megamenu::before`), which works because that panel is
+     the viewport minus 8px a side, so -8px either way lands exactly on the
+     edges. A 544px panel anchored to its own nav item would need a negative
+     inset large enough to reach both edges from wherever the item sits, which
+     is a number CSS can't work out and which overflows the document if you
+     guess it high. So the dropdown's backdrop is drawn from the header, which
+     is already full-width — and is already the positioning context the
+     megamenu's panel uses. */
+  .site-header__menu > li.menu-item--dropdown > .megamenu::before {
+    content: none;
+  }
+
+  .site-header:has(.menu-item--dropdown:hover)::after,
+  .site-header:has(.menu-item--dropdown:focus-within)::after {
+    content: "";
+    position: absolute;
+    /* Below the header's own bottom edge, so it dims the page without dimming
+       the header — the same reasoning as `.megamenu::before`'s top: 0. */
+    top: 100%;
+    left: 0;
+    right: 0;
+    height: 100vh;
+    background-color: rgba(255, 255, 255, 0.3);
+    backdrop-filter: blur(5px);
+    pointer-events: none;
+  }
+
+  /* One column, and the padding moves from the cells to the panel — the rows
+     run edge to edge inside it, so the 24/32 is the panel's own. */
+  .menu-item--dropdown .megamenu__grid {
+    grid-template-columns: minmax(0, 1fr);
+    padding: var(--space-xl) var(--space-lg);
+  }
+
+  .menu-item--dropdown .megamenu__col {
+    padding: 0;
+    border-right: 0;
+    background-color: transparent;
+  }
+
+  /* Hairline between every adjacent pair, 24px either side (Figma leaves the
+     row at 50px and the line 24px under it). The grid's own dividers are for
+     cells that wrapped onto a second row, which cannot happen here. */
+  .menu-item--dropdown .megamenu__col + .megamenu__col {
+    margin-top: var(--space-lg);
+    padding-top: var(--space-lg);
+    border-top: 1px solid var(--color-border-soft);
+  }
+
+  .menu-item--dropdown .megamenu__col--card:nth-child(n + 4)::before {
+    content: none;
+  }
+
+  /* -------------------------------------------------------------------------
+     Card hover/focus. Figma: "Frame 1171277531".
+
+     Both panels, since they are the same card: a navy pill behind the row,
+     the title and its description white, the caret white, the yellow icon
+     tile untouched. Every colour is already a token (#183458 is surface-dark,
+     #f7c90e is brand-yellow); the only hardcoded number is the 20px corner,
+     which falls between --radius-sm and --radius-md.
+
+     Desktop only. Below 1024px both panels are the burger drawer's plain
+     list, where there is nothing to hover and a card is a whole screen's
+     worth of tap target rather than a row to highlight.
+     ------------------------------------------------------------------------- */
+  .megamenu__card {
+    position: relative;
+    /* The fill paints on z-index: -1 so it sits behind the card's own icon and
+       text; without a stacking context here that would put it behind the
+       panel instead, where it is invisible. */
+    isolation: isolate;
+  }
+
+  .megamenu__card::before {
+    content: "";
+    position: absolute;
+    /* Figma draws the 50px row inside a 74px pill, so the fill is 12px bigger
+       on every side. An inset rather than padding on the card: padding would
+       grow the row and reflow the panel under the pointer. It bleeds into the
+       gap the design leaves between cards either way — 12px of clearance
+       around the dropdown's 24px gap, 4px around the megamenu's 16px one —
+       and into the column's own 24px of horizontal padding. */
+    inset: -12px;
+    z-index: -1;
+    border-radius: 20px;
+    background-color: var(--color-surface-dark);
+    opacity: 0;
+    transition: opacity 200ms ease;
+  }
+
+  /* The card's children are <span>s and an <img>, which the site-wide
+     `a, button` transition doesn't reach — without this the type snaps white
+     while the fill is still fading in. */
+  .megamenu__title,
+  .megamenu__desc {
+    transition: color 200ms ease;
+  }
+
+  .megamenu__caret {
+    transition: filter 200ms ease;
+  }
+
+  /* Keyboard gets the same state. :focus-visible stays outside the
+     `hover: hover` query below, as everywhere else in this file. */
+  .megamenu__card:focus-visible::before {
+    opacity: 1;
+  }
+
+  .megamenu__card:focus-visible .megamenu__title,
+  .megamenu__card:focus-visible .megamenu__desc {
+    color: var(--color-text-on-dark);
+  }
+
+  /* The caret ships as one dark SVG; brightness(0) flattens it to black and
+     invert(1) takes it to white, the same trick the CTA arrow uses. */
+  .megamenu__card:focus-visible .megamenu__caret {
+    filter: brightness(0) invert(1);
+  }
+}
+
+@media (min-width: 1024px) and (hover: hover) {
+  .megamenu__card:hover::before {
+    opacity: 1;
+  }
+
+  .megamenu__card:hover .megamenu__title,
+  .megamenu__card:hover .megamenu__desc {
+    color: var(--color-text-on-dark);
+  }
+
+  .megamenu__card:hover .megamenu__caret {
+    filter: brightness(0) invert(1);
   }
 }
 
@@ -855,6 +1094,17 @@
   width: 100%;
   /* The nav's own item padding is inherited from .site-header__menu li > a and
      would push the cards out of their column. */
+  padding: 0;
+}
+
+/* …and those two declarations lose on their own. A 3rd-level card is a direct
+   child of its <li>, so `.site-header__menu li > a` (0,1,2) matches it and
+   out-ranks `.megamenu__card` (0,1,0) — source order never gets a say. Left
+   alone, a card inside a column ends up 16px bigger on every side than the
+   identical card in a column cell (which is a child of a <div> and escapes
+   the rule), which is also 16px more than the hover pill is drawn against. */
+.site-header__menu li > a.megamenu__card {
+  gap: 14px;
   padding: 0;
 }
 
@@ -2299,27 +2549,13 @@ button:focus-visible {
     color: var(--color-surface-dark);
   }
 
-  /* Megamenu cards. The design has no hover state; this is movement and colour
-     only, nothing that changes a card's box or shifts the column. */
-  .megamenu__caret {
-    transition: transform 200ms ease;
-  }
-
-  .megamenu__card:hover .megamenu__caret {
-    transform: translateX(4px);
-  }
-
-  .megamenu__card:hover .megamenu__title {
-    color: var(--color-surface-dark);
-  }
-
-  .megamenu__icon {
-    transition: background-color 200ms ease;
-  }
-
-  .megamenu__card:hover .megamenu__icon {
-    background-color: var(--color-brand-yellow-border);
-  }
+  /* The megamenu cards' hover used to be invented here — "the design has no
+     hover state", so a caret nudge, a navy title and a lighter icon tile. It
+     has one now (Figma "Frame 1171277531"), and it lives with the rest of the
+     card rules further up. Two of these were actively fighting it: the title
+     colour tied on specificity and won on source order, painting navy type on
+     the navy pill, and `.megamenu__caret { transition: transform }` replaced
+     the filter transition the caret needs to fade to white. */
 
   .site-header__toggle:hover span {
     background-color: var(--color-surface-dark);

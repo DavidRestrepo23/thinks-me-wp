@@ -282,19 +282,23 @@ $button_2_link = thinksme_field( 'ci_hero_button_2_link', false, $d['button_2_li
 	<?php // The column and the photo's own box are two elements, not one, so the figure pills can be a sibling of the photo rather than a child of it. Inside it they were in normal flow under an absolutely positioned <img>, and a positioned element paints above in-flow content regardless of DOM order — the same rule ci-requirements.php's cityscape ran into. The column carries `relative` for the pills to position against above lg; the inner box keeps the aspect ratio the badge and photo-slot percentages are measured from, so the other six sets are unchanged. ?>
 	<div class="relative w-full max-w-[520px] mx-auto lg:max-w-none lg:mx-0 <?php echo esc_attr( empty( $d['image_col_class'] ) ? 'lg:basis-[609px]' : $d['image_col_class'] ); ?> lg:min-w-0">
 		<div class="relative w-full <?php echo esc_attr( $d['image_box'] ); ?>">
-		<?php if ( $is_stock ) : ?>
+		<?php
+		// Most frames' field takes a bare photograph, which is why the branch below
+		// crops the upload into the photo's slot and paints the badge back over it.
+		// The About frame's asset is Figma's whole composed group instead — card,
+		// corners and badge already assembled on transparency (157:300 + 157:304) —
+		// so an upload there is that same composed export and has to be drawn the way
+		// the stock one is, or the badge lands on the page twice. A per-set default
+		// rather than a guess about the file, and the same call ci-includes.php's
+		// `image_upload_class` makes for the Foreign page's two-layer photo.
+		$composed = $is_stock || ! empty( $d['upload_composed'] );
+		?>
+		<?php if ( $composed ) : ?>
 			<?php // The supplied export already carries the card and its corners, so it is drawn straight into the box. ?>
 			<img src="<?php echo esc_url( $photo_url ); ?>" alt="<?php echo esc_attr( $photo_alt ); ?>" class="absolute inset-0 w-full h-full object-contain">
 
 			<?php // Most sets' export has the badge composed into it already. The one whose asset is the photo card alone names the SVG here, because that page's badge is vector art and a PNG export of it comes back flattened onto white. ?>
-			<?php if ( $d['badge'] ) : ?>
-				<img
-					src="<?php echo esc_url( thinksme_ci_image_url( $d['badge'] ) ); ?>"
-					alt=""
-					aria-hidden="true"
-					class="<?php echo esc_attr( $d['badge_class'] ); ?>"
-				>
-			<?php endif; ?>
+			
 		<?php else : ?>
 			<?php // A plain upload gets the photo's own slot inside the group — Figma's placement as percentages of the box, which differs per page and so comes from the defaults — and the badge painted back on top. ?>
 			<div class="<?php echo esc_attr( $d['photo_slot_class'] ); ?>">

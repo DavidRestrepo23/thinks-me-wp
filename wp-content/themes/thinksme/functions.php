@@ -807,10 +807,26 @@ function thinksme_field( $selector, $post_id = false, $default = '' ) {
  */
 function thinksme_menu_icons() {
 	return array(
-		'network'      => __( 'Network / org chart', 'thinksme' ),
-		'file-check'   => __( 'Document with check', 'thinksme' ),
-		'circle-check' => __( 'Check in a circle', 'thinksme' ),
-		'cloud-cog'    => __( 'Cloud with cog', 'thinksme' ),
+		'network'                => __( 'Network / org chart', 'thinksme' ),
+		'file-check'             => __( 'Document with check', 'thinksme' ),
+		'circle-check'           => __( 'Check in a circle', 'thinksme' ),
+		'cloud-cog'              => __( 'Cloud with cog', 'thinksme' ),
+		'buildings'              => __( 'Buildings', 'thinksme' ),
+		'globe-hemisphere-west'  => __( 'Globe', 'thinksme' ),
+		'certificate'            => __( 'Certificate', 'thinksme' ),
+		'house-line'             => __( 'House / address', 'thinksme' ),
+		'percent'                => __( 'Percent', 'thinksme' ),
+		'receipt'                => __( 'Receipt', 'thinksme' ),
+		'books'                  => __( 'Books / ledger', 'thinksme' ),
+		'magnifying-glass'       => __( 'Magnifying glass', 'thinksme' ),
+		'file-magnifying-glass'  => __( 'Document search', 'thinksme' ),
+		'calculator'             => __( 'Calculator', 'thinksme' ),
+		'hand-coins'             => __( 'Hand with coins', 'thinksme' ),
+		'house'                  => __( 'House', 'thinksme' ),
+		'bank'                   => __( 'Bank', 'thinksme' ),
+		'arrows-left-right'      => __( 'Arrows left/right', 'thinksme' ),
+		'lightbulb'              => __( 'Lightbulb', 'thinksme' ),
+		'hand-heart'             => __( 'Hand with heart', 'thinksme' ),
 	);
 }
 
@@ -990,6 +1006,7 @@ function thinksme_ci_icons() {
 		'folder-simple-star' => __( 'Folder with a star', 'thinksme' ),
 		'handshake'       => __( 'Handshake', 'thinksme' ),
 		'storefront'      => __( 'Shopfront', 'thinksme' ),
+		'eye'             => __( 'Eye', 'thinksme' ),
 	);
 }
 
@@ -1094,6 +1111,19 @@ foreach ( array( 1, 2, 3, 4, 5, 6, 7, 8 ) as $thinksme_ci_n ) {
 // grids above.
 foreach ( array( 1, 2, 3, 4 ) as $thinksme_ci_n ) {
 	add_filter( "acf/load_field/name=ci_grid_solutions_card_{$thinksme_ci_n}_icon", 'thinksme_ci_icon_choices' );
+}
+// The About Us page's "What Drive Us" panel (3 cards) and "Explore How We Can
+// Help" panel (4 cards), plus its "Who We Serve" overlapping-card column (6
+// cards, template-parts/ci-stack.php) — the same arrangement every other ci-*
+// page's instances use.
+foreach ( array( 1, 2, 3 ) as $thinksme_ci_n ) {
+	add_filter( "acf/load_field/name=ci_grid_drive_card_{$thinksme_ci_n}_icon", 'thinksme_ci_icon_choices' );
+}
+foreach ( array( 1, 2, 3, 4 ) as $thinksme_ci_n ) {
+	add_filter( "acf/load_field/name=ci_grid_explore_card_{$thinksme_ci_n}_icon", 'thinksme_ci_icon_choices' );
+}
+foreach ( array( 1, 2, 3, 4, 5, 6 ) as $thinksme_ci_n ) {
+	add_filter( "acf/load_field/name=ci_stack_serve_card_{$thinksme_ci_n}_icon", 'thinksme_ci_icon_choices' );
 }
 unset( $thinksme_ci_n );
 

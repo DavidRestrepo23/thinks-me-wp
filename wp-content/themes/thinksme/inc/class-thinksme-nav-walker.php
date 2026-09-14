@@ -50,10 +50,52 @@ class Thinksme_Nav_Walker extends Walker_Nav_Menu {
 	 */
 	public function display_element( $element, &$children_elements, $max_depth, $depth, $args, &$output ) {
 		if ( $element ) {
-			$element->thinksme_has_children = ! empty( $children_elements[ $element->ID ] );
+			$children = isset( $children_elements[ $element->ID ] ) ? $children_elements[ $element->ID ] : array();
+
+			$element->thinksme_has_children = ! empty( $children );
+
+			if ( 0 === $depth ) {
+				$element->thinksme_is_dropdown = $this->is_dropdown( $children, $children_elements );
+			}
 		}
 
 		parent::display_element( $element, $children_elements, $max_depth, $depth, $args, $output );
+	}
+
+	/**
+	 * Whether a top-level item's panel is the narrow dropdown rather than the
+	 * viewport-wide megamenu. Figma: node 172:148, same file.
+	 *
+	 * Two conditions, and the second is the one that matters: the item has
+	 * between two and five children, and *none* of them has children of its
+	 * own. A panel whose 2nd-level items are columns (Figma's megamenu, node
+	 * 63:294) needs the full width to hold its headings and their card lists,
+	 * and "Corporate Service" is exactly three of those — so counting alone
+	 * would turn the design's own megamenu into a 544px dropdown. What makes a
+	 * panel a dropdown is that it is a plain list of cards; the count only says
+	 * it is short enough to read as one.
+	 *
+	 * Six or more cards go back to the wide panel's grid, where they wrap into
+	 * rows instead of running past the fold as one column.
+	 *
+	 * @param array $children          The item's own children.
+	 * @param array $children_elements Children keyed by parent ID.
+	 * @return bool
+	 */
+	private function is_dropdown( $children, $children_elements ) {
+		$count = count( $children );
+
+		if ( $count < 2 || $count > 5 ) {
+			return false;
+		}
+
+		foreach ( $children as $child ) {
+			if ( ! empty( $children_elements[ $child->ID ] ) ) {
+				return false;
+			}
+		}
+
+		return true;
 	}
 
 	/**
@@ -120,6 +162,15 @@ class Thinksme_Nav_Walker extends Walker_Nav_Menu {
 
 		$classes   = empty( $item->classes ) ? array() : (array) $item->classes;
 		$classes[] = 'menu-item-' . $item->ID;
+
+		// Which of the two panels this item opens. A class on the <li> rather
+		// than on the panel itself: start_lvl() is what emits .megamenu and it
+		// is handed no element to ask, and the CSS has to reach the <li>
+		// anyway — the dropdown is positioned against its nav item where the
+		// megamenu is positioned against the whole header.
+		if ( 0 === $depth && ! empty( $item->thinksme_is_dropdown ) ) {
+			$classes[] = 'menu-item--dropdown';
+		}
 
 		if ( 2 === $depth ) {
 			$classes[] = 'megamenu__item';

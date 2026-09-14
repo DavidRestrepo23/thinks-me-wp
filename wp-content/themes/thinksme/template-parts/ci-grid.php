@@ -106,6 +106,25 @@ foreach ( $d['cards'] as $n => $default ) {
 		continue;
 	}
 
+	// The About page's "Values" card writes three bold-led bullets instead of a
+	// plain paragraph (157:538). ACF free has no Repeater, so this is three flat
+	// bold/text pairs like every other fixed-length list in the theme; a card
+	// whose default carries no `items` renders none, which is every other card.
+	$items = array();
+	foreach ( ( isset( $default['items'] ) ? $default['items'] : array() ) as $item_index => $item_default ) {
+		$item_n    = $item_index + 1;
+		$item_text = thinksme_field( "{$prefix}_card_{$n}_item_{$item_n}_text", false, $item_default['text'] );
+
+		if ( '' === trim( $item_text ) ) {
+			continue;
+		}
+
+		$items[] = array(
+			'bold' => thinksme_field( "{$prefix}_card_{$n}_item_{$item_n}_bold", false, $item_default['bold'] ),
+			'text' => $item_text,
+		);
+	}
+
 	$cards[] = array(
 		'icon'  => thinksme_ci_icon_url( thinksme_field( "{$prefix}_card_{$n}_icon", false, $default['icon'] ) ),
 		'title' => $title,
@@ -114,6 +133,12 @@ foreach ( $d['cards'] as $n => $default ) {
 		// an empty value renders nothing.
 		'value' => thinksme_field( "{$prefix}_card_{$n}_value", false, isset( $default['value'] ) ? $default['value'] : '' ),
 		'text'  => thinksme_field( "{$prefix}_card_{$n}_text", false, $default['text'] ),
+		'items' => $items,
+		// The About page's "Explore How We Can Help" panel closes each card on its
+		// own "Learn More" link (157:872 etc.) rather than one button for the whole
+		// section — a value per card, absent from every other instance.
+		'button_text' => thinksme_field( "{$prefix}_card_{$n}_button_text", false, isset( $default['button_text'] ) ? $default['button_text'] : '' ),
+		'button_link' => thinksme_field( "{$prefix}_card_{$n}_button_link", false, isset( $default['button_link'] ) ? $default['button_link'] : '' ),
 		'class' => $default['class'],
 	);
 }
@@ -165,6 +190,22 @@ $title_class        = isset( $d['title_class'] ) ? $d['title_class'] : ( $centre
 // and 127:829). A value, so the instances that centre keep centring.
 $card_justify_class = isset( $d['card_justify_class'] ) ? $d['card_justify_class'] : ( $centred ? 'justify-center' : 'justify-between' );
 $text_class         = isset( $d['text_class'] ) ? $d['text_class'] : 'text-text-secondary';
+// The air between a card's disc, its title and its copy. The About page's "What
+// Drive Us" panel sets 32px (157:518) where every earlier instance draws 16px —
+// its cards are a third of the panel wide and run to a paragraph or more, so the
+// tighter rhythm reads as cramped there. A value, so the instances before it are
+// untouched.
+$card_gap_class     = isset( $d['card_gap_class'] ) ? $d['card_gap_class'] : 'gap-md';
+// The gap between the title and the copy under it, which the About page's
+// "Explore How We Can Help" cards set tighter than the gap above them (18px
+// against 32px, 157:869 inside 157:868). Defaults to the card's own gap, so
+// every instance that wants one rhythm throughout names only `card_gap_class`.
+$card_text_gap_class = isset( $d['card_text_gap_class'] ) ? $d['card_text_gap_class'] : $card_gap_class;
+// The track's own gutter. Figma draws 15px on the Accounting frames this part was
+// built for and 32px on the About page's "Explore" panel (157:860) — and that is
+// not cosmetic: it sets the card width, which is what decides whether each title
+// wraps to the two lines the design draws.
+$gap_class          = isset( $d['gap_class'] ) ? $d['gap_class'] : 'gap-md lg:gap-[15px]';
 ?>
 <?php // The section's own padding is a per-instance default: the two frames sit at different distances from what precedes them, and "The Same Firm" follows the requirements panel with 160px of air in Figma rather than the 80px two adjacent sections give each other. ?>
 <section id="ci-grid-<?php echo esc_attr( $instance ); ?>" class="w-full px-lg lg:px-3xl <?php echo esc_attr( $d['section_class'] ); ?>">
@@ -193,7 +234,7 @@ $text_class         = isset( $d['text_class'] ) ? $d['text_class'] : 'text-text-
 		<?php endif; ?>
 	</div>
 
-	<div class="grid grid-cols-1 md:grid-cols-2 <?php echo esc_attr( $grid_class ); ?> gap-md lg:gap-[15px] mt-xl lg:mt-3xl">
+	<div class="grid grid-cols-1 md:grid-cols-2 <?php echo esc_attr( $grid_class ); ?> <?php echo esc_attr( $gap_class ); ?> mt-xl lg:mt-3xl">
 		<?php foreach ( $cards as $card ) : ?>
 			<?php if ( isset( $card['photo'] ) ) : ?>
 				<?php // From lg the photo is bottom-aligned in its cell so the composed export's extra height hangs above the row, the way Figma draws the cut-out breaking out of the cell. Stacked below lg there is no row to break out of, and taking the image out of the flow there would leave a zero-height cell with the photo lying over the card above it — so it stays in the flow at its own height. ?>
@@ -205,12 +246,12 @@ $text_class         = isset( $d['text_class'] ) ? $d['text_class'] : 'text-text-
 					>
 				</div>
 			<?php else : ?>
-				<article class="<?php echo esc_attr( $card_class ); ?> <?php echo esc_attr( $card_pad_class ); ?> flex flex-col gap-md <?php echo $centred ? 'items-center text-center' : ''; ?> <?php echo esc_attr( $card_justify_class ); ?> <?php echo esc_attr( $card['class'] ); ?>">
+				<article class="<?php echo esc_attr( $card_class ); ?> <?php echo esc_attr( $card_pad_class ); ?> flex flex-col <?php echo esc_attr( $card_gap_class ); ?> <?php echo $centred ? 'items-center text-center' : ''; ?> <?php echo esc_attr( $card_justify_class ); ?> <?php echo esc_attr( $card['class'] ); ?>">
 					<span class="bg-brand-yellow rounded-pill inline-flex items-center justify-center shrink-0 <?php echo esc_attr( $disc_class ); ?>">
 						<img src="<?php echo esc_url( $card['icon'] ); ?>" alt="" class="<?php echo esc_attr( $icon_class ); ?>">
 					</span>
 
-					<div class="flex flex-col gap-md <?php echo $centred ? 'items-center' : ''; ?>">
+					<div class="flex flex-col <?php echo esc_attr( $card_text_gap_class ); ?> <?php echo $centred ? 'items-center' : ''; ?>">
 						<h3 class="font-medium <?php echo esc_attr( $title_class ); ?> leading-snug">
 							<?php echo esc_html( $card['title'] ); ?>
 						</h3>
@@ -226,7 +267,32 @@ $text_class         = isset( $d['text_class'] ) ? $d['text_class'] : 'text-text-
 								<?php echo esc_html( $card['text'] ); ?>
 							</p>
 						<?php endif; ?>
+
+						<?php if ( ! empty( $card['items'] ) ) : ?>
+							<ul class="flex flex-col gap-lg <?php echo $centred ? 'text-center' : ''; ?>">
+								<?php foreach ( $card['items'] as $item ) : ?>
+									<li class="font-normal text-sm leading-loose <?php echo esc_attr( $text_class ); ?>">
+										<?php if ( $item['bold'] ) : ?>
+											<span class="font-bold"><?php echo esc_html( $item['bold'] ); ?></span>
+										<?php endif; ?>
+										<?php echo esc_html( $item['text'] ); ?>
+									</li>
+								<?php endforeach; ?>
+							</ul>
+						<?php endif; ?>
 					</div>
+
+					<?php // The About page's "Explore How We Can Help" panel closes each card on its own link; absent everywhere else, so this renders nothing on every other instance. ?>
+					<?php if ( ! empty( $card['button_text'] ) ) : ?>
+						<a href="<?php echo esc_url( $card['button_link'] ); ?>" class="btn-split inline-flex items-center mt-auto">
+							<span class="bg-white rounded-sm h-[50px] px-lg inline-flex items-center justify-center text-sm font-medium text-text-primary whitespace-nowrap">
+								<?php echo esc_html( $card['button_text'] ); ?>
+							</span>
+							<span class="bg-white rounded-sm size-[50px] inline-flex items-center justify-center shrink-0">
+								<img src="<?php echo esc_url( get_template_directory_uri() . '/assets/images/icons/arrow-up-right-dark.svg' ); ?>" alt="" class="size-[24px]">
+							</span>
+						</a>
+					<?php endif; ?>
 				</article>
 			<?php endif; ?>
 		<?php endforeach; ?>
