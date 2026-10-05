@@ -49,13 +49,13 @@ $defaults = array(
 	1 => array(
 		'badge'       => 'Start',
 		'title'       => 'Set Up Your Singapore Company Right',
-		'description' => 'From name reservation to Certificate of Incorporation — handled fully online, as fast as 24 hours. As an ACRA Registered Filing Agent, we file on your behalf with full accountability.',
+		'description' => 'From name reservation to Certificate of Incorporation, handled fully online, as fast as 24 hours. As an ACRA Registered Filing Agent, we file on your behalf with full accountability.',
 		'image'       => "$images_uri/card-start.jpg",
 	),
 	2 => array(
 		'badge'       => 'Run',
 		'title'       => 'Keep Your Business Compliant, Year-Round',
-		'description' => 'Accounting, GST, and corporate tax — handled on time, every time. Powered by Xero. IRAS-compliant. Zero penalties. Free up your time to focus on the business, not the paperwork.',
+		'description' => 'Accounting, GST, and corporate tax, handled on time, every time. Powered by Xero. IRAS-compliant. Zero penalties. Free up your time to focus on the business, not the paperwork.',
 		'image'       => "$images_uri/card-run.jpg",
 	),
 	3 => array(
@@ -95,7 +95,7 @@ foreach ( $defaults as $n => $default ) {
 			</h2>
 		</div>
 		<p class="font-normal text-md text-text-secondary leading-relaxed tracking-tight max-w-[592px]">
-			<?php echo esc_html( thinksme_field( 'ways_subheading', false, "Whether you're just starting out, managing compliance, or ready to grow — we have the expertise, credentials, and network to get it done." ) ); ?>
+			<?php echo esc_html( thinksme_field( 'ways_subheading', false, "Whether you're just starting out, managing compliance, or ready to grow, we have the expertise, credentials, and network to get it done." ) ); ?>
 		</p>
 	</div>
 

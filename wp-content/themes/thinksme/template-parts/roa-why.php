@@ -95,7 +95,7 @@ $lines = max( 1, count( $steps ) - 1 );
 			</div>
 
 			<p class="font-normal text-sm leading-loose text-text-heading-dark">
-				<?php echo esc_html( thinksme_field( 'roa_why_text', false, 'When incorporating a company in Singapore, a local registered office address is a legal must — and it also helps your business appear professional and credible.' ) ); ?>
+				<?php echo esc_html( thinksme_field( 'roa_why_text', false, 'When incorporating a company in Singapore, a local registered office address is a legal must, and it also helps your business appear professional and credible.' ) ); ?>
 			</p>
 		</div>
 

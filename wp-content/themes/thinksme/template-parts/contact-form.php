@@ -85,9 +85,16 @@ $details = array(
 	<div class="bg-surface-light rounded-lg p-lg lg:p-xl w-full lg:flex-1 lg:min-w-0">
 		<?php if ( $state['sent'] ) : ?>
 			<p class="font-medium text-md text-text-primary leading-normal" role="status">
-				<?php esc_html_e( 'Thank you — your message is on its way. We will be in touch shortly.', 'thinksme' ); ?>
+				<?php esc_html_e( 'Thank you, your message is on its way. We will be in touch shortly.', 'thinksme' ); ?>
 			</p>
 		<?php else : ?>
+			<?php
+			// TODO(Vicky): Amendment #13 — integrate this form with Peppercloud (CRM). Needs the
+			// Peppercloud embed code / API details. Today the form posts back to WordPress and is
+			// handled by thinksme_handle_contact_submission() in functions.php (validation + email).
+			// When the Peppercloud details arrive, either (a) POST the submission to Peppercloud from
+			// that handler after the email, or (b) replace this markup with Peppercloud's embed.
+			?>
 			<?php // novalidate: the server-side checks in functions.php are the ones that run, so the browser shouldn't block the post with a second, differently-worded set. ?>
 			<form method="post" action="<?php echo esc_url( get_permalink() ); ?>#contact-form" class="relative flex flex-col gap-xl w-full" novalidate>
 				<?php wp_nonce_field( 'thinksme_contact', 'thinksme_contact_nonce' ); ?>

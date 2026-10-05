@@ -105,7 +105,7 @@ $button_link = thinksme_field( 'roa_plan_button_link', false, '#' );
 		</div>
 
 		<p class="font-normal text-sm leading-loose text-text-heading-dark max-w-[519px]">
-			<?php echo esc_html( thinksme_field( 'roa_plan_text', false, 'Register your registered address with us and get a prestigious CBD address backed by full mail management. Compliance notices, regulatory letters, everything—scanned and waiting in your shared drive whenever you need to check. Full visibility, zero risk of missing anything important.' ) ); ?>
+			<?php echo esc_html( thinksme_field( 'roa_plan_text', false, 'Register your registered address with us and get a prestigious CBD address backed by full mail management. Compliance notices, regulatory letters, everything, scanned and waiting in your shared drive whenever you need to check. Full visibility, zero risk of missing anything important.' ) ); ?>
 		</p>
 	</div>
 </section>

@@ -133,7 +133,7 @@ function thinksme_ci_content() {
 		'hero'     => array(
 			'hat'             => 'For Singapore Citizens & PRs · ACRA Registered Filing Agent',
 			'title'           => 'Incorporate Your Singapore Company From S$888 All-In',
-			'text'            => 'ACRA-filed, fully online, with your corporate secretary and registered address bundled in from day one — no separate vendors, no guesswork.',
+			'text'            => 'ACRA-filed, fully online, with your corporate secretary and registered address bundled in from day one, no separate vendors, no guesswork.',
 			'button_text'     => 'Start Incorporation',
 			'button_link'     => '/contact-us',
 			'button_2_text'   => '+65 6012 9642',
@@ -157,7 +157,7 @@ function thinksme_ci_content() {
 		'pricing'  => array(
 			'hat'           => 'Transparent Pricing',
 			'heading'       => 'Incorporation Packages for Local Founders',
-			'text'          => 'Every package includes the S$315 ACRA government fee — no hidden charges.',
+			'text'          => 'Every package includes the S$315 ACRA government fee, no hidden charges.',
 			'popular_label' => 'MOST POPULAR',
 			'cards'         => array(
 				1 => array(
@@ -172,8 +172,8 @@ function thinksme_ci_content() {
 					'features'       => array(
 						'ACRA name reservation & registration',
 						'Standard company constitution',
-						'Corporate secretary — 12 months',
-						'Registered address — 12 months',
+						'Corporate secretary (12 months)',
+						'Registered address (12 months)',
 						'Bank account opening assistance',
 					),
 				),
@@ -212,7 +212,7 @@ function thinksme_ci_content() {
 		'tools'    => array(
 			'hat'         => 'Free Tools',
 			'heading'     => 'Plan Your Company Before You Register',
-			'text'        => 'Three free tools to help you get incorporation-ready — no sign-up required.',
+			'text'        => 'Three free tools to help you get incorporation-ready, no sign-up required.',
 			// A CTA under the panel. Only the Corporate Secretary frame draws one
 			// (102:2253); an empty label renders nothing.
 			'button_text' => '',
@@ -251,12 +251,16 @@ function thinksme_ci_content() {
 		),
 		'includes' => array(
 			'heading'            => "What's Included in Every Incorporation",
-			'image'              => 'ci/includes-photo.jpg',
-			// A plain rounded card: the box is the card itself and it clips.
-			'image_box'          => 'aspect-[576/486] overflow-hidden rounded-md lg:rounded-lg',
-			// Figma's placement of that export inside the card — see ci-includes.php.
-			'image_class'        => 'relative left-[-0.7%] top-[-42.8%] w-[101.7%] h-[149.6%] max-w-none object-cover',
-			'image_upload_class' => 'w-full h-full object-cover',
+			// The client supplied this photo as a composed export (rounded corners and
+			// transparency already in it, 1296x1188), same kind of asset as the Foreign
+			// page's. So it is drawn like Foreign's: the box takes the export's own
+			// aspect and does not clip, and the image is object-contain — the earlier
+			// Figma crop offsets (top -42.8% / h 149.6%), measured against the previous
+			// export, cut this one's face off.
+			'image'              => 'ci/includes-photo.png',
+			'image_box'          => 'aspect-[1296/1188]',
+			'image_class'        => 'w-full h-full object-contain',
+			'image_upload_class' => 'w-full h-full object-contain',
 			'cards'              => array(
 				1 => array(
 					'icon'  => 'folders',
@@ -265,25 +269,25 @@ function thinksme_ci_content() {
 				),
 				2 => array(
 					'icon'  => 'user-check',
-					'title' => 'Corporate Secretary — 12 Months',
+					'title' => 'Corporate Secretary (12 Months)',
 					'text'  => 'Qualified company secretary appointed from day one.',
 				),
 				3 => array(
 					'icon'  => 'buildings',
-					'title' => 'Registered Address — 12 Months',
+					'title' => 'Registered Address (12 Months)',
 					'text'  => 'Compliant Singapore business address to keep private.',
 				),
 				4 => array(
 					'icon'  => 'receipt',
 					'title' => 'Transparent, All-In Pricing',
-					'text'  => 'S$315 ACRA government fee included — no hidden charges.',
+					'text'  => 'S$315 ACRA government fee included, no hidden charges.',
 				),
 			),
 		),
 		'ways'     => array(
 			'hat'     => 'Quick Registration | Transparent Pricing | Reliable support',
 			'heading' => 'Two Ways to Get Started',
-			'text'    => 'Move fast on your own, or have a specialist walk you through it — either way, the same ACRA-registered filing and 12-month bundle applies.',
+			'text'    => 'Move fast on your own, or have a specialist walk you through it, either way, the same ACRA-registered filing and 12-month bundle applies.',
 			'cards'   => array(
 				1 => array(
 					'icon'  => 'envelope-simple',
@@ -305,7 +309,7 @@ function thinksme_ci_content() {
 				'badge_2'     => 'S$315 ACRA fee included',
 				'features'    => array(
 					1 => 'ACRA name reservation & registration',
-					2 => 'Corporate secretary & registered address — 12 months',
+					2 => 'Corporate secretary & registered address (12 months)',
 					3 => 'Annual return filing (Year 1) + priority support',
 				),
 				'button_text' => 'Get Started',
@@ -315,12 +319,12 @@ function thinksme_ci_content() {
 		'why'      => array(
 			'hat'     => 'Complete Corporate Services',
 			'heading' => 'Why Local Founders Choose Think SME',
-			'text'    => 'Most incorporation delays and compliance headaches trace back to a handful of avoidable mistakes — here’s how we close those gaps.',
+			'text'    => 'Most incorporation delays and compliance headaches trace back to a handful of avoidable mistakes, here’s how we close those gaps.',
 			'cards'   => array(
 				1 => array(
 					'icon'  => 'package',
 					'title' => 'Everything Bundled, No Hidden Fees',
-					'text'  => 'ACRA fee, company secretary, and registered address are all included — no surprise line items later.',
+					'text'  => 'ACRA fee, company secretary, and registered address are all included, no surprise line items later.',
 					'image' => 'ci/why-bundled.jpg',
 				),
 				2 => array(
@@ -339,7 +343,7 @@ function thinksme_ci_content() {
 				),
 				5 => array(
 					'title' => 'Financing Built In',
-					'text'  => 'When you’re ready to raise a loan, you’re already talking to the same firm — with access to 60+ banks & lenders.',
+					'text'  => 'When you’re ready to raise a loan, you’re already talking to the same firm, with access to 60+ banks & lenders.',
 					'image' => 'ci/why-financing.jpg',
 				),
 			),
@@ -375,7 +379,7 @@ function thinksme_ci_content() {
 		array(
 			'hat'   => 'For Foreign Founders · ACRA Registered Filing Agent',
 			'title' => 'Incorporate Your Singapore Company From Anywhere',
-			'text'  => 'Fully remote incorporation with nominee director, registered address, and Employment Pass support — no need to set foot in Singapore.',
+			'text'  => 'Fully remote incorporation with nominee director, registered address, and Employment Pass support, no need to set foot in Singapore.',
 			'image' => 'cif/hero-image.png',
 		)
 	);
@@ -390,7 +394,7 @@ function thinksme_ci_content() {
 		'badge_2'        => 'S$315 ACRA fee included',
 		'features_intro' => 'Everything in Essential, plus:',
 		'features'       => array(
-			'Nominee resident director — 12 months',
+			'Nominee resident director (12 months)',
 			'KYC & due diligence screening',
 			'Priority support incl. video onboarding call',
 			'Dedicated account manager',
@@ -437,7 +441,7 @@ function thinksme_ci_content() {
 	);
 	$foreign['includes']['cards'][4]   = array(
 		'icon'  => 'headset',
-		'title' => '100% Remote — No Visit Required',
+		'title' => '100% Remote (No Visit Required)',
 		'text'  => 'Company details, KYC, and payment completed online.',
 	);
 
@@ -449,7 +453,7 @@ function thinksme_ci_content() {
 		'badge_1'     => 'First year · nominee director included',
 		'badge_2'     => 'S$315 ACRA fee included',
 		'features'    => array(
-			1 => 'Nominee resident director — 12 months',
+			1 => 'Nominee resident director (12 months)',
 			2 => 'KYC & due diligence screening',
 			3 => 'Corporate secretary, registered address & dedicated account manager',
 		),
@@ -457,11 +461,11 @@ function thinksme_ci_content() {
 		'button_link' => '/contact-us',
 	);
 
-	$foreign['why']['text']     = 'Setting up from overseas comes with questions a local incorporation never raises — here’s how we handle them.';
+	$foreign['why']['text']     = 'Setting up from overseas comes with questions a local incorporation never raises, here’s how we handle them.';
 	$foreign['why']['cards'][1] = array(
 		'icon'  => 'shield-check',
 		'title' => 'A Nominee Director You Can Trust',
-		'text'  => 'KYC-screened and indemnity-governed — they hold no shares and no bank access, just the statutory residency requirement.',
+		'text'  => 'KYC-screened and indemnity-governed, they hold no shares and no bank access, just the statutory residency requirement.',
 		'image' => 'cif/why-nominee.jpg',
 	);
 	$foreign['why']['cards'][2] = array(
@@ -482,7 +486,7 @@ function thinksme_ci_content() {
 	);
 	$foreign['why']['cards'][5] = array(
 		'title' => 'Remote Corporate Account Opening',
-		'text'  => 'Partner with local and international banks — no need to visit Singapore. Open your account remotely, or through a video call.',
+		'text'  => 'Partner with local and international banks, no need to visit Singapore. Open your account remotely, or through a video call.',
 		'image' => 'cif/why-bank.jpg',
 	);
 
@@ -499,7 +503,7 @@ function thinksme_ci_content() {
 		'hero'       => array(
 			'hat'             => 'ACRA Registered Filing Agent · Corporate Secretary',
 			'title'           => 'Switch Your Corporate Secretary in Minutes',
-			'text'            => 'Every Singapore company needs a qualified corporate secretary. Whether you’re appointing your first one or switching from another provider, we handle the ACRA transfer — no compliance gaps.',
+			'text'            => 'Every Singapore company needs a qualified corporate secretary. Whether you’re appointing your first one or switching from another provider, we handle the ACRA transfer, no compliance gaps.',
 			'button_text'     => 'Start Switching',
 			'button_link'     => '/contact-us',
 			'button_2_text'   => '+65 6012 9642',
@@ -574,7 +578,7 @@ function thinksme_ci_content() {
 		'tools'      => array(
 			'hat'         => 'Free Tools',
 			'heading'     => 'Check Your Compliance Position',
-			'text'        => 'Two free tools to help you plan around your deadlines — no sign-up required.',
+			'text'        => 'Two free tools to help you plan around your deadlines, no sign-up required.',
 			'button_text' => 'Switch to Think SME',
 			'button_link' => '/contact-us',
 			'tabs'        => array(
@@ -585,7 +589,7 @@ function thinksme_ci_content() {
 					'placeholder' => '31/12/2026',
 					'icon'        => 'calendar-dots',
 					'button_text' => 'Calculate',
-					'disclaimer'  => 'Estimate only, based on standard ACRA/IRAS timelines. Private companies may be exempt from holding an AGM subject to conditions. Your compliance calendar may vary — talk to us to confirm your exact obligations.',
+					'disclaimer'  => 'Estimate only, based on standard ACRA/IRAS timelines. Private companies may be exempt from holding an AGM subject to conditions. Your compliance calendar may vary, talk to us to confirm your exact obligations.',
 				),
 				// Figma writes copy for the first tool only, exactly as it does on
 				// the other two pages, so the second defaults to placeholder text.
@@ -658,16 +662,16 @@ function thinksme_ci_content() {
 		'why_slider' => array(
 			'hat'     => 'Complete Corporate Services',
 			'heading' => 'Why Local Founders Choose Think SME',
-			'text'    => 'Setting up from overseas comes with questions a local incorporation never raises — here’s how we handle them.',
+			'text'    => 'Setting up from overseas comes with questions a local incorporation never raises, here’s how we handle them.',
 			'cards'   => array(
 				1 => array(
 					'title' => 'You’ve Just Incorporated',
-					'text'  => 'Singapore law gives you 6 months from incorporation to appoint a secretary — a natural person ordinarily resident here. Miss that window and it’s treated as an offence under the Companies Act, not a paperwork slip.',
+					'text'  => 'Singapore law gives you 6 months from incorporation to appoint a secretary, a natural person ordinarily resident here. Miss that window and it’s treated as an offence under the Companies Act, not a paperwork slip.',
 					'image' => 'cs/why-slide-1.jpg',
 				),
 				2 => array(
 					'title' => 'Your Company Structure Is Changing',
-					'text'  => 'Adding a director, bringing in a new shareholder, or adjusting share capital all need resolutions drafted correctly and filed with ACRA — so what’s on record actually matches what happened in your business.',
+					'text'  => 'Adding a director, bringing in a new shareholder, or adjusting share capital all need resolutions drafted correctly and filed with ACRA, so what’s on record actually matches what happened in your business.',
 					'image' => 'cs/why-slide-2.jpg',
 				),
 				3 => array(
@@ -677,7 +681,7 @@ function thinksme_ci_content() {
 				),
 				4 => array(
 					'title' => 'You’re Applying for Financing or Raising Capital',
-					'text'  => 'Lenders and investors both check your statutory registers and share structure before releasing funds — messy records can stall a deal. Our corporate secretary and financing teams work from the same file, not two separate vendors.',
+					'text'  => 'Lenders and investors both check your statutory registers and share structure before releasing funds, messy records can stall a deal. Our corporate secretary and financing teams work from the same file, not two separate vendors.',
 					'image' => 'cs/why-slide-4.jpg',
 				),
 				5 => array(
@@ -690,7 +694,7 @@ function thinksme_ci_content() {
 		'ways'       => array(
 			'hat'     => 'Quick Registration | Transparent Pricing | Reliable support',
 			'heading' => 'Two Ways to Switch',
-			'text'    => 'Move fast on your own, or have a specialist review your current compliance status first — either way, we handle the ACRA transfer.',
+			'text'    => 'Move fast on your own, or have a specialist review your current compliance status first, either way, we handle the ACRA transfer.',
 			'cards'   => array(
 				1 => array(
 					'icon'  => 'envelope-simple',
@@ -722,18 +726,18 @@ function thinksme_ci_content() {
 		'why'        => array(
 			'hat'     => 'Complete Corporate Services',
 			'heading' => 'Why SMEs Switch to Think SME',
-			'text'    => 'Most switches happen for the same handful of reasons — here’s how we fix them.',
+			'text'    => 'Most switches happen for the same handful of reasons, here’s how we fix them.',
 			'cards'   => array(
 				1 => array(
 					'icon'  => 'shield-check',
 					'title' => 'Never Miss a Deadline Again',
-					'text'  => 'Proactive alerts for ECI, annual returns, and AGM obligations — not a scramble the week they’re due.',
+					'text'  => 'Proactive alerts for ECI, annual returns, and AGM obligations, not a scramble the week they’re due.',
 					'image' => 'cs/why-deadline.jpg',
 				),
 				2 => array(
 					'icon'  => 'star',
 					'title' => 'One Flat Fee, No Surprises',
-					'text'  => 'S$700/year covers the full retainer — no per-filing charges or line items that show up later.',
+					'text'  => 'S$700/year covers the full retainer, no per-filing charges or line items that show up later.',
 				),
 				// Card 3 is the photo — it carries no copy at all, by design.
 				3 => array(
@@ -749,7 +753,7 @@ function thinksme_ci_content() {
 				),
 				5 => array(
 					'title' => 'We Handle the ACRA Transfer',
-					'text'  => 'You don’t file anything — we manage the change of secretary and review your compliance history during handover.',
+					'text'  => 'You don’t file anything, we manage the change of secretary and review your compliance history during handover.',
 					'image' => 'cs/why-handover.jpg',
 				),
 			),
@@ -772,7 +776,7 @@ function thinksme_ci_content() {
 		'hero'         => array(
 			'hat'              => 'Xero Certified Advisor · ACRA Registered Filing Agent',
 			'title'            => 'Accounting & Bookkeeping Built Around Your Business',
-			'text'             => 'Bookkeeping, financial reporting, and tax support from a team with a banking background — priced by how your business actually runs, not a one-size-fits-all tier.',
+			'text'             => 'Bookkeeping, financial reporting, and tax support from a team with a banking background, priced by how your business actually runs, not a one-size-fits-all tier.',
 			'button_text'      => 'Get My Quote',
 			'button_link'      => '/contact-us',
 			'button_2_text'    => '+65 6012 9642',
@@ -821,7 +825,7 @@ function thinksme_ci_content() {
 				2 => array(
 					'icon'           => 'shield-check',
 					'title'          => 'Monthly Accounting & Bookkeeping',
-					'text'           => 'Billed monthly — a good fit for active, growing businesses.',
+					'text'           => 'Billed monthly, a good fit for active, growing businesses.',
 					'price_label'    => 'From',
 					'price'          => 'S$500',
 					'badge_1'        => 'Per month',
@@ -921,7 +925,7 @@ function thinksme_ci_content() {
 					4 => array(
 						'icon'  => 'tag',
 						'title' => 'One Clear Price, No Hidden Fees',
-						'text'  => 'A single straightforward package covers onboarding, migration, and ongoing accounting — nothing sprung on you later.',
+						'text'  => 'A single straightforward package covers onboarding, migration, and ongoing accounting, nothing sprung on you later.',
 						'class' => 'lg:col-span-3 lg:min-h-[342px]',
 					),
 					5 => array(
@@ -936,6 +940,12 @@ function thinksme_ci_content() {
 				'hat'           => 'Why Think SME',
 				'heading'       => 'The Same Firm for Compliance, Digital, and Financing',
 				'align'         => 'left',
+				// Figma groups each card's icon, title and copy at the top with the
+				// card's own 16px gap between them (node 102:3726); the shared left-align
+				// default is justify-between, which - with these 362px cards holding less
+				// than that - spreads the copy to the card's foot, leaving a ~100px void
+				// under the icon. Top-align it so the copy sits right under the icon.
+				'card_justify_class' => 'justify-start',
 				// Figma leaves 160px between the requirements panel above and this
 				// frame; two adjacent sections at the shared 40px give it 80. The
 				// extra goes on the top only, so the CTA below keeps its own rhythm.
@@ -945,19 +955,25 @@ function thinksme_ci_content() {
 						'icon'  => 'seal-check',
 						'title' => 'Xero Certified Advisor',
 						'text'  => 'Setup, migration, and ongoing support from a team actually certified on the platform.',
-						'class' => 'lg:col-span-2 lg:min-h-[362px]',
+						// Row 1 cards hug their content (no fixed min-height): with the copy
+						// top-aligned, a 362px floor left a ~100px void under the text, pushing
+						// this row's copy far above the photo in row 2. Letting the grid size
+						// the row to its tallest card keeps the three equal but compact, so the
+						// "ACRA…" card's copy sits close to the photo below it. Row 2 keeps its
+						// min-height (the photo cell needs it).
+						'class' => 'lg:col-span-2',
 					),
 					2 => array(
 						'icon'  => 'certificate',
 						'title' => 'ACRA Registered Filing Agent',
 						'text'  => 'The same firm that can also handle your incorporation, secretary, and compliance filings.',
-						'class' => 'lg:col-span-2 lg:min-h-[362px]',
+						'class' => 'lg:col-span-2',
 					),
 					3 => array(
 						'icon'  => 'file-text',
 						'title' => 'IRAS Tax Filing Agent',
 						'text'  => 'Authorised to prepare and file your corporate tax returns directly with IRAS on your behalf.',
-						'class' => 'lg:col-span-2 lg:min-h-[362px]',
+						'class' => 'lg:col-span-2',
 					),
 					4 => array(
 						'icon'  => 'hand-coins',
@@ -970,12 +986,24 @@ function thinksme_ci_content() {
 					// what decides it, the same way ci-why.php's card shapes are.
 					5 => array(
 						'photo' => 'ab/same-firm-photo.jpg',
-						'class' => 'lg:col-span-2 lg:min-h-[362px]',
+						// Figma draws this cell 405px wide with the cut-out breaking ~22px
+						// above it. The grid has no max-width, so at wider viewports the
+						// cell — and with it this bottom-aligned photo, whose height tracks
+						// its width — grows unbounded and the overhang reaches up over the
+						// "ACRA Registered Filing Agent" card's copy (84px at 1605, 183px at
+						// 1920). Capping the photo at its Figma 405px holds the breakout at
+						// the drawn ~22px at every width, undistorted and uncropped (the JPEG
+						// carries its own rounded corners). The grid item still stretches, so
+						// max-width caps it at 405 and leaves it aligned to the column grid —
+						// justify-self-center can't be used here, as it would size the item to
+						// its content and the only child is the out-of-flow absolute photo,
+						// collapsing the cell to zero width.
+						'class' => 'lg:col-span-2 lg:min-h-[362px] lg:max-w-[405px]',
 					),
 					6 => array(
 						'icon'  => 'bank',
 						'title' => 'Financing When You Need It',
-						'text'  => 'Clean books make loan and financing applications smoother — through the same team, via our 60+ lender network.',
+						'text'  => 'Clean books make loan and financing applications smoother, through the same team, via our 60+ lender network.',
 						'class' => 'lg:col-span-2 lg:min-h-[362px]',
 					),
 				),
@@ -1028,7 +1056,7 @@ function thinksme_ci_content() {
 				3 => array(
 					'icon'  => 'globe-hemisphere-west',
 					'title' => 'Foreign-Owned, Singapore-Registered',
-					'text'  => 'Operating from abroad doesn’t remove your obligation to keep locally compliant books and file locally — we handle it remotely.',
+					'text'  => 'Operating from abroad doesn’t remove your obligation to keep locally compliant books and file locally, we handle it remotely.',
 					'image' => 'ab/why-foreign-owned.jpg',
 				),
 				4 => array(
@@ -1061,7 +1089,7 @@ function thinksme_ci_content() {
 		'hero'         => array(
 			'hat'              => 'IRAS Tax Filing Agent · ACRA Registered Filing Agent',
 			'title'            => 'Corporate Tax Filing Without the Deadline Stress',
-			'text'             => 'Filing taxes as a corporation in Singapore means IRAS company tax computation and filing, handled end-to-end — the right form selected, every exemption applied, submitted well ahead of the 30 November deadline.',
+			'text'             => 'Filing taxes as a corporation in Singapore means IRAS company tax computation and filing, handled end-to-end, the right form selected, every exemption applied, submitted well ahead of the 30 November deadline.',
 			'button_text'      => 'Get My Quote',
 			'button_link'      => '/contact-us',
 			'button_2_text'    => '+65 6012 9642',
@@ -1112,13 +1140,13 @@ function thinksme_ci_content() {
 			'layout'        => 'split',
 			'hat'           => 'Transparent Pricing',
 			'heading'       => 'IRAS Submission',
-			'text'          => 'We don’t split tax computation and filing across two vendors. One team prepares your numbers, applies your exemptions, and submits directly to IRAS — our corporate tax filing services cover the full corporate tax filing cost in one transparent quote.',
+			'text'          => 'We don’t split tax computation and filing across two vendors. One team prepares your numbers, applies your exemptions, and submits directly to IRAS, our corporate tax filing services cover the full corporate tax filing cost in one transparent quote.',
 			// The split layout's own checklist, beside the section copy. The panel
 			// layout has no such list, which is why these are their own fields
 			// rather than a card's features.
 			'features'      => array(
 				'Tax computation prepared from your financial statements',
-				'Correct form determined — C-S Lite, C-S, or C',
+				'Correct form determined, C-S Lite, C-S, or C',
 				'SUTE or PTE exemption optimisation',
 				'Direct submission via IRAS myTax Portal',
 			),
@@ -1129,7 +1157,7 @@ function thinksme_ci_content() {
 					// but kept so the card's shape matches the other sets'.
 					'icon'           => 'file-text',
 					'title'          => 'Corporate Tax Computation & Filing',
-					'text'           => 'Bundled — not sold as two separate services.',
+					'text'           => 'Bundled, not sold as two separate services.',
 					'price_label'    => 'From',
 					'price'          => 'S$850',
 					'badge_1'        => 'Per Year',
@@ -1191,13 +1219,13 @@ function thinksme_ci_content() {
 					2 => array(
 						'icon'  => 'file-text',
 						'title' => 'The Right Form',
-						'text'  => 'Form C-S Lite, Form C-S, or Form C — selected based on your revenue and structure, not guessed.',
+						'text'  => 'Form C-S Lite, Form C-S, or Form C, selected based on your revenue and structure, not guessed.',
 						'class' => 'lg:col-span-1 lg:min-h-[390px]',
 					),
 					3 => array(
 						'icon'  => 'seal-check',
 						'title' => 'Every Exemption Applied',
-						'text'  => 'Start-Up Tax Exemption or Partial Tax Exemption checked and applied — never left on the table.',
+						'text'  => 'Start-Up Tax Exemption or Partial Tax Exemption checked and applied, never left on the table.',
 						'class' => 'lg:col-span-1 lg:min-h-[390px]',
 					),
 					// Figma repeats card 3's title and copy in this slot with a
@@ -1208,7 +1236,7 @@ function thinksme_ci_content() {
 					4 => array(
 						'icon'  => 'percent',
 						'title' => 'Every Exemption Applied',
-						'text'  => 'Start-Up Tax Exemption or Partial Tax Exemption checked and applied — never left on the table.',
+						'text'  => 'Start-Up Tax Exemption or Partial Tax Exemption checked and applied, never left on the table.',
 						'class' => 'lg:col-span-1 lg:min-h-[390px]',
 					),
 				),
@@ -1231,7 +1259,7 @@ function thinksme_ci_content() {
 			'result_label' => 'Estimated tax payable',
 			'saved_label' => 'Exemption saved',
 			'error_text'  => 'Enter your estimated chargeable income to see the figure.',
-			'disclaimer'  => 'Indicative only, based on the current 17% rate and the exemption you selected — not tax advice, and not a filing.',
+			'disclaimer'  => 'Indicative only, based on the current 17% rate and the exemption you selected, not tax advice, and not a filing.',
 			// Each scheme is a list of [band, exempt %] applied to the bottom of
 			// chargeable income, IRAS's own shape. SUTE is the first 3 YAs; PTE
 			// applies from then on. Editable here because the rules change and a
@@ -1277,11 +1305,11 @@ function thinksme_ci_content() {
 			'steps'   => array(
 				1 => array(
 					'title' => 'Estimated Assessment',
-					'text'  => 'IRAS raises a Notice of Assessment based on prior years — often higher than your real liability, and payable within 1 month regardless.',
+					'text'  => 'IRAS raises a Notice of Assessment based on prior years, often higher than your real liability, and payable within 1 month regardless.',
 				),
 				2 => array(
 					'title' => 'Composition Fine',
-					'text'  => 'A fine of S$200 to S$5,000 may apply — paying it doesn’t excuse you from still filing the outstanding return.',
+					'text'  => 'A fine of S$200 to S$5,000 may apply, paying it doesn’t excuse you from still filing the outstanding return.',
 				),
 				3 => array(
 					'title' => 'Court Summons',
@@ -1301,7 +1329,7 @@ function thinksme_ci_content() {
 				),
 				2 => array(
 					'title' => 'Dormant or Loss-Making',
-					'text'  => 'No revenue this year doesn’t mean no filing obligation — a nil tax return is still required by 30 November.',
+					'text'  => 'No revenue this year doesn’t mean no filing obligation, a nil tax return is still required by 30 November.',
 					'image' => 'ct/why-slide-2.jpg',
 				),
 				3 => array(
@@ -1341,7 +1369,7 @@ function thinksme_ci_content() {
 				5 => array(
 					'icon'  => 'bank',
 					'title' => 'Financing When You Need It',
-					'text'  => 'Clean, tax-compliant financials make loan applications smoother — through the same team, via our 60+ lender network.',
+					'text'  => 'Clean, tax-compliant financials make loan applications smoother, through the same team, via our 60+ lender network.',
 				),
 			),
 		),
@@ -1364,14 +1392,14 @@ function thinksme_ci_content() {
 		'hero'       => array(
 			'hat'              => 'IRAS Tax Filing Agent · ACRA Registered Filing Agent',
 			'title'            => 'GST Registration & Filing Without the Guesswork',
-			'text'             => 'Register for GST correctly the first time, then keep every quarterly return filed on time — bundled with the accounting and bookkeeping that makes it accurate.',
+			'text'             => 'Register for GST correctly the first time, then keep every quarterly return filed on time, bundled with the accounting and bookkeeping that makes it accurate.',
 			// Figma 114:5296: the offer, the usual price struck through beside it, and
 			// the terms under both. The design writes "U.P S$400 strikeoff" into that
 			// second label — the word is an instruction to itself, honoured here as the
 			// line-through in ci-hero.php rather than shipped as copy.
 			'price_text'       => 'GST Registration from S$80',
 			'price_strike'     => 'U.P S$400',
-			'price_note'       => 'New customers only — terms apply',
+			'price_note'       => 'New customers only, terms apply',
 			'button_text'      => 'Get My Quote',
 			'button_link'      => '/contact-us',
 			'button_2_text'    => '+65 6012 9642',
@@ -1389,8 +1417,8 @@ function thinksme_ci_content() {
 			'title_class'      => 'lg:text-[64px]',
 			// Two strokes, as in Figma (114:5292 and 114:5293), measured against this
 			// headline breaking across three lines at 64px.
-			'underline_class'  => 'hidden lg:block absolute left-0 top-[71px] w-[88.7%] rotate-[0.79deg] pointer-events-none select-none',
-			'underline_2_class' => 'hidden lg:block absolute left-0 top-[132px] w-[22.9%] rotate-[3.64deg] pointer-events-none select-none',
+			'underline_class'  => 'hidden lg:block absolute left-0 top-[48px] w-[86%] h-[22px] pointer-events-none select-none',
+			'underline_2_class' => 'hidden lg:block absolute left-0 top-[111px] w-[22%] h-[20px] rotate-[4deg] pointer-events-none select-none',
 		),
 		// "Do You Need to Register for GST?" (114:5311) — the icon-card grid again,
 		// centred, three equal cards, so it names its own track the way the Corporate
@@ -1399,6 +1427,8 @@ function thinksme_ci_content() {
 			'needs' => array(
 				'hat'           => '',
 				'heading'       => 'Do You Need to Register for GST?',
+				'card_justify_class' => 'justify-start',
+				'title_class'        => 'text-xl text-text-heading-dark lg:min-h-[55px]',
 				'align'         => 'center',
 				'section_class' => 'py-xl lg:py-[40px]',
 				'grid_class'    => 'lg:grid-cols-3',
@@ -1406,20 +1436,20 @@ function thinksme_ci_content() {
 					1 => array(
 						'icon'  => 'chart-line-up',
 						'title' => 'Your Turnover Has Crossed or Is Approaching S$1M',
-						'text'  => 'Once your taxable turnover exceeds S$1 million in a 12-month period — or you can see it coming, especially if you deal in imports, exports, or high-value goods — registration becomes compulsory. Getting ahead of it avoids backdated penalties.',
-						'class' => 'lg:col-span-1 lg:min-h-[438px]',
+						'text'  => 'Once your taxable turnover exceeds S$1 million in a 12-month period, or you can see it coming, especially if you deal in imports, exports, or high-value goods, registration becomes compulsory. Getting ahead of it avoids backdated penalties.',
+						'class' => 'lg:col-span-1',
 					),
 					2 => array(
 						'icon'  => 'hand-heart',
 						'title' => 'You’re Registering Voluntarily',
 						'text'  => 'Registering early to claim input tax credits still means filing every period, even below the S$1M threshold.',
-						'class' => 'lg:col-span-1 lg:min-h-[438px]',
+						'class' => 'lg:col-span-1',
 					),
 					3 => array(
 						'icon'  => 'gauge',
 						'title' => 'You’re Buying Property or Machinery',
-						'text'  => 'Making a major purchase — commercial property, equipment, or renovation? Voluntary registration lets you claim back the GST paid as input tax, often a meaningful saving on a big-ticket purchase.',
-						'class' => 'lg:col-span-1 lg:min-h-[438px]',
+						'text'  => 'Making a major purchase, commercial property, equipment, or renovation? Voluntary registration lets you claim back the GST paid as input tax, often a meaningful saving on a big-ticket purchase.',
+						'class' => 'lg:col-span-1',
 					),
 				),
 			),
@@ -1435,11 +1465,11 @@ function thinksme_ci_content() {
 				1 => array(
 					'icon'           => 'shield-check',
 					'title'          => 'GST Registration',
-					'text'           => 'Billed monthly — a good fit for active, growing businesses.',
+					'text'           => 'Billed monthly, a good fit for active, growing businesses.',
 					'price_label'    => 'Promotional Price',
 					'price'          => 'S$80',
 					'price_strike'   => 'S$400',
-					'price_note'     => 'One-time fee — new customers only',
+					'price_note'     => 'One-time fee, new customers only',
 					'badge_1'        => 'Eligibility checked before you pay',
 					'badge_2'        => '',
 					'features_intro' => '',
@@ -1468,7 +1498,7 @@ function thinksme_ci_content() {
 						'Monthly accounting & bookkeeping',
 						'Input and output tax reviewed for accuracy',
 						'Quarterly GST F5 preparation & IRAS submission',
-						'Nil returns filed on schedule — never missed',
+						'Nil returns filed on schedule, never missed',
 					),
 					'button_text'    => 'Get My Quote',
 				),
@@ -1505,7 +1535,7 @@ function thinksme_ci_content() {
 				2 => array(
 					'tone'  => 'success',
 					'value' => 'From S$500',
-					'text'  => 'Per month — books and GST filing handled, penalty-free',
+					'text'  => 'Per month, books and GST filing handled, penalty-free',
 				),
 			),
 			'steps'   => array(),
@@ -1560,17 +1590,17 @@ function thinksme_ci_content() {
 			'cards'   => array(
 				1 => array(
 					'title' => 'Newly Crossed S$1M Turnover',
-					'text'  => 'Registration becomes compulsory within a set window once you cross the threshold — we handle the paperwork before the deadline pressure builds.',
+					'text'  => 'Registration becomes compulsory within a set window once you cross the threshold, we handle the paperwork before the deadline pressure builds.',
 					'image' => 'gst/why-slide-1.jpg',
 				),
 				2 => array(
 					'title' => 'Filing Yourself Is Getting Risky',
-					'text'  => 'One misclassified input tax claim or one missed nil return is where the penalties start — we review every return before IRAS sees it.',
+					'text'  => 'One misclassified input tax claim or one missed nil return is where the penalties start, we review every return before IRAS sees it.',
 					'image' => 'gst/why-slide-2.jpg',
 				),
 				3 => array(
 					'title' => 'Switching From Another Provider',
-					'text'  => 'We collect your past filings, confirm your next deadline, and take over your filing cycle — most handovers done within a week.',
+					'text'  => 'We collect your past filings, confirm your next deadline, and take over your filing cycle, most handovers done within a week.',
 					'image' => 'gst/why-slide-3.jpg',
 				),
 			),
@@ -1608,7 +1638,7 @@ function thinksme_ci_content() {
 				),
 				5 => array(
 					'title' => 'Financing When You Need It',
-					'text'  => 'Clean books make loan and financing applications smoother — through the same team, via our 60+ lender network.',
+					'text'  => 'Clean books make loan and financing applications smoother, through the same team, via our 60+ lender network.',
 					'image' => 'gst/why-financing.jpg',
 				),
 			),
@@ -1639,7 +1669,7 @@ function thinksme_ci_content() {
 		'hero'         => array(
 			'hat'              => 'Property Cashout Singapore',
 			'title'            => 'Unlock Up To 90% of Your Property Value',
-			'text'             => 'Your property is one of Singapore’s most valuable assets — and it doesn’t have to sit idle. At ThinkSME, we help Singapore SME owners use property cashout to release equity from their private residential, commercial, or industrial property and convert it into working capital for your business.',
+			'text'             => 'Your property is one of Singapore’s most valuable assets, and it doesn’t have to sit idle. At ThinkSME, we help Singapore SME owners use property cashout to release equity from their private residential, commercial, or industrial property and convert it into working capital for your business.',
 			// This frame is the only one whose hero runs to two paragraphs
 			// (951:9000 and 951:9001), which is why the second one is its own
 			// field rather than a line break inside the first.
@@ -1704,8 +1734,8 @@ function thinksme_ci_content() {
 			// template-parts/ci-definition.php.
 			'text'            => "<strong>Property Cashout Singapore</strong> allows you to unlock the equity in your property without selling it. Through cash-out refinancing, you can access additional funds while continuing to own your residential, commercial, or industrial property.\n\nIdeal for SME owners, property cashout provides lower interest rates, larger loan amounts, and flexible funding for business expansion, working capital, equipment purchases, or investment opportunities.",
 			'example_heading' => 'Example Calculation',
-			'example_text'    => 'If your commercial shophouse is valued at <strong>S$2,000,000</strong> and you have an outstanding mortgage of <strong>S$900,000</strong>, you may be able to access up to <strong>S$900,000 in additional cash</strong> through a property cashout refinancing — without selling the property.',
-			'formula'         => '<strong>Formula:</strong> (S$2M × 90% LTV) − S$900K outstanding = S$900K cashout available',
+			'example_text'    => 'If your commercial shophouse is valued at <strong>S$2,000,000</strong> and you have an outstanding mortgage of <strong>S$900,000</strong>, you may be able to access up to <strong>S$900,000 in additional cash</strong> through a property cashout refinancing, without selling the property.',
+			'formula'         => '<strong>Formula:</strong> (S$2M x 90% LTV) - S$900K outstanding = S$900K cashout available',
 			// Two-layer in Figma (951:9059) and exported flattened — onto #fbfbfb
 			// here rather than white, because that is the panel this photo sits on
 			// and Figma flattens onto whatever is actually behind the node.
@@ -1771,7 +1801,7 @@ function thinksme_ci_content() {
 		'requirements' => array(
 			'hat'        => 'Process',
 			'heading'    => 'How Does Property Cashout Work in Singapore?',
-			'text'       => 'ThinkSME guides you through every step — from free consultation to cash in your account.',
+			'text'       => 'ThinkSME guides you through every step, from free consultation to cash in your account.',
 			// The scattered-blocks artwork this frame puts behind its two navy
 			// panels, in place of the cityscape the other rails draw.
 			'background' => 'pc/panel-bg.svg',
@@ -1786,7 +1816,7 @@ function thinksme_ci_content() {
 				2 => array(
 					'icon'  => 'calculator',
 					'title' => 'Assess Equity',
-					'text'  => 'We calculate: (Property Value × up to 90% LTV) minus outstanding balance = your available cashout.',
+					'text'  => 'We calculate: (Property Value x up to 90% LTV) minus outstanding balance = your available cashout.',
 					'meta'  => 'WITHIN 24 HRS',
 				),
 				3 => array(
@@ -1858,22 +1888,22 @@ function thinksme_ci_content() {
 					1 => array(
 						'icon'  => 'trend-down',
 						'title' => 'Lower Interest Rates (Bank Rates)',
-						'text'  => 'Secured property loans carry rates from 1%+ p.a. vs 4–5% p.a. for unsecured SME loans — significantly reducing your cost of capital.',
+						'text'  => 'Secured property loans carry rates from 1%+ p.a. vs 4–5% p.a. for unsecured SME loans, significantly reducing your cost of capital.',
 					),
 					2 => array(
 						'icon'  => 'stack',
 						'title' => 'Large Loan Quantum',
-						'text'  => 'Access S$200,000 to S$10,000,000+ depending on property value — far exceeding unsecured business loan limits.',
+						'text'  => 'Access S$200,000 to S$10,000,000+ depending on property value, far exceeding unsecured business loan limits.',
 					),
 					3 => array(
 						'icon'  => 'lock-key-open',
 						'title' => 'No Restriction on Use of Funds',
-						'text'  => 'Unlike government SME loans, cashout proceeds can be used for any business purpose — inventory, payroll, renovation, expansion, investment.',
+						'text'  => 'Unlike government SME loans, cashout proceeds can be used for any business purpose, inventory, payroll, renovation, expansion, investment.',
 					),
 					4 => array(
 						'icon'  => 'house',
 						'title' => 'Retain Property Ownership',
-						'text'  => 'You continue to own and benefit from your property’s appreciation — while putting its equity to productive use today.',
+						'text'  => 'You continue to own and benefit from your property’s appreciation, while putting its equity to productive use today.',
 					),
 					5 => array(
 						'icon'  => 'calendar-dots',
@@ -1892,12 +1922,12 @@ function thinksme_ci_content() {
 					1 => array(
 						'icon'  => 'bank',
 						'title' => 'Access to 60+ Banks & Financial Institutions',
-						'text'  => 'Best rate guaranteed — we compare across the entire market so you never overpay.',
+						'text'  => 'Best rate guaranteed, we compare across the entire market so you never overpay.',
 					),
 					2 => array(
 						'icon'  => 'user-focus',
 						'title' => 'Dedicated Property Cashout Advisors',
-						'text'  => 'Expert guidance tailored to your property type and business goals — not generic advice.',
+						'text'  => 'Expert guidance tailored to your property type and business goals, not generic advice.',
 					),
 					3 => array(
 						'icon'  => 'briefcase',
@@ -1907,7 +1937,7 @@ function thinksme_ci_content() {
 					4 => array(
 						'icon'  => 'clock-countdown',
 						'title' => 'Free Eligibility Assessment within 24 Hours',
-						'text'  => 'Know your options before committing to anything — zero cost, zero obligation.',
+						'text'  => 'Know your options before committing to anything, zero cost, zero obligation.',
 					),
 					5 => array(
 						'icon'  => 'hand-coins',
@@ -1946,7 +1976,7 @@ function thinksme_ci_content() {
 						4 => 'Minimum property value of S$500,000 (most lenders)',
 						5 => 'Property must have sufficient equity above outstanding loans',
 						6 => 'Personal name: comply with MAS TDSR cap of 55% of gross income',
-						7 => 'Company name: TDSR does not apply — significantly more flexible',
+						7 => 'Company name: TDSR does not apply, significantly more flexible',
 					),
 				),
 				2 => array(
@@ -2025,7 +2055,7 @@ function thinksme_ci_content() {
 		'hero'        => array(
 			'hat'              => '60+ Lenders · 19 Core Partner Banks · Ex-Banker Team',
 			'title'            => 'Compare SME Business Loans With One Application',
-			'text'             => 'One bank’s “no” isn’t the market’s answer. Our team — ex-bankers with 30+ years of combined experience — matches your application against 19 core partner banks and 60+ lenders overall, so you find the one whose criteria actually fit your business.',
+			'text'             => 'One bank’s “no” isn’t the market’s answer. Our team, ex-bankers with 30+ years of combined experience, matches your application against 19 core partner banks and 60+ lenders overall, so you find the one whose criteria actually fit your business.',
 			'button_text'      => 'Check My Eligibility',
 			'button_link'      => '/contact-us',
 			'button_2_text'    => '+65 6012 9642',
@@ -2042,10 +2072,12 @@ function thinksme_ci_content() {
 			// and where the badge goes back on top of it.
 			'badge_class'      => 'absolute left-[0.8%] top-[12.4%] w-[18.3%] pointer-events-none select-none',
 			'photo_slot_class' => 'absolute left-[9%] top-[14.5%] w-[91%] h-[85.5%] overflow-hidden rounded-2xl',
-			// Figma strikes two of this headline's four lines (119:1714 and 119:1715),
-			// measured against it breaking at 72px in the 703px column.
+			// One brush stroke under "Business Loans With". Figma's second stroke (over
+			// "One", 119:1715) was measured against a four-line break at 72px; this copy
+			// wraps to three lines, so that stroke landed across the word "One" instead of
+			// under a line - the client flagged it as a stray mark, so it is dropped. Re-add
+			// underline_2_class once its offset is re-measured against the current wrap.
 			'underline_class'  => 'hidden lg:block absolute left-0 top-[131px] w-[67.6%] rotate-[2.27deg] pointer-events-none select-none',
-			'underline_2_class' => 'hidden lg:block absolute left-0 top-[201px] w-[27.2%] -scale-y-100 rotate-[8.71deg] pointer-events-none select-none',
 			// The five partner banks under the photograph (119:1737 + 119:1750). Figma
 			// draws them as a masked marquee 505px wide inside a 439px frame, which is
 			// why the Standard Chartered wordmark is clipped mid-letter there; only its
@@ -2066,7 +2098,7 @@ function thinksme_ci_content() {
 		// page draws, plus the footnote this frame writes under it (119:1795): the
 		// headline rate is a flat rate, and saying so under the number is the point.
 		'stats'       => array(
-			'note'  => '*Flat rate example — your actual rate depends on the lender and your profile. Ask us for the Effective Interest Rate (EIR) equivalent, which reflects the true cost more accurately than a flat rate.',
+			'note'  => '*Flat rate example, your actual rate depends on the lender and your profile. Ask us for the Effective Interest Rate (EIR) equivalent, which reflects the true cost more accurately than a flat rate.',
 			'cards' => array(
 				1 => array(
 					'icon'  => 'lightning',
@@ -2123,7 +2155,7 @@ function thinksme_ci_content() {
 			'mode'         => 'loan',
 			'hat'          => 'Free Tools',
 			'heading'      => 'Estimate Your Loan Repayments',
-			'text'         => 'A quick indicative estimate based on flat rate pricing — not a loan offer.',
+			'text'         => 'A quick indicative estimate based on flat rate pricing, not a loan offer.',
 			'title'        => 'Business Loan Calculator',
 			'panel_text'   => 'Enter your loan amount, tenure, and rate to estimate your monthly instalment.',
 			'amount_label' => 'Loan amount (S$)',
@@ -2143,7 +2175,7 @@ function thinksme_ci_content() {
 			'saved_label'  => 'Total repayable over the tenure',
 			'error_text'   => 'Enter a loan amount to see an estimate.',
 			'currency'     => 'S$',
-			'disclaimer'   => 'Based on flat rate methodology: interest is calculated on the original loan amount for the full tenure. This is illustrative only — your actual rate and approved amount depend on the lender and your company’s credit profile. Ask us for the Effective Interest Rate (EIR) equivalent for a true cost comparison.',
+			'disclaimer'   => 'Based on flat rate methodology: interest is calculated on the original loan amount for the full tenure. This is illustrative only, your actual rate and approved amount depend on the lender and your company’s credit profile. Ask us for the Effective Interest Rate (EIR) equivalent for a true cost comparison.',
 		),
 		// "What Actually Determines Loan Approval" (119:1871): five icon cards in three
 		// columns with a photograph in the fifth cell — the same shape the Accounting
@@ -2154,28 +2186,46 @@ function thinksme_ci_content() {
 			'approval' => array(
 				'hat'           => 'Is This You?',
 				'heading'       => 'What Actually Determines Loan Approval',
-				'text'          => 'A rejection rarely means “no bank will lend to you” — it usually means one bank’s specific criteria didn’t match your profile.',
+				'text'          => 'A rejection rarely means “no bank will lend to you”, it usually means one bank’s specific criteria didn’t match your profile.',
 				'align'         => 'left',
+				// Same top-grouping as same_firm: Figma packs icon/title/copy at the top
+				// of each card (node 119:1871). The left-align default (justify-between)
+				// pushed the copy to the 404px card's foot, far below the icon.
+				'card_justify_class' => 'justify-start',
+				// Titles here run to one or two lines. Reserve two lines on the title
+				// (min-h 46px = two lines at this size) so the one-line cards' copy does
+				// not start higher than their two-line neighbours' - the row's paragraphs
+				// then all begin on the same baseline.
+				'title_class'        => 'text-lg text-text-heading-dark lg:min-h-[46px]',
 				'grid_class'    => 'lg:grid-cols-3',
 				'section_class' => 'py-xl lg:py-[40px]',
 				'cards'         => array(
 					1 => array(
 						'icon'  => 'question',
-						'title' => 'Your Bank Said No — Without Explaining Why',
-						'text'  => 'Approval depends on your personal credit profile, which bank you go with, existing banking relationships, and even how you answer credit questions — factors that vary hugely between institutions.',
-						'class' => 'lg:min-h-[404px]',
+						'title' => 'Your Bank Said No, Without Explaining Why',
+						'text'  => 'Approval depends on your personal credit profile, which bank you go with, existing banking relationships, and even how you answer credit questions, factors that vary hugely between institutions.',
+						// Hug content (no fixed floor) so the copy sits close to the photo
+						// below, not stranded at a 404px card's foot; the grid keeps the row
+						// equal to its tallest card.
+						'class' => '',
 					),
 					2 => array(
 						'icon'  => 'seal-warning',
 						'title' => 'You Don’t Want a “Black Mark”',
 						'text'  => 'A rejected application can leave a mark in a bank’s internal records, making future applications to that same bank harder. Getting matched right the first time avoids this.',
-						'class' => 'lg:min-h-[404px]',
+						// Hug content (no fixed floor) so the copy sits close to the photo
+						// below, not stranded at a 404px card's foot; the grid keeps the row
+						// equal to its tallest card.
+						'class' => '',
 					),
 					3 => array(
 						'icon'  => 'arrows-split',
 						'title' => 'Different Banks, Wildly Different Answers',
-						'text'  => 'You could get rejected by one major bank and approved for S$100,000 by another — because each institution’s risk appetite and required paperwork genuinely differ that much.',
-						'class' => 'lg:min-h-[404px]',
+						'text'  => 'You could get rejected by one major bank and approved for S$100,000 by another, because each institution’s risk appetite and required paperwork genuinely differ that much.',
+						// Hug content (no fixed floor) so the copy sits close to the photo
+						// below, not stranded at a 404px card's foot; the grid keeps the row
+						// equal to its tallest card.
+						'class' => '',
 					),
 					4 => array(
 						'icon'  => 'calendar-dots',
@@ -2195,7 +2245,7 @@ function thinksme_ci_content() {
 					6 => array(
 						'icon'  => 'binoculars',
 						'title' => 'You Want an Ex-Banker’s Perspective',
-						'text'  => 'Our team has 30+ years of combined banking experience — we know what banks are actually assessing before you submit, not after you’re rejected.',
+						'text'  => 'Our team has 30+ years of combined banking experience, we know what banks are actually assessing before you submit, not after you’re rejected.',
 						'class' => 'lg:min-h-[378px]',
 					),
 				),
@@ -2209,7 +2259,7 @@ function thinksme_ci_content() {
 		'ways'        => array(
 			'hat'     => 'How It Works',
 			'heading' => 'One Application, Matched Against 60+ Lenders',
-			'text'    => 'We take your business profile once and match it against banks, digital lenders, and government-backed schemes — rather than you filling out the same form 20 times.',
+			'text'    => 'We take your business profile once and match it against banks, digital lenders, and government-backed schemes, rather than you filling out the same form 20 times.',
 			'cards'   => array(
 				1 => array(
 					'icon'  => 'envelope-simple',
@@ -2225,7 +2275,7 @@ function thinksme_ci_content() {
 			'plan'    => array(
 				'badge'       => 'FREE ASSESSMENT',
 				'title'       => 'No Cost to Find Out Where You Stand',
-				'text'        => 'Our loan assessment and lender comparison are entirely free. If you choose to engage us to manage your application, that service is subject to a fee — we’ll walk you through it upfront before anything is charged.',
+				'text'        => 'Our loan assessment and lender comparison are entirely free. If you choose to engage us to manage your application, that service is subject to a fee, we’ll walk you through it upfront before anything is charged.',
 				'price'       => '',
 				'badge_1'     => '',
 				'badge_2'     => '',
@@ -2262,12 +2312,12 @@ function thinksme_ci_content() {
 					3 => array(
 						'icon'  => 'user-focus',
 						'title' => 'A Person, Not a Portal',
-						'text'  => 'Our financing team works your application personally — not an algorithm that stops responding after a rejection.',
+						'text'  => 'Our financing team works your application personally, not an algorithm that stops responding after a rejection.',
 					),
 					4 => array(
 						'icon'  => 'scales',
 						'title' => 'Genuinely Independent',
-						'text'  => 'We’re not tied to one bank — 60+ lenders means we recommend what fits you, not what pays us most.',
+						'text'  => 'We’re not tied to one bank, 60+ lenders means we recommend what fits you, not what pays us most.',
 					),
 					5 => array(
 						'icon'  => 'shield-check',
@@ -2286,12 +2336,12 @@ function thinksme_ci_content() {
 					1 => array(
 						'icon'  => 'trend-down',
 						'title' => 'Access to 60+ Banks & Financial Institutions',
-						'text'  => 'Best rate guaranteed — we compare across our full panel, including 19 core partner banks, so you never overpay.',
+						'text'  => 'Best rate guaranteed, we compare across our full panel, including 19 core partner banks, so you never overpay.',
 					),
 					2 => array(
 						'icon'  => 'stack',
 						'title' => 'Dedicated Business Loan Advisors',
-						'text'  => 'Ex-bankers with 30+ years of combined experience — expert guidance tailored to your industry, not generic advice.',
+						'text'  => 'Ex-bankers with 30+ years of combined experience, expert guidance tailored to your industry, not generic advice.',
 					),
 					3 => array(
 						'icon'  => 'lock-key-open',
@@ -2301,7 +2351,7 @@ function thinksme_ci_content() {
 					4 => array(
 						'icon'  => 'house',
 						'title' => 'Free Eligibility Assessment Within 24 Hours',
-						'text'  => 'Know your options before committing to anything — zero cost, zero obligation.',
+						'text'  => 'Know your options before committing to anything, zero cost, zero obligation.',
 					),
 					5 => array(
 						'icon'  => 'calendar-dots',
@@ -2460,6 +2510,7 @@ function thinksme_ci_content() {
 			'why_ofx' => array(
 				'hat'           => 'Complete Corporate Services',
 				'heading'       => 'Why Use OFX?',
+				'card_justify_class' => 'justify-start',
 				'align'         => 'center',
 				'grid_class'    => 'lg:grid-cols-3',
 				'section_class' => 'py-xl lg:py-[40px]',
@@ -2470,19 +2521,19 @@ function thinksme_ci_content() {
 						'icon'  => 'star',
 						'title' => 'Enjoy Preferential Rates',
 						'text'  => 'Preferential exchange rates and no OFX fees on FX transfers* = real savings back into your wallet.',
-						'class' => 'lg:min-h-[345px]',
+						'class' => '',
 					),
 					2 => array(
 						'icon'  => 'shield-check',
 						'title' => '24/7 OFXPERTS',
 						'text'  => 'Speak to a currency specialist 24/7. No long hold queues, no offshore call centres',
-						'class' => 'lg:min-h-[345px]',
+						'class' => '',
 					),
 					3 => array(
 						'icon'  => 'user-sound',
 						'title' => 'Ease Of Use',
 						'text'  => 'Login and track your transfers when, where and how you want online or via the OFX app.',
-						'class' => 'lg:min-h-[345px]',
+						'class' => '',
 					),
 				),
 			),
@@ -2525,7 +2576,7 @@ function thinksme_ci_content() {
 		'hero'   => array(
 			'hat'               => '19 Banks Compared · Free Broker Service',
 			'title'             => 'Compare Best Mortgage Rates Across 19 Banks in One Call',
-			'text'              => 'Whether you’re buying your first home or refinancing an existing loan, one conversation with our team gets you rates from every major bank — including promotional pricing banks don’t publish.',
+			'text'              => 'Whether you’re buying your first home or refinancing an existing loan, one conversation with our team gets you rates from every major bank, including promotional pricing banks don’t publish.',
 			// Figma's own label reads "Copare My Rate" (124:3279). That is a typo, not
 			// copy — the same frame's headline spells the word — so it ships corrected
 			// rather than verbatim, unlike the duplication artefacts the Foreign and GST
@@ -2562,11 +2613,11 @@ function thinksme_ci_content() {
 		// The marquee's own small print (124:3614). The logos are the site-wide
 		// certifications group, same as every other page's marquee.
 		'logos'  => array(
-			'caption' => '*Cash rebate applies to selected packages only. Terms and conditions apply — ask us for full details during your consultation.',
+			'caption' => '*Cash rebate applies to selected packages only. Terms and conditions apply, ask us for full details during your consultation.',
 		),
 		// The rates band (124:3281). Four figures and the line that says they move.
 		'stats'  => array(
-			'note'  => 'Indicative rates, subjected to change from time to time — confirm up to date pricing during your consultation.',
+			'note'  => 'Indicative rates, subjected to change from time to time, confirm up to date pricing during your consultation.',
 			'cards' => array(
 				1 => array(
 					'icon'  => 'trend-down',
@@ -2605,13 +2656,13 @@ function thinksme_ci_content() {
 					1 => array(
 						'icon'  => 'house-line',
 						'title' => 'New Home Purchase',
-						'text'  => 'HDB, condo, or landed — matched to the right package for your buyer profile.',
+						'text'  => 'HDB, condo, or landed, matched to the right package for your buyer profile.',
 						'class' => 'lg:min-h-[339px]',
 					),
 					2 => array(
 						'icon'  => 'arrows-clockwise',
 						'title' => 'Refinancing',
-						'text'  => 'Switch to a lower rate once your lock-in ends — most borrowers overpay simply by not reviewing.',
+						'text'  => 'Switch to a lower rate once your lock-in ends, most borrowers overpay simply by not reviewing.',
 						'class' => 'lg:min-h-[339px]',
 					),
 					3 => array(
@@ -2634,6 +2685,8 @@ function thinksme_ci_content() {
 			'why'      => array(
 				'hat'           => 'Why Think SME',
 				'heading'       => 'Same Team for Your Mortgage and Your Business',
+				'card_justify_class' => 'justify-start',
+				'title_class'        => 'text-lg text-text-heading-dark lg:min-h-[69px]',
 				'align'         => 'left',
 				'grid_class'    => 'lg:grid-cols-4',
 				'section_class' => 'py-xl lg:py-[40px]',
@@ -2646,25 +2699,25 @@ function thinksme_ci_content() {
 						'icon'  => 'buildings',
 						'title' => 'One Consultation, 19 Banks',
 						'text'  => 'We do the calling. You get a side-by-side comparison, not 19 separate conversations.',
-						'class' => 'lg:min-h-[368px]',
+						'class' => '',
 					),
 					2 => array(
 						'icon'  => 'chart-line-up',
 						'title' => 'Business Owner? We Already Know Your Numbers',
 						'text'  => 'If we handle your accounting or incorporation, your mortgage application is faster because your financials are already clean.',
-						'class' => 'lg:min-h-[368px]',
+						'class' => '',
 					),
 					3 => array(
 						'icon'  => 'user-circle',
 						'title' => 'A Person, Not a Portal',
-						'text'  => 'Our mortgage team explains the trade-offs — not just the lowest headline rate.',
-						'class' => 'lg:min-h-[368px]',
+						'text'  => 'Our mortgage team explains the trade-offs, not just the lowest headline rate.',
+						'class' => '',
 					),
 					4 => array(
 						'icon'  => 'bell-ringing',
 						'title' => 'We Flag Refinancing Windows',
-						'text'  => 'Once you’re a client, we tell you when your lock-in is ending — before your rate quietly resets higher.',
-						'class' => 'lg:min-h-[368px]',
+						'text'  => 'Once you’re a client, we tell you when your lock-in is ending, before your rate quietly resets higher.',
+						'class' => '',
 					),
 				),
 			),
@@ -2674,9 +2727,10 @@ function thinksme_ci_content() {
 			'decision' => array(
 				'hat'           => 'The Big Decision',
 				'heading'       => 'Fixed or Floating (SORA)?',
+				'card_justify_class' => 'justify-start',
 				// The frame repeats the figures band's disclaimer under these two cards
 				// (124:3604), which is where the rates it qualifies actually are.
-				'note'          => 'Indicative rates, subjected to change from time to time — confirm up to date pricing during your consultation.',
+				'note'          => 'Indicative rates, subjected to change from time to time, confirm up to date pricing during your consultation.',
 				'align'         => 'center',
 				'grid_class'    => 'lg:grid-cols-2',
 				'section_class' => 'py-xl lg:py-[40px]',
@@ -2685,15 +2739,15 @@ function thinksme_ci_content() {
 						'icon'  => 'lock-key',
 						'title' => 'Fixed Rate',
 						'value' => '~1.30% (2-Year)',
-						'text'  => 'Payment stability for the lock-in period — no surprises if the market moves. Best if you value certainty or plan to hold the loan through the full lock-in.',
-						'class' => 'lg:min-h-[383px]',
+						'text'  => 'Payment stability for the lock-in period, no surprises if the market moves. Best if you value certainty or plan to hold the loan through the full lock-in.',
+						'class' => '',
 					),
 					2 => array(
 						'icon'  => 'trend-up',
 						'title' => 'Floating (SORA-Pegged)',
 						'value' => '~1.27%',
 						'text'  => 'Tracks the market benchmark plus a bank spread. Can be cheaper when SORA is low or falling, but instalments move if rates rise. Suits borrowers comfortable with some variability.',
-						'class' => 'lg:min-h-[383px]',
+						'class' => '',
 					),
 				),
 			),
@@ -2707,7 +2761,7 @@ function thinksme_ci_content() {
 			// Figma sets this heading in a 602px box rather than the 512px the other frames
 			// use, which is what breaks it across two lines instead of four.
 			'heading_class' => 'max-w-[602px]',
-			'text'    => 'Tell us once what you need — purchase or refinance, property type, loan size — and we bring back real offers from across our banking panel.',
+			'text'    => 'Tell us once what you need, purchase or refinance, property type, loan size, and we bring back real offers from across our banking panel.',
 			'cards'   => array(
 				1 => array(
 					'icon'  => 'chart-line-up',
@@ -2723,14 +2777,14 @@ function thinksme_ci_content() {
 			'plan'    => array(
 				'badge'       => 'Free to you',
 				'title'       => 'Zero Cost, Same Great Rate',
-				'text'        => 'Banks pay us a referral fee upon successful disbursement — your rate is identical to applying direct.',
+				'text'        => 'Banks pay us a referral fee upon successful disbursement, your rate is identical to applying direct.',
 				'price'       => '',
 				'badge_1'     => '',
 				'badge_2'     => '',
 				'features'    => array(
 					1 => '19 banks compared in one consultation',
 					2 => 'Access to promotional rates not published online',
-					3 => 'Same rate as applying directly — no premium',
+					3 => 'Same rate as applying directly, no premium',
 					4 => 'Up to S$1,000 cash rebate on selected packages*',
 				),
 				'note'        => '*Terms and conditions apply. Ask us which packages qualify.',
@@ -2775,7 +2829,7 @@ function thinksme_ci_content() {
 			// size the shared ramp already uses and the desktop size this frame draws.
 			'title'            => 'SMEs are eligible for up to 50% Productivity Solutions Grant (PSG) support for the adoption of Xero Cloud Accounting Software, a Pre-Approved Solution under the IMDA SMEs Go Digital programme.',
 			'title_size_class' => 'text-[40px]',
-			'text'             => 'As a vendor of pre-approved PSG Xero solutions, you are eligible for substantial cost savings through our offerings — with the setup, training, and ongoing support handled by our own Xero Certified Advisor team.',
+			'text'             => 'As a vendor of pre-approved PSG Xero solutions, you are eligible for substantial cost savings through our offerings, with the setup, training, and ongoing support handled by our own Xero Certified Advisor team.',
 			'button_text'      => 'Talk With Our Experts',
 			'button_link'      => '/contact-us',
 			'button_2_text'    => '+65 6012 9642',
@@ -2819,7 +2873,7 @@ function thinksme_ci_content() {
 				),
 				array(
 					'file'  => 'psg/logo-imda-psg.png',
-					'name'  => 'IMDA Pre-Approved Solution — eligible for up to 50% Productivity Solutions Grant (PSG) support',
+					'name'  => 'IMDA Pre-Approved Solution, eligible for up to 50% Productivity Solutions Grant (PSG) support',
 					'class' => 'h-[40px] lg:h-[56px]',
 				),
 			),
@@ -2843,7 +2897,7 @@ function thinksme_ci_content() {
 				'header_class'       => 'max-w-[552px]',
 				'disc_class'         => 'size-[56px]',
 				'icon_class'         => 'size-[32px]',
-				'title_class'        => 'text-lg lg:text-[28px] text-text-on-dark',
+				'title_class'        => 'text-lg lg:text-[28px] text-text-on-dark lg:min-h-[64px]',
 				'text_class'         => 'text-text-on-dark',
 				'cards'              => array(
 					1 => array(
@@ -2877,7 +2931,7 @@ function thinksme_ci_content() {
 			'features'    => array(
 				'hat'            => 'Cloud-Based Xero Accounting',
 				'heading'        => 'Everything Included With Xero',
-				'text'           => 'Manage your accounting software from anywhere — here’s what’s covered.',
+				'text'           => 'Manage your accounting software from anywhere, here’s what’s covered.',
 				'align'          => 'center',
 				'grid_class'     => 'lg:grid-cols-4',
 				'section_class'  => 'py-xl lg:py-[40px]',
@@ -2918,7 +2972,7 @@ function thinksme_ci_content() {
 					6 => array(
 						'icon'  => 'user-check',
 						'title' => 'Unlimited Users',
-						'text'  => 'Remote access for unlimited users — collaborate with your team in real time.',
+						'text'  => 'Remote access for unlimited users, collaborate with your team in real time.',
 						'class' => 'lg:min-h-[331px]',
 					),
 					7 => array(
@@ -2940,7 +2994,7 @@ function thinksme_ci_content() {
 			'credentials' => array(
 				'hat'           => 'Complete Corporate Services',
 				'heading'       => 'Go Digital With a Partner Who’s Actually Credentialed',
-				'text'          => 'We’re dedicated to helping SMEs transform their accounting processes — backed by real, verifiable credentials, not just a claim.',
+				'text'          => 'We’re dedicated to helping SMEs transform their accounting processes, backed by real, verifiable credentials, not just a claim.',
 				'align'         => 'center',
 				'grid_class'    => 'lg:grid-cols-4',
 				'section_class' => 'py-xl lg:py-[40px]',
@@ -2967,13 +3021,13 @@ function thinksme_ci_content() {
 						// Figma's own spelling of "Officially". Shipped verbatim, the same call the
 						// Foreign and GST frames' leftovers got — a typo in body copy is the client's
 						// to correct, and the field is right there in wp-admin.
-						'text'  => 'Officialy listed with IMDA and independently verifiable — not just a badge on a page.',
+						'text'  => 'Officialy listed with IMDA and independently verifiable, not just a badge on a page.',
 						'class' => 'lg:min-h-[372px]',
 					),
 					4 => array(
 						'icon'  => 'folder-simple-star',
 						'title' => 'We Handle the Paperwork',
-						'text'  => 'From eligibility check to Business Grants Portal submission — we guide the process end to end.',
+						'text'  => 'From eligibility check to Business Grants Portal submission, we guide the process end to end.',
 						'class' => 'lg:min-h-[372px]',
 					),
 				),
@@ -3007,7 +3061,7 @@ function thinksme_ci_content() {
 				'image'     => 'psg/invoicenow-photo.jpg',
 				'image_box' => 'aspect-[547/678]',
 				'items'     => array(
-					1 => 'Time-saving — no manual re-entry',
+					1 => 'Time-saving, no manual re-entry',
 					2 => 'Faster payments end to end',
 					3 => 'Convenient, secure network transmission',
 					4 => '',
@@ -3058,7 +3112,7 @@ function thinksme_ci_content() {
 				),
 				4 => array(
 					'icon'  => 'shield-check',
-					'title' => 'Submit your application, then purchase and claim once approved — typically 2–4 weeks.',
+					'title' => 'Submit your application, then purchase and claim once approved, typically 2–4 weeks.',
 					'text'  => '',
 				),
 			),
@@ -3364,17 +3418,17 @@ function thinksme_ci_content() {
 				"We're there from incorporation, not just at the start",
 				'We stay through compliance, accounting, and financing',
 				'We support expansion into new markets and technology',
-				'One partner, every stage — not a patchwork of vendors',
+				'One partner, every stage, not a patchwork of vendors',
 			),
 			'hat'     => 'Our Story',
 			'heading' => 'Every successful business starts with a leap of faith.',
 			// Paragraph 3 is the one Figma sets in bold (157:512) — a position in the
 			// design, not a client choice, the same convention every other bold-by-slot
 			// treatment in this theme follows.
-			'text_1'  => 'Leaving a stable job, investing your savings and building something from scratch is exciting — but can also be overwhelming.',
+			'text_1'  => 'Leaving a stable job, investing your savings and building something from scratch is exciting, but can also be overwhelming.',
 			'text_2'  => 'Too often, entrepreneurs spend more time worrying about incorporation, compliance, accounting and financing than growing their business.',
 			'text_3'  => "That's why Think SME was founded.",
-			'text_4'  => 'We set out to become more than another corporate service provider. Our goal is to become the long-term business partner entrepreneurs can rely on — from starting a company to securing financing, adopting technology and expanding into new markets.',
+			'text_4'  => 'We set out to become more than another corporate service provider. Our goal is to become the long-term business partner entrepreneurs can rely on, from starting a company to securing financing, adopting technology and expanding into new markets.',
 		),
 		'grid'    => array(
 			'drive'   => array(
@@ -3422,14 +3476,14 @@ function thinksme_ci_content() {
 						'items' => array(
 							array(
 								'bold' => 'Client Success Comes First',
-								'text' => " — our clients' success is the measure of our own; we always act in their best interests and are committed to helping them achieve sustainable business growth.",
+								'text' => "our clients' success is the measure of our own; we always act in their best interests and are committed to helping them achieve sustainable business growth.",
 							),
 							array(
-								'bold' => 'We Guide With Expertise —',
+								'bold' => 'We Guide With Expertise:',
 								'text' => ' we do more than deliver services, providing trusted advice, practical solutions, and continuous guidance that empower entrepreneurs to make confident decisions.',
 							),
 							array(
-								'bold' => 'Grow Together —',
+								'bold' => 'Grow Together:',
 								'text' => ' lasting partnerships create lasting businesses; we continuously improve ourselves while creating new opportunities for our clients, partners, and team.',
 							),
 						),
@@ -3440,7 +3494,7 @@ function thinksme_ci_content() {
 				'hat'       => 'Why Businesses Trust Think SME',
 				'heading'   => 'Real Credentials, Not Just Claims',
 				'align'     => 'center',
-				'text'      => "We're dedicated to helping SMEs transform their accounting processes — backed by real, verifiable credentials, not just a claim.",
+				'text'      => "We're dedicated to helping SMEs transform their accounting processes, backed by real, verifiable credentials, not just a claim.",
 				'grid_class' => 'lg:grid-cols-4',
 				'section_class' => 'py-xl lg:py-[40px]',
 				'cards'     => array(
@@ -3477,7 +3531,7 @@ function thinksme_ci_content() {
 				'heading_size_class' => 'text-2xl lg:text-[52px]',
 				'heading_class'     => 'text-text-on-dark',
 				'align'             => 'left',
-				'text'              => 'ThinkSME guides you through every step — from free consultation to cash in your account.',
+				'text'              => 'ThinkSME guides you through every step, from free consultation to cash in your account.',
 				'panel_class'       => 'bg-surface-dark rounded-[40px] lg:rounded-[48px] px-lg lg:px-[56px] py-xl lg:py-[64px]',
 				'card_class'        => 'bg-white border border-[rgba(19,47,83,0.08)]',
 				'card_pad_class'    => 'rounded-[28px] p-[28px]',
@@ -3496,7 +3550,7 @@ function thinksme_ci_content() {
 						'class' => '',
 						'icon'        => 'hand-coins',
 						'title'       => 'Get a Business Loan',
-						'text'        => 'Compare 60+ banks and lenders with one application — free, ex-banker team.',
+						'text'        => 'Compare 60+ banks and lenders with one application, free, ex-banker team.',
 						'button_text' => 'Learn More',
 						'button_link' => '/business-loan',
 					),
@@ -3512,7 +3566,7 @@ function thinksme_ci_content() {
 						'class' => '',
 						'icon'        => 'seal-check',
 						'title'       => 'Claim the PSG Grant',
-						'text'        => 'Up to 50% PSG support for Xero cloud accounting — IMDA pre-approved.',
+						'text'        => 'Up to 50% PSG support for Xero cloud accounting, IMDA pre-approved.',
 						'button_text' => 'Learn More',
 						'button_link' => '/psg-grant',
 					),
@@ -3572,7 +3626,7 @@ function thinksme_ci_content() {
 		'mission' => array(
 			'hat'     => 'Why Think SME Exists',
 			'heading' => "Most business owners don't fail because they lack passion.",
-			'text_1'  => 'They struggle because they have to navigate incorporation, compliance, accounting, financing, grants and technology — all while trying to grow their business.',
+			'text_1'  => 'They struggle because they have to navigate incorporation, compliance, accounting, financing, grants and technology, all while trying to grow their business.',
 			'text_2'  => 'We believe entrepreneurs should spend their time building their business, not figuring out paperwork.',
 			// Figma sets this closing line in bold (157:846) — a position, like the
 			// Our Story paragraph above.
@@ -3582,7 +3636,7 @@ function thinksme_ci_content() {
 		// This frame closes on the shared CTA verbatim — "Need help?" over its own
 		// line rather than cta.php's generic one — so the set names no photograph.
 		'cta'     => array(
-			'text' => 'From first step to every milestone — talk to us about what you\'re building.',
+			'text' => 'From first step to every milestone, talk to us about what you\'re building.',
 		),
 	);
 

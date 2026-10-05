@@ -339,7 +339,10 @@ $button_2_link = thinksme_field( 'ci_hero_button_2_link', false, $d['button_2_li
 	?>
 	<?php if ( ! empty( $banks['logos'] ) ) : ?>
 		<?php // The label sits beside the strip rather than above it, as Figma draws it, and shrinks away below sm where the row needs the width more than the caption needs the line. ?>
-		<div class="flex items-center gap-lg mt-xl lg:mt-lg">
+		<?php // The photo card is inset ~9% from the image box's left edge (the badge
+		     // overhangs that corner), so the strip is padded to start at the photo's left
+		     // edge and span the photo's width rather than the box's. ?>
+		<div class="flex items-center gap-lg mt-xl lg:mt-lg lg:pl-[9%]">
 			<?php if ( ! empty( $banks['label'] ) ) : ?>
 				<span class="shrink-0 font-normal text-[12px] leading-loose tracking-widest uppercase text-text-secondary whitespace-nowrap">
 					<?php echo esc_html( $banks['label'] ); ?>

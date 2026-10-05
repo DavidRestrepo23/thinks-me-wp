@@ -58,12 +58,28 @@ $caption  = thinksme_field( 'logos_caption', false, isset( $logos['caption'] ) ?
 ?>
 <section id="<?php echo esc_attr( $section_id ); ?>" class="w-full py-2xl">
 	<?php if ( $client_logos->have_posts() ) : ?>
+<?php
+		// Amendment #19/#20/#21 — BOTH homepage strips run in `auto` width mode (each
+		// slide sized to its own logo, fixed 96/40px gap) so the VISIBLE gap between
+		// adjacent logos is equal for all of them, and every logo sits in an equal-height
+		// box so none is crushed shorter than the others. Was equal-column, which gave
+		// narrow logos big side-gaps and shrank wide wordmarks (e.g. ANEXT) to a smaller
+		// height. logos-slider.js fills the loop with clones so the crawl stays seamless,
+		// including at the loop seam.
+		//   - $group 'certifications' (coloured) → .logos-swiper--lg, box 72 / img 60px.
+		//   - other groups (gray client/bank logos) → .logos-swiper--sm, box 48 / img 40px
+		//     (their source art is 40px tall, so it is kept crisp at native height).
+		$is_coloured = ( 'certifications' === $group );
+		$size_class  = $is_coloured ? 'logos-swiper--lg' : 'logos-swiper--sm';
+		?>
 		<div
-			class="swiper logos-swiper w-full"
+			class="swiper logos-swiper <?php echo esc_attr( $size_class ); ?> w-full"
 			data-autoplay="<?php echo $autoplay ? 'true' : 'false'; ?>"
 			data-autoplay-delay="<?php echo esc_attr( $autoplay_delay ); ?>"
 			data-pause-on-hover="<?php echo $pause_on_hover ? 'true' : 'false'; ?>"
-			data-slides-desktop="<?php echo esc_attr( max( 1, $slides_desktop ) ); ?>"
+			data-slides-desktop="auto"
+			data-space-desktop="96"
+			data-space-mobile="40"
 		>
 			<div class="swiper-wrapper items-center">
 				<?php
@@ -71,8 +87,32 @@ $caption  = thinksme_field( 'logos_caption', false, isset( $logos['caption'] ) ?
 					$client_logos->the_post();
 					?>
 					<?php if ( has_post_thumbnail() ) : ?>
+						<?php
+						// Amendment #21/#22 — GRAY strip only: size each logo for equal VISUAL
+						// WEIGHT (equal area), not equal height. The gray logos have wildly
+						// different aspect ratios (ANEXT BANK ~10:1 down to ORIX ~0.8:1); at one
+						// fixed height a wordmark dwarfs a compact mark, and at one fixed width the
+						// wordmark turns tiny. So derive each logo's height from its own aspect so
+						// the areas match: h = sqrt(TARGET_AREA / aspect), clamped. Full-size file
+						// is served so shrinking never blurs. The coloured strip is unchanged
+						// (its art is uniform and uses the max-height nudges).
+						$logo_style = '';
+						$logo_size  = $is_coloured ? 'medium' : 'full';
+						if ( ! $is_coloured ) {
+							$full   = wp_get_attachment_image_src( get_post_thumbnail_id(), 'full' );
+							$aspect = ( $full && ! empty( $full[2] ) ) ? $full[1] / $full[2] : 1;
+							$h      = (int) round( sqrt( 5200 / max( 0.1, $aspect ) ) );
+							$h      = max( 24, min( 44, $h ) ); // px, clamp the extremes
+							$logo_style = 'height:' . $h . 'px;width:auto;';
+						}
+						?>
 						<div class="swiper-slide flex items-center justify-center h-[40px]">
-							<?php the_post_thumbnail( 'medium', array( 'class' => 'max-h-full max-w-full w-auto h-auto object-contain', 'alt' => get_the_title() ) ); ?>
+							<?php
+							the_post_thumbnail(
+								$logo_size,
+								array( 'class' => 'max-h-full max-w-full w-auto h-auto object-contain', 'alt' => get_the_title(), 'style' => $logo_style )
+							);
+							?>
 						</div>
 					<?php endif; ?>
 				<?php endwhile; ?>

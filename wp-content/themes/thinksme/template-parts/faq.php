@@ -107,12 +107,12 @@ if ( ! $items ) {
 	$items = array(
 		array(
 			'question' => 'How much does it cost to set up a company in Singapore?',
-			'answer'   => "Think SME's all-in company setup package starts from S$888, which covers the ACRA government registration fee, company constitution preparation, registered office address, and first-year corporate secretarial service. The ACRA government fee alone is S$315 — our professional package bundles everything a new Singapore company needs from day one. Contact us for a full transparent quote tailored to your business structure.",
+			'answer'   => "Think SME's all-in company setup package starts from S$888, which covers the ACRA government registration fee, company constitution preparation, registered office address, and first-year corporate secretarial service. The ACRA government fee alone is S$315, our professional package bundles everything a new Singapore company needs from day one. Contact us for a full transparent quote tailored to your business structure.",
 		),
 		array( 'question' => 'When must my Singapore company register for GST?', 'answer' => '' ),
 		array( 'question' => 'How fast can Think SME incorporate my Singapore company?', 'answer' => '' ),
 		array( 'question' => 'What is the corporate tax rate in Singapore?', 'answer' => '' ),
-		array( 'question' => 'My bank rejected my SME loan application — what can I do?', 'answer' => '' ),
+		array( 'question' => 'My bank rejected my SME loan application, what can I do?', 'answer' => '' ),
 		array( 'question' => 'What makes Think SME different from competitors?', 'answer' => '' ),
 	);
 }
@@ -166,11 +166,24 @@ if ( ! $items ) {
 				loading="lazy"
 				class="absolute inset-0 w-full h-full rounded-[40px] lg:rounded-[60px] object-cover"
 			>
+<?php
+			// Amendment #18 — bulb placement depends on the photo:
+			// - Home (front page) uses the Group-17.png collage that already has the
+			//   bulb drawn in at the seam, so the SVG stays overlapped on it
+			//   (top 44.63% / left 41.42%) exactly as before — do NOT change the home.
+			// - Every internal page uses a single photo (faq-photo-1.jpg) with the bulb
+			//   as a separate element, so it sits as a seal on the top-left corner,
+			//   slightly OVERHANGING the edge (negative offsets, ~equal top/left) like
+			//   the reference — the badge pokes a little outside the photo corner.
+			$bulb_position = is_front_page()
+				? 'top-[44.63%] left-[41.42%]'
+				: '-top-[2.5%] -left-[4%]';
+			?>
 			<img
 				src="<?php echo esc_url( "$icons_uri/faq-bulb.svg" ); ?>"
 				alt=""
 				loading="lazy"
-				class="absolute top-[44.63%] left-[41.42%] w-[22.86%] h-[13.85%]"
+				class="absolute <?php echo esc_attr( $bulb_position ); ?> w-[22.86%] h-[13.85%]"
 			>
 		</div>
 	</div>

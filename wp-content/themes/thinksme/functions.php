@@ -10,7 +10,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'THINKSME_VERSION', '1.0.0' );
+define( 'THINKSME_VERSION', '1.0.1' );
 define( 'THINKSME_SWIPER_VERSION', '14.0.7' );
 
 // Primary-nav walker — builds the desktop megamenu out of the menu's own depth.
