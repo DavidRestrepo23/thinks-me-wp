@@ -76,7 +76,7 @@
             },
             "rows": 4,
             "new_lines": "",
-            "default_value": "As a vendor of pre-approved PSG Xero solutions, you are eligible for substantial cost savings through our offerings — with the setup, training, and ongoing support handled by our own Xero Certified Advisor team.",
+            "default_value": "As a vendor of pre-approved PSG Xero solutions, you are eligible for substantial cost savings through our offerings, with the setup, training, and ongoing support handled by our own Xero Certified Advisor team.",
             "maxlength": "",
             "placeholder": ""
         },
@@ -589,7 +589,7 @@
             },
             "rows": 4,
             "new_lines": "",
-            "default_value": "Manage your accounting software from anywhere — here’s what’s covered.",
+            "default_value": "Manage your accounting software from anywhere, here’s what’s covered.",
             "maxlength": "",
             "placeholder": ""
         },
@@ -967,7 +967,7 @@
             },
             "rows": 4,
             "new_lines": "",
-            "default_value": "Remote access for unlimited users — collaborate with your team in real time.",
+            "default_value": "Remote access for unlimited users, collaborate with your team in real time.",
             "maxlength": "",
             "placeholder": ""
         },
@@ -1726,7 +1726,7 @@
             },
             "rows": 4,
             "new_lines": "",
-            "default_value": "Submit your application, then purchase and claim once approved — typically 2–4 weeks.",
+            "default_value": "Submit your application, then purchase and claim once approved, typically 2–4 weeks.",
             "maxlength": "",
             "placeholder": ""
         },
@@ -1907,7 +1907,7 @@
                 "class": "",
                 "id": ""
             },
-            "default_value": "Time-saving — no manual re-entry",
+            "default_value": "Time-saving, no manual re-entry",
             "maxlength": "",
             "placeholder": "",
             "prepend": "",
@@ -2107,7 +2107,7 @@
             },
             "rows": 4,
             "new_lines": "",
-            "default_value": "We’re dedicated to helping SMEs transform their accounting processes — backed by real, verifiable credentials, not just a claim.",
+            "default_value": "We’re dedicated to helping SMEs transform their accounting processes, backed by real, verifiable credentials, not just a claim.",
             "maxlength": "",
             "placeholder": ""
         },
@@ -2296,7 +2296,7 @@
             },
             "rows": 4,
             "new_lines": "",
-            "default_value": "Officialy listed with IMDA and independently verifiable — not just a badge on a page.",
+            "default_value": "Officialy listed with IMDA and independently verifiable, not just a badge on a page.",
             "maxlength": "",
             "placeholder": ""
         },
@@ -2359,7 +2359,7 @@
             },
             "rows": 4,
             "new_lines": "",
-            "default_value": "From eligibility check to Business Grants Portal submission — we guide the process end to end.",
+            "default_value": "From eligibility check to Business Grants Portal submission, we guide the process end to end.",
             "maxlength": "",
             "placeholder": ""
         },

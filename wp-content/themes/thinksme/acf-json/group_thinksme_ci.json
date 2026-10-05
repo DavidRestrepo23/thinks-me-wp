@@ -76,7 +76,7 @@
             },
             "rows": 3,
             "new_lines": "",
-            "default_value": "ACRA-filed, fully online, with your corporate secretary and registered address bundled in from day one — no separate vendors, no guesswork.",
+            "default_value": "ACRA-filed, fully online, with your corporate secretary and registered address bundled in from day one, no separate vendors, no guesswork.",
             "maxlength": "",
             "placeholder": ""
         },
@@ -259,7 +259,7 @@
             },
             "rows": 3,
             "new_lines": "",
-            "default_value": "Every package includes the S$315 ACRA government fee — no hidden charges.",
+            "default_value": "Every package includes the S$315 ACRA government fee, no hidden charges.",
             "maxlength": "",
             "placeholder": ""
         },
@@ -513,7 +513,7 @@
                 "class": "",
                 "id": ""
             },
-            "default_value": "Corporate secretary — 12 months",
+            "default_value": "Corporate secretary (12 months)",
             "maxlength": "",
             "placeholder": "",
             "prepend": "",
@@ -533,7 +533,7 @@
                 "class": "",
                 "id": ""
             },
-            "default_value": "Registered address — 12 months",
+            "default_value": "Registered address (12 months)",
             "maxlength": "",
             "placeholder": "",
             "prepend": "",
@@ -1305,7 +1305,7 @@
             },
             "rows": 3,
             "new_lines": "",
-            "default_value": "Three free tools to help you get incorporation-ready — no sign-up required.",
+            "default_value": "Three free tools to help you get incorporation-ready, no sign-up required.",
             "maxlength": "",
             "placeholder": ""
         },
@@ -1918,7 +1918,7 @@
                 "class": "",
                 "id": ""
             },
-            "default_value": "Corporate Secretary — 12 Months",
+            "default_value": "Corporate Secretary (12 Months)",
             "maxlength": "",
             "placeholder": "",
             "prepend": "",
@@ -1994,7 +1994,7 @@
                 "class": "",
                 "id": ""
             },
-            "default_value": "Registered Address — 12 Months",
+            "default_value": "Registered Address (12 Months)",
             "maxlength": "",
             "placeholder": "",
             "prepend": "",
@@ -2092,7 +2092,7 @@
             },
             "rows": 2,
             "new_lines": "",
-            "default_value": "S$315 ACRA government fee included — no hidden charges.",
+            "default_value": "S$315 ACRA government fee included, no hidden charges.",
             "maxlength": "",
             "placeholder": ""
         },
@@ -2170,7 +2170,7 @@
             },
             "rows": 3,
             "new_lines": "",
-            "default_value": "Move fast on your own, or have a specialist walk you through it — either way, the same ACRA-registered filing and 12-month bundle applies.",
+            "default_value": "Move fast on your own, or have a specialist walk you through it, either way, the same ACRA-registered filing and 12-month bundle applies.",
             "maxlength": "",
             "placeholder": ""
         },
@@ -2520,7 +2520,7 @@
                 "class": "",
                 "id": ""
             },
-            "default_value": "Corporate secretary & registered address — 12 months",
+            "default_value": "Corporate secretary & registered address (12 months)",
             "maxlength": "",
             "placeholder": "",
             "prepend": "",
@@ -2660,7 +2660,7 @@
             },
             "rows": 3,
             "new_lines": "",
-            "default_value": "Most incorporation delays and compliance headaches trace back to a handful of avoidable mistakes — here’s how we close those gaps.",
+            "default_value": "Most incorporation delays and compliance headaches trace back to a handful of avoidable mistakes, here’s how we close those gaps.",
             "maxlength": "",
             "placeholder": ""
         },
@@ -2736,7 +2736,7 @@
             },
             "rows": 3,
             "new_lines": "",
-            "default_value": "ACRA fee, company secretary, and registered address are all included — no surprise line items later.",
+            "default_value": "ACRA fee, company secretary, and registered address are all included, no surprise line items later.",
             "maxlength": "",
             "placeholder": ""
         },
@@ -3003,7 +3003,7 @@
             },
             "rows": 3,
             "new_lines": "",
-            "default_value": "When you’re ready to raise a loan, you’re already talking to the same firm — with access to 60+ banks & lenders.",
+            "default_value": "When you’re ready to raise a loan, you’re already talking to the same firm, with access to 60+ banks & lenders.",
             "maxlength": "",
             "placeholder": ""
         },
@@ -3177,7 +3177,7 @@
             },
             "rows": 3,
             "new_lines": "",
-            "default_value": "Reach out with your requirements, and our experts will be happy to assist you — no commitment, no pressure.",
+            "default_value": "Reach out with your requirements, and our experts will be happy to assist you, no commitment, no pressure.",
             "maxlength": "",
             "placeholder": ""
         },

@@ -76,7 +76,7 @@
             },
             "rows": 4,
             "new_lines": "",
-            "default_value": "Whether you’re buying your first home or refinancing an existing loan, one conversation with our team gets you rates from every major bank — including promotional pricing banks don’t publish.",
+            "default_value": "Whether you’re buying your first home or refinancing an existing loan, one conversation with our team gets you rates from every major bank, including promotional pricing banks don’t publish.",
             "maxlength": "",
             "placeholder": ""
         },
@@ -239,7 +239,7 @@
             },
             "rows": 3,
             "new_lines": "",
-            "default_value": "*Cash rebate applies to selected packages only. Terms and conditions apply — ask us for full details during your consultation.",
+            "default_value": "*Cash rebate applies to selected packages only. Terms and conditions apply, ask us for full details during your consultation.",
             "maxlength": "",
             "placeholder": ""
         },
@@ -581,7 +581,7 @@
             },
             "rows": 3,
             "new_lines": "",
-            "default_value": "Indicative rates, subjected to change from time to time — confirm up to date pricing during your consultation.",
+            "default_value": "Indicative rates, subjected to change from time to time, confirm up to date pricing during your consultation.",
             "maxlength": "",
             "placeholder": ""
         },
@@ -715,7 +715,7 @@
             },
             "rows": 3,
             "new_lines": "",
-            "default_value": "HDB, condo, or landed — matched to the right package for your buyer profile.",
+            "default_value": "HDB, condo, or landed, matched to the right package for your buyer profile.",
             "maxlength": "",
             "placeholder": ""
         },
@@ -791,7 +791,7 @@
             },
             "rows": 3,
             "new_lines": "",
-            "default_value": "Switch to a lower rate once your lock-in ends — most borrowers overpay simply by not reviewing.",
+            "default_value": "Switch to a lower rate once your lock-in ends, most borrowers overpay simply by not reviewing.",
             "maxlength": "",
             "placeholder": ""
         },
@@ -1229,7 +1229,7 @@
             },
             "rows": 3,
             "new_lines": "",
-            "default_value": "Our mortgage team explains the trade-offs — not just the lowest headline rate.",
+            "default_value": "Our mortgage team explains the trade-offs, not just the lowest headline rate.",
             "maxlength": "",
             "placeholder": ""
         },
@@ -1305,7 +1305,7 @@
             },
             "rows": 3,
             "new_lines": "",
-            "default_value": "Once you’re a client, we tell you when your lock-in is ending — before your rate quietly resets higher.",
+            "default_value": "Once you’re a client, we tell you when your lock-in is ending, before your rate quietly resets higher.",
             "maxlength": "",
             "placeholder": ""
         },
@@ -1459,7 +1459,7 @@
             },
             "rows": 3,
             "new_lines": "",
-            "default_value": "Payment stability for the lock-in period — no surprises if the market moves. Best if you value certainty or plan to hold the loan through the full lock-in.",
+            "default_value": "Payment stability for the lock-in period, no surprises if the market moves. Best if you value certainty or plan to hold the loan through the full lock-in.",
             "maxlength": "",
             "placeholder": ""
         },
@@ -1575,7 +1575,7 @@
             },
             "rows": 3,
             "new_lines": "",
-            "default_value": "Indicative rates, subjected to change from time to time — confirm up to date pricing during your consultation.",
+            "default_value": "Indicative rates, subjected to change from time to time, confirm up to date pricing during your consultation.",
             "maxlength": "",
             "placeholder": ""
         },
@@ -1653,7 +1653,7 @@
             },
             "rows": 3,
             "new_lines": "",
-            "default_value": "Tell us once what you need — purchase or refinance, property type, loan size — and we bring back real offers from across our banking panel.",
+            "default_value": "Tell us once what you need, purchase or refinance, property type, loan size, and we bring back real offers from across our banking panel.",
             "maxlength": "",
             "placeholder": ""
         },
@@ -1905,7 +1905,7 @@
             },
             "rows": 3,
             "new_lines": "",
-            "default_value": "Banks pay us a referral fee upon successful disbursement — your rate is identical to applying direct.",
+            "default_value": "Banks pay us a referral fee upon successful disbursement, your rate is identical to applying direct.",
             "maxlength": "",
             "placeholder": ""
         },
@@ -1963,7 +1963,7 @@
                 "class": "",
                 "id": ""
             },
-            "default_value": "Same rate as applying directly — no premium",
+            "default_value": "Same rate as applying directly, no premium",
             "maxlength": "",
             "placeholder": "",
             "prepend": "",
@@ -2219,7 +2219,7 @@
             },
             "rows": 3,
             "new_lines": "",
-            "default_value": "One consultation, 19 banks compared — no cost to you.",
+            "default_value": "One consultation, 19 banks compared, no cost to you.",
             "maxlength": "",
             "placeholder": ""
         },

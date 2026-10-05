@@ -76,7 +76,7 @@
             },
             "rows": 3,
             "new_lines": "",
-            "default_value": "Every Singapore company needs a qualified corporate secretary. Whether you’re appointing your first one or switching from another provider, we handle the ACRA transfer — no compliance gaps.",
+            "default_value": "Every Singapore company needs a qualified corporate secretary. Whether you’re appointing your first one or switching from another provider, we handle the ACRA transfer, no compliance gaps.",
             "maxlength": "",
             "placeholder": ""
         },
@@ -1305,7 +1305,7 @@
             },
             "rows": 3,
             "new_lines": "",
-            "default_value": "Two free tools to help you plan around your deadlines — no sign-up required.",
+            "default_value": "Two free tools to help you plan around your deadlines, no sign-up required.",
             "maxlength": "",
             "placeholder": ""
         },
@@ -1485,7 +1485,7 @@
             },
             "rows": 3,
             "new_lines": "",
-            "default_value": "Estimate only, based on standard ACRA/IRAS timelines. Private companies may be exempt from holding an AGM subject to conditions. Your compliance calendar may vary — talk to us to confirm your exact obligations.",
+            "default_value": "Estimate only, based on standard ACRA/IRAS timelines. Private companies may be exempt from holding an AGM subject to conditions. Your compliance calendar may vary, talk to us to confirm your exact obligations.",
             "maxlength": "",
             "placeholder": ""
         },
@@ -2208,7 +2208,7 @@
                 "class": "",
                 "id": ""
             },
-            "default_value": "Setting up from overseas comes with questions a local incorporation never raises — here’s how we handle them.",
+            "default_value": "Setting up from overseas comes with questions a local incorporation never raises, here’s how we handle them.",
             "maxlength": "",
             "rows": 3,
             "placeholder": "",
@@ -2248,7 +2248,7 @@
                 "class": "",
                 "id": ""
             },
-            "default_value": "Singapore law gives you 6 months from incorporation to appoint a secretary — a natural person ordinarily resident here. Miss that window and it’s treated as an offence under the Companies Act, not a paperwork slip.",
+            "default_value": "Singapore law gives you 6 months from incorporation to appoint a secretary, a natural person ordinarily resident here. Miss that window and it’s treated as an offence under the Companies Act, not a paperwork slip.",
             "maxlength": "",
             "rows": 3,
             "placeholder": "",
@@ -2313,7 +2313,7 @@
                 "class": "",
                 "id": ""
             },
-            "default_value": "Adding a director, bringing in a new shareholder, or adjusting share capital all need resolutions drafted correctly and filed with ACRA — so what’s on record actually matches what happened in your business.",
+            "default_value": "Adding a director, bringing in a new shareholder, or adjusting share capital all need resolutions drafted correctly and filed with ACRA, so what’s on record actually matches what happened in your business.",
             "maxlength": "",
             "rows": 3,
             "placeholder": "",
@@ -2443,7 +2443,7 @@
                 "class": "",
                 "id": ""
             },
-            "default_value": "Lenders and investors both check your statutory registers and share structure before releasing funds — messy records can stall a deal. Our corporate secretary and financing teams work from the same file, not two separate vendors.",
+            "default_value": "Lenders and investors both check your statutory registers and share structure before releasing funds, messy records can stall a deal. Our corporate secretary and financing teams work from the same file, not two separate vendors.",
             "maxlength": "",
             "rows": 3,
             "placeholder": "",
@@ -2613,7 +2613,7 @@
             },
             "rows": 3,
             "new_lines": "",
-            "default_value": "Move fast on your own, or have a specialist review your current compliance status first — either way, we handle the ACRA transfer.",
+            "default_value": "Move fast on your own, or have a specialist review your current compliance status first, either way, we handle the ACRA transfer.",
             "maxlength": "",
             "placeholder": ""
         },
@@ -3103,7 +3103,7 @@
             },
             "rows": 3,
             "new_lines": "",
-            "default_value": "Most switches happen for the same handful of reasons — here’s how we fix them.",
+            "default_value": "Most switches happen for the same handful of reasons, here’s how we fix them.",
             "maxlength": "",
             "placeholder": ""
         },
@@ -3179,7 +3179,7 @@
             },
             "rows": 3,
             "new_lines": "",
-            "default_value": "Proactive alerts for ECI, annual returns, and AGM obligations — not a scramble the week they’re due.",
+            "default_value": "Proactive alerts for ECI, annual returns, and AGM obligations, not a scramble the week they’re due.",
             "maxlength": "",
             "placeholder": ""
         },
@@ -3280,7 +3280,7 @@
             },
             "rows": 3,
             "new_lines": "",
-            "default_value": "S$700/year covers the full retainer — no per-filing charges or line items that show up later.",
+            "default_value": "S$700/year covers the full retainer, no per-filing charges or line items that show up later.",
             "maxlength": "",
             "placeholder": ""
         },
@@ -3446,7 +3446,7 @@
             },
             "rows": 3,
             "new_lines": "",
-            "default_value": "You don’t file anything — we manage the change of secretary and review your compliance history during handover.",
+            "default_value": "You don’t file anything, we manage the change of secretary and review your compliance history during handover.",
             "maxlength": "",
             "placeholder": ""
         },

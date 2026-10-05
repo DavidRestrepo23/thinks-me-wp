@@ -259,7 +259,7 @@
             },
             "rows": 3,
             "new_lines": "",
-            "default_value": "Leaving a stable job, investing your savings and building something from scratch is exciting — but can also be overwhelming.",
+            "default_value": "Leaving a stable job, investing your savings and building something from scratch is exciting, but can also be overwhelming.",
             "maxlength": "",
             "placeholder": ""
         },
@@ -319,7 +319,7 @@
             },
             "rows": 4,
             "new_lines": "",
-            "default_value": "We set out to become more than another corporate service provider. Our goal is to become the long-term business partner entrepreneurs can rely on — from starting a company to securing financing, adopting technology and expanding into new markets.",
+            "default_value": "We set out to become more than another corporate service provider. Our goal is to become the long-term business partner entrepreneurs can rely on, from starting a company to securing financing, adopting technology and expanding into new markets.",
             "maxlength": "",
             "placeholder": ""
         },
@@ -417,7 +417,7 @@
                 "class": "",
                 "id": ""
             },
-            "default_value": "One partner, every stage — not a patchwork of vendors",
+            "default_value": "One partner, every stage, not a patchwork of vendors",
             "maxlength": "",
             "placeholder": "",
             "prepend": "",
@@ -720,7 +720,7 @@
             },
             "rows": 2,
             "new_lines": "",
-            "default_value": " — our clients' success is the measure of our own; we always act in their best interests and are committed to helping them achieve sustainable business growth.",
+            "default_value": "our clients' success is the measure of our own; we always act in their best interests and are committed to helping them achieve sustainable business growth.",
             "maxlength": "",
             "placeholder": ""
         },
@@ -738,7 +738,7 @@
                 "class": "",
                 "id": ""
             },
-            "default_value": "We Guide With Expertise —",
+            "default_value": "We Guide With Expertise:",
             "maxlength": "",
             "placeholder": "",
             "prepend": "",
@@ -778,7 +778,7 @@
                 "class": "",
                 "id": ""
             },
-            "default_value": "Grow Together —",
+            "default_value": "Grow Together:",
             "maxlength": "",
             "placeholder": "",
             "prepend": "",
@@ -996,7 +996,7 @@
             },
             "rows": 3,
             "new_lines": "",
-            "default_value": "We're dedicated to helping SMEs transform their accounting processes — backed by real, verifiable credentials, not just a claim.",
+            "default_value": "We're dedicated to helping SMEs transform their accounting processes, backed by real, verifiable credentials, not just a claim.",
             "maxlength": "",
             "placeholder": ""
         },
@@ -1967,7 +1967,7 @@
             },
             "rows": 3,
             "new_lines": "",
-            "default_value": "They struggle because they have to navigate incorporation, compliance, accounting, financing, grants and technology — all while trying to grow their business.",
+            "default_value": "They struggle because they have to navigate incorporation, compliance, accounting, financing, grants and technology, all while trying to grow their business.",
             "maxlength": "",
             "placeholder": ""
         },
@@ -2110,7 +2110,7 @@
             },
             "rows": 2,
             "new_lines": "",
-            "default_value": "ThinkSME guides you through every step — from free consultation to cash in your account.",
+            "default_value": "ThinkSME guides you through every step, from free consultation to cash in your account.",
             "maxlength": "",
             "placeholder": ""
         },
@@ -2312,7 +2312,7 @@
             },
             "rows": 3,
             "new_lines": "",
-            "default_value": "Compare 60+ banks and lenders with one application — free, ex-banker team.",
+            "default_value": "Compare 60+ banks and lenders with one application, free, ex-banker team.",
             "maxlength": "",
             "placeholder": ""
         },
@@ -2554,7 +2554,7 @@
             },
             "rows": 3,
             "new_lines": "",
-            "default_value": "Up to 50% PSG support for Xero cloud accounting — IMDA pre-approved.",
+            "default_value": "Up to 50% PSG support for Xero cloud accounting, IMDA pre-approved.",
             "maxlength": "",
             "placeholder": ""
         },
@@ -2652,7 +2652,7 @@
             },
             "rows": 3,
             "new_lines": "",
-            "default_value": "From first step to every milestone — talk to us about what you're building.",
+            "default_value": "From first step to every milestone, talk to us about what you're building.",
             "maxlength": "",
             "placeholder": ""
         },

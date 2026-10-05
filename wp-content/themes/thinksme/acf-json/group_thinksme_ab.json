@@ -76,7 +76,7 @@
             },
             "rows": 3,
             "new_lines": "",
-            "default_value": "Bookkeeping, financial reporting, and tax support from a team with a banking background — priced by how your business actually runs, not a one-size-fits-all tier.",
+            "default_value": "Bookkeeping, financial reporting, and tax support from a team with a banking background, priced by how your business actually runs, not a one-size-fits-all tier.",
             "maxlength": "",
             "placeholder": ""
         },
@@ -671,7 +671,7 @@
             },
             "rows": 2,
             "new_lines": "",
-            "default_value": "Billed monthly — a good fit for active, growing businesses.",
+            "default_value": "Billed monthly, a good fit for active, growing businesses.",
             "maxlength": "",
             "placeholder": ""
         },
@@ -1589,7 +1589,7 @@
             },
             "rows": 3,
             "new_lines": "",
-            "default_value": "A single straightforward package covers onboarding, migration, and ongoing accounting — nothing sprung on you later.",
+            "default_value": "A single straightforward package covers onboarding, migration, and ongoing accounting, nothing sprung on you later.",
             "maxlength": "",
             "placeholder": ""
         },
@@ -2103,7 +2103,7 @@
             },
             "rows": 3,
             "new_lines": "",
-            "default_value": "Clean books make loan and financing applications smoother — through the same team, via our 60+ lender network.",
+            "default_value": "Clean books make loan and financing applications smoother, through the same team, via our 60+ lender network.",
             "maxlength": "",
             "placeholder": ""
         },
@@ -2881,7 +2881,7 @@
             },
             "rows": 3,
             "new_lines": "",
-            "default_value": "Operating from abroad doesn’t remove your obligation to keep locally compliant books and file locally — we handle it remotely.",
+            "default_value": "Operating from abroad doesn’t remove your obligation to keep locally compliant books and file locally, we handle it remotely.",
             "maxlength": "",
             "placeholder": ""
         },
@@ -3583,7 +3583,7 @@
             },
             "rows": 3,
             "new_lines": "",
-            "default_value": "Tell us about your business and we’ll quote you directly — no forced tiers.",
+            "default_value": "Tell us about your business and we’ll quote you directly, no forced tiers.",
             "maxlength": "",
             "placeholder": ""
         },
