@@ -76,7 +76,7 @@
             },
             "rows": 4,
             "new_lines": "",
-            "default_value": "Your property is one of Singapore’s most valuable assets — and it doesn’t have to sit idle. At ThinkSME, we help Singapore SME owners use property cashout to release equity from their private residential, commercial, or industrial property and convert it into working capital for your business.",
+            "default_value": "Your property is one of Singapore’s most valuable assets, and it doesn’t have to sit idle. At ThinkSME, we help Singapore SME owners use property cashout to release equity from their private residential, commercial, or industrial property and convert it into working capital for your business.",
             "maxlength": "",
             "placeholder": ""
         },
@@ -439,7 +439,7 @@
             },
             "rows": 4,
             "new_lines": "",
-            "default_value": "If your commercial shophouse is valued at <strong>S$2,000,000</strong> and you have an outstanding mortgage of <strong>S$900,000</strong>, you may be able to access up to <strong>S$900,000 in additional cash</strong> through a property cashout refinancing — without selling the property.",
+            "default_value": "If your commercial shophouse is valued at <strong>S$2,000,000</strong> and you have an outstanding mortgage of <strong>S$900,000</strong>, you may be able to access up to <strong>S$900,000 in additional cash</strong> through a property cashout refinancing, without selling the property.",
             "maxlength": "",
             "placeholder": ""
         },
@@ -1120,7 +1120,7 @@
             },
             "rows": 2,
             "new_lines": "",
-            "default_value": "ThinkSME guides you through every step — from free consultation to cash in your account.",
+            "default_value": "ThinkSME guides you through every step, from free consultation to cash in your account.",
             "maxlength": "",
             "placeholder": ""
         },
@@ -2177,7 +2177,7 @@
             },
             "rows": 3,
             "new_lines": "",
-            "default_value": "Secured property loans carry rates from 1%+ p.a. vs 4–5% p.a. for unsecured SME loans — significantly reducing your cost of capital.",
+            "default_value": "Secured property loans carry rates from 1%+ p.a. vs 4–5% p.a. for unsecured SME loans, significantly reducing your cost of capital.",
             "maxlength": "",
             "placeholder": ""
         },
@@ -2253,7 +2253,7 @@
             },
             "rows": 3,
             "new_lines": "",
-            "default_value": "Access S$200,000 to S$10,000,000+ depending on property value — far exceeding unsecured business loan limits.",
+            "default_value": "Access S$200,000 to S$10,000,000+ depending on property value, far exceeding unsecured business loan limits.",
             "maxlength": "",
             "placeholder": ""
         },
@@ -2329,7 +2329,7 @@
             },
             "rows": 3,
             "new_lines": "",
-            "default_value": "Unlike government SME loans, cashout proceeds can be used for any business purpose — inventory, payroll, renovation, expansion, investment.",
+            "default_value": "Unlike government SME loans, cashout proceeds can be used for any business purpose, inventory, payroll, renovation, expansion, investment.",
             "maxlength": "",
             "placeholder": ""
         },
@@ -2405,7 +2405,7 @@
             },
             "rows": 3,
             "new_lines": "",
-            "default_value": "You continue to own and benefit from your property’s appreciation — while putting its equity to productive use today.",
+            "default_value": "You continue to own and benefit from your property’s appreciation, while putting its equity to productive use today.",
             "maxlength": "",
             "placeholder": ""
         },
@@ -2762,7 +2762,7 @@
                 "class": "",
                 "id": ""
             },
-            "default_value": "Company name: TDSR does not apply — significantly more flexible",
+            "default_value": "Company name: TDSR does not apply, significantly more flexible",
             "maxlength": "",
             "placeholder": "",
             "prepend": "",
@@ -3103,7 +3103,7 @@
             },
             "rows": 3,
             "new_lines": "",
-            "default_value": "Best rate guaranteed — we compare across the entire market so you never overpay.",
+            "default_value": "Best rate guaranteed, we compare across the entire market so you never overpay.",
             "maxlength": "",
             "placeholder": ""
         },
@@ -3179,7 +3179,7 @@
             },
             "rows": 3,
             "new_lines": "",
-            "default_value": "Expert guidance tailored to your property type and business goals — not generic advice.",
+            "default_value": "Expert guidance tailored to your property type and business goals, not generic advice.",
             "maxlength": "",
             "placeholder": ""
         },
@@ -3331,7 +3331,7 @@
             },
             "rows": 3,
             "new_lines": "",
-            "default_value": "Know your options before committing to anything — zero cost, zero obligation.",
+            "default_value": "Know your options before committing to anything, zero cost, zero obligation.",
             "maxlength": "",
             "placeholder": ""
         },

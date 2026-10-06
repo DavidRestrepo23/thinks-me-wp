@@ -124,7 +124,8 @@ if ( ! $cards ) {
 
 	<?php // Figma's 576 / 624 columns, held at their own widths and pushed apart, rather than stretched: the photo is fixed-ratio and growing it into a 1920px viewport would tower over the cards beside it. ?>
 	<?php // flex-col-reverse below lg: the mobile design (101:18) puts the photo last, under the cards, while desktop reads photo-first left-to-right — same arrangement roa-plan.php uses. ?>
-	<div class="flex flex-col-reverse lg:flex-row lg:items-center lg:justify-between gap-[56px] lg:gap-xl xl:gap-[96px] w-full">
+	<?php // Amendment #9: was lg:justify-between, which piled all the leftover width into the gap between the two fixed-basis columns (huge empty middle on wide screens). justify-center keeps the designed 96px gap and sends the extra space to the outer margins instead. ?>
+	<div class="flex flex-col-reverse lg:flex-row lg:items-center lg:justify-center gap-[56px] lg:gap-xl xl:gap-[96px] w-full">
 		<?php // Both the box and the image's own classes come from the defaults — the two pages draw this slot as different shapes; see the note at the top. ?>
 		<div class="w-full max-w-[520px] mx-auto lg:max-w-none lg:mx-0 lg:basis-[576px] lg:min-w-0 <?php echo esc_attr( $d['image_box'] ); ?>">
 			<img

@@ -76,7 +76,7 @@
             },
             "rows": 3,
             "new_lines": "",
-            "default_value": "Fully remote incorporation with nominee director, registered address, and Employment Pass support — no need to set foot in Singapore.",
+            "default_value": "Fully remote incorporation with nominee director, registered address, and Employment Pass support, no need to set foot in Singapore.",
             "maxlength": "",
             "placeholder": ""
         },
@@ -259,7 +259,7 @@
             },
             "rows": 3,
             "new_lines": "",
-            "default_value": "Every package includes the S$315 ACRA government fee — no hidden charges.",
+            "default_value": "Every package includes the S$315 ACRA government fee, no hidden charges.",
             "maxlength": "",
             "placeholder": ""
         },
@@ -513,7 +513,7 @@
                 "class": "",
                 "id": ""
             },
-            "default_value": "Corporate secretary — 12 months",
+            "default_value": "Corporate secretary (12 months)",
             "maxlength": "",
             "placeholder": "",
             "prepend": "",
@@ -533,7 +533,7 @@
                 "class": "",
                 "id": ""
             },
-            "default_value": "Registered address — 12 months",
+            "default_value": "Registered address (12 months)",
             "maxlength": "",
             "placeholder": "",
             "prepend": "",
@@ -789,7 +789,7 @@
                 "class": "",
                 "id": ""
             },
-            "default_value": "Nominee resident director — 12 months",
+            "default_value": "Nominee resident director (12 months)",
             "maxlength": "",
             "placeholder": "",
             "prepend": "",
@@ -1305,7 +1305,7 @@
             },
             "rows": 3,
             "new_lines": "",
-            "default_value": "Three free tools to help you get incorporation-ready — no sign-up required.",
+            "default_value": "Three free tools to help you get incorporation-ready, no sign-up required.",
             "maxlength": "",
             "placeholder": ""
         },
@@ -2070,7 +2070,7 @@
                 "class": "",
                 "id": ""
             },
-            "default_value": "100% Remote — No Visit Required",
+            "default_value": "100% Remote (No Visit Required)",
             "maxlength": "",
             "placeholder": "",
             "prepend": "",
@@ -2170,7 +2170,7 @@
             },
             "rows": 3,
             "new_lines": "",
-            "default_value": "Move fast on your own, or have a specialist walk you through it — either way, the same ACRA-registered filing and 12-month bundle applies.",
+            "default_value": "Move fast on your own, or have a specialist walk you through it, either way, the same ACRA-registered filing and 12-month bundle applies.",
             "maxlength": "",
             "placeholder": ""
         },
@@ -2500,7 +2500,7 @@
                 "class": "",
                 "id": ""
             },
-            "default_value": "Nominee resident director — 12 months",
+            "default_value": "Nominee resident director (12 months)",
             "maxlength": "",
             "placeholder": "",
             "prepend": "",
@@ -2660,7 +2660,7 @@
             },
             "rows": 3,
             "new_lines": "",
-            "default_value": "Setting up from overseas comes with questions a local incorporation never raises — here’s how we handle them.",
+            "default_value": "Setting up from overseas comes with questions a local incorporation never raises, here’s how we handle them.",
             "maxlength": "",
             "placeholder": ""
         },
@@ -2736,7 +2736,7 @@
             },
             "rows": 3,
             "new_lines": "",
-            "default_value": "KYC-screened and indemnity-governed — they hold no shares and no bank access, just the statutory residency requirement.",
+            "default_value": "KYC-screened and indemnity-governed, they hold no shares and no bank access, just the statutory residency requirement.",
             "maxlength": "",
             "placeholder": ""
         },
@@ -3003,7 +3003,7 @@
             },
             "rows": 3,
             "new_lines": "",
-            "default_value": "Partner with local and international banks — no need to visit Singapore. Open your account remotely, or through a video call.",
+            "default_value": "Partner with local and international banks, no need to visit Singapore. Open your account remotely, or through a video call.",
             "maxlength": "",
             "placeholder": ""
         },

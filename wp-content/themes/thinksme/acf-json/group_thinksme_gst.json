@@ -76,7 +76,7 @@
             },
             "rows": 3,
             "new_lines": "",
-            "default_value": "Register for GST correctly the first time, then keep every quarterly return filed on time — bundled with the accounting and bookkeeping that makes it accurate.",
+            "default_value": "Register for GST correctly the first time, then keep every quarterly return filed on time, bundled with the accounting and bookkeeping that makes it accurate.",
             "maxlength": "",
             "placeholder": ""
         },
@@ -134,7 +134,7 @@
                 "class": "",
                 "id": ""
             },
-            "default_value": "New customers only — terms apply",
+            "default_value": "New customers only, terms apply",
             "maxlength": "",
             "placeholder": "",
             "prepend": "",
@@ -375,7 +375,7 @@
             },
             "rows": 3,
             "new_lines": "",
-            "default_value": "Once your taxable turnover exceeds S$1 million in a 12-month period — or you can see it coming, especially if you deal in imports, exports, or high-value goods — registration becomes compulsory. Getting ahead of it avoids backdated penalties.",
+            "default_value": "Once your taxable turnover exceeds S$1 million in a 12-month period, or you can see it coming, especially if you deal in imports, exports, or high-value goods, registration becomes compulsory. Getting ahead of it avoids backdated penalties.",
             "maxlength": "",
             "placeholder": ""
         },
@@ -527,7 +527,7 @@
             },
             "rows": 3,
             "new_lines": "",
-            "default_value": "Making a major purchase — commercial property, equipment, or renovation? Voluntary registration lets you claim back the GST paid as input tax, often a meaningful saving on a big-ticket purchase.",
+            "default_value": "Making a major purchase, commercial property, equipment, or renovation? Voluntary registration lets you claim back the GST paid as input tax, often a meaningful saving on a big-ticket purchase.",
             "maxlength": "",
             "placeholder": ""
         },
@@ -721,7 +721,7 @@
             },
             "rows": 2,
             "new_lines": "",
-            "default_value": "Billed monthly — a good fit for active, growing businesses.",
+            "default_value": "Billed monthly, a good fit for active, growing businesses.",
             "maxlength": "",
             "placeholder": ""
         },
@@ -799,7 +799,7 @@
                 "class": "",
                 "id": ""
             },
-            "default_value": "One-time fee — new customers only",
+            "default_value": "One-time fee, new customers only",
             "maxlength": "",
             "placeholder": "",
             "prepend": "",
@@ -1295,7 +1295,7 @@
                 "class": "",
                 "id": ""
             },
-            "default_value": "Nil returns filed on schedule — never missed",
+            "default_value": "Nil returns filed on schedule, never missed",
             "maxlength": "",
             "placeholder": "",
             "prepend": "",
@@ -1891,7 +1891,7 @@
             },
             "rows": 2,
             "new_lines": "",
-            "default_value": "Per month — books and GST filing handled, penalty-free",
+            "default_value": "Per month, books and GST filing handled, penalty-free",
             "maxlength": "",
             "placeholder": ""
         },
@@ -2456,7 +2456,7 @@
             },
             "rows": 3,
             "new_lines": "",
-            "default_value": "Registration becomes compulsory within a set window once you cross the threshold — we handle the paperwork before the deadline pressure builds.",
+            "default_value": "Registration becomes compulsory within a set window once you cross the threshold, we handle the paperwork before the deadline pressure builds.",
             "maxlength": "",
             "placeholder": ""
         },
@@ -2521,7 +2521,7 @@
             },
             "rows": 3,
             "new_lines": "",
-            "default_value": "One misclassified input tax claim or one missed nil return is where the penalties start — we review every return before IRAS sees it.",
+            "default_value": "One misclassified input tax claim or one missed nil return is where the penalties start, we review every return before IRAS sees it.",
             "maxlength": "",
             "placeholder": ""
         },
@@ -2586,7 +2586,7 @@
             },
             "rows": 3,
             "new_lines": "",
-            "default_value": "We collect your past filings, confirm your next deadline, and take over your filing cycle — most handovers done within a week.",
+            "default_value": "We collect your past filings, confirm your next deadline, and take over your filing cycle, most handovers done within a week.",
             "maxlength": "",
             "placeholder": ""
         },
@@ -3108,7 +3108,7 @@
             },
             "rows": 3,
             "new_lines": "",
-            "default_value": "Clean books make loan and financing applications smoother — through the same team, via our 60+ lender network.",
+            "default_value": "Clean books make loan and financing applications smoother, through the same team, via our 60+ lender network.",
             "maxlength": "",
             "placeholder": ""
         },

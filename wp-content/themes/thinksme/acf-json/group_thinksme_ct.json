@@ -76,7 +76,7 @@
             },
             "rows": 3,
             "new_lines": "",
-            "default_value": "Filing taxes as a corporation in Singapore means IRAS company tax computation and filing, handled end-to-end — the right form selected, every exemption applied, submitted well ahead of the 30 November deadline.",
+            "default_value": "Filing taxes as a corporation in Singapore means IRAS company tax computation and filing, handled end-to-end, the right form selected, every exemption applied, submitted well ahead of the 30 November deadline.",
             "maxlength": "",
             "placeholder": ""
         },
@@ -713,7 +713,7 @@
             },
             "rows": 3,
             "new_lines": "",
-            "default_value": "Form C-S Lite, Form C-S, or Form C — selected based on your revenue and structure, not guessed.",
+            "default_value": "Form C-S Lite, Form C-S, or Form C, selected based on your revenue and structure, not guessed.",
             "maxlength": "",
             "placeholder": ""
         },
@@ -789,7 +789,7 @@
             },
             "rows": 3,
             "new_lines": "",
-            "default_value": "Start-Up Tax Exemption or Partial Tax Exemption checked and applied — never left on the table.",
+            "default_value": "Start-Up Tax Exemption or Partial Tax Exemption checked and applied, never left on the table.",
             "maxlength": "",
             "placeholder": ""
         },
@@ -865,7 +865,7 @@
             },
             "rows": 3,
             "new_lines": "",
-            "default_value": "Start-Up Tax Exemption or Partial Tax Exemption checked and applied — never left on the table.",
+            "default_value": "Start-Up Tax Exemption or Partial Tax Exemption checked and applied, never left on the table.",
             "maxlength": "",
             "placeholder": ""
         },
@@ -943,7 +943,7 @@
             },
             "rows": 4,
             "new_lines": "",
-            "default_value": "We don’t split tax computation and filing across two vendors. One team prepares your numbers, applies your exemptions, and submits directly to IRAS — our corporate tax filing services cover the full corporate tax filing cost in one transparent quote.",
+            "default_value": "We don’t split tax computation and filing across two vendors. One team prepares your numbers, applies your exemptions, and submits directly to IRAS, our corporate tax filing services cover the full corporate tax filing cost in one transparent quote.",
             "maxlength": "",
             "placeholder": ""
         },
@@ -1001,7 +1001,7 @@
                 "class": "",
                 "id": ""
             },
-            "default_value": "Correct form determined — C-S Lite, C-S, or C",
+            "default_value": "Correct form determined, C-S Lite, C-S, or C",
             "maxlength": "",
             "placeholder": "",
             "prepend": "",
@@ -1119,7 +1119,7 @@
             },
             "rows": 2,
             "new_lines": "",
-            "default_value": "Bundled — not sold as two separate services.",
+            "default_value": "Bundled, not sold as two separate services.",
             "maxlength": "",
             "placeholder": ""
         },
@@ -2309,7 +2309,7 @@
             },
             "rows": 2,
             "new_lines": "",
-            "default_value": "Indicative only, based on the current 17% rate and the exemption you selected — not tax advice, and not a filing.",
+            "default_value": "Indicative only, based on the current 17% rate and the exemption you selected, not tax advice, and not a filing.",
             "maxlength": "",
             "placeholder": ""
         },
@@ -2527,7 +2527,7 @@
             },
             "rows": 3,
             "new_lines": "",
-            "default_value": "IRAS raises a Notice of Assessment based on prior years — often higher than your real liability, and payable within 1 month regardless.",
+            "default_value": "IRAS raises a Notice of Assessment based on prior years, often higher than your real liability, and payable within 1 month regardless.",
             "maxlength": "",
             "placeholder": ""
         },
@@ -2567,7 +2567,7 @@
             },
             "rows": 3,
             "new_lines": "",
-            "default_value": "A fine of S$200 to S$5,000 may apply — paying it doesn’t excuse you from still filing the outstanding return.",
+            "default_value": "A fine of S$200 to S$5,000 may apply, paying it doesn’t excuse you from still filing the outstanding return.",
             "maxlength": "",
             "placeholder": ""
         },
@@ -2790,7 +2790,7 @@
             },
             "rows": 3,
             "new_lines": "",
-            "default_value": "No revenue this year doesn’t mean no filing obligation — a nil tax return is still required by 30 November.",
+            "default_value": "No revenue this year doesn’t mean no filing obligation, a nil tax return is still required by 30 November.",
             "maxlength": "",
             "placeholder": ""
         },
@@ -3318,7 +3318,7 @@
             },
             "rows": 3,
             "new_lines": "",
-            "default_value": "Clean, tax-compliant financials make loan applications smoother — through the same team, via our 60+ lender network.",
+            "default_value": "Clean, tax-compliant financials make loan applications smoother, through the same team, via our 60+ lender network.",
             "maxlength": "",
             "placeholder": ""
         },

@@ -91,7 +91,12 @@ foreach ( $defaults as $n => $default ) {
 		'features_intro' => thinksme_field( "ci_pricing_card_{$n}_features_intro", false, $default['features_intro'] ),
 		'features'       => $features,
 		'button_text'    => thinksme_field( "ci_pricing_card_{$n}_button_text", false, 'Get Started' ),
-		'button_link'    => thinksme_field( "ci_pricing_card_{$n}_button_link", false, '/contact-us' ),
+		// TODO(Vicky): Amendment #11 — the three "Get Started" buttons (Essential / Standard /
+		// Premium) should point to their respective destination pages/URLs, which the client has
+		// "in the chat". Until the client supplies them, each card falls back to /contact-us/ (a working
+		// link, not a broken "#"). Set per card via ACF field ci_pricing_card_{N}_button_link on
+		// each pricing page, or change the fallback below.
+		'button_link'    => thinksme_field( "ci_pricing_card_{$n}_button_link", false, '/contact-us/' ),
 	);
 }
 

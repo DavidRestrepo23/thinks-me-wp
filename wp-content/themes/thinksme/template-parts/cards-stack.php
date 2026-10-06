@@ -44,17 +44,17 @@ $content_defaults = array(
 	1 => array(
 		1 => array(
 			'title'       => 'Company Incorporation',
-			'description' => 'Incorporate your Singapore private limited company (Pte Ltd) fully online — as fast as 24 hours. We handle name reservation, SSIC code selection, company constitution, and all ACRA BizFile+ submission on your behalf.',
+			'description' => 'Incorporate your Singapore private limited company (Pte Ltd) fully online, as fast as 24 hours. We handle name reservation, SSIC code selection, company constitution, and all ACRA BizFile+ submission on your behalf.',
 			'benefits'    => array(
 				'Local & foreign entrepreneur incorporation',
 				'ACRA name reservation & SSIC advisory',
-				'100% online — no Singapore visit required',
+				'100% online, no Singapore visit required',
 				'Grant eligibility check at incorporation',
 			),
 		),
 		2 => array(
 			'title'       => 'Corporate Secretarial Services',
-			'description' => 'Singapore law requires every Pte Ltd to appoint a qualified company secretary within 6 months of incorporation. Think SME provides a full corporate secretarial service — AGM prep, annual return filing, and ongoing ACRA compliance.',
+			'description' => 'Singapore law requires every Pte Ltd to appoint a qualified company secretary within 6 months of incorporation. Think SME provides a full corporate secretarial service, AGM prep, annual return filing, and ongoing ACRA compliance.',
 			'benefits'    => array(
 				'Annual return filing with ACRA',
 				'AGM preparation & resolutions',
@@ -64,7 +64,7 @@ $content_defaults = array(
 		),
 		3 => array(
 			'title'       => 'Registered Office Address',
-			'description' => 'Every Singapore company must maintain a local registered address accessible during business hours. Think SME provides a professional Singapore registered office address — ACRA-compliant, mail handling included.',
+			'description' => 'Every Singapore company must maintain a local registered address accessible during business hours. Think SME provides a professional Singapore registered office address, ACRA-compliant, mail handling included.',
 			'benefits'    => array(
 				'ACRA-compliant Singapore business address',
 				'Mail collection & forwarding',
@@ -79,7 +79,7 @@ $content_defaults = array(
 		// XBRL) need the client's sign-off before launch.
 		1 => array(
 			'title'       => 'Accounting & Bookkeeping',
-			'description' => 'Singapore’s Companies Act requires every company to keep proper accounting records for five years. Think SME handles your monthly bookkeeping and year-end unaudited financial statements to SFRS standards — always IRAS- and ACRA-ready.',
+			'description' => 'Singapore’s Companies Act requires every company to keep proper accounting records for five years. Think SME handles your monthly bookkeeping and year-end unaudited financial statements to SFRS standards, always IRAS- and ACRA-ready.',
 			'benefits'    => array(
 				'Monthly bookkeeping & bank reconciliation',
 				'Unaudited financial statements to SFRS',
@@ -89,7 +89,7 @@ $content_defaults = array(
 		),
 		2 => array(
 			'title'       => 'GST Registration & Filing',
-			'description' => 'Compulsory GST registration when your turnover exceeds S$1 million — and quarterly F5/F8 return filing to IRAS. Think SME tracks every deadline and submits on time, every quarter. Zero late penalties, guaranteed.',
+			'description' => 'Compulsory GST registration when your turnover exceeds S$1 million, and quarterly F5/F8 return filing to IRAS. Think SME tracks every deadline and submits on time, every quarter. Zero late penalties, guaranteed.',
 			'benefits'    => array(
 				'Compulsory & voluntary GST registration',
 				'Quarterly F5 return preparation & IRAS filing',
@@ -99,7 +99,7 @@ $content_defaults = array(
 		),
 		3 => array(
 			'title'       => 'Corporate Income Tax',
-			'description' => 'Singapore’s flat 17% corporate tax rate — but most SMEs pay far less thanks to the Start-up Tax Exemption (SUTE) and Partial Tax Exemption (PTE). Think SME ensures every exemption is claimed and every IRAS deadline is met.',
+			'description' => 'Singapore’s flat 17% corporate tax rate, but most SMEs pay far less thanks to the Start-up Tax Exemption (SUTE) and Partial Tax Exemption (PTE). Think SME ensures every exemption is claimed and every IRAS deadline is met.',
 			'benefits'    => array(
 				'Estimated Chargeable Income (ECI) filing',
 				'Form C / C-S / C-S Lite preparation & submission',
@@ -111,9 +111,9 @@ $content_defaults = array(
 	3 => array(
 		1 => array(
 			'title'       => 'SME Business Loans',
-			'description' => 'One application, matched across 60+ banks, finance companies, digital banks, and licensed alternative lenders. Our team of former bankers knows exactly how lenders assess SME applications — and how to maximise your approval odds.',
+			'description' => 'One application, matched across 60+ banks, finance companies, digital banks, and licensed alternative lenders. Our team of former bankers knows exactly how lenders assess SME applications, and how to maximise your approval odds.',
 			'benefits'    => array(
-				'Enterprise Financing Scheme (EFS) — up to S$500K',
+				'Enterprise Financing Scheme (EFS), up to S$500K',
 				'Trade & invoice financing',
 				'Equipment & fixed asset loans',
 				'Alternative lenders for bank-rejected cases',
@@ -131,12 +131,12 @@ $content_defaults = array(
 		),
 		3 => array(
 			'title'       => 'PSG Xero Grant & Government Grants',
-			'description' => 'As an IMDA Pre-Approved PSG Vendor, Think SME fast-tracks your Xero grant application via the Business Grants Portal — with up to 50% government co-funding. We also advise on the Enterprise Development Grant (EDG) for capability building and the Market Readiness Assistance (MRA) grant for Singapore SMEs expanding overseas.',
+			'description' => 'As an IMDA Pre-Approved PSG Vendor, Think SME fast-tracks your Xero grant application via the Business Grants Portal, with up to 50% government co-funding. We also advise on the Enterprise Development Grant (EDG) for capability building and the Market Readiness Assistance (MRA) grant for Singapore SMEs expanding overseas.',
 			'benefits'    => array(
-				'PSG Xero Grant — up to 50% co-funded by government',
+				'PSG Xero Grant, up to 50% co-funded by government',
 				'IMDA Pre-Approved · Business Grants Portal listed',
 				'Enterprise Development Grant (EDG)',
-				'Market Readiness Assistance (MRA) — overseas expansion',
+				'Market Readiness Assistance (MRA), overseas expansion',
 			),
 		),
 	),
@@ -201,8 +201,9 @@ foreach ( $row_labels as $r => $default_label ) {
 	</div>
 
 	<div class="relative w-full bg-surface-dark rounded-[40px] md:rounded-[80px] overflow-hidden px-lg md:px-[56px] py-3xl md:py-[136px]">
+<?php // Amendment #16 — constellation pattern anchored to the TOP of the dark box (Figma), was bottom. ?>
 		<div
-			class="absolute inset-x-0 bottom-0 h-1/2 bg-no-repeat bg-bottom pointer-events-none"
+			class="absolute inset-x-0 top-0 h-1/2 bg-no-repeat bg-top pointer-events-none"
 			style="background-image: url('<?php echo esc_url( $bg_pattern ); ?>'); background-size: cover;"
 			aria-hidden="true"
 		></div>

@@ -71,6 +71,12 @@ foreach ( $defaults as $n => $default ) {
 	);
 }
 
+// TODO(Vicky): Amendment #12 — the three tools (Company Name Check / Business Activity
+// SSIC / Tax Calculator) have NO behaviour yet: each is a plain GET form that just submits to
+// the contact page. Tab SWITCHING works (assets/js/tabs.js, verified). What each tab should
+// actually do "as per what we discussed" is still needed — e.g. live ACRA name availability,
+// an SSIC code lookup, and an inline corporate-tax calculation. Once specced, replace the GET
+// form per tab with the real tool. Nothing reads the `q` parameter today.
 if ( ! $tabs ) {
 	return;
 }

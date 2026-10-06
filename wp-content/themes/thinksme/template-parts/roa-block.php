@@ -44,7 +44,7 @@ $defaults = array(
 	2 => array(
 		'icon'  => 'envelope-open',
 		'title' => 'Digital Mailroom Service',
-		'text'  => 'Receive and review your important correspondence digitally — fast, organised, and hassle-free.',
+		'text'  => 'Receive and review your important correspondence digitally, fast, organised, and hassle-free.',
 	),
 	3 => array(
 		'icon'  => 'folder-lock',

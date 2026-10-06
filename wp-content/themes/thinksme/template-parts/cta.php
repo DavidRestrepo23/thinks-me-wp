@@ -34,7 +34,7 @@ $rating    = thinksme_field( 'cta_google_rating', false, '4.9' );
 // part has no business knowing which page it is on. inc/ci-content.php answers them
 // from the current set; every other page gets the strings below.
 $title     = apply_filters( 'thinksme_cta_title', 'Need help?' );
-$text      = apply_filters( 'thinksme_cta_text', 'Reach out with your requirements, and our experts will be happy to assist you — no commitment, no pressure.' );
+$text      = apply_filters( 'thinksme_cta_text', 'Reach out with your requirements, and our experts will be happy to assist you, no commitment, no pressure.' );
 ?>
 <section id="cta" class="flex flex-col gap-xl lg:gap-2xl w-full mt-xl md:mt-3xl pb-3xl px-lg lg:px-3xl">
 	<div class="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-xl w-full">
@@ -63,7 +63,7 @@ $text      = apply_filters( 'thinksme_cta_text', 'Reach out with your requiremen
 				</div>
 			</div>
 
-			<a href="<?php echo esc_url( thinksme_field( 'cta_button_link', false, '#' ) ); ?>" class="btn-split inline-flex items-center">
+			<a href="<?php echo esc_url( thinksme_field( 'cta_button_link', false, home_url( '/contact-us/' ) ) ); ?>" class="btn-split inline-flex items-center">
 				<span class="bg-brand-yellow rounded-sm h-[50px] px-lg inline-flex items-center justify-center text-sm font-medium text-text-primary whitespace-nowrap">
 					<?php echo esc_html( thinksme_field( 'cta_button_text', false, 'Contact Us' ) ); ?>
 				</span>

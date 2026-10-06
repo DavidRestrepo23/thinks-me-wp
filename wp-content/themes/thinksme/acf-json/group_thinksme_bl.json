@@ -76,7 +76,7 @@
             },
             "rows": 4,
             "new_lines": "",
-            "default_value": "One bank’s “no” isn’t the market’s answer. Our team — ex-bankers with 30+ years of combined experience — matches your application against 19 core partner banks and 60+ lenders overall, so you find the one whose criteria actually fit your business.",
+            "default_value": "One bank’s “no” isn’t the market’s answer. Our team, ex-bankers with 30+ years of combined experience, matches your application against 19 core partner banks and 60+ lenders overall, so you find the one whose criteria actually fit your business.",
             "maxlength": "",
             "placeholder": ""
         },
@@ -523,7 +523,7 @@
             },
             "rows": 3,
             "new_lines": "",
-            "default_value": "*Flat rate example — your actual rate depends on the lender and your profile. Ask us for the Effective Interest Rate (EIR) equivalent, which reflects the true cost more accurately than a flat rate.",
+            "default_value": "*Flat rate example, your actual rate depends on the lender and your profile. Ask us for the Effective Interest Rate (EIR) equivalent, which reflects the true cost more accurately than a flat rate.",
             "maxlength": "",
             "placeholder": ""
         },
@@ -867,7 +867,7 @@
             },
             "rows": 2,
             "new_lines": "",
-            "default_value": "A quick indicative estimate based on flat rate pricing — not a loan offer.",
+            "default_value": "A quick indicative estimate based on flat rate pricing, not a loan offer.",
             "maxlength": "",
             "placeholder": ""
         },
@@ -1087,7 +1087,7 @@
             },
             "rows": 4,
             "new_lines": "",
-            "default_value": "Based on flat rate methodology: interest is calculated on the original loan amount for the full tenure. This is illustrative only — your actual rate and approved amount depend on the lender and your company’s credit profile. Ask us for the Effective Interest Rate (EIR) equivalent for a true cost comparison.",
+            "default_value": "Based on flat rate methodology: interest is calculated on the original loan amount for the full tenure. This is illustrative only, your actual rate and approved amount depend on the lender and your company’s credit profile. Ask us for the Effective Interest Rate (EIR) equivalent for a true cost comparison.",
             "maxlength": "",
             "placeholder": ""
         },
@@ -1165,7 +1165,7 @@
             },
             "rows": 2,
             "new_lines": "",
-            "default_value": "A rejection rarely means “no bank will lend to you” — it usually means one bank’s specific criteria didn’t match your profile.",
+            "default_value": "A rejection rarely means “no bank will lend to you”, it usually means one bank’s specific criteria didn’t match your profile.",
             "maxlength": "",
             "placeholder": ""
         },
@@ -1219,7 +1219,7 @@
                 "class": "",
                 "id": ""
             },
-            "default_value": "Your Bank Said No — Without Explaining Why",
+            "default_value": "Your Bank Said No, Without Explaining Why",
             "maxlength": "",
             "placeholder": "",
             "prepend": "",
@@ -1241,7 +1241,7 @@
             },
             "rows": 4,
             "new_lines": "",
-            "default_value": "Approval depends on your personal credit profile, which bank you go with, existing banking relationships, and even how you answer credit questions — factors that vary hugely between institutions.",
+            "default_value": "Approval depends on your personal credit profile, which bank you go with, existing banking relationships, and even how you answer credit questions, factors that vary hugely between institutions.",
             "maxlength": "",
             "placeholder": ""
         },
@@ -1393,7 +1393,7 @@
             },
             "rows": 4,
             "new_lines": "",
-            "default_value": "You could get rejected by one major bank and approved for S$100,000 by another — because each institution’s risk appetite and required paperwork genuinely differ that much.",
+            "default_value": "You could get rejected by one major bank and approved for S$100,000 by another, because each institution’s risk appetite and required paperwork genuinely differ that much.",
             "maxlength": "",
             "placeholder": ""
         },
@@ -1545,7 +1545,7 @@
             },
             "rows": 4,
             "new_lines": "",
-            "default_value": "Our team has 30+ years of combined banking experience — we know what banks are actually assessing before you submit, not after you’re rejected.",
+            "default_value": "Our team has 30+ years of combined banking experience, we know what banks are actually assessing before you submit, not after you’re rejected.",
             "maxlength": "",
             "placeholder": ""
         },
@@ -1623,7 +1623,7 @@
             },
             "rows": 3,
             "new_lines": "",
-            "default_value": "We take your business profile once and match it against banks, digital lenders, and government-backed schemes — rather than you filling out the same form 20 times.",
+            "default_value": "We take your business profile once and match it against banks, digital lenders, and government-backed schemes, rather than you filling out the same form 20 times.",
             "maxlength": "",
             "placeholder": ""
         },
@@ -1875,7 +1875,7 @@
             },
             "rows": 4,
             "new_lines": "",
-            "default_value": "Our loan assessment and lender comparison are entirely free. If you choose to engage us to manage your application, that service is subject to a fee — we’ll walk you through it upfront before anything is charged.",
+            "default_value": "Our loan assessment and lender comparison are entirely free. If you choose to engage us to manage your application, that service is subject to a fee, we’ll walk you through it upfront before anything is charged.",
             "maxlength": "",
             "placeholder": ""
         },
@@ -2286,7 +2286,7 @@
             },
             "rows": 3,
             "new_lines": "",
-            "default_value": "Our financing team works your application personally — not an algorithm that stops responding after a rejection.",
+            "default_value": "Our financing team works your application personally, not an algorithm that stops responding after a rejection.",
             "maxlength": "",
             "placeholder": ""
         },
@@ -2362,7 +2362,7 @@
             },
             "rows": 3,
             "new_lines": "",
-            "default_value": "We’re not tied to one bank — 60+ lenders means we recommend what fits you, not what pays us most.",
+            "default_value": "We’re not tied to one bank, 60+ lenders means we recommend what fits you, not what pays us most.",
             "maxlength": "",
             "placeholder": ""
         },
@@ -2597,7 +2597,7 @@
             },
             "rows": 3,
             "new_lines": "",
-            "default_value": "Best rate guaranteed — we compare across our full panel, including 19 core partner banks, so you never overpay.",
+            "default_value": "Best rate guaranteed, we compare across our full panel, including 19 core partner banks, so you never overpay.",
             "maxlength": "",
             "placeholder": ""
         },
@@ -2673,7 +2673,7 @@
             },
             "rows": 3,
             "new_lines": "",
-            "default_value": "Ex-bankers with 30+ years of combined experience — expert guidance tailored to your industry, not generic advice.",
+            "default_value": "Ex-bankers with 30+ years of combined experience, expert guidance tailored to your industry, not generic advice.",
             "maxlength": "",
             "placeholder": ""
         },
@@ -2825,7 +2825,7 @@
             },
             "rows": 3,
             "new_lines": "",
-            "default_value": "Know your options before committing to anything — zero cost, zero obligation.",
+            "default_value": "Know your options before committing to anything, zero cost, zero obligation.",
             "maxlength": "",
             "placeholder": ""
         },
@@ -4053,7 +4053,7 @@
             },
             "rows": 3,
             "new_lines": "",
-            "default_value": "Free eligibility check and lender comparison — no obligation to find out where you stand.",
+            "default_value": "Free eligibility check and lender comparison, no obligation to find out where you stand.",
             "maxlength": "",
             "placeholder": ""
         },

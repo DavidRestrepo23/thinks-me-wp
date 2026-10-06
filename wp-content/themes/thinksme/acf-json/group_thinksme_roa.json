@@ -224,7 +224,7 @@
             },
             "rows": 5,
             "new_lines": "",
-            "default_value": "Register your registered address with us and get a prestigious CBD address backed by full mail management. Compliance notices, regulatory letters, everything—scanned and waiting in your shared drive whenever you need to check. Full visibility, zero risk of missing anything important.",
+            "default_value": "Register your registered address with us and get a prestigious CBD address backed by full mail management. Compliance notices, regulatory letters, everything, scanned and waiting in your shared drive whenever you need to check. Full visibility, zero risk of missing anything important.",
             "maxlength": "",
             "placeholder": ""
         },
@@ -631,7 +631,7 @@
             },
             "rows": 3,
             "new_lines": "",
-            "default_value": "Receive and review your important correspondence digitally — fast, organised, and hassle-free.",
+            "default_value": "Receive and review your important correspondence digitally, fast, organised, and hassle-free.",
             "maxlength": "",
             "placeholder": ""
         },
@@ -857,7 +857,7 @@
             },
             "rows": 4,
             "new_lines": "",
-            "default_value": "When incorporating a company in Singapore, a local registered office address is a legal must — and it also helps your business appear professional and credible.",
+            "default_value": "When incorporating a company in Singapore, a local registered office address is a legal must, and it also helps your business appear professional and credible.",
             "maxlength": "",
             "placeholder": ""
         },
@@ -1327,7 +1327,7 @@
             },
             "rows": 3,
             "new_lines": "",
-            "default_value": "Reach out with your requirements, and our experts will be happy to assist you — no commitment, no pressure.",
+            "default_value": "Reach out with your requirements, and our experts will be happy to assist you, no commitment, no pressure.",
             "maxlength": "",
             "placeholder": ""
         },

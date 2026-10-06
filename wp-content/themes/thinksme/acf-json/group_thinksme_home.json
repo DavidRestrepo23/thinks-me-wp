@@ -100,7 +100,7 @@
             "name": "overview_subheading",
             "type": "textarea",
             "required": 0,
-            "default_value": "Whether you're just starting out, managing compliance, or ready to grow — we have the expertise, credentials, and network to get it done.",
+            "default_value": "Whether you're just starting out, managing compliance, or ready to grow, we have the expertise, credentials, and network to get it done.",
             "rows": 2,
             "new_lines": ""
         },
@@ -129,7 +129,7 @@
             "required": 0,
             "rows": 3,
             "new_lines": "",
-            "default_value": "Incorporate your Singapore private limited company (Pte Ltd) fully online — as fast as 24 hours. We handle name reservation, SSIC code selection, company constitution, and all ACRA BizFile+ submission on your behalf."
+            "default_value": "Incorporate your Singapore private limited company (Pte Ltd) fully online, as fast as 24 hours. We handle name reservation, SSIC code selection, company constitution, and all ACRA BizFile+ submission on your behalf."
         },
         {
             "key": "field_thinksme_overview_row_1_service_1_image",
@@ -185,7 +185,7 @@
                 "class": "",
                 "id": ""
             },
-            "default_value": "100% online — no Singapore visit required"
+            "default_value": "100% online, no Singapore visit required"
         },
         {
             "key": "field_thinksme_overview_row_1_service_1_benefit_4",
@@ -216,7 +216,7 @@
             "required": 0,
             "rows": 3,
             "new_lines": "",
-            "default_value": "Singapore law requires every Pte Ltd to appoint a qualified company secretary within 6 months of incorporation. Think SME provides a full corporate secretarial service — AGM prep, annual return filing, and ongoing ACRA compliance."
+            "default_value": "Singapore law requires every Pte Ltd to appoint a qualified company secretary within 6 months of incorporation. Think SME provides a full corporate secretarial service, AGM prep, annual return filing, and ongoing ACRA compliance."
         },
         {
             "key": "field_thinksme_overview_row_1_service_2_image",
@@ -303,7 +303,7 @@
             "required": 0,
             "rows": 3,
             "new_lines": "",
-            "default_value": "Every Singapore company must maintain a local registered address accessible during business hours. Think SME provides a professional Singapore registered office address — ACRA-compliant, mail handling included."
+            "default_value": "Every Singapore company must maintain a local registered address accessible during business hours. Think SME provides a professional Singapore registered office address, ACRA-compliant, mail handling included."
         },
         {
             "key": "field_thinksme_overview_row_1_service_3_image",
@@ -399,7 +399,7 @@
             "required": 0,
             "rows": 3,
             "new_lines": "",
-            "default_value": "Singapore’s Companies Act requires every company to keep proper accounting records for five years. Think SME handles your monthly bookkeeping and year-end unaudited financial statements to SFRS standards — always IRAS- and ACRA-ready."
+            "default_value": "Singapore’s Companies Act requires every company to keep proper accounting records for five years. Think SME handles your monthly bookkeeping and year-end unaudited financial statements to SFRS standards, always IRAS- and ACRA-ready."
         },
         {
             "key": "field_thinksme_overview_row_2_service_1_image",
@@ -486,7 +486,7 @@
             "required": 0,
             "rows": 3,
             "new_lines": "",
-            "default_value": "Compulsory GST registration when your turnover exceeds S$1 million — and quarterly F5/F8 return filing to IRAS. Think SME tracks every deadline and submits on time, every quarter. Zero late penalties, guaranteed."
+            "default_value": "Compulsory GST registration when your turnover exceeds S$1 million, and quarterly F5/F8 return filing to IRAS. Think SME tracks every deadline and submits on time, every quarter. Zero late penalties, guaranteed."
         },
         {
             "key": "field_thinksme_overview_row_2_service_2_image",
@@ -573,7 +573,7 @@
             "required": 0,
             "rows": 3,
             "new_lines": "",
-            "default_value": "Singapore’s flat 17% corporate tax rate — but most SMEs pay far less thanks to the Start-up Tax Exemption (SUTE) and Partial Tax Exemption (PTE). Think SME ensures every exemption is claimed and every IRAS deadline is met."
+            "default_value": "Singapore’s flat 17% corporate tax rate, but most SMEs pay far less thanks to the Start-up Tax Exemption (SUTE) and Partial Tax Exemption (PTE). Think SME ensures every exemption is claimed and every IRAS deadline is met."
         },
         {
             "key": "field_thinksme_overview_row_2_service_3_image",
@@ -669,7 +669,7 @@
             "required": 0,
             "rows": 3,
             "new_lines": "",
-            "default_value": "One application, matched across 60+ banks, finance companies, digital banks, and licensed alternative lenders. Our team of former bankers knows exactly how lenders assess SME applications — and how to maximise your approval odds."
+            "default_value": "One application, matched across 60+ banks, finance companies, digital banks, and licensed alternative lenders. Our team of former bankers knows exactly how lenders assess SME applications, and how to maximise your approval odds."
         },
         {
             "key": "field_thinksme_overview_row_3_service_1_image",
@@ -699,7 +699,7 @@
                 "class": "",
                 "id": ""
             },
-            "default_value": "Enterprise Financing Scheme (EFS) — up to S$500K"
+            "default_value": "Enterprise Financing Scheme (EFS), up to S$500K"
         },
         {
             "key": "field_thinksme_overview_row_3_service_1_benefit_2",
@@ -843,7 +843,7 @@
             "required": 0,
             "rows": 3,
             "new_lines": "",
-            "default_value": "As an IMDA Pre-Approved PSG Vendor, Think SME fast-tracks your Xero grant application via the Business Grants Portal — with up to 50% government co-funding. We also advise on the Enterprise Development Grant (EDG) for capability building and the Market Readiness Assistance (MRA) grant for Singapore SMEs expanding overseas."
+            "default_value": "As an IMDA Pre-Approved PSG Vendor, Think SME fast-tracks your Xero grant application via the Business Grants Portal, with up to 50% government co-funding. We also advise on the Enterprise Development Grant (EDG) for capability building and the Market Readiness Assistance (MRA) grant for Singapore SMEs expanding overseas."
         },
         {
             "key": "field_thinksme_overview_row_3_service_3_image",
@@ -873,7 +873,7 @@
                 "class": "",
                 "id": ""
             },
-            "default_value": "PSG Xero Grant — up to 50% co-funded by government"
+            "default_value": "PSG Xero Grant, up to 50% co-funded by government"
         },
         {
             "key": "field_thinksme_overview_row_3_service_3_benefit_2",
@@ -912,7 +912,7 @@
                 "class": "",
                 "id": ""
             },
-            "default_value": "Market Readiness Assistance (MRA) — overseas expansion"
+            "default_value": "Market Readiness Assistance (MRA), overseas expansion"
         },
         {
             "key": "field_thinksme_tab_ways",
@@ -946,7 +946,7 @@
             "required": 0,
             "rows": 3,
             "new_lines": "",
-            "default_value": "Whether you're just starting out, managing compliance, or ready to grow — we have the expertise, credentials, and network to get it done."
+            "default_value": "Whether you're just starting out, managing compliance, or ready to grow, we have the expertise, credentials, and network to get it done."
         },
         {
             "key": "field_thinksme_ways_card_1_badge",
@@ -973,7 +973,7 @@
             "required": 0,
             "rows": 4,
             "new_lines": "",
-            "default_value": "From name reservation to Certificate of Incorporation — handled fully online, as fast as 24 hours. As an ACRA Registered Filing Agent, we file on your behalf with full accountability."
+            "default_value": "From name reservation to Certificate of Incorporation, handled fully online, as fast as 24 hours. As an ACRA Registered Filing Agent, we file on your behalf with full accountability."
         },
         {
             "key": "field_thinksme_ways_card_1_button_text",
@@ -1026,7 +1026,7 @@
             "required": 0,
             "rows": 4,
             "new_lines": "",
-            "default_value": "Accounting, GST, and corporate tax — handled on time, every time. Powered by Xero. IRAS-compliant. Zero penalties. Free up your time to focus on the business, not the paperwork."
+            "default_value": "Accounting, GST, and corporate tax, handled on time, every time. Powered by Xero. IRAS-compliant. Zero penalties. Free up your time to focus on the business, not the paperwork."
         },
         {
             "key": "field_thinksme_ways_card_2_button_text",
@@ -1192,7 +1192,7 @@
             "required": 0,
             "rows": 3,
             "new_lines": "",
-            "default_value": "Reach out with your requirements, and our experts will be happy to assist you — no commitment, no pressure."
+            "default_value": "Reach out with your requirements, and our experts will be happy to assist you, no commitment, no pressure."
         },
         {
             "key": "field_thinksme_cta_google_rating",
