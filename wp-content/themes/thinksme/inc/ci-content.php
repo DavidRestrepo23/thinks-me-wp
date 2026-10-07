@@ -1254,15 +1254,13 @@ function thinksme_ci_content() {
 						'text'  => 'Start-Up Tax Exemption or Partial Tax Exemption checked and applied, never left on the table.',
 						'class' => 'lg:col-span-1 lg:min-h-[390px]',
 					),
-					// Figma repeats card 3's title and copy in this slot with a
-					// different icon. That is a duplication artefact in the design
-					// file, not copy anyone wrote — it ships verbatim, the same call
-					// the Foreign frame's leftover strings got, because inventing
-					// replacement copy is the client's to make.
+					// Figma repeats card 3's title and copy in this slot (a duplication
+					// artefact in the design file). It shipped verbatim until client QA
+					// flagged it; this copy was approved to replace it.
 					4 => array(
-						'icon'  => 'percent',
-						'title' => 'Every Exemption Applied',
-						'text'  => 'Start-Up Tax Exemption or Partial Tax Exemption checked and applied, never left on the table.',
+						'icon'  => 'clock-countdown',
+						'title' => 'Filed on Time',
+						'text'  => 'ECI and Form C-S/C submitted before IRAS deadlines, with reminders so nothing slips.',
 						'class' => 'lg:col-span-1 lg:min-h-[390px]',
 					),
 				),
