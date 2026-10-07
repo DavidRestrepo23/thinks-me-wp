@@ -24,12 +24,10 @@
  *
  * The ring is the section's own art rather than a field — it circles "70%",
  * which is the one figure the sentence turns on — and it is placed the way every
- * brush stroke in this theme is: absolutely, as a share of the copy's own box,
- * desktop-only. Figma measures it against this sentence breaking into five lines
- * at 40px in a 1039px column, so a much shorter or longer sentence will ring the
- * wrong words, which is why it is hidden below `lg` where the type is smaller
- * and rewraps. `aria-hidden`, because the figure it rings is already in the
- * sentence.
+ * brush stroke in this theme is, desktop-only — but anchored to the figure
+ * (`ring_target`) rather than to the copy's box, so a rewritten sentence still
+ * rings the right word. `aria-hidden`, because the figure it rings is already
+ * in the sentence.
  */
 
 $d = thinksme_ci_defaults( 'statement' );
@@ -51,17 +49,27 @@ if ( '' === trim( $text ) && '' === trim( $button_text ) ) {
 <section id="ci-statement" class="w-full px-lg lg:px-3xl py-xl lg:py-[40px]">
 	<div class="flex flex-col items-center gap-xl lg:gap-[48px]">
 		<?php if ( $text ) : ?>
-			<?php // 1039px is Figma's own text box, and the ring's offsets below are shares of it. ?>
-			<div class="relative w-full max-w-[1039px]">
-				<img
-					src="<?php echo esc_url( "$icons_uri/{$d['ring_file']}" ); ?>"
-					alt=""
-					aria-hidden="true"
-					class="<?php echo esc_attr( $d['ring_class'] ); ?>"
-				>
-
-				<p class="relative font-medium text-xl sm:text-2xl leading-normal text-text-primary text-center">
-					<?php echo esc_html( $text ); ?>
+			<?php
+			// The ring is anchored to the figure itself rather than placed as a share of the
+			// text box: the copy changed once already (EDGE rename) and a box-relative offset
+			// rang the wrong word. Splitting on the first occurrence keeps the figure inline,
+			// so wrapping moves the ring with it.
+			$ring_target = isset( $d['ring_target'] ) ? $d['ring_target'] : '';
+			$ring_at     = $ring_target ? strpos( $text, $ring_target ) : false;
+			?>
+			<?php // 1039px is Figma's own text box. ?>
+			<div class="w-full max-w-[1039px]">
+				<p class="font-medium text-xl sm:text-2xl leading-normal text-text-primary text-center">
+					<?php if ( false === $ring_at ) : ?>
+						<?php echo esc_html( $text ); ?>
+					<?php else : ?>
+						<?php echo esc_html( substr( $text, 0, $ring_at ) ); ?><span class="relative inline-block whitespace-nowrap"><img
+							src="<?php echo esc_url( "$icons_uri/{$d['ring_file']}" ); ?>"
+							alt=""
+							aria-hidden="true"
+							class="<?php echo esc_attr( $d['ring_class'] ); ?>"
+						><span class="relative"><?php echo esc_html( $ring_target ); ?></span></span><?php echo esc_html( substr( $text, $ring_at + strlen( $ring_target ) ) ); ?>
+					<?php endif; ?>
 				</p>
 			</div>
 		<?php endif; ?>

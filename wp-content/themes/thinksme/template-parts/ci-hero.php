@@ -256,6 +256,22 @@ $button_2_link = thinksme_field( 'ci_hero_button_2_link', false, $d['button_2_li
 			</p>
 		<?php endif; ?>
 
+		<?php
+		// A partner mark directly above the buttons — the EDGE Xero Grant page puts Xero's
+		// logo over "Talk to Our Experts" (client QA). A per-set default rather than a field,
+		// like `logo`: it is the mark of the product the page sells, not copy.
+		$button_logo = isset( $d['button_logo'] ) ? $d['button_logo'] : '';
+		?>
+		<?php if ( $button_logo ) : ?>
+			<img
+				src="<?php echo esc_url( get_template_directory_uri() . '/assets/images/' . $button_logo ); ?>"
+				alt="<?php echo esc_attr( isset( $d['button_logo_alt'] ) ? $d['button_logo_alt'] : '' ); ?>"
+				class="<?php echo esc_attr( isset( $d['button_logo_class'] ) ? $d['button_logo_class'] : 'self-start h-[56px] w-auto object-contain' ); ?>"
+				loading="lazy"
+				decoding="async"
+			>
+		<?php endif; ?>
+
 		<?php if ( $button_text || $button_2_text ) : ?>
 			<?php // Both buttons span the column on a phone — side by side they wrap to ragged widths, and a full-width target is easier to hit. ?>
 			<div class="flex flex-col sm:flex-row sm:flex-wrap sm:items-center gap-md sm:gap-lg">

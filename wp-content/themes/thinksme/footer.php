@@ -65,9 +65,9 @@ $footer_columns = array(
 		'title'    => __( 'Grants & Company', 'thinksme' ),
 		'width'    => 'lg:w-[238px]',
 		'fallback' => array(
-			'PSG Xero Grant',
+			'EDGE Xero Grant',
 			'EDG Grant',
-			'MRA Grant',
+			'EDGE Grant - Expand Overseas',
 			'About Think SME',
 			'Blog',
 			'Contact Us',
@@ -165,9 +165,9 @@ $footer_menu_class = 'site-footer__menu flex flex-col gap-md items-start text-te
 	<?php
 	// Amendment #10 (DONE) — floating WhatsApp button, site-wide via this footer. The number is
 	// set in Appearance > Customize > Site Details ("WhatsApp number", theme_mod
-	// thinksme_whatsapp_number, international format, currently 6560129642). It only renders once a
-	// number is set. To add a pre-filled message later, append "?text=..." to the wa.me URL below.
-	$whatsapp_number = get_theme_mod( 'thinksme_whatsapp_number', '' );
+	// thinksme_whatsapp_number, international format, currently 6585333997 — also the default, so the button shows even
+	// before the Customizer is saved; a saved empty value hides it. To add a pre-filled message later, append "?text=..." to the wa.me URL below.
+	$whatsapp_number = get_theme_mod( 'thinksme_whatsapp_number', '6585333997' );
 	if ( $whatsapp_number ) :
 		?>
 		<a

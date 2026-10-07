@@ -3021,7 +3021,7 @@
                 "class": "",
                 "id": ""
             },
-            "default_value": "PSG Grant Eligible",
+            "default_value": "EDGE Grant Eligible",
             "maxlength": "",
             "placeholder": "",
             "prepend": "",
@@ -3043,7 +3043,7 @@
             },
             "rows": 3,
             "new_lines": "",
-            "default_value": "As an IMDA Pre-Approved Vendor, your Xero setup may qualify for up to 50% PSG grant support.",
+            "default_value": "As an IMDA Pre-Approved Vendor, your Xero setup may qualify for up to 50% EDGE grant support.",
             "maxlength": "",
             "placeholder": ""
         },
@@ -3300,7 +3300,7 @@
                 "class": "",
                 "id": ""
             },
-            "default_value": "4.4",
+            "default_value": "4.9",
             "maxlength": "",
             "placeholder": "",
             "prepend": "",
@@ -3393,5 +3393,5 @@
     "display_title": "",
     "allow_ai_access": false,
     "ai_description": "",
-    "modified": 1786597200
+    "modified": 1791391622
 }

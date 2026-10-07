@@ -54,7 +54,7 @@
                 "class": "",
                 "id": ""
             },
-            "default_value": "Unlock Up To 90% of Your Property Value",
+            "default_value": "Unlock up to 90% of your Property Value",
             "maxlength": "",
             "placeholder": "",
             "prepend": "",
@@ -3954,5 +3954,5 @@
     "display_title": "",
     "allow_ai_access": 1,
     "ai_description": "",
-    "modified": 1787097600
+    "modified": 1791391622
 }

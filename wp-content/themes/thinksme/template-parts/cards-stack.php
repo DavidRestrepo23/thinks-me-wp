@@ -130,10 +130,10 @@ $content_defaults = array(
 			),
 		),
 		3 => array(
-			'title'       => 'PSG Xero Grant & Government Grants',
-			'description' => 'As an IMDA Pre-Approved PSG Vendor, Think SME fast-tracks your Xero grant application via the Business Grants Portal, with up to 50% government co-funding. We also advise on the Enterprise Development Grant (EDG) for capability building and the Market Readiness Assistance (MRA) grant for Singapore SMEs expanding overseas.',
+			'title'       => 'EDGE Xero Grant',
+			'description' => 'As an IMDA Pre-Approved EDGE Grant Vendor, Think SME fast-tracks your Xero grant application via the Business Grants Portal, with up to 50% government co-funding. We also advise on the Enterprise Development Grant (EDG) for capability building and the Market Readiness Assistance (MRA) grant for Singapore SMEs expanding overseas.',
 			'benefits'    => array(
-				'PSG Xero Grant, up to 50% co-funded by government',
+				'EDGE Xero Grant, up to 50% co-funded by government',
 				'IMDA Pre-Approved · Business Grants Portal listed',
 				'Enterprise Development Grant (EDG)',
 				'Market Readiness Assistance (MRA), overseas expansion',

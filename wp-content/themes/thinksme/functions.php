@@ -511,7 +511,7 @@ function thinksme_customize_register( $wp_customize ) {
 		'thinksme_whatsapp_number' => array(
 			'label'   => __( 'WhatsApp number (floating button — leave empty to hide)', 'thinksme' ),
 			'type'    => 'text',
-			'default' => '',
+			'default' => '6585333997',
 			'sanitize' => 'sanitize_text_field',
 		),
 		'thinksme_contact_recipient' => array(

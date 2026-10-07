@@ -114,7 +114,7 @@
                 "class": "",
                 "id": ""
             },
-            "default_value": "/contact-us",
+            "default_value": "https://admin.thinksme.sg/requests/addeditrequest?requesttype=ADD_NEW_COMPANY&category=FOREIGN",
             "maxlength": "",
             "placeholder": "",
             "prepend": "",
@@ -1505,7 +1505,7 @@
             },
             "rows": 2,
             "new_lines": "",
-            "default_value": "Lorem ipsum dolor sit amet, consectetur adipiscing elit sed do eiusmod tempor.",
+            "default_value": "Describe your business in a few words and we'll suggest matching SSIC codes.",
             "maxlength": "",
             "placeholder": ""
         },
@@ -1523,7 +1523,7 @@
                 "class": "",
                 "id": ""
             },
-            "default_value": "e.g. lorem ipsum dolor",
+            "default_value": "e.g. Software development, Café, Online retail",
             "maxlength": "",
             "placeholder": "",
             "prepend": "",
@@ -1543,7 +1543,7 @@
                 "class": "",
                 "id": ""
             },
-            "default_value": "Search",
+            "default_value": "Search Code",
             "maxlength": "",
             "placeholder": "",
             "prepend": "",
@@ -1585,7 +1585,7 @@
             },
             "rows": 3,
             "new_lines": "",
-            "default_value": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+            "default_value": "This is a guide to help you shortlist SSIC codes, not an official ACRA classification. We'll confirm your primary and secondary activities when we prepare your BizFile+ application.",
             "maxlength": "",
             "placeholder": ""
         },
@@ -3288,5 +3288,5 @@
     "display_title": "",
     "allow_ai_access": false,
     "ai_description": "",
-    "modified": 1786557361
+    "modified": 1791391622
 }

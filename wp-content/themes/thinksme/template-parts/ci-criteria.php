@@ -5,7 +5,7 @@
  *
  *   'criteria'   — "Am I Eligible, and How Do I Apply?" (127:580 + the photo group
  *                  127:618), copy on the left, photograph on the right, the list
- *                  under its own sub-heading ("PSG Grant Criteria").
+ *                  under its own sub-heading ("EDGE Xero Grant Criteria").
  *   'invoicenow' — "InvoiceNow" (127:901 + the photo group 127:622), the same shape
  *                  mirrored: photograph on the left, copy on the right, an intro
  *                  paragraph instead of the sub-heading, and a row of partner marks
@@ -71,11 +71,23 @@ $icons_uri = get_template_directory_uri() . '/assets/images/icons';
 
 $items = array();
 
+// An item can carry sub-bullets and a footnote under it — the EDGE Expand Overseas
+// page groups what the grant covers under three headings (client QA). Both are
+// optional per item: `item_N_details` is a textarea, one bullet per line, and an
+// instance that names neither renders the plain ticked list the other three draw.
+$item_details = isset( $d['item_details'] ) ? $d['item_details'] : array();
+$item_notes   = isset( $d['item_notes'] ) ? $d['item_notes'] : array();
+
 foreach ( $d['items'] as $n => $item_default ) {
 	$item = thinksme_field( "{$prefix}_item_{$n}", false, $item_default );
 
 	if ( '' !== trim( $item ) ) {
-		$items[] = $item;
+		$details = thinksme_field( "{$prefix}_item_{$n}_details", false, isset( $item_details[ $n ] ) ? $item_details[ $n ] : '' );
+		$items[] = array(
+			'text'    => $item,
+			'details' => array_values( array_filter( array_map( 'trim', explode( "\n", (string) $details ) ), 'strlen' ) ),
+			'note'    => thinksme_field( "{$prefix}_item_{$n}_note", false, isset( $item_notes[ $n ] ) ? $item_notes[ $n ] : '' ),
+		);
 	}
 }
 
@@ -133,9 +145,29 @@ $button_link = thinksme_field( "{$prefix}_button_link", false, isset( $d['button
 								<span class="bg-accent-green rounded-[13px] size-[40px] inline-flex items-center justify-center shrink-0" aria-hidden="true">
 									<img src="<?php echo esc_url( "$icons_uri/check.svg" ); ?>" alt="" class="size-[19px]">
 								</span>
-								<span class="font-normal text-sm leading-loose text-text-secondary pt-[8px]">
-									<?php echo esc_html( $item ); ?>
-								</span>
+								<?php if ( $item['details'] || $item['note'] ) : ?>
+									<div class="flex flex-col gap-sm pt-[8px]">
+										<span class="font-medium text-md leading-normal text-text-primary">
+											<?php echo esc_html( $item['text'] ); ?>
+										</span>
+										<?php if ( $item['details'] ) : ?>
+											<ul class="list-disc pl-lg flex flex-col gap-xs font-normal text-sm leading-loose text-text-secondary">
+												<?php foreach ( $item['details'] as $detail ) : ?>
+													<li><?php echo esc_html( $detail ); ?></li>
+												<?php endforeach; ?>
+											</ul>
+										<?php endif; ?>
+										<?php if ( $item['note'] ) : ?>
+											<p class="font-normal italic text-xs leading-relaxed text-text-secondary">
+												<?php echo esc_html( $item['note'] ); ?>
+											</p>
+										<?php endif; ?>
+									</div>
+								<?php else : ?>
+									<span class="font-normal text-sm leading-loose text-text-secondary pt-[8px]">
+										<?php echo esc_html( $item['text'] ); ?>
+									</span>
+								<?php endif; ?>
 							</li>
 						<?php endforeach; ?>
 					</ul>
