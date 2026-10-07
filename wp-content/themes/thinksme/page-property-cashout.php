@@ -65,7 +65,7 @@ get_header();
 		the_post();
 
 		get_template_part( 'template-parts/ci-hero' );
-		get_template_part( 'template-parts/logos-slider', null, array( 'group' => 'lenders' ) );
+		get_template_part( 'template-parts/logos-slider', null, array( 'group' => 'clients' ) );
 		get_template_part( 'template-parts/ci-definition' );
 		get_template_part( 'template-parts/ci-compare' );
 		get_template_part( 'template-parts/ci-requirements' );

@@ -75,6 +75,9 @@ get_header();
 		the_post();
 
 		get_template_part( 'template-parts/ci-hero' );
+		// The homepage's bank marquee (client QA: same slider as the home page), in place
+		// of the five-bank strip the hero used to carry.
+		get_template_part( 'template-parts/logos-slider', null, array( 'group' => 'clients' ) );
 		get_template_part( 'template-parts/ci-stats' );
 		get_template_part( 'template-parts/ci-steps' );
 		get_template_part( 'template-parts/ci-calculator' );

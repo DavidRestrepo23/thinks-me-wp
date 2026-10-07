@@ -97,6 +97,11 @@ $caption  = thinksme_field( 'logos_caption', false, isset( $logos['caption'] ) ?
 						// is served so shrinking never blurs. The coloured strip is unchanged
 						// (its art is uniform and uses the max-height nudges).
 						$logo_style = '';
+						// The Property Cashout lender logos joined the gray bank strip (client
+						// QA: one set of bank logos everywhere, greyed out like the homepage's).
+						// Their art is full colour, so the strip desaturates them in CSS and
+						// these ones are also faded to the gray art's weight.
+						$tint_class = ( ! $is_coloured && has_term( 'lenders', 'logo_group' ) ) ? ' logos-swiper__logo--tint' : '';
 						$logo_size  = $is_coloured ? 'medium' : 'full';
 						if ( ! $is_coloured ) {
 							$full   = wp_get_attachment_image_src( get_post_thumbnail_id(), 'full' );
@@ -110,7 +115,7 @@ $caption  = thinksme_field( 'logos_caption', false, isset( $logos['caption'] ) ?
 							<?php
 							the_post_thumbnail(
 								$logo_size,
-								array( 'class' => 'max-h-full max-w-full w-auto h-auto object-contain', 'alt' => get_the_title(), 'style' => $logo_style )
+								array( 'class' => 'max-h-full max-w-full w-auto h-auto object-contain' . $tint_class, 'alt' => get_the_title(), 'style' => $logo_style )
 							);
 							?>
 						</div>

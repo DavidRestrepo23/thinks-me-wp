@@ -245,18 +245,6 @@ $button_2_link = thinksme_field( 'ci_hero_button_2_link', false, $d['button_2_li
 		<?php endif; ?>
 
 		<?php
-		// The Mortgage frame puts a promotional line in a wide pill above the buttons
-		// (124:3274) — an offer, not a heading, and not the GST frame's struck-through
-		// price either. Optional, so every other frame renders nothing here.
-		$promo = thinksme_field( 'ci_hero_promo_text', false, isset( $d['promo_text'] ) ? $d['promo_text'] : '' );
-		?>
-		<?php if ( $promo ) : ?>
-			<p class="bg-brand-yellow-soft border border-brand-yellow-border rounded-pill w-full sm:w-auto sm:max-w-[436px] px-md py-[9px] text-center font-medium text-md leading-relaxed text-text-navy">
-				<?php echo esc_html( $promo ); ?>
-			</p>
-		<?php endif; ?>
-
-		<?php
 		// A partner mark directly above the buttons — the EDGE Xero Grant page puts Xero's
 		// logo over "Talk to Our Experts" (client QA). A per-set default rather than a field,
 		// like `logo`: it is the mark of the product the page sells, not copy.
@@ -292,6 +280,20 @@ $button_2_link = thinksme_field( 'ci_hero_button_2_link', false, $d['button_2_li
 					</a>
 				<?php endif; ?>
 			</div>
+		<?php endif; ?>
+
+		<?php
+		// The Mortgage frame puts a promotional line in a wide pill (124:3274) — an
+		// offer, not a heading, and not the GST frame's struck-through price either.
+		// Figma draws it above the buttons; it sits below them because the client
+		// asked for the cash rebate under "Compare My Rate" (QA). Optional, so every
+		// other frame renders nothing here.
+		$promo = thinksme_field( 'ci_hero_promo_text', false, isset( $d['promo_text'] ) ? $d['promo_text'] : '' );
+		?>
+		<?php if ( $promo ) : ?>
+			<p class="bg-brand-yellow-soft border border-brand-yellow-border rounded-pill w-full sm:w-auto sm:max-w-[436px] px-md py-[9px] text-center font-medium text-md leading-relaxed text-text-navy">
+				<?php echo esc_html( $promo ); ?>
+			</p>
 		<?php endif; ?>
 	</div>
 

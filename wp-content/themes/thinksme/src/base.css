@@ -801,6 +801,15 @@
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
+  /* Corporate Service carries four columns since client QA moved Finance & Loan
+     and Grants under a GROW column (START / RUN / GROW / Start-up Tools). From
+     xl they fit one row; between lg and xl the fourth still wraps, as above. */
+  @media (min-width: 1280px) {
+    li:not(.menu-item--dropdown) > .megamenu > .megamenu__grid:has(> .megamenu__col:nth-child(4):last-child) {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+  }
+
   .megamenu__col {
     padding: var(--space-xl) var(--space-lg);
     border-right: 1px solid var(--color-border-soft);
@@ -4367,6 +4376,18 @@ button:focus-visible {
   width: auto;
   max-width: 260px;
   object-fit: contain;
+}
+
+/* The gray strip is gray by design: its bank art ships desaturated, and the
+   lender logos that joined it (client QA) ship in full colour — so the strip
+   desaturates everything (a no-op on the gray art) and fades the colour ones,
+   whose darker values would otherwise read heavier than the rest. */
+.logos-swiper--sm .swiper-slide img {
+  filter: grayscale(1);
+}
+
+.logos-swiper--sm .swiper-slide img.logos-swiper__logo--tint {
+  opacity: 0.5;
 }
 
 /* ---------------------------------------------------------------------------
