@@ -56,7 +56,7 @@
             },
             "rows": 6,
             "new_lines": "",
-            "default_value": "SMEs are eligible for up to 50% Productivity Solutions Grant (PSG) support for the adoption of Xero Cloud Accounting Software, a Pre-Approved Solution under the IMDA SMEs Go Digital programme.",
+            "default_value": "SMEs are eligible for up to 50% business grant support for the adoption of All-in-One Xero Digital Accounting Software, a Pre-Approved Solution under the IMDA SMEs Go Digital programme.",
             "maxlength": "",
             "placeholder": ""
         },
@@ -76,7 +76,7 @@
             },
             "rows": 4,
             "new_lines": "",
-            "default_value": "As a vendor of pre-approved PSG Xero solutions, you are eligible for substantial cost savings through our offerings, with the setup, training, and ongoing support handled by our own Xero Certified Advisor team.",
+            "default_value": "As a vendor of pre-approved EDGE Xero solutions, you are eligible for substantial cost savings through our offerings, with the setup, training, and ongoing support handled by our own Xero Certified Advisor team.",
             "maxlength": "",
             "placeholder": ""
         },
@@ -94,7 +94,7 @@
                 "class": "",
                 "id": ""
             },
-            "default_value": "Talk With Our Experts",
+            "default_value": "Talk to Our Experts",
             "maxlength": "",
             "placeholder": "",
             "prepend": "",
@@ -237,7 +237,7 @@
                 "class": "",
                 "id": ""
             },
-            "default_value": "How the PSG Grant Benefits Your Business",
+            "default_value": "How the EDGE Xero Grant Benefits Your Business",
             "maxlength": "",
             "placeholder": "",
             "prepend": "",
@@ -1189,7 +1189,7 @@
                 "class": "",
                 "id": ""
             },
-            "default_value": "PSG Grant Criteria",
+            "default_value": "EDGE Xero Grant Criteria",
             "maxlength": "",
             "placeholder": "",
             "prepend": "",
@@ -2274,7 +2274,7 @@
                 "class": "",
                 "id": ""
             },
-            "default_value": "IMDA Pre-Approved PSG Grant Vendor",
+            "default_value": "IMDA Pre-Approved EDGE Grant Vendor",
             "maxlength": "",
             "placeholder": "",
             "prepend": "",
@@ -2533,7 +2533,7 @@
                 "class": "",
                 "id": ""
             },
-            "default_value": "What is the PSG Grant?",
+            "default_value": "What is the EDGE Xero Grant?",
             "maxlength": "",
             "placeholder": "",
             "prepend": "",
@@ -2573,7 +2573,7 @@
                 "class": "",
                 "id": ""
             },
-            "default_value": "How does the PSG Grant benefit my business?",
+            "default_value": "How does the EDGE Xero Grant benefit my business?",
             "maxlength": "",
             "placeholder": "",
             "prepend": "",
@@ -2613,7 +2613,7 @@
                 "class": "",
                 "id": ""
             },
-            "default_value": "How can I apply for the PSG Grant?",
+            "default_value": "How can I apply for the EDGE Xero Grant?",
             "maxlength": "",
             "placeholder": "",
             "prepend": "",
@@ -2653,7 +2653,7 @@
                 "class": "",
                 "id": ""
             },
-            "default_value": "Is my business eligible for the PSG Grant?",
+            "default_value": "Is my business eligible for the EDGE Xero Grant?",
             "maxlength": "",
             "placeholder": "",
             "prepend": "",
@@ -2853,7 +2853,7 @@
             },
             "rows": 4,
             "new_lines": "",
-            "default_value": "Our team of experienced consultants is on hand to discuss your goals and how PSG-supported Xero can help.",
+            "default_value": "Our team of experienced consultants is on hand to discuss your goals and how EDGE-supported Xero can help.",
             "maxlength": "",
             "placeholder": ""
         },

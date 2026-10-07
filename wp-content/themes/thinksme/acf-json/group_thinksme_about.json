@@ -1298,7 +1298,7 @@
                 "class": "",
                 "id": ""
             },
-            "default_value": "IMDA Pre-Approved PSG Vendor",
+            "default_value": "IMDA Pre-Approved EDGE Grant Vendor",
             "maxlength": "",
             "placeholder": "",
             "prepend": "",
@@ -1320,7 +1320,7 @@
             },
             "rows": 3,
             "new_lines": "",
-            "default_value": "Our Xero solutions qualify clients for Productivity Solutions Grant support.",
+            "default_value": "Our Xero solutions qualify clients for EDGE Xero Grant support.",
             "maxlength": "",
             "placeholder": ""
         },
@@ -1808,7 +1808,7 @@
             },
             "rows": 3,
             "new_lines": "",
-            "default_value": "Applying for PSG or other government grants and need an IMDA pre-approved vendor.",
+            "default_value": "Applying for EDGE Xero Grant or other government grants and need an IMDA pre-approved vendor.",
             "maxlength": "",
             "placeholder": ""
         },
@@ -2532,7 +2532,7 @@
                 "class": "",
                 "id": ""
             },
-            "default_value": "Claim the PSG Grant",
+            "default_value": "Claim the EDGE Grant - Xero",
             "maxlength": "",
             "placeholder": "",
             "prepend": "",
@@ -2554,7 +2554,7 @@
             },
             "rows": 3,
             "new_lines": "",
-            "default_value": "Up to 50% PSG support for Xero cloud accounting, IMDA pre-approved.",
+            "default_value": "Up to 50% EDGE grant support for Xero cloud accounting, IMDA pre-approved.",
             "maxlength": "",
             "placeholder": ""
         },

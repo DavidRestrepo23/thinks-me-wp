@@ -265,7 +265,7 @@
             },
             "rows": 3,
             "new_lines": "",
-            "default_value": "Give your company a professional Singapore registered address with 24\/7 access to all incoming mail through your secure online dashboard.",
+            "default_value": "Give your company a professional Singapore registered address with 24/7 access to all incoming mail through your secure online dashboard.",
             "maxlength": "",
             "placeholder": ""
         },
@@ -275,7 +275,7 @@
             "name": "roa_plan_price",
             "aria-label": "",
             "type": "text",
-            "instructions": "Shown exactly as typed — include the currency and the period, e.g. “S$238\/year”.",
+            "instructions": "Shown exactly as typed — include the currency and the period, e.g. “S$238/year”.",
             "required": 0,
             "conditional_logic": false,
             "wrapper": {
@@ -283,7 +283,7 @@
                 "class": "",
                 "id": ""
             },
-            "default_value": "S$238\/year",
+            "default_value": "S$238/year",
             "maxlength": "",
             "placeholder": "",
             "prepend": "",
@@ -557,7 +557,7 @@
             },
             "rows": 3,
             "new_lines": "",
-            "default_value": "",
+            "default_value": "A credible Singapore address for your company's registration, letterheads and official correspondence.",
             "maxlength": "",
             "placeholder": ""
         },
@@ -705,7 +705,7 @@
             },
             "rows": 3,
             "new_lines": "",
-            "default_value": "",
+            "default_value": "Your documents are scanned in our cloud storage driver, organised and kept safe, ready whenever you need them.",
             "maxlength": "",
             "placeholder": ""
         },
@@ -779,7 +779,7 @@
             },
             "rows": 3,
             "new_lines": "",
-            "default_value": "",
+            "default_value": "Simple, upfront pricing with everything included, so there are no surprises at renewal.",
             "maxlength": "",
             "placeholder": ""
         },
@@ -1433,11 +1433,11 @@
     "instruction_placement": "label",
     "hide_on_screen": "",
     "active": true,
-    "description": "Registered Office Address page sections: hero, the plan (pricing card + copy), the navy services block with expanding cards, the scroll-driven “Why” rail, the shared Google Reviews slider, and the final CTA. The testimonials_* and cta_* field names repeat the Home group’s names under different keys, which is what lets template-parts\/testimonials.php and cta.php stay page-agnostic.",
+    "description": "Registered Office Address page sections: hero, the plan (pricing card + copy), the navy services block with expanding cards, the scroll-driven “Why” rail, the shared Google Reviews slider, and the final CTA. The testimonials_* and cta_* field names repeat the Home group’s names under different keys, which is what lets template-parts/testimonials.php and cta.php stay page-agnostic.",
     "show_in_rest": 0,
     "display_title": "",
     "allow_ai_access": false,
     "ai_description": "",
-    "modified": 1786392510,
-    "local_file": "\/Users\/davidrestrepo\/Desktop\/studio\/thinks-me\/app\/public\/wp-content\/themes\/thinksme\/acf-json\/group_thinksme_roa.json"
+    "modified": 1791391639,
+    "local_file": "/Users/davidrestrepo/Desktop/studio/thinks-me/app/public/wp-content/themes/thinksme/acf-json/group_thinksme_roa.json"
 }

@@ -39,7 +39,7 @@ $defaults = array(
 	1 => array(
 		'icon'  => 'buildings',
 		'title' => 'Professional Business Address',
-		'text'  => '',
+		'text'  => 'A credible Singapore address for your company\'s registration, letterheads and official correspondence.',
 	),
 	2 => array(
 		'icon'  => 'envelope-open',
@@ -49,12 +49,12 @@ $defaults = array(
 	3 => array(
 		'icon'  => 'folder-lock',
 		'title' => 'Secure File Access',
-		'text'  => '',
+		'text'  => 'Your documents are scanned in our cloud storage driver, organised and kept safe, ready whenever you need them.',
 	),
 	4 => array(
 		'icon'  => 'receipt',
 		'title' => 'Transparent Fees',
-		'text'  => '',
+		'text'  => 'Simple, upfront pricing with everything included, so there are no surprises at renewal.',
 	),
 );
 

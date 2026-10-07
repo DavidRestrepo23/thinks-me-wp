@@ -237,7 +237,7 @@
             },
             "rows": 5,
             "new_lines": "",
-            "default_value": "To help local SMEs get a foothold in overseas markets, the Market Readiness Grant was set up to provide funds to take the first steps. The MRA will cover up to 70% of eligible costs (capped at S$100,000) for each company in each new market.",
+            "default_value": "To help local SMEs get a foothold in overseas markets, the EDGE Internationalisation (MRA) Grant was set up to provide funds to take the first steps. The grant will cover up to 70% of eligible costs (capped at S$100,000) for each company in each new market.",
             "maxlength": "",
             "placeholder": ""
         },
@@ -255,7 +255,7 @@
                 "class": "",
                 "id": ""
             },
-            "default_value": "View full list of supportable activities",
+            "default_value": "Talk to Our Experts",
             "maxlength": "",
             "placeholder": "",
             "prepend": "",
@@ -333,7 +333,7 @@
                 "class": "",
                 "id": ""
             },
-            "default_value": "What covers in MRA Grant in Singapore?",
+            "default_value": "What is Covered in EDGE Internationalisation (MRA) grant?",
             "maxlength": "",
             "placeholder": "",
             "prepend": "",
@@ -418,11 +418,51 @@
                 "class": "",
                 "id": ""
             },
-            "default_value": "Overseas market promotion (capped at S$20,000)",
+            "default_value": "Overseas Market Promotion",
             "maxlength": "",
             "placeholder": "",
             "prepend": "",
             "append": ""
+        },
+        {
+            "key": "field_thinksme_mra_ci_criteria_covers_item_1_details",
+            "label": "Item 1 — Bullets (one per line)",
+            "name": "ci_criteria_covers_item_1_details",
+            "aria-label": "",
+            "type": "textarea",
+            "instructions": "Optional. Each line becomes a bullet under this item.",
+            "required": 0,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "Overseas fair participation costs\nProfessional overseas marketing service costs",
+            "maxlength": "",
+            "rows": 4,
+            "placeholder": "",
+            "new_lines": ""
+        },
+        {
+            "key": "field_thinksme_mra_ci_criteria_covers_item_1_note",
+            "label": "Item 1 — Footnote",
+            "name": "ci_criteria_covers_item_1_note",
+            "aria-label": "",
+            "type": "textarea",
+            "instructions": "Optional small print under this item.",
+            "required": 0,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "rows": 3,
+            "placeholder": "",
+            "new_lines": ""
         },
         {
             "key": "field_thinksme_mra_ci_criteria_covers_item_2",
@@ -438,11 +478,51 @@
                 "class": "",
                 "id": ""
             },
-            "default_value": "Overseas business development (capped at S$50,000)",
+            "default_value": "Overseas Business Development",
             "maxlength": "",
             "placeholder": "",
             "prepend": "",
             "append": ""
+        },
+        {
+            "key": "field_thinksme_mra_ci_criteria_covers_item_2_details",
+            "label": "Item 2 — Bullets (one per line)",
+            "name": "ci_criteria_covers_item_2_details",
+            "aria-label": "",
+            "type": "textarea",
+            "instructions": "Optional. Each line becomes a bullet under this item.",
+            "required": 0,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "Professional business development service costs\nOffice rental (12 months)\nBasic salary support for overseas business development staff deployment (12 months)",
+            "maxlength": "",
+            "rows": 4,
+            "placeholder": "",
+            "new_lines": ""
+        },
+        {
+            "key": "field_thinksme_mra_ci_criteria_covers_item_2_note",
+            "label": "Item 2 — Footnote",
+            "name": "ci_criteria_covers_item_2_note",
+            "aria-label": "",
+            "type": "textarea",
+            "instructions": "Optional small print under this item.",
+            "required": 0,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "For SMEs, support is up to 70% if a Singaporean or Singapore Permanent Resident is deployed, and up to 50% if a foreigner is deployed. For non-SMEs, support is up to 50% if a Singaporean or Singapore Permanent Resident is deployed, and up to 30% if a foreigner is deployed.",
+            "maxlength": "",
+            "rows": 3,
+            "placeholder": "",
+            "new_lines": ""
         },
         {
             "key": "field_thinksme_mra_ci_criteria_covers_item_3",
@@ -458,11 +538,51 @@
                 "class": "",
                 "id": ""
             },
-            "default_value": "Overseas market set-up (capped at S$30,000)",
+            "default_value": "Overseas Market Set-up",
             "maxlength": "",
             "placeholder": "",
             "prepend": "",
             "append": ""
+        },
+        {
+            "key": "field_thinksme_mra_ci_criteria_covers_item_3_details",
+            "label": "Item 3 — Bullets (one per line)",
+            "name": "ci_criteria_covers_item_3_details",
+            "aria-label": "",
+            "type": "textarea",
+            "instructions": "Optional. Each line becomes a bullet under this item.",
+            "required": 0,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "Entity Incorporation\nDrafting of Agreements\nImport/Export License\nIntellectual Property\nTax Advisory\nTrade Credit Insurance",
+            "maxlength": "",
+            "rows": 4,
+            "placeholder": "",
+            "new_lines": ""
+        },
+        {
+            "key": "field_thinksme_mra_ci_criteria_covers_item_3_note",
+            "label": "Item 3 — Footnote",
+            "name": "ci_criteria_covers_item_3_note",
+            "aria-label": "",
+            "type": "textarea",
+            "instructions": "Optional small print under this item.",
+            "required": 0,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "rows": 3,
+            "placeholder": "",
+            "new_lines": ""
         },
         {
             "key": "field_thinksme_mra_ci_criteria_covers_item_4",
@@ -485,6 +605,46 @@
             "append": ""
         },
         {
+            "key": "field_thinksme_mra_ci_criteria_covers_item_4_details",
+            "label": "Item 4 — Bullets (one per line)",
+            "name": "ci_criteria_covers_item_4_details",
+            "aria-label": "",
+            "type": "textarea",
+            "instructions": "Optional. Each line becomes a bullet under this item.",
+            "required": 0,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "rows": 4,
+            "placeholder": "",
+            "new_lines": ""
+        },
+        {
+            "key": "field_thinksme_mra_ci_criteria_covers_item_4_note",
+            "label": "Item 4 — Footnote",
+            "name": "ci_criteria_covers_item_4_note",
+            "aria-label": "",
+            "type": "textarea",
+            "instructions": "Optional small print under this item.",
+            "required": 0,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "rows": 3,
+            "placeholder": "",
+            "new_lines": ""
+        },
+        {
             "key": "field_thinksme_mra_ci_criteria_covers_item_5",
             "label": "Item 5",
             "name": "ci_criteria_covers_item_5",
@@ -503,6 +663,46 @@
             "placeholder": "",
             "prepend": "",
             "append": ""
+        },
+        {
+            "key": "field_thinksme_mra_ci_criteria_covers_item_5_details",
+            "label": "Item 5 — Bullets (one per line)",
+            "name": "ci_criteria_covers_item_5_details",
+            "aria-label": "",
+            "type": "textarea",
+            "instructions": "Optional. Each line becomes a bullet under this item.",
+            "required": 0,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "rows": 4,
+            "placeholder": "",
+            "new_lines": ""
+        },
+        {
+            "key": "field_thinksme_mra_ci_criteria_covers_item_5_note",
+            "label": "Item 5 — Footnote",
+            "name": "ci_criteria_covers_item_5_note",
+            "aria-label": "",
+            "type": "textarea",
+            "instructions": "Optional small print under this item.",
+            "required": 0,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "rows": 3,
+            "placeholder": "",
+            "new_lines": ""
         },
         {
             "key": "field_thinksme_mra_ci_criteria_covers_item_6",
@@ -525,6 +725,46 @@
             "append": ""
         },
         {
+            "key": "field_thinksme_mra_ci_criteria_covers_item_6_details",
+            "label": "Item 6 — Bullets (one per line)",
+            "name": "ci_criteria_covers_item_6_details",
+            "aria-label": "",
+            "type": "textarea",
+            "instructions": "Optional. Each line becomes a bullet under this item.",
+            "required": 0,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "rows": 4,
+            "placeholder": "",
+            "new_lines": ""
+        },
+        {
+            "key": "field_thinksme_mra_ci_criteria_covers_item_6_note",
+            "label": "Item 6 — Footnote",
+            "name": "ci_criteria_covers_item_6_note",
+            "aria-label": "",
+            "type": "textarea",
+            "instructions": "Optional small print under this item.",
+            "required": 0,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "rows": 3,
+            "placeholder": "",
+            "new_lines": ""
+        },
+        {
             "key": "field_thinksme_mra_ci_criteria_covers_item_7",
             "label": "Item 7",
             "name": "ci_criteria_covers_item_7",
@@ -543,6 +783,46 @@
             "placeholder": "",
             "prepend": "",
             "append": ""
+        },
+        {
+            "key": "field_thinksme_mra_ci_criteria_covers_item_7_details",
+            "label": "Item 7 — Bullets (one per line)",
+            "name": "ci_criteria_covers_item_7_details",
+            "aria-label": "",
+            "type": "textarea",
+            "instructions": "Optional. Each line becomes a bullet under this item.",
+            "required": 0,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "rows": 4,
+            "placeholder": "",
+            "new_lines": ""
+        },
+        {
+            "key": "field_thinksme_mra_ci_criteria_covers_item_7_note",
+            "label": "Item 7 — Footnote",
+            "name": "ci_criteria_covers_item_7_note",
+            "aria-label": "",
+            "type": "textarea",
+            "instructions": "Optional small print under this item.",
+            "required": 0,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "rows": 3,
+            "placeholder": "",
+            "new_lines": ""
         },
         {
             "key": "field_thinksme_mra_ci_criteria_covers_button_text",

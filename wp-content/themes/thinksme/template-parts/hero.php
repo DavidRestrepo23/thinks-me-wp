@@ -98,7 +98,7 @@ $button_2_link = thinksme_field( 'hero_button_2_link', false, 'tel:+6560129642' 
 			</div>
 
 			<p class="font-normal text-md text-text-secondary text-center leading-relaxed tracking-tight max-w-[724px]">
-				<?php echo esc_html( thinksme_field( 'hero_subtitle', false, 'Company incorporation in 24 hours. Accounting, Corporate Secretary, GST & tax compliance. Business loans from 60+ lenders. Property cashout. PSG Xero grant. One team, full support.' ) ); ?>
+				<?php echo esc_html( thinksme_field( 'hero_subtitle', false, 'Company incorporation in 24 hours. Accounting, Corporate Secretary, GST & tax compliance. Business loans from 60+ lenders. Property cashout. EDGE Xero grant. One team, full support.' ) ); ?>
 			</p>
 
 			<div class="flex flex-col sm:flex-row sm:flex-wrap justify-center gap-lg items-stretch sm:items-start w-full max-w-[362px] sm:max-w-none">

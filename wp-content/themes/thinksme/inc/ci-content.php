@@ -135,7 +135,7 @@ function thinksme_ci_content() {
 			'title'           => 'Incorporate Your Singapore Company From S$888 All-In',
 			'text'            => 'ACRA-filed, fully online, with your corporate secretary and registered address bundled in from day one, no separate vendors, no guesswork.',
 			'button_text'     => 'Start Incorporation',
-			'button_link'     => '/contact-us',
+			'button_link'     => 'https://admin.thinksme.sg/requests/addeditrequest?requesttype=ADD_NEW_COMPANY&requestid=',
 			'button_2_text'   => '+65 6012 9642',
 			'button_2_link'   => 'tel:+6560129642',
 			'image'           => 'ci/hero-image.png',
@@ -232,11 +232,11 @@ function thinksme_ci_content() {
 				2 => array(
 					'label'       => 'Business Activity (SSIC)',
 					'title'       => 'Business Activity (SSIC)',
-					'text'        => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit sed do eiusmod tempor.',
-					'placeholder' => 'e.g. lorem ipsum dolor',
+					'text'        => 'Describe your business in a few words and we\'ll suggest matching SSIC codes.',
+					'placeholder' => 'e.g. Software development, Café, Online retail',
 					'icon'        => '',
-					'button_text' => 'Search',
-					'disclaimer'  => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+					'button_text' => 'Search Code',
+					'disclaimer'  => 'This is a guide to help you shortlist SSIC codes, not an official ACRA classification. We\'ll confirm your primary and secondary activities when we prepare your BizFile+ application.',
 				),
 				3 => array(
 					'label'       => 'Tax Calculator',
@@ -381,6 +381,7 @@ function thinksme_ci_content() {
 			'title' => 'Incorporate Your Singapore Company From Anywhere',
 			'text'  => 'Fully remote incorporation with nominee director, registered address, and Employment Pass support, no need to set foot in Singapore.',
 			'image' => 'cif/hero-image.png',
+			'button_link' => 'https://admin.thinksme.sg/requests/addeditrequest?requesttype=ADD_NEW_COMPANY&category=FOREIGN',
 		)
 	);
 
@@ -505,7 +506,7 @@ function thinksme_ci_content() {
 			'title'           => 'Switch Your Corporate Secretary in Minutes',
 			'text'            => 'Every Singapore company needs a qualified corporate secretary. Whether you’re appointing your first one or switching from another provider, we handle the ACRA transfer, no compliance gaps.',
 			'button_text'     => 'Start Switching',
-			'button_link'     => '/contact-us',
+			'button_link'     => 'https://admin.thinksme.sg/requests/addeditrequest?requesttype=TAKEOVER_COMPANY_SECRETARY',
 			'button_2_text'   => '+65 6012 9642',
 			'button_2_link'   => 'tel:+6560129642',
 			// Figma's whole hero group (770,121 to 1400,707): the badge overhangs
@@ -977,8 +978,8 @@ function thinksme_ci_content() {
 					),
 					4 => array(
 						'icon'  => 'hand-coins',
-						'title' => 'PSG Grant Eligible',
-						'text'  => 'As an IMDA Pre-Approved Vendor, your Xero setup may qualify for up to 50% PSG grant support.',
+						'title' => 'EDGE Grant Eligible',
+						'text'  => 'As an IMDA Pre-Approved Vendor, your Xero setup may qualify for up to 50% EDGE grant support.',
 						'class' => 'lg:col-span-2 lg:min-h-[362px]',
 					),
 					// The middle cell of the second row is a photograph rather than a
@@ -1363,8 +1364,8 @@ function thinksme_ci_content() {
 				),
 				4 => array(
 					'icon'  => 'hand-coins',
-					'title' => 'PSG Grant Eligible',
-					'text'  => 'As an IMDA Pre-Approved Vendor, your Xero setup may qualify for up to 50% PSG grant support.',
+					'title' => 'EDGE Grant Eligible',
+					'text'  => 'As an IMDA Pre-Approved Vendor, your Xero setup may qualify for up to 50% EDGE grant support.',
 				),
 				5 => array(
 					'icon'  => 'bank',
@@ -1633,8 +1634,8 @@ function thinksme_ci_content() {
 				),
 				4 => array(
 					'icon'  => 'hand-coins',
-					'title' => 'PSG Grant Eligible',
-					'text'  => 'As an IMDA Pre-Approved Vendor, your Xero setup may qualify for up to 50% PSG grant support.',
+					'title' => 'EDGE Grant Eligible',
+					'text'  => 'As an IMDA Pre-Approved Vendor, your Xero setup may qualify for up to 50% EDGE grant support.',
 				),
 				5 => array(
 					'title' => 'Financing When You Need It',
@@ -1668,7 +1669,7 @@ function thinksme_ci_content() {
 	$cashout = array(
 		'hero'         => array(
 			'hat'              => 'Property Cashout Singapore',
-			'title'            => 'Unlock Up To 90% of Your Property Value',
+			'title'            => 'Unlock up to 90% of your Property Value',
 			'text'             => 'Your property is one of Singapore’s most valuable assets, and it doesn’t have to sit idle. At ThinkSME, we help Singapore SME owners use property cashout to release equity from their private residential, commercial, or industrial property and convert it into working capital for your business.',
 			// This frame is the only one whose hero runs to two paragraphs
 			// (951:9000 and 951:9001), which is why the second one is its own
@@ -2827,11 +2828,16 @@ function thinksme_ci_content() {
 			// Figma sets it at 40px in a 620px box (127:519), which is why this set names
 			// `title_size_class` — flat at every breakpoint, since 40px is both the phone
 			// size the shared ramp already uses and the desktop size this frame draws.
-			'title'            => 'SMEs are eligible for up to 50% Productivity Solutions Grant (PSG) support for the adoption of Xero Cloud Accounting Software, a Pre-Approved Solution under the IMDA SMEs Go Digital programme.',
+			'title'            => 'SMEs are eligible for up to 50% business grant support for the adoption of All-in-One Xero Digital Accounting Software, a Pre-Approved Solution under the IMDA SMEs Go Digital programme.',
 			'title_size_class' => 'text-[40px]',
-			'text'             => 'As a vendor of pre-approved PSG Xero solutions, you are eligible for substantial cost savings through our offerings, with the setup, training, and ongoing support handled by our own Xero Certified Advisor team.',
-			'button_text'      => 'Talk With Our Experts',
+			'text'             => 'As a vendor of pre-approved EDGE Xero solutions, you are eligible for substantial cost savings through our offerings, with the setup, training, and ongoing support handled by our own Xero Certified Advisor team.',
+			'button_text'      => 'Talk to Our Experts',
 			'button_link'      => '/contact-us',
+			// Xero's mark over the primary button (client QA) — the same Certified Advisor
+			// export the accreditations strip below draws.
+			'button_logo'       => 'psg/logo-xero-advisor.png',
+			'button_logo_alt'   => 'Xero Certified Advisor',
+			'button_logo_class' => 'self-start h-[48px] lg:h-[56px] w-auto object-contain',
 			'button_2_text'    => '+65 6012 9642',
 			'button_2_link'    => 'tel:+6560129642',
 			// Figma's whole image group: the badge (127:527) overhangs the photo card's
@@ -2860,7 +2866,10 @@ function thinksme_ci_content() {
 			'underline_file'    => 'psg/hero-underline.svg',
 			'underline_class'   => 'hidden lg:block absolute left-[8.6%] top-[142px] w-[72.4%] rotate-[2.64deg] pointer-events-none select-none',
 			'underline_2_file'  => 'psg/hero-underline-short.svg',
-			'underline_2_class' => 'hidden lg:block absolute left-[26.8%] top-[181px] w-[27.3%] -scale-y-100 rotate-[172.03deg] pointer-events-none select-none',
+			// Hidden since the EDGE copy (client QA): the headline rewrapped, and the long
+			// stroke alone now sits under "Digital Accounting Software" — the short one
+			// landed mid-word on the line below.
+			'underline_2_class' => 'hidden',
 		),
 		// The two marks under the hero (127:895). Theme files and not client fields —
 		// see the note in template-parts/ci-accreditations.php.
@@ -2879,12 +2888,12 @@ function thinksme_ci_content() {
 			),
 		),
 		'grid'            => array(
-			// "How the PSG Grant Benefits Your Business" (127:537): the shared centred grid
+			// "How the EDGE Xero Grant Benefits Your Business" (127:537): the shared centred grid
 			// on a navy panel, with no card behind each column — hence `card_class` /
 			// `card_pad_class`, and the smaller disc, title and white copy the panel needs.
 			'benefits'    => array(
 				'hat'                => '',
-				'heading'            => 'How the PSG Grant Benefits Your Business',
+				'heading'            => 'How the EDGE Xero Grant Benefits Your Business',
 				'align'              => 'center',
 				'grid_class'         => 'lg:grid-cols-4',
 				'section_class'      => 'py-xl lg:py-[40px]',
@@ -3017,7 +3026,7 @@ function thinksme_ci_content() {
 					),
 					3 => array(
 						'icon'  => 'star',
-						'title' => 'IMDA Pre-Approved PSG Grant Vendor',
+						'title' => 'IMDA Pre-Approved EDGE Grant Vendor',
 						// Figma's own spelling of "Officially". Shipped verbatim, the same call the
 						// Foreign and GST frames' leftovers got — a typo in body copy is the client's
 						// to correct, and the field is right there in wp-admin.
@@ -3039,7 +3048,7 @@ function thinksme_ci_content() {
 			'criteria'   => array(
 				'hat'        => 'Grant Criteria & Process',
 				'heading'    => 'Am I Eligible, and How Do I Apply?',
-				'list_title' => 'PSG Grant Criteria',
+				'list_title' => 'EDGE Xero Grant Criteria',
 				'photo'      => 'right',
 				'image'      => 'psg/criteria-photo.jpg',
 				'image_box'  => 'aspect-[547/590]',
@@ -3135,19 +3144,19 @@ function thinksme_ci_content() {
 					'answer'   => 'Xero is a cloud-based accounting software that allows you to manage your finances, invoices, and transactions from anywhere, anytime.',
 				),
 				2 => array(
-					'question' => 'What is the PSG Grant?',
+					'question' => 'What is the EDGE Xero Grant?',
 					'answer'   => '',
 				),
 				3 => array(
-					'question' => 'How does the PSG Grant benefit my business?',
+					'question' => 'How does the EDGE Xero Grant benefit my business?',
 					'answer'   => '',
 				),
 				4 => array(
-					'question' => 'How can I apply for the PSG Grant?',
+					'question' => 'How can I apply for the EDGE Xero Grant?',
 					'answer'   => '',
 				),
 				5 => array(
-					'question' => 'Is my business eligible for the PSG Grant?',
+					'question' => 'Is my business eligible for the EDGE Xero Grant?',
 					'answer'   => '',
 				),
 				6 => array(
@@ -3158,7 +3167,7 @@ function thinksme_ci_content() {
 		),
 		'cta'             => array(
 			'title' => 'Let’s work together',
-			'text'  => 'Our team of experienced consultants is on hand to discuss your goals and how PSG-supported Xero can help.',
+			'text'  => 'Our team of experienced consultants is on hand to discuss your goals and how EDGE-supported Xero can help.',
 			'image' => 'psg/cta-photo.jpg',
 		),
 	);
@@ -3214,13 +3223,14 @@ function thinksme_ci_content() {
 		// and its button (130:1514) — template-parts/ci-statement.php, and this is the
 		// only set that names it.
 		'statement'      => array(
-			'text'        => 'To help local SMEs get a foothold in overseas markets, the Market Readiness Grant was set up to provide funds to take the first steps. The MRA will cover up to 70% of eligible costs (capped at S$100,000) for each company in each new market.',
-			'button_text' => 'View full list of supportable activities',
+			'text'        => 'To help local SMEs get a foothold in overseas markets, the EDGE Internationalisation (MRA) Grant was set up to provide funds to take the first steps. The grant will cover up to 70% of eligible costs (capped at S$100,000) for each company in each new market.',
+			'button_text' => 'Talk to Our Experts',
 			'button_link' => '/contact-us',
 			// Measured against this sentence breaking into five lines at 40px in Figma's
 			// 1039px box, the same way every brush stroke in this theme is placed.
 			'ring_file'   => 'mra/statement-circle.svg',
-			'ring_class'  => 'hidden lg:block absolute left-[31.5%] top-[134px] w-[12%] pointer-events-none select-none',
+			'ring_target' => '70%',
+			'ring_class'  => 'hidden lg:block absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[150%] max-w-none pointer-events-none select-none',
 		),
 		// The three marks between rules under the statement (130:1737). Theme files and
 		// not client fields — see the note in template-parts/ci-accreditations.php. This
@@ -3251,20 +3261,30 @@ function thinksme_ci_content() {
 		'criteria'       => array(
 			'covers' => array(
 				'hat'         => '',
-				'heading'     => 'What covers in MRA Grant in Singapore?',
+				'heading'     => 'What is Covered in EDGE Internationalisation (MRA) grant?',
 				'photo'       => 'left',
 				'image'       => 'mra/covers-photo.jpg',
 				'image_box'   => 'aspect-[547/606]',
 				'button_text' => 'Let’s Work Together',
 				'button_link' => '/contact-us',
 				'items'       => array(
-					1 => 'Overseas market promotion (capped at S$20,000)',
-					2 => 'Overseas business development (capped at S$50,000)',
-					3 => 'Overseas market set-up (capped at S$30,000)',
+					1 => 'Overseas Market Promotion',
+					2 => 'Overseas Business Development',
+					3 => 'Overseas Market Set-up',
 					4 => '',
 					5 => '',
 					6 => '',
 					7 => '',
+				),
+				// Each heading's bullets, one per line, and the salary-support footnote under
+				// the second (client QA) — see the note in ci-criteria.php.
+				'item_details' => array(
+					1 => "Overseas fair participation costs\nProfessional overseas marketing service costs",
+					2 => "Professional business development service costs\nOffice rental (12 months)\nBasic salary support for overseas business development staff deployment (12 months)",
+					3 => "Entity Incorporation\nDrafting of Agreements\nImport/Export License\nIntellectual Property\nTax Advisory\nTrade Credit Insurance",
+				),
+				'item_notes'   => array(
+					2 => 'For SMEs, support is up to 70% if a Singaporean or Singapore Permanent Resident is deployed, and up to 50% if a foreigner is deployed. For non-SMEs, support is up to 50% if a Singaporean or Singapore Permanent Resident is deployed, and up to 30% if a foreigner is deployed.',
 				),
 			),
 			'expect' => array(
@@ -3519,8 +3539,8 @@ function thinksme_ci_content() {
 					4 => array(
 						'class' => '',
 						'icon'  => 'percent',
-						'title' => 'IMDA Pre-Approved PSG Vendor',
-						'text'  => 'Our Xero solutions qualify clients for Productivity Solutions Grant support.',
+						'title' => 'IMDA Pre-Approved EDGE Grant Vendor',
+						'text'  => 'Our Xero solutions qualify clients for EDGE Xero Grant support.',
 					),
 				),
 			),
@@ -3565,8 +3585,8 @@ function thinksme_ci_content() {
 					4 => array(
 						'class' => '',
 						'icon'        => 'seal-check',
-						'title'       => 'Claim the PSG Grant',
-						'text'        => 'Up to 50% PSG support for Xero cloud accounting, IMDA pre-approved.',
+						'title'       => 'Claim the EDGE Grant - Xero',
+						'text'        => 'Up to 50% EDGE grant support for Xero cloud accounting, IMDA pre-approved.',
 						'button_text' => 'Learn More',
 						'button_link' => '/psg-grant',
 					),
@@ -3611,7 +3631,7 @@ function thinksme_ci_content() {
 					5 => array(
 						'icon'  => 'bank',
 						'title' => 'Grant Applicants',
-						'text'  => 'Applying for PSG or other government grants and need an IMDA pre-approved vendor.',
+						'text'  => 'Applying for EDGE Xero Grant or other government grants and need an IMDA pre-approved vendor.',
 					),
 					// The last card is styled navy and tilted by position — see the note
 					// in template-parts/ci-stack.php.

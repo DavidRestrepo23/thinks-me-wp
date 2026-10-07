@@ -86,7 +86,7 @@ if ( $testimonials->have_posts() ) {
 			'name'    => 'Cynthia Tan',
 			'text'    => 'Evelyn is very helpful and help me with my company matters promptly. Highly recommend Think SME to all SMEs looking for accounting and financial advisory.',
 			'rating'  => 5,
-			'service' => 'GST Filing & PSG Xero',
+			'service' => 'GST Filing & EDGE Xero',
 			'when'    => '5 months ago',
 			'source'  => 'via Google',
 		),

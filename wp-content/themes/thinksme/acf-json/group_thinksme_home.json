@@ -35,7 +35,7 @@
             "required": 0,
             "rows": 3,
             "new_lines": "",
-            "default_value": "Company incorporation in 24 hours. Accounting, Corporate Secretary, GST & tax compliance. Business loans from 60+ lenders. Property cashout. PSG Xero grant. One team, full support."
+            "default_value": "Company incorporation in 24 hours. Accounting, Corporate Secretary, GST & tax compliance. Business loans from 60+ lenders. Property cashout. EDGE Xero grant. One team, full support."
         },
         {
             "key": "field_thinksme_hero_button_1_text",
@@ -833,7 +833,7 @@
             "name": "overview_row_3_service_3_title",
             "type": "text",
             "required": 0,
-            "default_value": "PSG Xero Grant & Government Grants"
+            "default_value": "EDGE Xero Grant"
         },
         {
             "key": "field_thinksme_overview_row_3_service_3_description",
@@ -843,7 +843,7 @@
             "required": 0,
             "rows": 3,
             "new_lines": "",
-            "default_value": "As an IMDA Pre-Approved PSG Vendor, Think SME fast-tracks your Xero grant application via the Business Grants Portal, with up to 50% government co-funding. We also advise on the Enterprise Development Grant (EDG) for capability building and the Market Readiness Assistance (MRA) grant for Singapore SMEs expanding overseas."
+            "default_value": "As an IMDA Pre-Approved EDGE Grant Vendor, Think SME fast-tracks your Xero grant application via the Business Grants Portal, with up to 50% government co-funding. We also advise on the Enterprise Development Grant (EDG) for capability building and the Market Readiness Assistance (MRA) grant for Singapore SMEs expanding overseas."
         },
         {
             "key": "field_thinksme_overview_row_3_service_3_image",
@@ -873,7 +873,7 @@
                 "class": "",
                 "id": ""
             },
-            "default_value": "PSG Xero Grant, up to 50% co-funded by government"
+            "default_value": "EDGE Xero Grant, up to 50% co-funded by government"
         },
         {
             "key": "field_thinksme_overview_row_3_service_3_benefit_2",
@@ -1258,5 +1258,5 @@
     "hide_on_screen": "",
     "active": true,
     "show_in_rest": 0,
-    "modified": 1787605500
+    "modified": 1791391622
 }
