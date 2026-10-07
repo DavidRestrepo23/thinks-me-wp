@@ -66,7 +66,6 @@ $footer_columns = array(
 		'width'    => 'lg:w-[238px]',
 		'fallback' => array(
 			'EDGE Xero Grant',
-			'EDG Grant',
 			'EDGE Grant - Expand Overseas',
 			'About Think SME',
 			'Blog',

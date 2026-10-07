@@ -819,7 +819,7 @@
                 "lightning": "Lightning bolt",
                 "headset": "Headset"
             },
-            "default_value": "percent",
+            "default_value": "clock-countdown",
             "allow_null": 0,
             "multiple": 0,
             "ui": 0,
@@ -843,7 +843,7 @@
                 "class": "",
                 "id": ""
             },
-            "default_value": "Every Exemption Applied",
+            "default_value": "Filed on Time",
             "maxlength": "",
             "placeholder": "",
             "prepend": "",
@@ -865,7 +865,7 @@
             },
             "rows": 3,
             "new_lines": "",
-            "default_value": "Start-Up Tax Exemption or Partial Tax Exemption checked and applied, never left on the table.",
+            "default_value": "ECI and Form C-S/C submitted before IRAS deadlines, with reminders so nothing slips.",
             "maxlength": "",
             "placeholder": ""
         },
@@ -3603,5 +3603,5 @@
     "display_title": "",
     "allow_ai_access": false,
     "ai_description": "",
-    "modified": 1791391622
+    "modified": 1791408691
 }

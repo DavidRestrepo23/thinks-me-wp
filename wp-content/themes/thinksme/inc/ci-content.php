@@ -1254,15 +1254,13 @@ function thinksme_ci_content() {
 						'text'  => 'Start-Up Tax Exemption or Partial Tax Exemption checked and applied, never left on the table.',
 						'class' => 'lg:col-span-1 lg:min-h-[390px]',
 					),
-					// Figma repeats card 3's title and copy in this slot with a
-					// different icon. That is a duplication artefact in the design
-					// file, not copy anyone wrote — it ships verbatim, the same call
-					// the Foreign frame's leftover strings got, because inventing
-					// replacement copy is the client's to make.
+					// Figma repeats card 3's title and copy in this slot (a duplication
+					// artefact in the design file). It shipped verbatim until client QA
+					// flagged it; this copy was approved to replace it.
 					4 => array(
-						'icon'  => 'percent',
-						'title' => 'Every Exemption Applied',
-						'text'  => 'Start-Up Tax Exemption or Partial Tax Exemption checked and applied, never left on the table.',
+						'icon'  => 'clock-countdown',
+						'title' => 'Filed on Time',
+						'text'  => 'ECI and Form C-S/C submitted before IRAS deadlines, with reminders so nothing slips.',
 						'class' => 'lg:col-span-1 lg:min-h-[390px]',
 					),
 				),
@@ -2109,16 +2107,11 @@ function thinksme_ci_content() {
 			// why the Standard Chartered wordmark is clipped mid-letter there; only its
 			// mark is carried over. Decoration for the claim the hat makes, so the
 			// logos are theme files and not a client field.
-			'banks'            => array(
-				'label' => 'PARTNER BANKS',
-				'logos' => array(
-					array( 'file' => 'bl/banks/dbs.png', 'name' => 'DBS', 'class' => 'h-[26px] lg:h-[32px]' ),
-					array( 'file' => 'bl/banks/citi.png', 'name' => 'Citi', 'class' => 'h-[24px] lg:h-[30px]' ),
-					array( 'file' => 'bl/banks/ocbc.png', 'name' => 'OCBC', 'class' => 'h-[26px] lg:h-[32px]' ),
-					array( 'file' => 'bl/banks/uob.png', 'name' => 'UOB', 'class' => 'h-[26px] lg:h-[32px]' ),
-					array( 'file' => 'bl/banks/standard-chartered.png', 'name' => 'Standard Chartered', 'class' => 'h-[28px] lg:h-[34px]' ),
-				),
-			),
+			// Emptied by client QA: the page now runs the homepage's full bank marquee
+			// under the hero (page-business-loan.php), so the hero's own five-bank strip
+			// would show the same banks twice. The strip's five logos are still under
+			// assets/images/bl/banks/ (see git history for the 'label'/'logos' set).
+			'banks'            => array(),
 		),
 		// The figures band (119:1751). Same four-figure navy pill the Corporate Tax
 		// page draws, plus the footnote this frame writes under it (119:1795): the
