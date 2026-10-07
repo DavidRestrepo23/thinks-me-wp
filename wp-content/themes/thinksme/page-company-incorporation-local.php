@@ -52,6 +52,8 @@ get_header();
 		get_template_part( 'template-parts/logos-slider', null, array( 'group' => 'certifications' ) );
 		get_template_part( 'template-parts/ci-pricing' );
 		get_template_part( 'template-parts/ci-tools' );
+		// The Corporate Tax calculator, under the free tools (client QA).
+		get_template_part( 'template-parts/ci-calculator' );
 		get_template_part( 'template-parts/ci-includes' );
 		get_template_part( 'template-parts/ci-ways' );
 		get_template_part( 'template-parts/ci-why' );

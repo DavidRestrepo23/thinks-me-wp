@@ -356,12 +356,27 @@ function thinksme_enqueue_assets() {
 			array(
 				'page-corporate-tax.php',
 				'page-business-loan.php',
+				'page-company-incorporation-local.php',
+				'page-company-incorporation-foreign.php',
+				'page-corporate-secretary.php',
 			),
 			true
 		) ) {
 			wp_enqueue_script(
 				'thinksme-ci-calculator',
 				get_template_directory_uri() . '/assets/js/ci-calculator.js',
+				array(),
+				THINKSME_VERSION,
+				true
+			);
+		}
+
+		// The Compliance Deadline Calculator in Corporate Secretary's free tools —
+		// computes the ECI / AGM / Annual Return / Form C dates from the FYE.
+		if ( 'page-corporate-secretary.php' === thinksme_current_template() ) {
+			wp_enqueue_script(
+				'thinksme-ci-deadlines',
+				get_template_directory_uri() . '/assets/js/ci-deadlines.js',
 				array(),
 				THINKSME_VERSION,
 				true
