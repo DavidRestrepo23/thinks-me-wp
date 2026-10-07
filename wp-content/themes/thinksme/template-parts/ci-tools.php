@@ -37,12 +37,12 @@
  * expand-cards.js has.
  *
  * That script is shared with template-parts/ci-eligibility.php and finds its work
- * from the `data-tabs` / `data-tab` / `data-tab-panel` / `data-tab-select`
- * attributes below rather than from these class names, which stay as the styling
+ * from the `data-tabs` / `data-tab` / `data-tab-panel` attributes below rather than from these class names, which stay as the styling
  * hooks they always were.
  *
- * Below lg the tab strip is replaced by a native <select> styled as Figma's
- * yellow caret pill (node 100:10); see the note above the markup.
+ * Below lg the strip stays a row of tabs, the three sharing the width and their
+ * labels wrapping, rather than Figma's dropdown (node 100:10): the client wants
+ * the tools switched by tapping on a phone the same way they are on desktop.
  */
 
 $icons_uri = get_template_directory_uri() . '/assets/images/icons';
@@ -68,6 +68,10 @@ foreach ( $defaults as $n => $default ) {
 		'button_text' => thinksme_field( "ci_tools_tab_{$n}_button_text", false, $default['button_text'] ),
 		'button_link' => thinksme_field( "ci_tools_tab_{$n}_button_link", false, '/contact-us' ),
 		'disclaimer'  => thinksme_field( "ci_tools_tab_{$n}_disclaimer", false, $default['disclaimer'] ),
+		// A tab that computes something names it here; the rest stay the plain GET form.
+		'tool'        => isset( $default['tool'] ) ? $default['tool'] : '',
+		'deadlines'   => isset( $default['deadlines'] ) ? $default['deadlines'] : array(),
+		'error_text'  => isset( $default['error_text'] ) ? $default['error_text'] : '',
 	);
 }
 
@@ -107,19 +111,6 @@ $active = array_key_first( $tabs );
 	<?php $tools_label = thinksme_field( 'ci_tools_heading', false, 'Free tools' ); ?>
 
 	<div class="ci-tools w-full max-w-[1026px] mx-auto" data-tabs>
-		<?php // Below lg the strip is a dropdown instead (Figma node 100:10) — three labels this long can't be a row on a phone. A native <select> rather than a scripted listbox: it opens the platform's own picker, and it is the one control the design's caret pill can be built around without re-implementing keyboard and focus behaviour. Both controls are always in the DOM and CSS shows exactly one; `display: none` keeps the other out of the accessibility tree too, so the tabs are never announced twice. ?>
-		<div class="ci-tools__select">
-			<label class="sr-only" for="ci-tools-select"><?php echo esc_html( $tools_label ); ?></label>
-			<?php // The value is the tab button's id, so tabs.js activates the tab it already knows how to activate rather than mapping indexes. ?>
-			<select class="ci-tools__select-field" id="ci-tools-select" data-tab-select>
-				<?php foreach ( $tabs as $n => $tab ) : ?>
-					<option value="ci-tools-tab-<?php echo esc_attr( $n ); ?>" <?php selected( $n, $active ); ?>>
-						<?php echo esc_html( $tab['label'] ); ?>
-					</option>
-				<?php endforeach; ?>
-			</select>
-		</div>
-
 		<div class="ci-tools__list" role="tablist" aria-label="<?php echo esc_attr( $tools_label ); ?>">
 			<?php foreach ( $tabs as $n => $tab ) : ?>
 				<button
@@ -164,7 +155,14 @@ $active = array_key_first( $tabs );
 				</div>
 
 				<div class="flex flex-col items-center gap-lg w-full">
-					<form class="flex flex-col sm:flex-row gap-xs items-stretch sm:items-center w-full" action="<?php echo esc_url( $tab['button_link'] ); ?>" method="get">
+					<form
+						class="flex flex-col sm:flex-row gap-xs items-stretch sm:items-center w-full"
+						action="<?php echo esc_url( $tab['button_link'] ); ?>"
+						method="get"
+						<?php if ( 'deadlines' === $tab['tool'] ) : ?>
+							data-deadlines="<?php echo esc_attr( wp_json_encode( $tab['deadlines'] ) ); ?>"
+						<?php endif; ?>
+					>
 						<label class="sr-only" for="ci-tools-input-<?php echo esc_attr( $n ); ?>">
 							<?php echo esc_html( $tab['title'] ? $tab['title'] : $tab['label'] ); ?>
 						</label>
@@ -194,6 +192,21 @@ $active = array_key_first( $tabs );
 							</button>
 						<?php endif; ?>
 					</form>
+
+					<?php if ( 'deadlines' === $tab['tool'] ) : ?>
+						<?php // Filled by assets/js/ci-deadlines.js; without it the form posts to the contact page as before, so this stays hidden. ?>
+						<dl class="w-full max-w-[493px] flex flex-col text-text-on-dark" data-deadlines-result aria-live="polite" hidden>
+							<?php foreach ( $tab['deadlines'] as $i => $deadline ) : ?>
+								<div class="flex items-center justify-between gap-md border-b border-white/15 py-xs">
+									<dt class="font-normal text-sm leading-relaxed text-left"><?php echo esc_html( $deadline['label'] ); ?></dt>
+									<dd class="font-medium text-md leading-relaxed text-brand-yellow whitespace-nowrap" data-deadline="<?php echo esc_attr( $i ); ?>"></dd>
+								</div>
+							<?php endforeach; ?>
+						</dl>
+						<?php if ( $tab['error_text'] ) : ?>
+							<p class="font-normal text-sm leading-relaxed text-brand-yellow" data-deadlines-error role="alert" hidden><?php echo esc_html( $tab['error_text'] ); ?></p>
+						<?php endif; ?>
+					<?php endif; ?>
 
 					<?php if ( $tab['disclaimer'] ) : ?>
 						<p class="font-normal text-[12px] leading-loose text-center text-text-on-dark opacity-50 max-w-[493px]">

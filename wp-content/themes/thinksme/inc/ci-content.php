@@ -590,6 +590,31 @@ function thinksme_ci_content() {
 					'placeholder' => '31/12/2026',
 					'icon'        => 'calendar-dots',
 					'button_text' => 'Calculate',
+					// Computes in place (assets/js/ci-deadlines.js) rather than posting to
+					// the contact page. Each deadline is months after the FYE, landing on
+					// the same day — or the month's last day when the FYE is a month end,
+					// so 31/12/26 gives 31/07/27 and 30/06/26 gives 31/01/27 (client QA).
+					// `fixed` is a day/month in the year after the FYE's (Form C-S/C).
+					'tool'        => 'deadlines',
+					'deadlines'   => array(
+						array(
+							'label'  => 'ECI filing due date',
+							'months' => 3,
+						),
+						array(
+							'label'  => 'AGM due date',
+							'months' => 6,
+						),
+						array(
+							'label'  => 'Annual Return filing due date',
+							'months' => 7,
+						),
+						array(
+							'label' => 'Form C-S/C filing due date',
+							'fixed' => array( 30, 11 ),
+						),
+					),
+					'error_text'  => 'Enter your financial year end as DD/MM/YYYY, e.g. 31/12/2026.',
 					'disclaimer'  => 'Estimate only, based on standard ACRA/IRAS timelines. Private companies may be exempt from holding an AGM subject to conditions. Your compliance calendar may vary, talk to us to confirm your exact obligations.',
 				),
 				// Figma writes copy for the first tool only, exactly as it does on
@@ -3659,6 +3684,14 @@ function thinksme_ci_content() {
 			'text' => 'From first step to every milestone, talk to us about what you\'re building.',
 		),
 	);
+
+	// The Corporate Tax page's calculator, repeated under the free tools on the two
+	// incorporation pages and Corporate Secretary (client QA). The same set, not a
+	// copy of it, so the rate and the exemption bands stay one edit when the Budget
+	// moves them.
+	$local['calculator']     = $tax['calculator'];
+	$foreign['calculator']   = $tax['calculator'];
+	$secretary['calculator'] = $tax['calculator'];
 
 	return array(
 		'local'      => $local,

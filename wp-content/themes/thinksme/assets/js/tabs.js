@@ -12,9 +12,7 @@
  * than the first one found.
  *
  * The markup opts in with `data-tabs` on the group and, inside it, `data-tab` on
- * each button, `data-tab-panel` on each panel and (optionally) `data-tab-select`
- * on a <select> that drives the same tabs where the strip is too wide to be a
- * row. Appearance stays entirely in src/base.css, keyed off `data-active` — so
+ * each button and `data-tab-panel` on each panel. Appearance stays entirely in src/base.css, keyed off `data-active` — so
  * with this file gone the panel the template marked active stays open and each
  * section still reads as its Figma state.
  *
@@ -36,12 +34,6 @@
 			// be rather than letting a click hide the only panel.
 			return;
 		}
-
-		// Where a strip of long labels can't be a row on a phone, src/base.css
-		// hides it and shows this <select> instead. It drives the same tabs, and
-		// it is kept in step when the strip is what moved, so a resize across the
-		// breakpoint never shows a dropdown naming a tab that isn't open.
-		var dropdown = group.querySelector( '[data-tab-select]' );
 
 		function panelFor( tab ) {
 			return document.getElementById( tab.getAttribute( 'aria-controls' ) );
@@ -65,23 +57,9 @@
 				}
 			}
 
-			if ( dropdown && dropdown.value !== tab.id ) {
-				dropdown.value = tab.id;
-			}
-
 			if ( moveFocus ) {
 				tab.focus();
 			}
-		}
-
-		if ( dropdown ) {
-			dropdown.addEventListener( 'change', function () {
-				var tab = document.getElementById( this.value );
-
-				if ( tab ) {
-					select( tab, false );
-				}
-			} );
 		}
 
 		for ( var i = 0; i < tabs.length; i++ ) {

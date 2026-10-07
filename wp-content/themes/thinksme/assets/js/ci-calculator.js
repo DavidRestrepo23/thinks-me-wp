@@ -199,9 +199,41 @@
 	// other controls, and changing the tenure with an amount already typed re-runs
 	// the estimate the way switching scheme does above.
 	input.addEventListener( 'input', function () {
+		group( input );
 		show( result, false );
 		show( error, false );
 	} );
+
+	// Thousands separators as the visitor types (client QA: "100,000", not
+	// "100000"). parseAmount() already strips the commas back out, so this is
+	// display only. The caret is put back after the same number of digits it
+	// followed before, or every keystroke mid-number would jump it to the end.
+	function group( field ) {
+		var value  = field.value;
+		var caret  = field.selectionStart;
+		var before = value.slice( 0, caret ).replace( /[^0-9.]/g, '' ).length;
+		var clean  = value.replace( /[^0-9.]/g, '' );
+		var dot    = clean.indexOf( '.' );
+		var whole  = dot > -1 ? clean.slice( 0, dot ) : clean;
+		var frac   = dot > -1 ? '.' + clean.slice( dot + 1 ).replace( /\./g, '' ) : '';
+		var next   = whole.replace( /\B(?=(\d{3})+(?!\d))/g, ',' ) + frac;
+
+		if ( next === value ) {
+			return;
+		}
+
+		field.value = next;
+
+		var pos = 0;
+
+		for ( var seen = 0; pos < next.length && seen < before; pos++ ) {
+			if ( /[0-9.]/.test( next.charAt( pos ) ) ) {
+				seen++;
+			}
+		}
+
+		field.setSelectionRange( pos, pos );
+	}
 
 	if ( rateIn ) {
 		rateIn.addEventListener( 'input', function () {
