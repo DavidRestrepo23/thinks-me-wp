@@ -188,29 +188,24 @@ foreach ( $row_labels as $r => $default_label ) {
 }
 ?>
 <section id="overview" class="flex flex-col items-center gap-3xl w-full mt-xl md:mt-3xl mb-[60px] px-lg">
-	<div class="flex flex-col items-center gap-lg text-center" style="max-width: 843px;">
-		<span class="bg-brand-yellow-soft border border-brand-yellow-border rounded-pill h-[32px] px-lg inline-flex items-center justify-center text-xs font-medium text-text-primary">
-			<?php echo esc_html( thinksme_field( 'overview_hat_text', false, 'Everything Under One Roof' ) ); ?>
-		</span>
-		<h2 class="font-medium text-2xl lg:text-3xl text-text-primary" style="letter-spacing: var(--tracking-tight);">
-			<?php echo esc_html( thinksme_field( 'overview_heading', false, 'Three Ways Think SME Serves Your Business' ) ); ?>
-		</h2>
-		<p class="font-normal text-md text-text-secondary" style="max-width: 592px; letter-spacing: var(--tracking-tight);">
-			<?php echo esc_html( thinksme_field( 'overview_subheading' ) ); ?>
-		</p>
-	</div>
-
-	<div class="relative w-full bg-surface-dark rounded-[40px] md:rounded-[80px] overflow-hidden px-lg md:px-[56px] py-3xl md:py-[136px]">
-<?php // Amendment #16 — constellation pattern anchored to the TOP of the dark box (Figma), was bottom. ?>
+	<?php
+	// QA #52 / Figma "Desktop Homepage" 951:12557: the navy accordion has no heading of its
+	// own — "Everything Under One Roof / Three Ways…" is already drawn above the cards
+	// deck (template-parts/cards-deck.php, same ACF fields), so repeating it here put a
+	// second copy of the heading and ~300px of extra space in the middle of the page.
+	?>
+	<div class="relative w-full bg-surface-dark rounded-[40px] md:rounded-[80px] overflow-hidden px-lg md:px-[56px] pt-3xl pb-xl md:pt-[136px] md:pb-0">
+<?php // QA #4 (Figma 951:12557): the box's bottom padding is 0 and the last row has no rule — the Grow row's own 48px is the space under it, as in the design. Was 136px + a divider, which left a band of empty navy under "Grow". ?>
+<?php // Amendment #16 — constellation pattern anchored to the TOP of the dark box (Figma), was bottom. Figma 951:12557 draws it 1440x511 across the box top, so it keeps its own 1392:511 ratio at the box width — `cover` on half the box (~800px) blew each cell up ~1.6x. QA #58: hidden below md, where `cover` stretched it into a pixelated texture; the box is plain navy there. ?>
 		<div
-			class="absolute inset-x-0 top-0 h-1/2 bg-no-repeat bg-top pointer-events-none"
-			style="background-image: url('<?php echo esc_url( $bg_pattern ); ?>'); background-size: cover;"
+			class="hidden md:block absolute inset-x-0 top-0 aspect-[1392/511] bg-no-repeat bg-top pointer-events-none"
+			style="background-image: url('<?php echo esc_url( $bg_pattern ); ?>'); background-size: 100% auto;"
 			aria-hidden="true"
 		></div>
 
 		<div class="relative flex flex-col gap-xl md:gap-[48px]">
 			<?php foreach ( $rows as $row_index => $row ) : ?>
-				<details class="overview-accordion-row border-b border-white/15 pb-xl md:pb-[48px]" name="overview-accordion" <?php echo 1 === $row_index ? 'open' : ''; ?>>
+				<details class="overview-accordion-row border-b last:border-b-0 border-white/15 pb-xl md:pb-[48px]" name="overview-accordion" <?php echo 1 === $row_index ? 'open' : ''; ?>>
 					<summary class="overview-accordion-toggle flex items-center justify-end gap-lg md:gap-[48px] cursor-pointer list-none w-full">
 						<span class="overview-accordion-icon shrink-0 bg-brand-yellow rounded-pill flex items-center justify-center size-[64px] md:size-[112px]">
 							<img src="<?php echo esc_url( "$icons_uri/icon-plus.svg" ); ?>" alt="" class="icon-plus size-[28px] md:size-[48px]">

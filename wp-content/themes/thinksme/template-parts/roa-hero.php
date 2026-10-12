@@ -32,7 +32,11 @@ $photo_alt  = ! empty( $photo['alt'] ) ? $photo['alt'] : '';
 $cutout_url = ! empty( $cutout['url'] ) ? $cutout['url'] : ( $is_stock ? "$images_uri/hero-foreground.png" : '' );
 
 $button_text = thinksme_field( 'roa_hero_button_text', false, 'Enquire Now' );
-$button_link = thinksme_field( 'roa_hero_button_link', false, '#' );
+$button_link = thinksme_field( 'roa_hero_button_link', false, '/contact-us/' );
+// A bare '#' saved in the field is the old placeholder, not a destination.
+if ( '#' === trim( (string) $button_link ) ) {
+	$button_link = '/contact-us/';
+}
 ?>
 <section id="roa-hero" class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-xl lg:gap-[34px] w-full px-lg lg:px-3xl py-xl lg:py-[40px]">
 	<div class="relative flex flex-col justify-center gap-xl w-full lg:w-[663px] lg:shrink-0">

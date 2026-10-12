@@ -74,7 +74,7 @@ $footer_columns = array(
 	),
 );
 
-$footer_menu_class = 'site-footer__menu flex flex-col gap-md items-start text-text-secondary text-xs leading-[20px]';
+$footer_menu_class = 'site-footer__menu flex flex-col gap-md items-start text-text-secondary text-xs leading-[20px] xl:whitespace-nowrap';
 ?>
 
 	<footer id="site-footer" class="bg-surface-white w-full pt-[40px] pb-[56px] px-lg lg:px-3xl">
@@ -124,7 +124,8 @@ $footer_menu_class = 'site-footer__menu flex flex-col gap-md items-start text-te
 				</div>
 			</div>
 
-			<div class="flex flex-col sm:flex-row sm:flex-wrap gap-xl items-start xl:flex-1 xl:flex-nowrap xl:justify-between">
+			<?php // QA #49 / Figma 951:12803 footer: the three columns form one block of at most 823px flush right (columns at x 538 / 852 / 1122 of 1440: 234 + 80 + 190 + 80 + 239), not spread across the remaining width. ?>
+			<div class="flex flex-col sm:flex-row sm:flex-wrap gap-xl items-start xl:flex-1 xl:max-w-[823px] xl:ml-auto xl:flex-nowrap xl:justify-between">
 				<?php foreach ( $footer_columns as $column ) : ?>
 					<div class="flex flex-col gap-lg items-start w-full <?php echo esc_attr( $column['width'] ); ?>">
 						<?php // nowrap: Figma keeps each heading on one line, and Charlevoix Bold at 20px + 1px tracking is a few px wider than the column. ?>

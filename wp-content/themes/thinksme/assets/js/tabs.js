@@ -62,6 +62,34 @@
 			}
 		}
 
+		// A tab that names a `data-tab-hash` can be opened from a link: the Start-up
+		// Tools menu points at /company-incorporation-local/#ci-tools-ssic and the
+		// like. The section is brought into view with that tab already selected.
+		function openFromHash() {
+			var hash = window.location.hash.replace( /^#/, '' );
+
+			if ( ! hash ) {
+				return;
+			}
+
+			for ( var h = 0; h < tabs.length; h++ ) {
+				if ( tabs[ h ].getAttribute( 'data-tab-hash' ) === hash ) {
+					select( tabs[ h ], false );
+
+					// Clear of the sticky header, which would otherwise sit over the heading.
+					var section = group.closest( 'section' ) || group;
+					var header  = document.querySelector( 'header' );
+					var offset  = header ? header.getBoundingClientRect().height : 0;
+
+					window.scrollTo( 0, section.getBoundingClientRect().top + window.pageYOffset - offset );
+					return;
+				}
+			}
+		}
+
+		openFromHash();
+		window.addEventListener( 'hashchange', openFromHash );
+
 		for ( var i = 0; i < tabs.length; i++ ) {
 			tabs[ i ].addEventListener( 'click', function () {
 				select( this, false );

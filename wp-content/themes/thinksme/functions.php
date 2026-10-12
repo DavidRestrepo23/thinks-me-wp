@@ -10,7 +10,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'THINKSME_VERSION', '1.0.1' );
+define( 'THINKSME_VERSION', '1.0.3' );
 define( 'THINKSME_SWIPER_VERSION', '14.0.7' );
 
 // Primary-nav walker — builds the desktop megamenu out of the menu's own depth.
@@ -365,6 +365,27 @@ function thinksme_enqueue_assets() {
 			wp_enqueue_script(
 				'thinksme-ci-calculator',
 				get_template_directory_uri() . '/assets/js/ci-calculator.js',
+				array(),
+				THINKSME_VERSION,
+				true
+			);
+		}
+
+		// The free tools that compute in place (template-parts/ci-tools.php): the
+		// company name check against ACRA's register, the SSIC search and the tax
+		// tab. The SSIC list itself is only fetched on the first search.
+		if ( in_array(
+			thinksme_current_template(),
+			array(
+				'page-company-incorporation-local.php',
+				'page-company-incorporation-foreign.php',
+				'page-corporate-secretary.php',
+			),
+			true
+		) ) {
+			wp_enqueue_script(
+				'thinksme-ci-tools-live',
+				get_template_directory_uri() . '/assets/js/ci-tools-live.js',
 				array(),
 				THINKSME_VERSION,
 				true
@@ -809,6 +830,14 @@ function thinksme_field( $selector, $post_id = false, $default = '' ) {
 		return $default;
 	}
 	$value = get_field( $selector, $post_id );
+
+	// Placeholder copy saved into a field (the ACF defaults once shipped lorem ipsum
+	// for the panels Figma never wrote) counts as empty, so the theme's real default
+	// shows instead of dummy text reaching the live site.
+	if ( is_string( $value ) && preg_match( '/\blorem ipsum\b|^e\.g\. lorem\b/i', $value ) ) {
+		return $default;
+	}
+
 	return ( '' === $value || null === $value || false === $value ) ? $default : $value;
 }
 

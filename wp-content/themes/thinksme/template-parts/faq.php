@@ -109,11 +109,26 @@ if ( ! $items ) {
 			'question' => 'How much does it cost to set up a company in Singapore?',
 			'answer'   => "Think SME's all-in company setup package starts from S$888, which covers the ACRA government registration fee, company constitution preparation, registered office address, and first-year corporate secretarial service. The ACRA government fee alone is S$315, our professional package bundles everything a new Singapore company needs from day one. Contact us for a full transparent quote tailored to your business structure.",
 		),
-		array( 'question' => 'When must my Singapore company register for GST?', 'answer' => '' ),
-		array( 'question' => 'How fast can Think SME incorporate my Singapore company?', 'answer' => '' ),
-		array( 'question' => 'What is the corporate tax rate in Singapore?', 'answer' => '' ),
-		array( 'question' => 'My bank rejected my SME loan application, what can I do?', 'answer' => '' ),
-		array( 'question' => 'What makes Think SME different from competitors?', 'answer' => '' ),
+		array(
+			'question' => 'When must my Singapore company register for GST?',
+			'answer'   => 'You must register for GST within 30 days once your taxable turnover goes over S$1 million: either at the end of a calendar year (retrospective basis) or when you expect it to exceed S$1 million in the next 12 months (prospective basis). Below that threshold, registration is voluntary, and if you register voluntarily you must stay registered for at least two years. Once registered, you charge GST at 9% and file returns with IRAS, usually every quarter. We can check whether you need to register and handle the application and filings for you.',
+		),
+		array(
+			'question' => 'How fast can Think SME incorporate my Singapore company?',
+			'answer'   => 'Once we have your documents and identity checks completed, most companies are incorporated within 24 hours, because the name is approved instantly and ACRA registers the company the same day. It takes longer if your proposed name contains words that ACRA refers to another authority (for example “bank”, “law” or “school”), or if a foreign founder still needs a locally resident director, which we can provide. Everything is done online, so you don’t need to be in Singapore.',
+		),
+		array(
+			'question' => 'What is the corporate tax rate in Singapore?',
+			'answer'   => 'Singapore charges a flat 17% corporate income tax on chargeable income, and exemptions bring the effective rate well below that for most SMEs. A new company can claim the Start-Up Tax Exemption for its first three Years of Assessment (75% of the first S$100,000 and 50% of the next S$100,000 exempt). Other companies get the Partial Tax Exemption (75% of the first S$10,000 and 50% of the next S$190,000). Corporate Income Tax rebates announced in the Budget can reduce the bill further in some years. Try our tax calculator for an estimate.',
+		),
+		array(
+			'question' => 'My bank rejected my SME loan application, what can I do?',
+			'answer'   => 'A rejection from one bank doesn’t mean you can’t get financing. Every lender has its own criteria for years in operation, revenue, profitability, industry and credit history, so a profile one bank turns down can suit another. Our ex-banker team reviews your financials, explains why you were declined and matches you against 60+ banks and alternative lenders, including government-assisted Enterprise Financing Scheme loans. The assessment is free and doesn’t commit you to anything.',
+		),
+		array(
+			'question' => 'What makes Think SME different from competitors?',
+			'answer'   => 'One team covers your whole journey: incorporation, corporate secretary, registered address, accounting, GST and corporate tax, plus business financing and grants. We’re an ACRA Registered Filing Agent, an IMDA pre-approved vendor and Xero Certified Advisors, and our financing team of former bankers compares 60+ lenders for you. Pricing is transparent and agreed upfront, and our clients rate us 4.9 on Google.',
+		),
 	);
 }
 

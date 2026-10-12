@@ -265,7 +265,7 @@ $button_2_link = thinksme_field( 'ci_hero_button_2_link', false, $d['button_2_li
 			<div class="flex flex-col sm:flex-row sm:flex-wrap sm:items-center gap-md sm:gap-lg">
 				<?php if ( $button_text ) : ?>
 					<a href="<?php echo esc_url( $button_link ); ?>" class="btn-split flex sm:inline-flex items-center w-full sm:w-auto">
-						<span class="bg-brand-yellow rounded-sm h-[50px] px-lg inline-flex items-center justify-center text-sm font-medium text-text-primary whitespace-nowrap grow sm:grow-0">
+						<span class="bg-brand-yellow rounded-sm min-h-[50px] py-xs px-lg inline-flex items-center justify-center text-center text-sm font-medium text-text-primary whitespace-normal sm:whitespace-nowrap min-w-0 grow sm:grow-0">
 							<?php echo esc_html( $button_text ); ?>
 						</span>
 						<span class="bg-brand-yellow rounded-sm size-[50px] inline-flex items-center justify-center shrink-0">

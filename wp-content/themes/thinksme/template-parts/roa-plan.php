@@ -41,7 +41,11 @@ foreach ( $benefit_defaults as $n => $default ) {
 $price       = thinksme_field( 'roa_plan_price', false, 'S$238/year' );
 $card_text   = thinksme_field( 'roa_plan_card_text', false, 'Give your company a professional Singapore registered address with 24/7 access to all incoming mail through your secure online dashboard.' );
 $button_text = thinksme_field( 'roa_plan_button_text', false, 'Enquire Now' );
-$button_link = thinksme_field( 'roa_plan_button_link', false, '#' );
+$button_link = thinksme_field( 'roa_plan_button_link', false, '/contact-us/' );
+// A bare '#' saved in the field is the old placeholder, not a destination.
+if ( '#' === trim( (string) $button_link ) ) {
+	$button_link = '/contact-us/';
+}
 ?>
 <section id="roa-plan" class="flex flex-col-reverse lg:flex-row lg:items-start gap-3xl lg:gap-[109px] w-full mt-xl md:mt-3xl px-lg lg:px-3xl py-xl lg:py-[40px]">
 	<div class="flex flex-col gap-xl w-full lg:w-[547px] lg:shrink-0 bg-surface-light rounded-lg p-xl">

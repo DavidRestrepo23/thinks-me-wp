@@ -70,17 +70,20 @@ foreach ( $defaults as $n => $default ) {
 		'disclaimer'  => thinksme_field( "ci_tools_tab_{$n}_disclaimer", false, $default['disclaimer'] ),
 		// A tab that computes something names it here; the rest stay the plain GET form.
 		'tool'        => isset( $default['tool'] ) ? $default['tool'] : '',
+		'slug'        => isset( $default['slug'] ) ? $default['slug'] : '',
 		'deadlines'   => isset( $default['deadlines'] ) ? $default['deadlines'] : array(),
+		'rate'        => isset( $default['rate'] ) ? $default['rate'] : 0,
+		'schemes'     => isset( $default['schemes'] ) ? $default['schemes'] : array(),
 		'error_text'  => isset( $default['error_text'] ) ? $default['error_text'] : '',
 	);
 }
 
-// TODO(Vicky): Amendment #12 — the three tools (Company Name Check / Business Activity
-// SSIC / Tax Calculator) have NO behaviour yet: each is a plain GET form that just submits to
-// the contact page. Tab SWITCHING works (assets/js/tabs.js, verified). What each tab should
-// actually do "as per what we discussed" is still needed — e.g. live ACRA name availability,
-// an SSIC code lookup, and an inline corporate-tax calculation. Once specced, replace the GET
-// form per tab with the real tool. Nothing reads the `q` parameter today.
+// Amendment #12 / QA #10, #53, #54: each tab with a `tool` computes in place —
+// `name-check` (format check + ACRA register on data.gov.sg), `ssic` (SSIC 2025 search),
+// `tax` (corporate tax estimate) in assets/js/ci-tools-live.js, `deadlines` in
+// assets/js/ci-deadlines.js. Without those scripts each form is still the plain GET to the
+// contact page. A tab's `slug` makes it reachable by URL: /page/#ci-tools-<slug> opens that
+// tab (assets/js/tabs.js), which is what the Start-up Tools menu items link to.
 if ( ! $tabs ) {
 	return;
 }
@@ -118,6 +121,9 @@ $active = array_key_first( $tabs );
 					class="ci-tools__tab"
 					role="tab"
 					data-tab
+					<?php if ( $tab['slug'] ) : ?>
+						data-tab-hash="ci-tools-<?php echo esc_attr( $tab['slug'] ); ?>"
+					<?php endif; ?>
 					id="ci-tools-tab-<?php echo esc_attr( $n ); ?>"
 					aria-controls="ci-tools-panel-<?php echo esc_attr( $n ); ?>"
 					aria-selected="<?php echo $n === $active ? 'true' : 'false'; ?>"
@@ -161,6 +167,14 @@ $active = array_key_first( $tabs );
 						method="get"
 						<?php if ( 'deadlines' === $tab['tool'] ) : ?>
 							data-deadlines="<?php echo esc_attr( wp_json_encode( $tab['deadlines'] ) ); ?>"
+						<?php elseif ( in_array( $tab['tool'], array( 'name-check', 'ssic', 'tax' ), true ) ) : ?>
+							data-tool="<?php echo esc_attr( $tab['tool'] ); ?>"
+							<?php if ( 'ssic' === $tab['tool'] ) : ?>
+								data-ssic-src="<?php echo esc_url( get_template_directory_uri() . '/assets/data/ssic-2025.json?v=' . THINKSME_VERSION ); ?>"
+							<?php elseif ( 'tax' === $tab['tool'] ) : ?>
+								data-rate="<?php echo esc_attr( $tab['rate'] ); ?>"
+								data-schemes="<?php echo esc_attr( wp_json_encode( $tab['schemes'] ) ); ?>"
+							<?php endif; ?>
 						<?php endif; ?>
 					>
 						<label class="sr-only" for="ci-tools-input-<?php echo esc_attr( $n ); ?>">
@@ -177,6 +191,8 @@ $active = array_key_first( $tabs );
 								type="text"
 								id="ci-tools-input-<?php echo esc_attr( $n ); ?>"
 								name="q"
+								autocomplete="off"
+								<?php echo 'tax' === $tab['tool'] ? 'inputmode="decimal"' : ''; ?>
 								placeholder="<?php echo esc_attr( $tab['placeholder'] ); ?>"
 							>
 						</span>
@@ -205,6 +221,14 @@ $active = array_key_first( $tabs );
 						</dl>
 						<?php if ( $tab['error_text'] ) : ?>
 							<p class="font-normal text-sm leading-relaxed text-brand-yellow" data-deadlines-error role="alert" hidden><?php echo esc_html( $tab['error_text'] ); ?></p>
+						<?php endif; ?>
+					<?php endif; ?>
+
+					<?php if ( in_array( $tab['tool'], array( 'name-check', 'ssic', 'tax' ), true ) ) : ?>
+						<?php // Filled by assets/js/ci-tools-live.js; hidden until a search or calculation has run. ?>
+						<div class="ci-tools__result w-full max-w-[640px] flex flex-col gap-sm text-left text-text-on-dark" data-tool-result aria-live="polite" hidden></div>
+						<?php if ( $tab['error_text'] ) : ?>
+							<p class="font-normal text-sm leading-relaxed text-brand-yellow" data-tool-error role="alert" hidden><?php echo esc_html( $tab['error_text'] ); ?></p>
 						<?php endif; ?>
 					<?php endif; ?>
 

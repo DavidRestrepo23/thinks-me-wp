@@ -273,9 +273,10 @@
 @media (min-width: 768px) {
   /* A collapsed card's summary is height:100%, so with all three closed —
      which <details name> allows, by clicking the open one — the row would
-     otherwise collapse to nothing. This floor is also the design's 746px. */
+     otherwise collapse to nothing. This floor is also the design's column height:
+     694px in the approved frame (Figma 951:12557, Revs 07/8; was 746px). */
   .overview-services {
-    min-height: 746px;
+    min-height: 694px;
   }
 
   .overview-service {
@@ -308,10 +309,10 @@
     padding: var(--space-xl);
   }
 
-  /* 746px column - 412px image - 8px gap. Short copy pads out to this, so
-     every row lands on the design's 746px; longer copy grows past it. */
+  /* 694px column - 412px image - 8px gap. Short copy pads out to this, so
+     every row lands on the design's 694px; longer copy grows past it. */
   .overview-service-content {
-    min-height: 326px;
+    min-height: 274px;
   }
 }
 
@@ -783,6 +784,17 @@
     border-radius: var(--radius-md);
     overflow: hidden;
     box-shadow: 0 16px 40px rgba(0, 0, 0, 0.08);
+    /* A column longer than the window (Grow, on a laptop-height screen) used to
+       run off the bottom with no way to reach its last card. The panel is capped
+       at what's left under the sticky header (--site-header-height, which
+       assets/js/header-nav.js keeps current, + the 8px gap + 16px of air) and
+       scrolls inside itself; `overscroll-behavior` stops the page underneath
+       from scrolling once it reaches the end. */
+    max-height: calc(100vh - var(--site-header-height, 88px) - 24px);
+    max-height: calc(100dvh - var(--site-header-height, 88px) - 24px);
+    overflow-x: hidden;
+    overflow-y: auto;
+    overscroll-behavior: contain;
   }
 
   /* A menu with fewer than three top-level items has no fourth column to fill
@@ -3140,6 +3152,89 @@ button:focus-visible {
   opacity: 0.5;
 }
 
+/* Results the live tools print under their form (assets/js/ci-tools-live.js):
+   the name check's verdicts, the SSIC matches and the tax estimate. Plain CSS
+   rather than utilities because the markup is built in JS, which Tailwind's
+   content scan (PHP only) never sees. */
+.ci-tools__result {
+  font-size: var(--font-size-sm);
+  line-height: var(--line-height-relaxed, 1.6);
+}
+
+.ci-tools__status {
+  display: flex;
+  gap: var(--space-sm);
+  align-items: flex-start;
+  padding: var(--space-sm) var(--space-md);
+  border-radius: var(--radius-sm);
+  background-color: rgba(255, 255, 255, 0.07);
+}
+
+.ci-tools__status::before {
+  flex: 0 0 auto;
+  width: 20px;
+  height: 20px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 20px;
+  text-align: center;
+  color: var(--color-surface-dark);
+}
+
+.ci-tools__status--ok::before { content: "\2713"; background-color: #5cd18b; }
+.ci-tools__status--warn::before { content: "!"; background-color: var(--color-brand-yellow, #f7c90e); }
+.ci-tools__status--bad::before { content: "\2715"; background-color: #ff8a80; }
+.ci-tools__status--info::before { content: "i"; background-color: rgba(255, 255, 255, 0.7); }
+
+.ci-tools__result-heading {
+  margin-top: var(--space-xs);
+  font-weight: 500;
+  opacity: 0.7;
+}
+
+.ci-tools__row {
+  display: flex;
+  gap: var(--space-md);
+  align-items: baseline;
+  justify-content: space-between;
+  padding: var(--space-xs) 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.ci-tools__row:last-child {
+  border-bottom: 0;
+}
+
+.ci-tools__row-main {
+  min-width: 0;
+}
+
+.ci-tools__row-note {
+  display: block;
+  font-size: 12px;
+  opacity: 0.6;
+}
+
+.ci-tools__row-value {
+  flex: 0 0 auto;
+  font-weight: 500;
+  color: var(--color-brand-yellow, #f7c90e);
+  white-space: nowrap;
+}
+
+.ci-tools__code {
+  flex: 0 0 auto;
+  min-width: 56px;
+  font-weight: 500;
+  color: var(--color-brand-yellow, #f7c90e);
+  font-variant-numeric: tabular-nums;
+}
+
+.ci-tools__row--code {
+  justify-content: flex-start;
+}
+
 /* ---------------------------------------------------------------------------
    Corporate Secretary — the "why founders choose us" carousel
    (template-parts/ci-why-slider.php).
@@ -4441,4 +4536,67 @@ button:focus-visible {
   #main-content > section + section { margin-top: 48px; }
   #main-content > section:first-child { padding-top: 32px; }
   #main-content > section:last-child { padding-bottom: 32px; }
+}
+
+/* ---------------------------------------------------------------------------
+   Homepage section rhythm — QA #4 / #45, measured against Figma "Desktop
+   Homepage" (951:12508, Revs 07/8). The shared template parts carry the 100px
+   step every page uses; the homepage design spaces its bands unevenly (tighter
+   under the hero, 136px around the navy accordion, 160px before the FAQ and the
+   final CTA), so the values are set here, homepage only, rather than in the
+   parts that other pages share. Gaps are measured content-edge to content-edge
+   (logo strips by their centre line, as Figma draws them). */
+@media (min-width: 1024px) {
+  .home #main-content > #hero {
+    padding-top: 16px;
+  }
+
+  .home #main-content > #logos-clients-1 {
+    margin-top: 72px;
+  }
+
+  .home #main-content > #ways {
+    margin-top: 136px;
+  }
+
+  .home #main-content > #logos-clients-2 {
+    margin-top: 118px;
+  }
+
+  .home #main-content > #overview {
+    margin-top: 132px;
+  }
+
+  .home #main-content > .testimonials {
+    margin-top: 136px;
+  }
+
+  .home #main-content > #faq,
+  .home #main-content > #cta {
+    margin-top: 160px;
+  }
+}
+
+/* Same homepage rhythm below lg, measured against Figma "Mobile Homepage"
+   (951:12810): 88px between bands, logo strips centred ~108px from their
+   neighbours. The shared parts give 48px here. */
+@media (max-width: 1023px) {
+  .home #main-content > #hero {
+    padding-top: 40px;
+  }
+
+  .home #main-content > #ways {
+    margin-top: 80px;
+  }
+
+  .home #main-content > #logos-clients-2,
+  .home #main-content > #overview {
+    margin-top: 84px;
+  }
+
+  .home #main-content > .testimonials,
+  .home #main-content > #faq,
+  .home #main-content > #cta {
+    margin-top: 88px;
+  }
 }

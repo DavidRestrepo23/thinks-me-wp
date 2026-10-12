@@ -227,7 +227,11 @@ function thinksme_ci_content() {
 					// obvious from the placeholder alone (a date, say).
 					'icon'        => '',
 					'button_text' => 'Check Name',
-					'disclaimer'  => 'This is a preliminary format check, not a live ACRA registry search. Final name availability and approval is confirmed when we submit your official BizFile+ application.',
+					// Computes in place (assets/js/ci-tools-live.js): a format check plus a
+					// look-up against ACRA's corporate-entities register on data.gov.sg.
+					'tool'        => 'name-check',
+					'slug'        => 'name-check',
+					'disclaimer'  => 'A preliminary check against ACRA\'s public register on data.gov.sg (updated monthly), not a name reservation. Final name availability and approval is confirmed when we submit your official BizFile+ application.',
 				),
 				2 => array(
 					'label'       => 'Business Activity (SSIC)',
@@ -236,16 +240,36 @@ function thinksme_ci_content() {
 					'placeholder' => 'e.g. Software development, Café, Online retail',
 					'icon'        => '',
 					'button_text' => 'Search Code',
+					// Searches the SSIC 2025 codes and SingStat's alphabetical index
+					// (assets/data/ssic-2025.json) in the browser.
+					'tool'        => 'ssic',
+					'slug'        => 'ssic',
 					'disclaimer'  => 'This is a guide to help you shortlist SSIC codes, not an official ACRA classification. We\'ll confirm your primary and secondary activities when we prepare your BizFile+ application.',
 				),
 				3 => array(
 					'label'       => 'Tax Calculator',
 					'title'       => 'Tax Calculator',
-					'text'        => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit sed do eiusmod tempor.',
-					'placeholder' => 'e.g. lorem ipsum dolor',
+					'text'        => 'Enter your estimated chargeable income to see your corporate tax with the new-company and partial exemptions applied.',
+					'placeholder' => 'e.g. 250,000',
 					'icon'        => '',
 					'button_text' => 'Calculate',
-					'disclaimer'  => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+					// Same rate and IRAS exemption bands as the Corporate Tax page's
+					// calculator; both schemes are shown side by side.
+					'tool'        => 'tax',
+					'slug'        => 'tax-calculator',
+					'rate'        => 17,
+					'schemes'     => array(
+						array(
+							'label' => 'New company (SUTE, first 3 YAs)',
+							'bands' => array( array( 100000, 75 ), array( 100000, 50 ) ),
+						),
+						array(
+							'label' => 'Established company (Partial Exemption)',
+							'bands' => array( array( 10000, 75 ), array( 190000, 50 ) ),
+						),
+					),
+					'error_text'  => 'Enter your estimated chargeable income in S$, e.g. 250,000.',
+					'disclaimer'  => 'Indicative only, at the 17% corporate tax rate with the standard IRAS exemption schemes. It excludes any Budget rebates and is not tax advice or a filing.',
 				),
 			),
 		),
@@ -596,6 +620,7 @@ function thinksme_ci_content() {
 					// so 31/12/26 gives 31/07/27 and 30/06/26 gives 31/01/27 (client QA).
 					// `fixed` is a day/month in the year after the FYE's (Form C-S/C).
 					'tool'        => 'deadlines',
+					'slug'        => 'deadlines',
 					'deadlines'   => array(
 						array(
 							'label'  => 'ECI filing due date',
@@ -622,11 +647,27 @@ function thinksme_ci_content() {
 				2 => array(
 					'label'       => 'Tax Calculator',
 					'title'       => 'Tax Calculator',
-					'text'        => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit sed do eiusmod tempor.',
-					'placeholder' => 'e.g. lorem ipsum dolor',
+					'text'        => 'Enter your estimated chargeable income to see your corporate tax with the new-company and partial exemptions applied.',
+					'placeholder' => 'e.g. 250,000',
 					'icon'        => '',
 					'button_text' => 'Calculate',
-					'disclaimer'  => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+					// Same rate and IRAS exemption bands as the Corporate Tax page's
+					// calculator; both schemes are shown side by side.
+					'tool'        => 'tax',
+					'slug'        => 'tax-calculator',
+					'rate'        => 17,
+					'schemes'     => array(
+						array(
+							'label' => 'New company (SUTE, first 3 YAs)',
+							'bands' => array( array( 100000, 75 ), array( 100000, 50 ) ),
+						),
+						array(
+							'label' => 'Established company (Partial Exemption)',
+							'bands' => array( array( 10000, 75 ), array( 190000, 50 ) ),
+						),
+					),
+					'error_text'  => 'Enter your estimated chargeable income in S$, e.g. 250,000.',
+					'disclaimer'  => 'Indicative only, at the 17% corporate tax rate with the standard IRAS exemption schemes. It excludes any Budget rebates and is not tax advice or a filing.',
 				),
 				// Two tools here, three on the incorporation pages: same
 				// arrangement as the empty pricing card above.
@@ -1759,7 +1800,7 @@ function thinksme_ci_content() {
 			'text'            => "<strong>Property Cashout Singapore</strong> allows you to unlock the equity in your property without selling it. Through cash-out refinancing, you can access additional funds while continuing to own your residential, commercial, or industrial property.\n\nIdeal for SME owners, property cashout provides lower interest rates, larger loan amounts, and flexible funding for business expansion, working capital, equipment purchases, or investment opportunities.",
 			'example_heading' => 'Example Calculation',
 			'example_text'    => 'If your commercial shophouse is valued at <strong>S$2,000,000</strong> and you have an outstanding mortgage of <strong>S$900,000</strong>, you may be able to access up to <strong>S$900,000 in additional cash</strong> through a property cashout refinancing, without selling the property.',
-			'formula'         => '<strong>Formula:</strong> (S$2M x 90% LTV) - S$900K outstanding = S$900K cashout available',
+			'formula'         => '<strong>Formula:</strong> (S$2M × 90% LTV) − S$900K outstanding = S$900K cashout available',
 			// Two-layer in Figma (951:9059) and exported flattened — onto #fbfbfb
 			// here rather than white, because that is the panel this photo sits on
 			// and Figma flattens onto whatever is actually behind the node.
@@ -1840,7 +1881,7 @@ function thinksme_ci_content() {
 				2 => array(
 					'icon'  => 'calculator',
 					'title' => 'Assess Equity',
-					'text'  => 'We calculate: (Property Value x up to 90% LTV) minus outstanding balance = your available cashout.',
+					'text'  => 'We calculate: (Property Value × up to 90% LTV) minus outstanding balance = your available cashout.',
 					'meta'  => 'WITHIN 24 HRS',
 				),
 				3 => array(
@@ -1966,7 +2007,7 @@ function thinksme_ci_content() {
 					5 => array(
 						'icon'  => 'hand-coins',
 						'title' => 'Grant Advisory Integration',
-						'text'  => 'Maximise EDG, PSG & MRA grants alongside your cashout strategy.',
+						'text'  => 'Maximise EDGE grants alongside your cashout strategy.',
 					),
 				),
 			),
@@ -2029,23 +2070,23 @@ function thinksme_ci_content() {
 				),
 				2 => array(
 					'question' => 'Can I use my HDB flat for cashout refinancing in Singapore?',
-					'answer'   => '',
+					'answer'   => 'No. Property cashout (an equity loan) is only available for private residential, commercial and industrial properties, and HDB flats can’t be used as collateral for it. If you own a private property, or your company owns a commercial or industrial unit, we can assess how much equity you can release.',
 				),
 				3 => array(
 					'question' => 'How much can I borrow through property cashout in Singapore?',
-					'answer'   => '',
+					'answer'   => 'Lenders take the property’s current valuation, multiply it by the loan-to-value (LTV) limit that applies to you, and subtract the loan you still owe. For eligible properties the LTV can go up to 90%. For example, a S$2,000,000 shophouse at 90% LTV with S$900,000 outstanding releases about S$900,000. The actual limit depends on the property type, whether you borrow personally or through your company, regulatory caps such as MAS’s Total Debt Servicing Ratio, and your repayment capacity.',
 				),
 				4 => array(
 					'question' => 'What is the interest rate for property cashout loans in Singapore?',
-					'answer'   => '',
+					'answer'   => 'Because the loan is secured by property, rates are lower than unsecured business loans, typically around 1.5%–3.5% p.a. Your rate depends on the lender, the property type, the loan amount and whether you choose a fixed or floating package. We compare 60+ banks and lenders to find you the best combination of rate, LTV and terms.',
 				),
 				5 => array(
 					'question' => 'How long does property cashout approval take in Singapore?',
-					'answer'   => '',
+					'answer'   => 'Approval typically takes 1–7 days once the lender has your documents and the property valuation. The legal work and disbursement follow after you accept the offer, and the full timeline depends on the lender and whether an existing mortgage needs to be redeemed.',
 				),
 				6 => array(
 					'question' => 'Can I use property cashout proceeds for my business?',
-					'answer'   => '',
+					'answer'   => 'Yes. Most of our clients use the cash for working capital, expansion, equipment, or to refinance more expensive business debt. Some lenders ask what the funds are for, so we structure the facility and the paperwork around your plans from the start.',
 				),
 			),
 		),
@@ -2375,7 +2416,7 @@ function thinksme_ci_content() {
 					5 => array(
 						'icon'  => 'calendar-dots',
 						'title' => 'Grant Advisory Integration',
-						'text'  => 'Maximise EDG, PSG & MRA grants alongside your financing strategy.',
+						'text'  => 'Maximise EDGE grants alongside your financing strategy.',
 					),
 				),
 			),
@@ -2444,23 +2485,23 @@ function thinksme_ci_content() {
 				),
 				2 => array(
 					'question' => 'Why shouldn’t I just apply to banks myself?',
-					'answer'   => '',
+					'answer'   => 'You can, but each application usually triggers a credit bureau check, and several rejections in a short time can make the next lender more cautious. Without knowing each bank’s criteria, it’s hard to tell which one will say yes. We review your profile once, match it against 19 core partner banks and 60+ lenders in total, and present your financials the way credit teams expect to see them. That saves you time and protects your credit profile, and the assessment and comparison are free.',
 				),
 				3 => array(
 					'question' => 'Why would one bank reject me but another approve me?',
-					'answer'   => '',
+					'answer'   => 'Lenders set their own risk appetite. They differ on minimum years in operation and revenue, which industries they favour, how they read losses or thin margins, how much existing debt they accept, and whether they need collateral or a personal guarantee. Digital lenders and government-assisted schemes also fill gaps that the big banks avoid. A rejection usually means the lender wasn’t the right fit, not that your business can’t borrow.',
 				),
 				4 => array(
 					'question' => 'Can I take a new loan if I already have a WCL?',
-					'answer'   => '',
+					'answer'   => 'Often, yes. The Enterprise Financing Scheme Working Capital Loan is capped at S$500,000 per borrower group across all participating lenders, so if you’ve borrowed less than that you may be able to top up. You can also take other facilities, such as trade financing, term loans or property-backed financing, as long as the lender is satisfied with your repayment capacity. We’ll review your existing facilities and tell you what you can still access.',
 				),
 				5 => array(
 					'question' => 'How fast can I get funded?',
-					'answer'   => '',
+					'answer'   => 'We can usually give you an initial eligibility match within 24 hours of receiving your financial documents. A standard full approval takes 2–4 weeks, depending on the lender and how complete your documents are, and funds are typically disbursed soon after you accept the offer.',
 				),
 				6 => array(
 					'question' => 'How much do I have to pay you?',
-					'answer'   => '',
+					'answer'   => 'Our loan assessment and lender comparison are free, with no obligation. If you then engage us to manage your application, that service is subject to a fee, which we explain upfront before anything is charged.',
 				),
 			),
 		),
@@ -3163,23 +3204,23 @@ function thinksme_ci_content() {
 				),
 				2 => array(
 					'question' => 'What is the EDGE Xero Grant?',
-					'answer'   => '',
+					'answer'   => 'The EDGE Xero Grant supports Singapore SMEs adopting Xero, the cloud accounting software, as a pre-approved solution under IMDA’s SMEs Go Digital programme. It covers up to 50% of qualifying costs. As a pre-approved vendor, Think SME provides the Xero package and handles the setup, training and ongoing support through our Xero Certified Advisor team.',
 				),
 				3 => array(
 					'question' => 'How does the EDGE Xero Grant benefit my business?',
-					'answer'   => '',
+					'answer'   => 'It cuts the upfront cost of moving to cloud accounting by up to 50%. With Xero, bank transactions reconcile automatically, invoices and overdue reminders go out on their own, and your team can work in multiple currencies from anywhere. That frees time from manual bookkeeping and gives you up-to-date numbers for decisions, GST and tax.',
 				),
 				4 => array(
 					'question' => 'How can I apply for the EDGE Xero Grant?',
-					'answer'   => '',
+					'answer'   => 'Apply on the Business Grants Portal with your business registration details and a quotation from a pre-approved vendor, which we prepare for you. Once your application is approved, usually within 2–4 weeks, you purchase the solution and then submit your claim. We guide you through each step and get Xero running while the grant is processed.',
 				),
 				5 => array(
 					'question' => 'Is my business eligible for the EDGE Xero Grant?',
-					'answer'   => '',
+					'answer'   => 'Your business must be registered and operating in Singapore, with at least 30% local shareholding. New start-ups qualify too. The solution must be used in Singapore, be relevant to your business, and be bought as a government pre-approved package from an approved vendor. We can confirm your eligibility before you apply.',
 				),
 				6 => array(
 					'question' => 'How much funding support can I receive?',
-					'answer'   => '',
+					'answer'   => 'The grant covers up to 50% of the qualifying costs of the pre-approved Xero package. The exact amount depends on the package you choose and the grant terms at the time you apply. Our quotation shows the full price and your grant-adjusted cost, so you know exactly what you’ll pay.',
 				),
 			),
 		),
