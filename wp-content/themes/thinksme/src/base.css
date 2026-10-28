@@ -3132,6 +3132,38 @@ button:focus-visible {
   pointer-events: none;
 }
 
+/* The date picker behind the calendar glyph (assets/js/ci-deadlines.js, QA #16).
+   The button is the click target over the glyph; the native date input sits
+   under it, invisible, so the browser anchors its calendar to the field. */
+.ci-tools__date-button {
+  position: absolute;
+  left: calc(var(--space-lg) - 8px);
+  top: 50%;
+  transform: translateY(-50%);
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-sm);
+  background: transparent;
+  cursor: pointer;
+}
+
+.ci-tools__date-button:focus-visible {
+  outline: 2px solid var(--color-brand-yellow);
+  outline-offset: 0;
+}
+
+.ci-tools__date-picker {
+  position: absolute;
+  left: var(--space-lg);
+  bottom: 0;
+  width: 24px;
+  height: 1px;
+  opacity: 0;
+  pointer-events: none;
+  border: 0;
+  padding: 0;
+}
+
 .ci-tools__field--has-icon .ci-tools__input {
   padding-left: calc(var(--space-lg) + 24px + var(--space-sm));
 }
@@ -4598,5 +4630,77 @@ button:focus-visible {
   .home #main-content > #faq,
   .home #main-content > #cta {
     margin-top: 88px;
+  }
+}
+
+/* ---------------------------------------------------------------------------
+   Mobile heading scale (client QA, 12/10): below sm the h1/h2/h3 sizes from the
+   template utilities read too large on a phone, so each h2/h3 step comes down ~20%.
+   Keyed on the size utility each heading already carries, so the hierarchy
+   between them is kept (a 40px h3 label still outranks a 24px card title), and
+   scoped to the page content: header, megamenu and footer are untouched.
+   `body #main-content` outranks the utilities and the per-section rules that
+   scale some headings (e.g. the navy "Same Firm" panel). From sm up nothing
+   changes. */
+@media (max-width: 639.98px) {
+  /* h1 stays at the template's own size (client, 12/10). */
+  body #main-content h2 {
+    font-size: 30px;
+  }
+
+  body #main-content h3.text-2xl {
+    font-size: 32px;
+  }
+
+  body #main-content h3.text-\[32px\] {
+    font-size: 26px;
+  }
+
+  body #main-content h3.text-\[28px\] {
+    font-size: 22px;
+  }
+
+  body #main-content h3.text-xl {
+    font-size: 20px;
+  }
+
+  body #main-content h3.text-lg {
+    font-size: 18px;
+  }
+}
+
+/* ---------------------------------------------------------------------------
+   Wide screens (client, 15/10): above 1440px the page stops stretching at a
+   1600px container, centred. Every part renders exactly as it does on a 1600px
+   screen and the extra width becomes margin either side.
+
+   - Page sections: each direct child of <main> is capped at 1600px and centred,
+     keeping its own side padding (80px for most, 24px for the bands the design
+     runs closer to the edge), so their relationships are the 1600px ones. None
+     of them paints a background of its own, so nothing is cut short.
+   - Carousels stay full-bleed — the logo strips, the testimonials and the "why"
+     card slider are moving rows that read best edge to edge.
+   - Header and footer keep their white background and rule across the full
+     width; only their content is held to the 1600px column (side padding grows
+     by half of whatever exceeds 1600px).
+   - The megamenu keeps its full-width backdrop; its panel is held to the same
+     1600px column. */
+@media (min-width: 1441px) {
+  #main-content > *:not(#logos-clients-1):not(#logos-clients-2):not(.testimonials):not(#ci-why-slider) {
+    max-width: 1600px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  #site-header,
+  #site-footer {
+    padding-left: max(var(--space-3xl), calc((100% - 1600px) / 2 + var(--space-3xl)));
+    padding-right: max(var(--space-3xl), calc((100% - 1600px) / 2 + var(--space-3xl)));
+  }
+
+  .site-header__menu > li:not(.menu-item--dropdown) > .megamenu > .megamenu__grid {
+    max-width: 1584px;
+    margin-left: auto;
+    margin-right: auto;
   }
 }

@@ -101,7 +101,10 @@ $caption  = thinksme_field( 'logos_caption', false, isset( $logos['caption'] ) ?
 						// QA: one set of bank logos everywhere, greyed out like the homepage's).
 						// Their art is full colour, so the strip desaturates them in CSS and
 						// these ones are also faded to the gray art's weight.
-						$tint_class = ( ! $is_coloured && has_term( 'lenders', 'logo_group' ) ) ? ' logos-swiper__logo--tint' : '';
+						// Full-colour art uploaded straight into the gray strip (e.g. the client's updated
+						// IFS / Maybank logos) opts in with the `_thinksme_logo_tint` post meta.
+						$needs_tint = has_term( 'lenders', 'logo_group' ) || get_post_meta( get_the_ID(), '_thinksme_logo_tint', true );
+						$tint_class = ( ! $is_coloured && $needs_tint ) ? ' logos-swiper__logo--tint' : '';
 						$logo_size  = $is_coloured ? 'medium' : 'full';
 						if ( ! $is_coloured ) {
 							$full   = wp_get_attachment_image_src( get_post_thumbnail_id(), 'full' );

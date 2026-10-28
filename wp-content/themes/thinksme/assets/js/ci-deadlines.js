@@ -140,5 +140,66 @@
 			toggle( result, false );
 			toggle( error, false );
 		} );
+
+		// QA #16 (client, 15/10): the calendar glyph in the field opens a date picker.
+		// The glyph itself stays decorative; a real button sits over it and opens a
+		// native <input type="date"> (showPicker, with a focus/click fallback for
+		// browsers without it). The picked date is written back as DD/MM/YYYY — the
+		// format the field documents — and the deadlines are calculated at once.
+		var field = input.closest( '.ci-tools__field' );
+		var glyph = field ? field.querySelector( '.ci-tools__field-icon' ) : null;
+
+		if ( glyph ) {
+			var picker = document.createElement( 'input' );
+			picker.type = 'date';
+			picker.className = 'ci-tools__date-picker';
+			picker.tabIndex = -1;
+			picker.setAttribute( 'aria-hidden', 'true' );
+
+			var button = document.createElement( 'button' );
+			button.type = 'button';
+			button.className = 'ci-tools__date-button';
+			button.setAttribute( 'aria-label', 'Choose your financial year end from a calendar' );
+
+			field.appendChild( picker );
+			field.appendChild( button );
+
+			button.addEventListener( 'click', function () {
+				var current = parse( input.value );
+
+				if ( current ) {
+					picker.value = current.year + '-' + pad( current.month ) + '-' + pad( current.day );
+				}
+
+				if ( typeof picker.showPicker === 'function' ) {
+					try {
+						picker.showPicker();
+						return;
+					} catch ( e ) {
+						// Fall through: some browsers refuse showPicker on a hidden input.
+					}
+				}
+
+				picker.focus();
+				picker.click();
+			} );
+
+			picker.addEventListener( 'change', function () {
+				var parts = String( picker.value ).split( '-' );
+
+				if ( 3 !== parts.length ) {
+					return;
+				}
+
+				input.value = parts[2] + '/' + parts[1] + '/' + parts[0];
+				input.dispatchEvent( new Event( 'input', { bubbles: true } ) );
+
+				if ( typeof form.requestSubmit === 'function' ) {
+					form.requestSubmit();
+				} else {
+					form.dispatchEvent( new Event( 'submit', { cancelable: true } ) );
+				}
+			} );
+		}
 	}
 } )();

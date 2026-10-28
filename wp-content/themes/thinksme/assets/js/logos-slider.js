@@ -73,15 +73,18 @@ document.addEventListener( 'DOMContentLoaded', function () {
 			var total = realSlides.reduce( function ( sum, s ) {
 				return sum + s.getBoundingClientRect().width + spaceDesktop;
 			}, 0 );
-			var j = 0;
+			// Clone WHOLE sets only. Topping up with a partial set (the first few logos
+			// again) put those logos twice in one loop cycle — on wide screens GB Helios,
+			// first in the set, showed up a second time a few logos after the last one.
+			var setWidth = total;
 			var guard = 0;
-			while ( total < need && guard < 300 ) {
-				var src = realSlides[ j % realSlides.length ];
-				var clone = src.cloneNode( true );
-				clone.setAttribute( 'aria-hidden', 'true' );
-				wrapper.appendChild( clone );
-				total += src.getBoundingClientRect().width + spaceDesktop;
-				j++;
+			while ( setWidth > 0 && total < need && guard < 20 ) {
+				realSlides.forEach( function ( src ) {
+					var clone = src.cloneNode( true );
+					clone.setAttribute( 'aria-hidden', 'true' );
+					wrapper.appendChild( clone );
+				} );
+				total += setWidth;
 				guard++;
 			}
 		}

@@ -10,7 +10,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'THINKSME_VERSION', '1.0.3' );
+define( 'THINKSME_VERSION', '1.1.2' );
 define( 'THINKSME_SWIPER_VERSION', '14.0.7' );
 
 // Primary-nav walker — builds the desktop megamenu out of the menu's own depth.
@@ -19,6 +19,9 @@ require_once get_template_directory() . '/inc/class-thinksme-nav-walker.php';
 // Copy and images for the two Company Incorporation pages, which share one set
 // of template parts and differ only in what this file gives them.
 require_once get_template_directory() . '/inc/ci-content.php';
+
+// GTM (GA4/Ads/Bing live inside the container) + Search Console verification.
+require_once get_template_directory() . '/inc/tracking.php';
 
 /**
  * Theme setup.
@@ -356,9 +359,6 @@ function thinksme_enqueue_assets() {
 			array(
 				'page-corporate-tax.php',
 				'page-business-loan.php',
-				'page-company-incorporation-local.php',
-				'page-company-incorporation-foreign.php',
-				'page-corporate-secretary.php',
 			),
 			true
 		) ) {

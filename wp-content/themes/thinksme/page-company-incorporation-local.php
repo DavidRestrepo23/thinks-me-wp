@@ -52,8 +52,9 @@ get_header();
 		get_template_part( 'template-parts/logos-slider', null, array( 'group' => 'certifications' ) );
 		get_template_part( 'template-parts/ci-pricing' );
 		get_template_part( 'template-parts/ci-tools' );
-		// The Corporate Tax calculator, under the free tools (client QA).
-		get_template_part( 'template-parts/ci-calculator' );
+		// The standalone Corporate Tax calculator was removed here (client, 15/10): the
+		// free-tools panel above already has a working Tax Calculator tab, so it was a
+		// duplicate. The Corporate Tax page keeps its own calculator.
 		get_template_part( 'template-parts/ci-includes' );
 		get_template_part( 'template-parts/ci-ways' );
 		get_template_part( 'template-parts/ci-why' );

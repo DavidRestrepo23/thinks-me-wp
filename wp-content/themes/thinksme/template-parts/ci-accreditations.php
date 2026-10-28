@@ -34,13 +34,25 @@ if ( empty( $d['logos'] ) ) {
 	<div class="flex items-center gap-lg lg:gap-[40px]">
 		<span class="hidden sm:block grow border-t border-border-faint" aria-hidden="true"></span>
 
-		<div class="flex flex-wrap items-end justify-center gap-lg lg:gap-[48px] mx-auto sm:mx-0">
+		<?php // items-center: the IMDA mark (QA #35) is a tall card next to the slim Xero badge, so they share a centre line rather than a baseline. ?>
+		<div class="flex flex-wrap items-center justify-center gap-lg lg:gap-[48px] mx-auto sm:mx-0">
 			<?php foreach ( $d['logos'] as $logo ) : ?>
-				<img
-					src="<?php echo esc_url( thinksme_ci_image_url( $logo['file'] ) ); ?>"
-					alt="<?php echo esc_attr( $logo['name'] ); ?>"
-					class="<?php echo esc_attr( $logo['class'] ); ?> w-auto max-w-full object-contain"
-				>
+				<?php if ( ! empty( $logo['mobile_file'] ) ) : ?>
+					<picture class="contents">
+						<source media="(max-width: 639.98px)" srcset="<?php echo esc_url( thinksme_ci_image_url( $logo['mobile_file'] ) ); ?>">
+						<img
+							src="<?php echo esc_url( thinksme_ci_image_url( $logo['file'] ) ); ?>"
+							alt="<?php echo esc_attr( $logo['name'] ); ?>"
+							class="<?php echo esc_attr( $logo['class'] ); ?> w-auto max-w-full object-contain"
+						>
+					</picture>
+				<?php else : ?>
+					<img
+						src="<?php echo esc_url( thinksme_ci_image_url( $logo['file'] ) ); ?>"
+						alt="<?php echo esc_attr( $logo['name'] ); ?>"
+						class="<?php echo esc_attr( $logo['class'] ); ?> w-auto max-w-full object-contain"
+					>
+				<?php endif; ?>
 			<?php endforeach; ?>
 		</div>
 

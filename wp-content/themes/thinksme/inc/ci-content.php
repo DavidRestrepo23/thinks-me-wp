@@ -2047,12 +2047,13 @@ function thinksme_ci_content() {
 				2 => array(
 					'label' => 'Documents Typically Required',
 					'title' => 'Documents Typically Required',
+					// The client's list (15/10). Items 6–7 stay empty for wp-admin.
 					'items' => array(
-						1 => '',
-						2 => '',
-						3 => '',
-						4 => '',
-						5 => '',
+						1 => 'Property address',
+						2 => 'ID copy',
+						3 => 'Income documents',
+						4 => 'CPF & IRAS property information',
+						5 => 'Latest loan outstanding statement',
 						6 => '',
 						7 => '',
 					),
@@ -2896,7 +2897,7 @@ function thinksme_ci_content() {
 			// export the accreditations strip below draws.
 			'button_logo'       => 'psg/logo-xero-advisor.png',
 			'button_logo_alt'   => 'Xero Certified Advisor',
-			'button_logo_class' => 'self-start h-[48px] lg:h-[56px] w-auto object-contain',
+			'button_logo_class' => 'self-start h-[64px] lg:h-[80px] w-auto object-contain', // client QA 15/10: larger, next to the new IMDA mark.
 			'button_2_text'    => '+65 6012 9642',
 			'button_2_link'    => 'tel:+6560129642',
 			// Figma's whole image group: the badge (127:527) overhangs the photo card's
@@ -2934,15 +2935,16 @@ function thinksme_ci_content() {
 		// see the note in template-parts/ci-accreditations.php.
 		'accreditations'  => array(
 			'logos' => array(
+				// The Xero Certified Advisor badge was removed from this strip (client,
+				// 15/10); the IMDA mark stands alone and is shown larger.
+				// QA #35: the new IMDA / SMEs Go Digital logomark the client supplied (12/10).
+				// Landscape from sm up; the square version below sm, where the landscape
+				// one would shrink its type past legibility on a 375px screen.
 				array(
-					'file'  => 'psg/logo-xero-advisor.png',
-					'name'  => 'Xero Certified Advisor',
-					'class' => 'h-[40px] lg:h-[56px]',
-				),
-				array(
-					'file'  => 'psg/logo-imda-psg.png',
-					'name'  => 'IMDA Pre-Approved Solution, eligible for up to 50% Productivity Solutions Grant (PSG) support',
-					'class' => 'h-[40px] lg:h-[56px]',
+					'file'        => 'psg/logo-imda-edge.png',
+					'mobile_file' => 'psg/logo-imda-edge-square.png',
+					'name'        => 'IMDA Pre-Approved Solution under SMEs Go Digital, eligible for up to 50% business grant support',
+					'class'       => 'h-[260px] sm:h-[200px] lg:h-[240px]',
 				),
 			),
 		),
@@ -3463,7 +3465,7 @@ function thinksme_ci_content() {
 	// rather than scattered across its own template parts.
 	$about = array(
 		'hero'    => array(
-			'hat'              => 'Partner for Business Success',
+			'hat'              => 'Your Partner for Business Success',
 			'title'            => 'Helping Entrepreneurs Start, Run and Grow Their Businesses With Confidence',
 			'text'             => 'At Think SME, we believe every entrepreneur deserves more than just a service provider. We provide the guidance, expertise and business solutions that help founders build successful businesses with confidence.',
 			'button_text'      => "Let's Build Your Business Together",
@@ -3492,7 +3494,7 @@ function thinksme_ci_content() {
 		),
 		'story'   => array(
 			'icon'    => 'about/story-icon.svg',
-			'title'   => 'What "Partner for Business Success" actually means:',
+			'title'   => 'What being your partner for business success actually means:',
 			'items'   => array(
 				"We're there from incorporation, not just at the start",
 				'We stay through compliance, accounting, and financing',

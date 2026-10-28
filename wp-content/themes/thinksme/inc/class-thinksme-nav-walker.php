@@ -83,6 +83,25 @@ class Thinksme_Nav_Walker extends Walker_Nav_Menu {
 	 * @return bool
 	 */
 	private function is_dropdown( $children, $children_elements ) {
+		// One column with a heading over a short card list (Finance & Loan → GROW,
+		// Grants → GROW; client QA 15/10) is also the narrow dropdown: a single
+		// column stretched across the viewport-wide panel would be mostly empty.
+		if ( 1 === count( $children ) ) {
+			$only   = reset( $children );
+			$cards  = isset( $children_elements[ $only->ID ] ) ? $children_elements[ $only->ID ] : array();
+			$single = count( $cards ) >= 1 && count( $cards ) <= 6;
+
+			foreach ( $cards as $card ) {
+				if ( ! empty( $children_elements[ $card->ID ] ) ) {
+					$single = false;
+				}
+			}
+
+			if ( $single ) {
+				return true;
+			}
+		}
+
 		$count = count( $children );
 
 		if ( $count < 2 || $count > 5 ) {

@@ -56,7 +56,14 @@ for ( $i = 0; $i < $count; $i++ ) {
 	);
 }
 
-if ( ! $sections ) {
+// Intro: everything before the first <h2> (lead paragraphs, opening image).
+// Posts migrated from the old site open with it; previously it was dropped.
+$intro_end = $count ? $matches[0][0][1] : strlen( $content );
+$intro     = trim( substr( $content, 0, $intro_end ) );
+
+// Only bail when there is truly nothing to show (no <h2> sections and no intro).
+// A post without any <h2> now renders as a plain article, without the TOC rail.
+if ( ! $sections && '' === $intro ) {
 	return;
 }
 
@@ -87,7 +94,8 @@ $socials = array(
 );
 ?>
 <section class="w-full px-lg lg:px-3xl py-xl lg:py-3xl">
-	<div class="flex flex-col lg:flex-row items-start gap-xl lg:gap-[64px]" data-toc-scrollspy>
+	<div class="flex flex-col lg:flex-row items-start gap-xl lg:gap-[64px]"<?php echo $sections ? ' data-toc-scrollspy' : ''; ?>>
+		<?php if ( $sections ) : ?>
 		<nav
 			class="w-full lg:w-[220px] shrink-0 lg:sticky lg:top-[120px] lg:self-start relative flex gap-md items-stretch"
 			aria-label="<?php esc_attr_e( 'Table of contents', 'thinksme' ); ?>"
@@ -113,8 +121,14 @@ $socials = array(
 				<?php endforeach; ?>
 			</div>
 		</nav>
+		<?php endif; ?>
 
 		<div class="flex flex-col gap-[48px] min-w-0 grow">
+			<?php if ( '' !== $intro ) : ?>
+				<div class="entry-content">
+					<?php echo $intro; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- apply_filters( 'the_content' ) already ran. ?>
+				</div>
+			<?php endif; ?>
 			<?php foreach ( $sections as $i => $section ) : ?>
 				<div id="<?php echo esc_attr( $section['id'] ); ?>" data-toc-section class="flex flex-col gap-md scroll-mt-[120px]">
 					<h2 class="font-medium text-2xl leading-[1.2] text-text-primary">
