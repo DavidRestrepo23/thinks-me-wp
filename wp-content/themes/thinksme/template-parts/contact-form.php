@@ -7,26 +7,21 @@
  * bold half of the headline, matching hero.php), contact_text, contact_email,
  * contact_phone, contact_privacy_url, contact_submit_text.
  *
- * The form posts back to this page; validation, mail delivery and the
- * redirect-after-send live in thinksme_handle_contact_submission()
- * (functions.php), which also owns the field list rendered below.
- *
- * Each field is a pill with its label sitting inside it, as Figma draws it —
- * the label doubles as the placeholder and fades on focus/input (src/base.css).
+ * The enquiry form is Pepper Cloud's hosted form (CRM), embedded as an iframe
+ * — Amendment #13. Submissions go straight to Pepper Cloud; WordPress no longer
+ * handles them. The small inline script sends the parent page URL/title to the
+ * iframe so Pepper Cloud can attribute each lead to the page it came from.
+ * thinksme_handle_contact_submission() in functions.php is now unused here.
  */
 
 $icons_uri = get_template_directory_uri() . '/assets/images/icons';
 
-$state  = thinksme_contact_state();
-$fields = thinksme_contact_fields();
-$errors = $state['errors'];
-$values = $state['values'];
+$peppercloud_form = 'https://app.peppercloud.com/form/03e8c82d-8aba-40c7-90a4-3e134b076bcd/embed';
 
 $email = thinksme_field( 'contact_email', false, 'hello@thinksme.sg' );
 $phone = thinksme_field( 'contact_phone', false, '(+65) 6012 9642' );
 // tel: needs the bare number; the displayed form keeps Figma's punctuation.
 $phone_link  = preg_replace( '/[^0-9+]/', '', $phone );
-$privacy_url = thinksme_field( 'contact_privacy_url', false, '' );
 
 $details = array(
 	array(
@@ -83,99 +78,30 @@ $details = array(
 
 	<?php // Figma draws the card at a fixed 547px, which left a gap at the right edge on anything wider than the 1440px frame. It fills the column instead. ?>
 	<div class="bg-surface-light rounded-lg p-lg lg:p-xl w-full lg:flex-1 lg:min-w-0">
-		<?php if ( $state['sent'] ) : ?>
-			<p class="font-medium text-md text-text-primary leading-normal" role="status">
-				<?php esc_html_e( 'Thank you, your message is on its way. We will be in touch shortly.', 'thinksme' ); ?>
-			</p>
-		<?php else : ?>
-			<?php
-			// TODO(Vicky): Amendment #13 — integrate this form with Peppercloud (CRM). Needs the
-			// Peppercloud embed code / API details. Today the form posts back to WordPress and is
-			// handled by thinksme_handle_contact_submission() in functions.php (validation + email).
-			// When the Peppercloud details arrive, either (a) POST the submission to Peppercloud from
-			// that handler after the email, or (b) replace this markup with Peppercloud's embed.
-			?>
-			<?php // novalidate: the server-side checks in functions.php are the ones that run, so the browser shouldn't block the post with a second, differently-worded set. ?>
-			<form method="post" action="<?php echo esc_url( get_permalink() ); ?>#contact-form" class="relative flex flex-col gap-xl w-full" novalidate>
-				<?php wp_nonce_field( 'thinksme_contact', 'thinksme_contact_nonce' ); ?>
-
-				<?php if ( ! empty( $errors['form'] ) ) : ?>
-					<p class="contact-form__error" role="alert"><?php echo esc_html( $errors['form'] ); ?></p>
-				<?php endif; ?>
-
-				<div class="flex flex-col gap-md w-full">
-					<?php
-					foreach ( $fields as $key => $field ) :
-						$id        = "thinksme-contact-$key";
-						$name      = "thinksme_contact_$key";
-						$value     = isset( $values[ $key ] ) ? $values[ $key ] : '';
-						$has_error = ! empty( $errors[ $key ] );
-						?>
-						<div class="contact-field<?php echo $has_error ? ' contact-field--invalid' : ''; ?>">
-							<?php if ( 'textarea' === $field['type'] ) : ?>
-								<textarea
-									id="<?php echo esc_attr( $id ); ?>"
-									name="<?php echo esc_attr( $name ); ?>"
-									placeholder=" "
-									required
-									aria-required="true"
-									<?php echo $has_error ? ' aria-describedby="' . esc_attr( "$id-error" ) . '"' : ''; ?>
-								><?php echo esc_textarea( $value ); ?></textarea>
-							<?php else : ?>
-								<input
-									type="<?php echo esc_attr( $field['type'] ); ?>"
-									id="<?php echo esc_attr( $id ); ?>"
-									name="<?php echo esc_attr( $name ); ?>"
-									value="<?php echo esc_attr( $value ); ?>"
-									placeholder=" "
-									required
-									aria-required="true"
-									<?php echo $has_error ? ' aria-describedby="' . esc_attr( "$id-error" ) . '"' : ''; ?>
-								>
-							<?php endif; ?>
-							<label for="<?php echo esc_attr( $id ); ?>">
-								<?php echo esc_html( $field['label'] ); ?>
-								<span class="contact-field__required" aria-hidden="true">*</span>
-							</label>
-							<?php if ( $has_error ) : ?>
-								<p id="<?php echo esc_attr( "$id-error" ); ?>" class="contact-form__error mt-xs pl-lg"><?php echo esc_html( $errors[ $key ] ); ?></p>
-							<?php endif; ?>
-						</div>
-					<?php endforeach; ?>
-				</div>
-
-				<div class="flex flex-col gap-xs">
-					<div class="contact-consent flex gap-md items-start">
-						<input type="checkbox" id="thinksme-contact-consent" name="thinksme_contact_consent" value="1" required aria-required="true"<?php echo empty( $errors['consent'] ) ? '' : ' aria-describedby="thinksme-contact-consent-error"'; ?>>
-						<label for="thinksme-contact-consent" class="font-normal text-sm text-text-secondary leading-normal tracking-wide">
-							<?php esc_html_e( 'I confirm and agree to the storing and processing of my personal data as described in the', 'thinksme' ); ?>
-							<?php if ( $privacy_url ) : ?>
-								<a href="<?php echo esc_url( $privacy_url ); ?>" class="underline"><?php esc_html_e( 'Privacy Statement.', 'thinksme' ); ?></a>
-							<?php else : ?>
-								<span class="underline"><?php esc_html_e( 'Privacy Statement.', 'thinksme' ); ?></span>
-							<?php endif; ?>
-						</label>
-					</div>
-					<?php if ( ! empty( $errors['consent'] ) ) : ?>
-						<p id="thinksme-contact-consent-error" class="contact-form__error"><?php echo esc_html( $errors['consent'] ); ?></p>
-					<?php endif; ?>
-				</div>
-
-				<?php // Honeypot. Off-screen rather than display:none — some bots skip hidden fields, which is exactly the check we're making. ?>
-				<div class="absolute -left-[9999px] w-px h-px overflow-hidden" aria-hidden="true">
-					<label for="thinksme-contact-website"><?php esc_html_e( 'Website', 'thinksme' ); ?></label>
-					<input type="text" id="thinksme-contact-website" name="thinksme_contact_website" tabindex="-1" autocomplete="off">
-				</div>
-
-				<button type="submit" name="thinksme_contact_submit" value="1" class="btn-split flex items-center w-full">
-					<span class="bg-brand-yellow rounded-sm h-[50px] flex-1 inline-flex items-center justify-center text-sm font-medium text-text-primary whitespace-nowrap">
-						<?php echo esc_html( thinksme_field( 'contact_submit_text', false, 'Submit' ) ); ?>
-					</span>
-					<span class="bg-brand-yellow rounded-sm size-[50px] inline-flex items-center justify-center shrink-0">
-						<img src="<?php echo esc_url( "$icons_uri/arrow-up-right-dark.svg" ); ?>" alt="" class="size-[24px]">
-					</span>
-				</button>
-			</form>
-		<?php endif; ?>
+		<div>
+			<iframe
+				referrerpolicy="unsafe-url"
+				id="pc-iframe"
+				src="<?php echo esc_url( $peppercloud_form ); ?>"
+				title="<?php esc_attr_e( 'Contact form', 'thinksme' ); ?>"
+				style="display:block;width:100%;height:600px;border:0;"
+			></iframe>
+		</div>
+		<script>
+			( function () {
+				const pcIframe = document.getElementById( 'pc-iframe' );
+				if ( ! pcIframe ) { return; }
+				pcIframe.onload = () => {
+					pcIframe.contentWindow.postMessage(
+						{
+							type: 'pc-parent-info',
+							url: window.location.href,
+							title: document.title,
+						},
+						'*'
+					);
+				};
+			} )();
+		</script>
 	</div>
 </section>
